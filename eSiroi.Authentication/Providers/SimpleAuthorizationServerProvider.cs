@@ -1,4 +1,5 @@
-﻿using eSiroi.Authentication.Entities;
+﻿using eSiroi.Authentication.Infrastructure;
+//using eSiroi.Authentication.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.AspNet.Identity.Owin;
 namespace eSiroi.Authentication.Providers
 {
     public class SimpleAuthorizationServerProvider:OAuthAuthorizationServerProvider
@@ -20,45 +22,48 @@ namespace eSiroi.Authentication.Providers
         }
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
+            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+
+            if (user == null)
+            {
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
+            }
+
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager, "JWT");
+
+            var ticket = new AuthenticationTicket(oAuthIdentity, null);
+
+            context.Validated(ticket);
             //var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
 
             //if (allowedOrigin == null) allowedOrigin = "*";
 
             //context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            using (AuthRepository _repo = new AuthRepository())
-            {
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+            //using (AuthRepository _repo = new AuthRepository())
+            //{
+            //    IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
 
-                if (user == null)
-                {
-                    context.SetError("invalid_grant", "The user name or password is incorrect.");
-                    return;
-                }
-            }
-
-            // var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            var identity = new ClaimsIdentity("JWT");
-            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
-            identity.AddClaim(new Claim("sub", context.UserName));
-
-            //UserManager<IdentityUser> manager;
-
-
-            //var props = new AuthenticationProperties(new Dictionary<string, string>
+            //    if (user == null)
             //    {
-            //        { 
-            //            "as:client_id", (context.ClientId == null) ? string.Empty : context.ClientId
-            //        },
-            //        { 
-            //            "userName", context.UserName
-            //        }
-            //    });
+            //        context.SetError("invalid_grant", "The user name or password is incorrect.");
+            //        return;
+            //    }
+            //}
 
-            var ticket = new AuthenticationTicket(identity, null);
-            context.Validated(ticket);
+            //// var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            //var identity = new ClaimsIdentity("JWT");
+            //identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            //identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
+            //identity.AddClaim(new Claim("sub", context.UserName));
+
+           
+
+            //var ticket = new AuthenticationTicket(identity, null);
+            //context.Validated(ticket);
 
         }
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
