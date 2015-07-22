@@ -1,6 +1,7 @@
 ﻿using eSiroi.Authentication.Infrastructure;
 using eSiroi.Authentication.Model;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,15 @@ namespace eSiroi.Authentication.Controllers
              if (!addUserResult.Succeeded)
              {
                  return GetErrorResult(addUserResult);
+             }
+             // Adding pulic user role 
+            
+             var role = "public";
+             IdentityResult result = await this.AppUserManager.AddToRoleAsync(user.Id,role);
+          
+             if (!result.Succeeded)
+             {
+                 return GetErrorResult(result);
              }
 
             Uri locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));

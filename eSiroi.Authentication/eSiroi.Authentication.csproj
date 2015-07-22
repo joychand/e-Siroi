@@ -128,6 +128,7 @@
     <Compile Include="AuthDbContextMigrations\Configuration.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Infrastructure\ApplicationRoleManager.cs" />
     <Compile Include="Infrastructure\ApplicationUser.cs" />
     <Compile Include="Infrastructure\ApplicationUserManager.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Formats\CustomJwtFormat.cs" />
     <Compile Include="Model\AccountBindingModels.cs" />
     <Compile Include="Model\ModelFactory.cs" />
+    <Compile Include="Model\RoleBindingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Startup.cs" />
