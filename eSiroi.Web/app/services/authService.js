@@ -66,7 +66,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         _authentication.isAuth = false;
         _authentication.userName = "";
         _authentication.useRefreshTokens = false;
-       // $cacheFactory('templates').removeAll();
+       //$cacheFactory('templates').removeAll();
 
     };
 
