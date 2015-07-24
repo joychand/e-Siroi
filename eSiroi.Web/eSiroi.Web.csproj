@@ -121,7 +121,13 @@
     <Content Include="content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="favicon.ico" />
     <Content Include="packages.config" />
+    <Content Include="Views\Home\applyregistration.cshtml" />
+    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -162,20 +168,55 @@
     <Content Include="scripts\angular-local-storage.min.js" />
     <Content Include="scripts\authComplete.js" />
     <Content Include="scripts\loading-bar.min.js" />
+    <Content Include="Views\Home\applyPropertyDetails.html" />
+    <Content Include="Views\Home\applyRegLogin.html" />
+    <Content Include="Views\Home\ApplyRegSuccess.html" />
+    <Content Include="Views\Home\claimant.html" />
+    <Content Include="Views\Home\department.html" />
+    <Content Include="Views\Home\departmentcontent.html" />
+    <Content Include="Views\Home\deptOnlineData.html" />
+    <Content Include="Views\Home\deptsidemenu.html" />
+    <Content Include="Views\Home\dept_DataEntry.html" />
+    <Content Include="Views\Home\dept_dataEntry_form.html" />
+    <Content Include="Views\Home\dept_dataEntry_form_claimant.html" />
+    <Content Include="Views\Home\dept_dataEntry_form_deed.html" />
+    <Content Include="Views\Home\dept_dataEntry_form_executant.html" />
+    <Content Include="Views\Home\dept_dataEntry_form_identifier.html" />
+    <Content Include="Views\Home\dept_dataEntry_form_property.html" />
+    <Content Include="Views\Home\dept_home.html" />
+    <Content Include="Views\Home\dept_OnlineApplication.html" />
+    <Content Include="Views\Home\dept_scanDocuments.html" />
+    <Content Include="Views\Home\draftDeeed.html" />
+    <Content Include="Views\Home\executant.html" />
+    <Content Include="Views\Home\home_page.html" />
+    <Content Include="Views\Home\HtmlPage1.html" />
+    <Content Include="Views\Home\identifier.html" />
+    <Content Include="Views\Home\loginPage.html" />
+    <Content Include="Views\Home\login_page.html" />
+    <Content Include="Views\Home\modal.html" />
+    <Content Include="Views\Home\ModalTemp.html" />
+    <Content Include="Views\Home\plotVerifyModal.html" />
+    <Content Include="Views\Home\registration.html" />
+    <Content Include="Views\Home\registrationcontent.html" />
+    <Content Include="Views\Home\registrationforms.html" />
+    <Content Include="Views\Home\regsidemenu.html" />
+    <Content Include="Views\Home\searchReg.html" />
+    <Content Include="Views\Home\uiBreadcrumbs.tpl.html" />
+    <Content Include="Views\Home\upload_complete.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\service\" />
-    <Folder Include="App_Start\" />
-    <Folder Include="Controllers\" />
     <Folder Include="docs\" />
     <Folder Include="fonts\" />
     <Folder Include="images\" />
-    <Folder Include="Views\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,47 @@
+﻿<!--@{
+    Layout = null;
+}-->
+
+  <p class="pull-left visible-xs" style="padding:0">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">SideMenu</button>
+          </p>
+    
+ <div class="row">
+    <div class="col-sm-9 pull-right">
+        <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy"></ui-breadcrumbs>
+    </div>
+</div>
+     
+<div class="container">
+    
+   <div class="row row-offcanvas row-offcanvas-left ">
+        
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" data-ui-view="sidemenu">
+           
+        </div>
+       
+     
+     
+     
+   
+ <div class="col-xs-12 col-sm-9">
+       
+        
+      
+
+   <div data-ui-view></div>
+</div>
+</div>
+</div>
+
+     
+ <script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="offcanvas"]').click(function () {
+            $('.row-offcanvas').toggleClass('active')
+        });
+    });
+</script>                       
+                    
+               
+   

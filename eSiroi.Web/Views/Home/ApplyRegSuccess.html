@@ -1,0 +1,26 @@
+﻿
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6"><h3><span class="label label-info">Application Successfully submitted</span></h3></div>
+        <div class="col-sm-6 btn-group">
+            <button class="btn btn-primary">PrintAcknoSheet</button><button data-ng-click="getdraftdeed()" class="btn btn-default">ViewDraftDeed</button>
+        </div>
+    </div>
+    <div class="row">
+        <h4><em>Your Acknowledement no is <mark>{{currAckno}}</mark></em></h4>
+        
+    </div>
+    <div class="row">
+        <h5>Plz visit the Lamphel SRO within 30 days from the date of application with the concerned Parties and the following documents:-</h5>
+        <ul class=" col-sm-6">
+            <li ><em>Prepared Deeds</em></li>
+            <li ><em>Computerized Patta</em></li>
+            <li ><em>Photographs</em></li>
+            <li><em>Latest tax reciepts</em></li>
+        </ul>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary" data-ng-click="$state.go('registration.content.forms.propertydetails')">ApplyAnother</button>
+    </div>
+</div>
+

@@ -1,0 +1,31 @@
+﻿<!--<div class="container">
+    <div class="row">
+        <h2>You have successfully submit the registration forms</h2>
+    </div>
+    <div class="row">
+        <h3>Your application Acknowledgement Number is: </h3>
+    </div>
+</div>-->
+<div class="container" id="Home/modal">
+<div class="modal-header">
+            <h3 class="modal-title">Application Successfully submitted</h3>
+        </div>
+        <div class="modal-body">
+        <div class="row">
+            <p>You have successfully submitted the application </p>
+        </div>
+        <div class="row">
+            <p>Your Acknowledgement No. is:<span ng-bind="ackno"></span> </p> 
+        </div>
+        <!--<ul>
+            <li ng-repeat="item in items">
+                <a ng-click="selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+        Selected: <b>{{ selected.item }}</b>-->
+    </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="mod.ok()">OK</button>
+            <button class="btn btn-warning" ng-click="mod.cancel()">Cancel</button>
+        </div>
+    </div>

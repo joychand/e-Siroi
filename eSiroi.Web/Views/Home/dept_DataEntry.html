@@ -1,0 +1,25 @@
+﻿<h1>DepartmentDataEntry</h1>
+<hr />
+<div class="col-sm-6"  >
+    <form class="form-horizontal" role="form" name="seltransform">
+        <div class="form-group">
+            <label for="" class="col-sm-6 control-label">Transaction type: </label>
+            <div class="col-sm-6 pull-left ">
+                <select name="transaction" class="form-control "
+                    data-ng-model="transaction"
+                    data-ng-options="trans.tran_name for trans in transactions | orderBy:'tran_name'">
+                    <option value="">--select Transaction --</option>
+                </select>
+            </div>
+        </div> 
+        
+
+        <div class="form-group">
+            <div class="col-sm-offset-7">
+                <button class="btn btn-primary btn-md" data-ng-click="proceed()">proceed</button>
+                
+            </div>
+        </div>
+    </form>
+</div>
+

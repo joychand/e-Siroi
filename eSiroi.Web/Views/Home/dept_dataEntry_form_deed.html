@@ -1,0 +1,239 @@
+﻿<div class="row">
+    <div class="col-sm-6">
+        <h3>DeedDetailForm</h3>
+    </div>
+
+</div>
+<hr />
+
+<div class="container-fluid">
+    <ng-form class="form-horizontal " name="From.deedform">
+        <div class="form-group  ">
+            <div class="col-sm-6">
+                <div class="col-md-4 hidden-xs  text-right">
+                    <label class="control-label ">RegnNo:</label>
+                </div>
+                <div class="col-sm-12 col-md-8 ">
+                    <input type="text" value="" class="form-control" placeholder="Regno" data-ng-model="deed.Regno"/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-md-4  hidden-xs  text-right">
+                    <label class="control-label">RegYear:</label>
+                </div>
+                <div class="col-sm-12 col-md-8 ">
+                    <input type="text" value="" class="form-control" placeholder="RegYear"  data-ng-model="deed.RegYear"/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-md-4  hidden-xs  text-right ">
+                    <label class="control-label ">RegDate:</label>
+                </div>
+                <div class="col-md-8 ">
+                    <div class="input-group ">
+                    <input class="form-control" type="text" placeholder="Regdate" data-ng-model="deed.RegDate"/>
+                    <span class="input-group-addon">dd/mm/yyyy</span>
+                </div>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="col-md-4 hidden-xs text-right">
+                    <label class="control-label">DateofExecution:</label>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <div class="input-group ">
+                        <input type="text" class="form-control" placeholder="DateOfExec" data-ng-model="deed.Date_Exec" />
+                        <span class="input-group-addon">dd/mm/yyyy</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-md-4 hidden-xs text-right">
+                    <label class="control-form">
+                        DateofPresent:
+                    </label>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <div class="input-group ">
+                        <input class="form-control" type="text" placeholder="DateofPresentant" data-ng-model="d.dop"/>
+                        <span class="input-group-addon">dd/mm/yyyy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-md-4 hidden-xs text-right">
+                    <label class="control-form">Time:</label>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <div class="input-group ">
+                        <input type="text" class="form-control" placeholder="Time" data-ng-model="d.time"/>
+                        <span class="input-group-addon">hh:mm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group ">
+
+            <div class="col-sm-6">
+                <div class="col-sm-12 col-md-4  " style="background-color:ActiveCaption;">
+
+                    <label class="control-label">
+                        Municiple:
+                    </label>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <input type="radio" name="Municipal"
+                           data-ng-checked="deed.municipal == 'Y'"
+                           data-ng-model="deed.municiple" />Yes
+
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <input type="radio" name="Municipal"
+                           data-ng-checked="deed.municipal == 'N'"
+                           data-ng-model="deed.municipal" />No
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class=" col-md-4  " style="background-color:ActiveCaption;">
+
+                    <label class="control-label">
+                        OutJuri::
+                    </label>
+                </div>
+                <div class=" col-md-3">
+                    <input type="radio" name="OutJurisdiction"
+                           data-ng-checked="deed.outjuri == 'Y'"
+                           data-ng-model="deed.outjuri" />Yes
+
+                </div>
+                <div class=" col-md-3 ">
+                    <input type="radio" name="OutJurisdiction"
+                           data-ng-checked="deed.outjuri == 'N'"
+                           data-ng-model="deed.outjuri" />No
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class=" col-md-5" style="background-color:ActiveCaption; padding:0;">
+
+                    <label class="control-label">
+                        Visit Commission?
+                    </label>
+                </div>
+                <div class=" col-md-3">
+                    <input type="radio" name="visitComm" data-checked="deed.vistcomm=='Y'" data-ng-model="deed.visitcomm" />Yes
+
+                </div>
+                <div class=" col-md-3 ">
+                    <input type="radio" name="visitComm" data-ng-checked=" deed.vistcomm=='N'" data-ng-model="deed.vistComm" />No
+
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8">
+                <div class="col-md-5 hidden-xs text-right">
+                    <label class="control-label">Consolidation Value:</label>
+                </div>
+                <div class="col-md-7">
+                    <div class="input-group">
+                        <span class="input-group-addon"><del>&#2352;</del></span>
+
+                        <input type="text" value="" class="form-control" placeholder="Consolidation Value"  data-ng-model="deed.ConValue"/>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="col-md-5 hidden-xs text-right">
+
+                    <label class="control-label">StampPayableValue:</label>
+                </div>
+                <div class="col-md-7">
+                    <div class="input-group">
+                        <span class="input-group-addon"><del>&#2352;</del></span>
+                        <input type="text" class="form-control" placeholder="Stamp Payable Value" />
+                        <span class="input-group-addon">
+                            <input type="checkbox" name="SFeeExmp"
+                                   data-ng-checked="deed.SFeeExmp == 'Y'"
+                                   data-ng-model="deed.SFeeExmp" />SFeeExmp
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="col-md-5 hidden-xs text-right">
+
+                    <label class="control-label">Stamp Value Paid:</label>
+                </div>
+                <div class="col-md-7">
+                    <div class="input-group">
+                        <span class="input-group-addon"><del>&#2352;</del></span>
+                        <input type="text" value="" class="form-control" placeholder="Stamp Value Paid" data-ng-model="deed.StampPaid"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="form-group">
+
+        </div>
+        <div class="form-group">
+
+        </div>-->
+
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class=" col-md-6" style="background-color:ActiveCaption; padding:0;">
+
+                    <label class="control-label">
+                        FeetobeExempted?
+                    </label>
+                </div>
+
+                <div class="col-md-3">
+                    <input type="radio" name="feeExem"
+                           value="Y"
+                           data-ng-model="deed.FeeExempt" />Yes
+                </div>
+                <div class="col-md-3">
+                    <input type="radio" name="feeExem"
+                           value="N"
+                           data-ng-model="deed.FeeExempt" />No
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-md-6" style="background-color:ActiveCaption; padding:0;">
+                    <label class="control-label">If yes reason:</label>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-control"
+                            data-ng-model="deed.ExempReason"
+                            data-ng-options="reason.p_desc for reason in exreason | orderBy: 'p_desc'"
+                            data-ng-disabled="!isExemptYes('Y')">
+                        <option value="">-select reason-</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <div class="btn-group">
+                <button type="submit" data-ng-submit="deedSubmit()" class="btn btn-primary btn-md " ng-disabled="From.deedform.$pristine || From.deedform.$invalid && From.deedform.$dirty" data-ng-click="ondeedSubmit()">Next</button>
+                <button class="btn btn-success btn-md" data-ng-click=""><span class="glyphicon glyphicon-floppy-disk"></span> Draft</button>
+                <button type="reset" class="btn btn-default btn-md">Reset</button>
+            </div>
+
+        </div>
+
+    </ng-form>
+</div>

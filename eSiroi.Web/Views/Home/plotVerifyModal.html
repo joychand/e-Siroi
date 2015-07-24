@@ -1,0 +1,21 @@
+﻿<div class="container" id="Home/plotverifyModal">
+    <div class="modal-header">
+        <h3 class="modal-title">Verify Plot</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row" ng-hide="visibility">
+            {{message}}
+        </div>
+        <div class="row" ng-show="visibility">
+            <p>Plot Details:</p>
+        
+       
+            <div  class="gridStyle" ng-grid="gridOptions"></div>
+       </div>
+       
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="mod.ok()">OK</button>
+        <button class="btn btn-warning" ng-click="mod.cancel()">Cancel</button>
+    </div>
+</div>

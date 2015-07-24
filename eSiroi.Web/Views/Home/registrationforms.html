@@ -1,0 +1,26 @@
+﻿<div class="col-sm-1 pull-right"> <button class="btn btn-danger btn-sm" ui-sref="registration.content.apply"><span class="glyphicon glyphicon-log-out"> logout</span></button>
+     </div> 
+<div class="row"><h2>Registration Form  <small> Transaction type:</small> <small data-ng-bind="regForm.transname"> </small><small>SRO: </small><small data-ng-bind="regForm.sroName"></small> </h2></div>
+
+        <div class="container">
+            
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+              
+            <li ui-sref-active="active"><a  ui-sref="registration.content.forms.propertydetails">PropertyDetails</a></li>
+            <li data-ng-disabled="tabdisabled" ui-sref-active="active"><a  ui-sref="registration.content.forms.executant">Executant</a></li>
+            <li data-ng-disabled="tabdisabled" ui-sref-active="active"><a  ui-sref="registration.content.forms.claimant">Claimant</a></li>
+            <li ui-sref-active="active"><a  ui-sref="registration.content.forms.identifier">Identifier</a></li>
+            
+        </ul>
+            <!-- <tabset justified="true">
+           <tab heading="Justified" ui-sref="registration.content.forms.propertydetails"></tab>
+          <tab heading="SJ" ui-sref="registration.content.forms.propertydetails"></tab>
+         <tab heading="Long Justified"></tab>
+        </tabset>-->
+            <div class="text-center" loading-widget>
+                <img id="mySpinner" src="../../spinning.gif" />
+            </div>
+                <div ui-view></div>
+          
+             
+       </div> 

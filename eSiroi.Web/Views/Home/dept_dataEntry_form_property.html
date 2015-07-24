@@ -1,0 +1,157 @@
+﻿
+<div class="row">
+    <div class="col-sm-6"><h3>PropertyDetailsForm</h3></div>
+
+    <div class="col-sm-6 ">
+        <a class="btn btn-success col-sm-3 btn-sm pull-right " href="http://louchapathap.nic.in/guidanceLandValue.aspx" target="_blank" role="button">Land Valuation</a>
+    </div>
+
+</div>
+<hr />
+<ng-form class="form-horizontal css-form " name="deptPropForm" novalidate>
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="form-group">
+
+                <div class="col-sm-6">
+                    <div class="col-md-4 hidden-xs text-right">
+                        <label class="control-label">District:</label>
+                    </div>
+                    <div class="col-md-8">
+
+                        <select name="district" class="form-control"
+                                data-ng-model="propertyddl.district"
+                                data-ng-options="district.distName for district in districts  | orderBy:'distName'">
+                            <option value="">--Select District--</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-md-4 hidden-xs text-right">
+                        <label class="control-label">Sub-Division:</label>
+                    </div>
+                    <div class="col-md-8 ">
+                        <select class="form-control"
+                                data-ng-model="propertyddl.subdivsion"
+                                data-ng-options="subdiv.subDivName for subdiv in revsubdivisions |  filter:{distCode:propertyddl.district.distCode} | orderBy: 'subDivName'"
+                                data-ng-disabled="!propertyddl.district">
+                            <option value="">-subdivsion-</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-md-4 hidden-xs text-right">
+                        <label class="control-label">Circle:</label>
+                    </div>
+                    <div class="col-md-8 ">
+                        <select name="circle" class="form-control"
+                                data-ng-model="propertyddl.circle"
+                                data-ng-options="circle.circleName for circle in Circles | filter:{distCode:propertyddlddl.district.distCode}  | filter:{subDivCode:propertyddl.subdivsion.subDivCode} | orderBy:'circleName'"
+                                data-ng-disabled="!propertyddl.subdivsion">
+                            <option value="">--Select Circle--</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-md-4 hidden-xs text-right">
+                        <label class="control-label">Village:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select name="village" class="form-control"
+                                data-ng-model="propertyddl.village"
+                                data-ng-options="village.villName for village in revvillages | filter:{distCode:propertyddl.district.distCode} | filter:{subDivCode:propertyddl.subdivsion.subDivCode} |filter:{circleCode:propertyddl.circle.circleCode} | orderBy:'villName'"
+                                data-ng-disabled="!propertyddl.circle">
+                            <option value="">--Select village--</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <div class="col-md-4 hidden-xs text-right">
+                        <label class="control-label">NewDagNo:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" data-ng-model="property.dagNo" placeholder="DagNo" class="form-control " />
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-md-4 text-right">
+                        <label class="control-label hidden-xs">NewPattaNo:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input class=" form-control" type="text" data-ng-model="property.pattaNo" placeholder="PattaNo" />
+                            <span class="input-group-addon span-success"><button class="btn btn-xs btn-success" data-ng-click="verfyplot()">VerifyPlot</button></span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-md-4  hidden-xs text-right ">
+                        <label class="control-label ">TransactionArea:</label>
+                    </div>
+                    <div class="col-md-8 ">
+                        <div class="input-group">
+                            <input class="form-control" data-ng-model="property.transactedArea" type="text" name="TransactionArea" placeholder="TransactArea" />
+                            <span class="input-group-addon span-success">
+                                <select name="unittype" class=""
+                                        data-ng-model="property.unit"
+                                        data-ng-options="unit for unit in unit">
+                                    <option>-select unit-</option>
+                                </select>
+                            </span>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-md-4">
+                        <label class="control-label hidden-xs text-right">LandType:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select name="landtype" class="form-control"
+                                data-ng-model="property.landType"
+                                data-ng-options="lt.landTypeCode as lt.landTypeName for lt in landtype"
+                                data-ng-change="showlandtype()">
+
+                            <option value="">-select landType-</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-md-4 hidden-xs text-right">
+                        <label class="control-label">LandClass</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select class="form-control"
+                                data-ng-model="property.class"
+                                data-ng-options="lc.classCode as lc.className for lc in landclass">
+                            <option value="">-selectLandClass-</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+           
+            <div class="text-center">
+                <div class="btn-group">
+                    <button type="submit" data-ng-click="$state.go('department.content.form.executant')" class="btn btn-primary btn-md ">next</button>
+                    <button type="submit" data-ng-click="saveproperty()" class="btn btn-success btn-md "> <span class="glyphicon glyphicon-floppy-disk"> Draft</span></button>
+                    <button type="reset" class="btn btn-default btn-md ">reset</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    </ng-from>

@@ -1,0 +1,64 @@
+﻿<!--<div class="container">
+    <div class="row">
+        <div class="col-sm-3 hidden-print" id="sidebar" data-ui-view="sidemenu"></div>
+        <div class="col-sm-9">
+            <!--<div ng-show="page.loading">Page Loading........</div>
+            <div   data-ui-view>
+                
+            </div>
+        </div>
+    </div>
+</div>-->
+    
+<div class="row">
+    <div class="pull-left">
+    <button class="btn btn-primary" ng-click="$state.go('department.content.home')">DepartmentHome</button>
+</div>
+    <div class="pull-right">
+       
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" target="_self" class="dropdown-toggle" data-toggle="dropdown"><em>Welcome,{{department.currUser}}</em>,SRO Lamphel <span class="glyphicon glyphicon-user pull-right"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" ng-click="$state.go('Home')">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div class="container">
+     <p class="pull-left visible-xs" style="padding:0">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">SideMenu</button>
+          </p>
+
+   <div class="row row-offcanvas row-offcanvas-left ">
+        
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" data-ui-view="sidemenu">
+           
+        </div>
+       
+     
+     
+     
+   
+ <div class="col-xs-12 col-sm-9">
+       
+        
+      
+
+   <div data-ui-view></div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="offcanvas"]').click(function () {
+            $('.row-offcanvas').toggleClass('active')
+        });
+    });
+</script>  

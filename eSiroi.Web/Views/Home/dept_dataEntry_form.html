@@ -1,0 +1,67 @@
+﻿<form class="form-horizontal css-form " name="Form.deptRegform" ng-novalidate="true">
+    <div class="container-fluid">
+
+        <div class="row" id="topframe">
+            <div class="col-sm-12">
+                <h1>DataEntryForm</h1>
+            </div>
+            <div class="form-group text-center" ng-switch="onlinedata">
+                <div class="col-sm-6 col-sm-push-3" ng-switch-when="getonline">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">
+                            Ackno:
+                        </span>
+
+                        <input type="text" class="form-control" ng-model="online.ackno" />
+
+                        <span class="input-group-addon ">
+                            <button class="btn btn-success btn-xs" data-ng-click="onlineData()">GetData</button>
+                            <button class="btn btn-default btn-xs" data-ng-click="cancel()">cancel</button>
+                        </span>
+
+                    </div>
+                </div>
+                <div class="col-sm-4 col-sm-push-8" ng-switch-when="onlinecancel">
+                    <button type="button" class="btn btn-default" data-ng-click="getOnline()">OnlineData</button>
+                </div>
+            </div>
+
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <label for="TS" class="col-sm-2 control-label ">TS</label>
+            <div class="col-sm-3">
+                <input type="text" name="TS" data-ng-model="tsyear.ts" class="form-control" placeholder="TS">
+            </div>
+            <label for="TS" class="col-sm-2 control-label ">TYear</label>
+            <div class="col-sm-3">
+                <input type="text" name="TYear" data-ng-model="tsyear.tyear" class="form-control" placeholder="TYear">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills nav-justified" role="tablist">
+                    <li ui-sref-active="active"><a ui-sref="department.content.form.deed">DeedDetails</a></li>
+                    <li ui-sref-active="active"><a ui-sref="department.content.form.property">PropertyDetails</a></li>
+                    <li ui-sref-active="active"><a ui-sref="department.content.form.executant">Executant</a></li>
+                    <li ui-sref-active="active"><a ui-sref="department.content.form.claimant">Claimant</a></li>
+                    <li ui-sref-active="active"><a ui-sref="department.content.form.identifier">Identifier</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="text-center" loading-widget>
+            <img id="mySpinner" src="../../spinning.gif"  />
+        </div>
+        
+            
+            <div ui-view></div>
+        <!--</div>-->
+    </div>
+</form>
+
+    
+   
+    

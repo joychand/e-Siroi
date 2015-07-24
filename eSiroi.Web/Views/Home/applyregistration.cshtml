@@ -1,0 +1,106 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+            <h1>Apply registration  </h1>
+            <hr />
+
+<div class="col-sm-6" id="bord" >
+    <form class="form-horizontal css-form" role="form" name="regapplyform" data-ng-submit="next()">
+        <div class="form-group">
+            <label for="" class="col-sm-4 control-label">Transaction type: </label>
+            <div class="col-sm-7  ">
+                <select name="onlineapplication" class="form-control "
+                        data-ng-model="onlineapplication.trans_maj_code"
+                        data-ng-options="trans.tran_maj_code as trans.tran_name for trans in transactions | orderBy:'tran_name'">
+                    <option value="">--select Transaction --</option>
+                </select>
+            </div>
+            <div class="col-sm-1" loading-widget><img id="mySpinner" src="../../spinning.gif" /></div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-4 control-label">Sub Registrar: </label>
+            <div class="col-sm-8 pull-left ">
+                <select name="sr" class="form-control "
+                        data-ng-model="onlineapplication.sro"
+                        data-ng-options="sr.regOfficeCode as sr.regOfficeName  for sr in sro">
+                    <option value="">--select --</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Password:</label>
+            <div class="col-sm-8 pull-left">
+                <input data-ng-model="onlineapplication.password" class="form-control" type="password" name="name" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Confirm Password:</label>
+            <div class="col-sm-8 pull-left">
+                <input name="confmPasswd" data-ng-model="confmpasswd" class="form-control" type="password" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Mobile:</label>
+            <div class="input-group col-sm-8">
+                <span class="input-group-addon">+91</span>
+                <input data-ng-model="onlineapplication.mobile" ui-mask="9999999999" class="form-control" type="text" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Aadhar No:</label>
+            <div class="col-sm-8 pull-left">
+                <input data-ng-model="onlineapplication.aadhar" class="form-control text-center" type="text" ui-mask="9999-9999-9999" />
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <div class="btn-group">
+                <button class="btn btn-primary btn-md" type="submit">next</button>
+                <button class="btn btn-default btn-md" data-ng-click="clearform()">Reset</button>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="col-sm-6">
+    <div class="row">
+    <div class="col-sm-12 ">
+        <h4><span class="label label-default">Plz login with Ackno and password to view application</span></h4>
+    </div>
+    </div>
+    <div class="row" data-ng-switch="loginVisibility">
+    <div class="col-sm-12" data-ng-switch-when="clickLogin">
+        <button class="btn btn-primary col-sm-3 col-sm-offset-4" data-ng-click="login()" >View</button>
+    </div>
+   
+        <div class="row" data-ng-switch-when="Login">
+            <form class="form-horizontal" role="form" name="applyReglogin" ng-submit="">
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Ackno:</label>
+                    <div class="col-sm-6">
+                        <input type="text" data-ng-model="applylogin.ackno" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Password:</label>
+                    <div class="col-sm-6">
+                        <input type="password" data-ng-model="applylogin.passwd"class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group  text-center">
+                    <div class="btn-group">
+                        <button class="btn btn-success" type="submit">login</button>
+                        <button class="btn btn-default" data-ng-click="loginCancel()">cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+        

@@ -1,0 +1,286 @@
+﻿<ng-form class="form-horizontal " ng-class="{cssinput:$parent.Form.execform.$dirty}" name="$parent.Form.execform" novalidate>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>ExecutantDetailForm</h3>
+        </div>
+        <div class=" col-sm-2 pull-right"><span class="text-danger">#<em>optional</em></span></div>
+    </div>
+    <hr />
+    <!--<div class="alert alert-success alert-dismissible" role="alert" ng-show="success">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>You have successfully added the Executant
+    </div>-->
+
+    <div class="form-group" ng-show="session.slnoddlVisibility">
+        <label class="col-sm-4 control-label pull-left">Select Executant Slno:</label>
+        <div class="col-sm-2">
+            <select name="slno" id="" class="form-control"
+                    data-ng-model="Elist.slNo"
+                    data-ng-options="slno for slno in exeslnolist"
+                    data-ng-change="getselectedExecutant()">
+                <option value="">slno</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Slno:</label>
+        <div class="col-sm-1">
+            <input list="slno" data-ng-model="executant.slNo" class="form-control" readonly />
+
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <label for="executant" class="col-sm-2 control-label">Executant</label>
+
+        <div class="col-sm-3">
+            
+            <input type="text"  name="ExecSurName" data-ng-model="executant.execSurName" class="form-control" placeholder="Surnanme" data-ng-required="true">
+            <!--<span style="color:#ff0000" data-ng-show="$parent.Form.execform.ExecSurName.$dirty && $parent.Form.execform.ExecSurName.$invalid">-->
+            <span data-ng-show="$parent.Form.execform.ExecSurName.$error.required && $parent.Form.execform.$dirty">Plz input a surname</span>
+            <!--</span>-->
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="ExecMiddleName" data-ng-model="executant.execMiddleName" class="form-control text-left css-form" placeholder="MiddleName" required>
+            <span style="color:#ff0000" data-ng-show="$parent.execform.ExecMiddleName.$dirty && $parent.execform.ExecMiddleName.$invalid">
+                <span data-ng-show="$parent.execform.ExecMiddleName.$error.required">Plz input a MiddleName</span>
+            </span>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="ExecLastName" data-ng-model="executant.execLastName" class="form-control text-left" placeholder="LastName" required>
+            <span style="color:#ff0000" data-ng-show="$parent.execform.ExecLastName.$dirty && $parent.execform.ExecLastName.$invalid">
+                <span data-ng-show="$parent.execform.ExecLastName.$error.required">Plz input a LastName</span>
+            </span>
+        </div>
+
+
+    </div>
+    <div class="form-group">
+        <label for="alias" class="col-sm-2 control-label ">Alias</label>
+        <div class="col-sm-3">
+            <input type="text" name="alias" data-ng-model="executant.alias" class="form-control" placeholder="alias">
+        </div>
+        <div class="col-sm-3">
+            <input type="text" value="" class="form-control" placeholder="Mobile"  data-ng-model="e.mobile"/>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="alias" data-ng-model="executant.Aadhaar" class="form-control" placeholder="Aadhaar">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="father" class="col-sm-2 control-label">Father</label>
+
+        <div class="col-sm-3">
+            <input type="text" name="Surname" data-ng-model="executant.fatherSurName" class="form-control" placeholder="Surnanme" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="MiddleName" data-ng-model="executant.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="LastName" data-ng-model="executant.fatherLastName" class="form-control text-left" placeholder="LastName" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="sex" class="col-sm-2 control-label">Sex</label>
+        <div class="col-sm-4">
+            <label for="" class="radio-inline">
+                <input type="radio" name="sexradio" value="M"
+                       data-ng-checked="executant.sex == 'M'"
+                       data-ng-model="executant.sex" />Male
+            </label>
+
+            <label for="" class="radio-inline">
+                <input type="radio" name="sexradio" value="F"
+                       data-ng-checked="executant.sex == 'F'"
+                       data-ng-model="executant.sex" />Female
+            </label>
+        </div>
+
+
+
+        <label for="" class=" control-label col-sm-2">Occupation</label>
+        <div class="col-sm-3">
+            <select name="occupation" id="" class="form-control"
+                    data-ng-model="occupation"
+                    data-ng-options="occupation for occupation in occupations">
+                <option value="">--select Occupation--</option>
+            </select>
+        </div>
+
+
+    </div>
+    <!-- ***** DropDownList Template ********
+    ========================================================  --->
+    <div class="container" ng-switch="session.OnlineStatus">
+        <!-- ========== DropDownlist Template for Offline Data Entry =========  -->
+        <div class="container" ng-switch-when="offline">
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">State</label>
+                <div class="col-sm-4">
+                    <select name="state" id="" class="form-control"
+                            data-ng-model="execddl.state"
+                            data-ng-options="state.stateName for state in states  track by state.stateName">
+                        <option value="">-Select State-</option>
+
+                    </select>
+                </div>
+
+                <!-- Sub-Division Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">District</label>
+                <div class="col-sm-4">
+                    <select name="district" class="form-control"
+                            data-ng-model="execddl.district"
+                            data-ng-options="district.distName for district in districts  | orderBy:'distName' track by district.distName "
+                            data-ng-change="execddl.clrpincode()">
+                        <option value="">--Select District--</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- District Dropdown
+            ================================  -->
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">Sub-Division</label>
+                <div class="col-sm-4">
+                    <select name="subdiv" class="form-control"
+                            data-ng-model="execddl.subDivision"
+                            data-ng-options="subdiv.subDivName for subdiv in subdivisions | filter:{distCode:execddl.district.distCode} | orderBy:'subDivName' track by subdiv.subDivName"
+                            data-ng-disabled="!execddl.district">
+                        <option value="">--Select Subdiv--</option>
+                    </select>
+
+                </div>
+
+                <!-- Village Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">Village</label>
+                <div class="col-sm-4">
+                    <select name="village" id="" class="form-control"
+                            data-ng-model="execddl.village"
+                            data-ng-options="village.villName for village in villages  | filter:{distCode:execddl.district.distCode} | filter:{subDivCode: execddl.subDivision.subDivCode} | orderBy: 'villName' track by village.villName"
+                            data-ng-disabled="!execddl.subDivision">
+                        <option value="">--Select Village--</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Post Office Dropdown
+            ================================  -->
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">Post Office</label>
+                <div class="col-sm-4">
+                    <select name="PostOffice" id="" class="form-control"
+                            data-ng-model="execddl.postOffice"
+                            data-ng-options="po.postOffice1 for po in postoffices  | filter:{distCode:execddl.district.distCode}  | orderBy: 'postOffice1' track by po.postOffice1"
+                            data-ng-disabled="!execddl.subDivision">
+
+                        <option value="">--select post office --</option>
+
+                    </select>
+
+                </div>
+                <!-- Pincode Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">PinCode</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control text-left" data-ng-model="execddl.postOffice.pinCode" placeholder="Pincode" />
+                </div>
+                <!--</div> -->
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">PoliceStation</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" data-ng-model="execddl.policeSt" />
+                </div>
+            </div>
+        </div>
+        <!-- ========== DropDownlist Template for Online Data Entry =========  -->
+        <div class="container-fluid" ng-switch-when="online">
+
+            <!-- State Dropdown
+                         ================================  -->
+
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">State</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="execddl.state" class="form-control" />
+
+                </div>
+
+                <!-- District Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">District</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="execddl.district" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <!-- SubDivision Dropdown
+            ================================  -->
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">Sub-Division</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="execddl.subDivision" class="form-control" />
+
+                </div>
+
+                <!-- Village Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">Village</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="execddl.village" class="form-control" />
+                </div>
+            </div>
+            <!-- Post Office Dropdown
+            ================================  -->
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">Post Office</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="execddl.postOffice" class="form-control" />
+
+                </div>
+                <!-- Pincode Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">PinCode</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control text-left" data-ng-model="execddl.pinCode" placeholder="Pincode" />
+                </div>
+                <!--</div> -->
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">PoliceStation</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" data-ng-model="execddl.policeSt" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-sm-3 col-sm-push-8">
+            <button data-ng-click="execAddmore()" class="btn btn-default btn-md pull-right">Add More</button>
+        </div>
+    </div>
+    <!-- ======================================== -->
+    <div class="form-group text-center ">
+        <div class="btn-group">
+            <button type="submit" data-ng-click="onexsubmit()" class="btn btn-primary btn-md " ng-disabled="execform.$pristine || execform.$invalid && execform.$dirty">Next</button>
+            <button class="btn btn-success btn-md" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Draft</button>
+            <button type="reset" class="btn btn-default btn-md">Reset</button>
+        </div>
+    </div>
+</ng-form>
+
