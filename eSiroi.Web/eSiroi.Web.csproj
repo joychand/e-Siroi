@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -91,6 +97,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
     <Content Include="app\controller\controller1.js" />
     <Content Include="app\controller\controller2.js" />
     <Content Include="app\controller\controller3.js" />
@@ -136,7 +143,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\app.js" />
+    <Content Include="app\app1.js" />
     <Content Include="app\controllers\associateController.js" />
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\controllers\indexController.js" />
@@ -206,7 +213,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

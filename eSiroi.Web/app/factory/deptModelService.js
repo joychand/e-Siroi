@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .factory('deptModalService', ['$http', deptModalService]);
 
     function deptModalService($http) {

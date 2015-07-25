@@ -1,6 +1,6 @@
 ﻿
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .factory('sessionFactory', ['$http', '$rootScope', '$q','$timeout' ,function ($http, $rootScope, $q,$timeout) {
     
             var sessionFactory = {};
@@ -149,7 +149,7 @@
         }]);
 
     angular
-       .module('eRegApp').factory("errors", function ($rootScope) {
+       .module('eSiroi.Web').factory("errors", function ($rootScope) {
         return {
             catch: function (message) {
                 return function (reason) {

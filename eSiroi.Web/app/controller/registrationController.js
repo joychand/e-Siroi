@@ -4,7 +4,7 @@
 /// <reference path = ~/scripts/app/app.js>
 'use strict';
 angular
-.module('eRegApp')
+.module('eSiroi.Web')
     .controller('ModalInstanceCtrl', ['$state','$scope', '$modalInstance','ackno',
     function ($state,$scope, $modalInstance, ackno) {
         $scope.mod = {};
@@ -29,7 +29,7 @@ angular
 
 //***********APPLY REGISTRATION CONTROLLER***********************//
 (function () {
-    angular.module('eRegApp')
+    angular.module('eSiroi.Web')
     .controller('applyRegistrationController', ['$scope', '$state', 'dataFactory', '$rootScope', 'sessionFactory', '$timeout', 'errors', 'ApplyRegModel', 'modalService', function ($scope, $state, dataFactory, $rootScope, sessionFactory, $timeout, errors, ApplyRegModel) {
         $scope.transactions = {};
        
@@ -666,7 +666,7 @@ angular
 
     registrationController.$inject = ['$scope', '$state', 'dataFactory', '$location', '$rootScope', 'sessionFactory', 'ModalService', '$modal', '$log', 'ApplyRegModel', 'dept_dataFactory', 'modalService','$http'];
     angular
-       .module('eRegApp')
+       .module('eSiroi.Web')
        .controller('registrationController', registrationController);
 
 }());
@@ -674,7 +674,7 @@ angular
 
 //****** REGISTRATION SUCCESS PAGE CONTROLLER
 (function () {
-    angular.module('eRegApp')
+    angular.module('eSiroi.Web')
     .controller('ApplySuccessController', ['$scope', 'modalService', 'sessionFactory', ApplySuccessController]);
 
     function ApplySuccessController($scope, modalService, sessionFactory) {

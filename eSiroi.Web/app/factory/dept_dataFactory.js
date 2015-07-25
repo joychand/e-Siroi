@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .factory('dept_dataFactory', ['$http', dept_dataFactory]);
 
     function dept_dataFactory($http) {
@@ -143,7 +143,7 @@
 
         
     }
-    angular.module('eRegApp').config(function (errorHandlerProvider, $provide) {
+    angular.module('eSiroi.Web').config(function (errorHandlerProvider, $provide) {
 
         errorHandlerProvider.decorate($provide, ['dept_dataFactory'])
     });

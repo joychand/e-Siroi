@@ -1,7 +1,7 @@
 ﻿//(function () {
 //    'use strict';
 
-//    angular.module('eRegApp')
+//    angular.module('eSiroi.Web')
 //    .factory('timestampMarker', ['$q',function ($q) {
 //        var timestampMarker = {
 //            request: function (config) {
@@ -24,7 +24,7 @@
 //        };
 //        return timestampMarker;
 //    }]);
-//    angular.module('eRegApp').config(['$httpProvider', function ($httpProvider) {
+//    angular.module('eSiroi.Web').config(['$httpProvider', function ($httpProvider) {
 //        $httpProvider.interceptors.push('timestampMarker');
 //    }]);
 //})();
@@ -32,7 +32,7 @@
 //(function () {
 //    'use strict';
 
-//    angular.module('eRegApp')
+//    angular.module('eSiroi.Web')
 //    .factory('interceptor', ['$q', function ($q) {
 //        var interceptor = {
 //            request: function (config) {
@@ -54,7 +54,7 @@
 //        };
 //        return interceptor;
 //    }]);
-//    angular.module('eRegApp').config(['$httpProvider', function ($httpProvider) {
+//    angular.module('eSiroi.Web').config(['$httpProvider', function ($httpProvider) {
 //        $httpProvider.interceptors.push('interceptor');
 //    }]);
 //})();
@@ -121,7 +121,7 @@
 
 
 
-angular.module('eRegApp')
+angular.module('eSiroi.Web')
 .config(['$httpProvider', function ($httpProvider) {
     var $http
          $httpProvider.interceptors.push(function ($q, $injector){

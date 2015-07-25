@@ -1,6 +1,6 @@
 ﻿(function () {
     angular
-   .module('eRegApp')
+   .module('eSiroi.Web')
    .factory('ApplyRegModel',['dataFactory', ApplyRegModel]);
     function ApplyRegModel(dataFactory) {
 

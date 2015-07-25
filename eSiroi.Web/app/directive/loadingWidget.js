@@ -1,6 +1,6 @@
 ﻿
 'use strict';
-angular.module('eRegApp')
+angular.module('eSiroi.Web')
     .directive('loadingWidget', ['requestNotificationChannel', function (requestNotificationChannel) {
     return {
         restrict: "A",

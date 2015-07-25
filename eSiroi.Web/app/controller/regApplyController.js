@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('regApplyController', ['$scope', regApplyController]);
 
     function regApplyController($scope) {

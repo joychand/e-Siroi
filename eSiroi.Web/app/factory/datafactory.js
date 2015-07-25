@@ -2,7 +2,7 @@
 
 /// <reference path = ~/scripts/app/controller/registrationController.js>
 
-angular.module('eRegApp')
+angular.module('eSiroi.Web')
     .factory('dataFactory', ['$http', function ($http) {
 
         var urlBase = '/api/Districts';
@@ -210,7 +210,7 @@ angular.module('eRegApp')
         return dataFactory;
     }]);
 
- angular.module('eRegApp').config(function (errorHandlerProvider, $provide) {
+ angular.module('eSiroi.Web').config(function (errorHandlerProvider, $provide) {
 
      errorHandlerProvider.decorate($provide, ['dataFactory'])
  });

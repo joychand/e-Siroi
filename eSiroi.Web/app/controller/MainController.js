@@ -2,7 +2,7 @@
 
 // Home Controller
 (function () {
-    angular.module('eRegApp')
+    angular.module('eSiroi.Web')
     .controller('HomeController',['$scope', '$state', '$window', HomeController])
     function HomeController($scope, $state, $window) {
         //window.onbeforeunload = function (event) {

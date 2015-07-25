@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('departmentController', ['$scope', 'dept_sessionfactory', deptcontentController]);
 
     function deptcontentController($scope, dept_sessionfactory) {
@@ -19,7 +19,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('deptcontentController', ['$scope','$rootScope', deptcontentController]);
 
     function deptcontentController($scope,$rootScope) {
@@ -35,7 +35,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory',deptHomeController]);
 
     function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory) {
@@ -95,7 +95,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('dept_OnlineController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', dept_OnlineController]);
 
     function dept_OnlineController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory) {
@@ -141,7 +141,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('dept_regController', ['$scope', '$state', 'majortrans', dept_regController]);
 
     function dept_regController($scope, $state, majortrans) {
@@ -161,7 +161,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('deptmenuController', ['$scope', '$rootScope','$state', deptmenuController]);
 
     function deptmenuController($scope, $rootScope,$state) {
@@ -176,7 +176,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('deptloginController', ['$scope', '$state','modalService',deptloginController]);
 
     function deptloginController($scope, $state, modalService) {
@@ -208,7 +208,7 @@
 
 //LoginModalController
 (function () {
-    angular.module('eRegApp')
+    angular.module('eSiroi.Web')
     .controller('loginModalCtrl', ['$scope', '$modalInstance','dept_sessionfactory',loginModalCtrl]);
     function loginModalCtrl($scope, $modalInstance, dept_sessionfactory) {
         $scope.login = {};
@@ -238,7 +238,7 @@
     //'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('dataEntryformController', ['$scope', '$state', 'dept_sessionfactory', 'dataFactory', 'dept_dataFactory', 'deptModalService', 'modalService', '$rootScope', dataEntryformController]);
 
     function dataEntryformController($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService, $rootScope) {
@@ -583,7 +583,7 @@
 
 // dept_dataEntry_from_deed controller //
 (function () {
-    angular.module('eRegApp')
+    angular.module('eSiroi.Web')
     .controller('deptDeedController', ['$scope', '$state', 'dept_sessionfactory', 'dataFactory', 'dept_dataFactory', 'deptModalService', 'modalService', deptDeedController])
 
     function deptDeedController($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService) {
@@ -616,7 +616,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('deptPropController', ['$scope', '$state', 'district', '$http', '$modal', 'deptModalService', 'modalService','dept_sessionfactory',  deptPropController]);
 
     function deptPropController($scope, $state, district, $http, $modal, deptModalService, modalService, dept_sessionfactory) {
@@ -753,7 +753,7 @@
 (function () {
     'use strict';
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('PlotVerifyModalInstanceCtrl', ['$scope', '$modalInstance', 'plot', 'IsPlotFound', '$modal',
             function ($scope, $modalInstance,plot,IsPlotFound ,$modal) {
                 $scope.visibility = false;
@@ -790,7 +790,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('deptExeController', ['$scope', '$state', 'dataFactory', 'online', 'dept_sessionfactory', 'deptModalService', 'dept_dataFactory','$timeout', deptExeController]);
 
     function deptExeController($scope, $state, dataFactory, online, dept_sessionfactory, deptModalService, dept_dataFactory, $timeout) {
@@ -928,7 +928,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('deptClaimController', ['$scope', '$state', 'dept_sessionfactory', 'deptModalService', 'dept_dataFactory',deptClaimController]);
 
     function deptClaimController($scope, $state, dept_sessionfactory, deptModalService, dept_dataFactory) {
@@ -993,7 +993,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .controller('deptIdentController', ['$scope', '$state','dept_sessionfactory', 'deptModalService', 'dept_dataFactory', deptIdentController]);
 
     function deptIdentController($scope, $state,dept_sessionfactory, deptModalService, dept_dataFactory) {

@@ -1,4 +1,4 @@
-﻿angular.module('eRegApp')
+﻿angular.module('eSiroi.Web')
     .factory('requestNotificationChannel', ['$rootScope', function ($rootScope) {
     // private notification messages
     var _START_REQUEST_ = '_START_REQUEST_';

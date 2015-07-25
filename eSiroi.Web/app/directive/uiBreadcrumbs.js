@@ -6,7 +6,7 @@
     /**
      * Config
      */
-    var moduleName = 'eRegApp';
+    var moduleName = 'eSiroi.Web';
     var templateUrl = 'Home/tpl';
    // var templateUrl = '';
     /**

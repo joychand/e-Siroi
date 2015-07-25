@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('eRegApp')
+        .module('eSiroi.Web')
         .factory('dept_sessionfactory', ['$http', dept_sessionfactory]);
 
     function dept_sessionfactory($http) {
