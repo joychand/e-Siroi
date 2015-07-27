@@ -9,14 +9,14 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using eReg.Models;
-using eReg.Repository;
+using eSiroi.Resource.Entities;
+using eSiroi.Resource.Repository;
 
-namespace eReg.Controllers
+namespace eSiroi.Resource.Controllers
 {
     public class OnlineExecutantsController : ApiController
     {
-        private eregdbContext db = new eregdbContext();
+        private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
 
         // GET: api/OnlineExecutants
         public IQueryable<OnlineExecutant> GetOnlineExecutant()

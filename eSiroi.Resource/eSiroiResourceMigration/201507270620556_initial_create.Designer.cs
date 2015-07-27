@@ -7,13 +7,13 @@ namespace eSiroi.Resource.eSiroiResourceMigration
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initialcreate : IMigrationMetadata
+    public sealed partial class initial_create : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initialcreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial_create));
         
         string IMigrationMetadata.Id
         {
-            get { return "201507251233311_initial-create"; }
+            get { return "201507270620556_initial_create"; }
         }
         
         string IMigrationMetadata.Source

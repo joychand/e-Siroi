@@ -4,20 +4,20 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using eReg.Models;
-using eReg.Migrations.Models;
+using eSiroi.Resource.Entities;
+using eSiroi.Resource.Entities;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.SqlServer;
 
 
-namespace eReg.Controllers
+namespace eSiroi.Resource.Controllers
 {
     public class deptRegistraionController : ApiController
     {
-        private eregdbContext db = new eregdbContext();
-        private LPplot lpdb = new LPplot();
+        private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
+        private LpDbContext lpdb = new LpDbContext();
 
         //GET ONLINE APPLICATION
         [HttpGet]
@@ -95,7 +95,9 @@ namespace eReg.Controllers
             return NotFound();
         }
 
-        //************DEED FORM******************//
+       
+        # region DeedForm API
+
         //POST DEED DETAILS
         [HttpPost]
         [Route("api/deptRegistraionController/postdeed")]
@@ -151,7 +153,10 @@ namespace eReg.Controllers
             return NotFound();
         }
 
-        //******************PROPERTYFORM*************//
+        # endregion DeedFrom API
+
+      
+        # region PropertyFrom API
         //Get Property Details
         [HttpGet]
         [Route("api/deptRegistraionController/{ackno}/property")]
@@ -182,7 +187,9 @@ namespace eReg.Controllers
             else
                 return NotFound();
         }
+        #endregion 
 
+        #region PartyDetails API
         // post executantlist
         [HttpPost]
         [Route("api/deptRegistraionController/postexecutant")]
@@ -218,6 +225,7 @@ namespace eReg.Controllers
             // return CreatedAtRoute("DefaultApi", new { controller = "postexecutant", id = executantlist[0].ackno }, executantlist);
             return Ok();
         }
+        
         // Get Online Claimant list 
         [HttpGet]
         [Route("api/deptRegistraionController/{ackno}/claimantlist")]
@@ -267,7 +275,7 @@ namespace eReg.Controllers
         // GET CLAIMANT DDL LIST
         [HttpGet]
         [Route("api/deptRegistraionController/{ackno}/claimddlist")]
-
+      
         public System.Collections.IEnumerable claimddlist(int ackno)
         {
 
@@ -283,6 +291,7 @@ namespace eReg.Controllers
 
 
         }
+        # endregion
         // get plot
         [HttpGet]
         [Route("api/deptRegistraionController/{plotno}/{pattano}/verfiyplot")]
@@ -292,9 +301,9 @@ namespace eReg.Controllers
         //IQueryable plotlist;
 
 
-           var plotlist = (from p in lpdb.Set<uniowner>()
+            var plotlist = (from p in lpdb.Set<Uniowner>()
                         where p.NewDagNo == plotno && p.NewPattaNo == pattano
-                        select new { p.NewDagNo,p.NewPattaNo,p.ownno,p.Name,p.Father,p.Address,p.PArea });
+                        select new { p.NewDagNo,p.NewPattaNo,p.Name,p.Father,p.Address,p.PArea });
             //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
             if (plotlist.Any())
             {
@@ -305,7 +314,7 @@ namespace eReg.Controllers
 
         }
 
-
+     
      
 
 

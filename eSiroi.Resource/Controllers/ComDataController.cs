@@ -6,18 +6,18 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using eReg.Models;
-using eReg.Migrations.Models;
-using eReg.Repository;
+using eSiroi.Resource.Entities;
+using eSiroi.Resource.Migrations.Entities;
+using eSiroi.Resource.Repository;
 using System.Web.Http.Description;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 
-namespace eReg.Controllers
+namespace eSiroi.Resource.Controllers
 {
     public class ComDataController : ApiController
     {
-        private eregdbContext db = new eregdbContext();
+        private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
         //get PoliceStation
         [HttpGet]
         [Route("api/ComDataController/getPoliceStations")]

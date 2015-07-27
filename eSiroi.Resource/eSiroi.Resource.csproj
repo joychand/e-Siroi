@@ -170,6 +170,7 @@
     <Compile Include="Entities\Executant.cs" />
     <Compile Include="Entities\Identifier.cs" />
     <Compile Include="Entities\LandType.cs" />
+    <Compile Include="Entities\LpDbContext.cs" />
     <Compile Include="Entities\MajorTrans_code.cs" />
     <Compile Include="Entities\Occupation.cs" />
     <Compile Include="Entities\onlineapplication.cs" />
@@ -187,9 +188,11 @@
     <Compile Include="Entities\State.cs" />
     <Compile Include="Entities\SubDivision.cs" />
     <Compile Include="Entities\TransactionStatu.cs" />
-    <Compile Include="eSiroiResourceMigration\201507251233311_initial-create.cs" />
-    <Compile Include="eSiroiResourceMigration\201507251233311_initial-create.Designer.cs">
-      <DependentUpon>201507251233311_initial-create.cs</DependentUpon>
+    <Compile Include="Entities\Uniowner.cs" />
+    <Compile Include="Entities\Uniplot.cs" />
+    <Compile Include="eSiroiResourceMigration\201507270620556_initial_create.cs" />
+    <Compile Include="eSiroiResourceMigration\201507270620556_initial_create.Designer.cs">
+      <DependentUpon>201507270620556_initial_create.cs</DependentUpon>
     </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -207,10 +210,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Models\" />
+    <Folder Include="Repository\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="eSiroiResourceMigration\201507251233311_initial-create.resx">
-      <DependentUpon>201507251233311_initial-create.cs</DependentUpon>
+    <EmbeddedResource Include="eSiroiResourceMigration\201507270620556_initial_create.resx">
+      <DependentUpon>201507270620556_initial_create.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

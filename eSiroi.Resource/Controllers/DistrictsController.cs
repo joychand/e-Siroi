@@ -8,13 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using eReg.Models;
+using eSiroi.Resource.Entities;
 
-namespace eReg.Controllers
+namespace eSiroi.Resource.Controllers
 {
     public class DistrictsController : ApiController
     {
-        private eregdbContext db = new eregdbContext();
+        private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
 
         // GET: api/Districts
         public IQueryable<District> GetDistricts()

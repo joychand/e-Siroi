@@ -1,0 +1,50 @@
+namespace eSiroi.Resource.Entities
+{
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
+    public partial class LpDbContext : DbContext
+    {
+        public LpDbContext()
+            : base("name=LpDbConnection")
+        {
+        }
+
+        public virtual DbSet<eSiroi.Resource.Entities.Uniowner> Uniowners { get; set; }
+        public virtual DbSet<Uniplot> Uniplots { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Uniowner>()
+                .Property(e => e.MutNo)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<Uniowner>()
+                .Property(e => e.SocialClass)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Uniplot>()
+                .Property(e => e.EntryDate)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Uniplot>()
+                .Property(e => e.RemarkType)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Uniplot>()
+                .Property(e => e.usr)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Uniplot>()
+                .Property(e => e.MutNo)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<Uniplot>()
+                .Property(e => e.MutOld)
+                .HasPrecision(18, 0);
+        }
+    }
+}

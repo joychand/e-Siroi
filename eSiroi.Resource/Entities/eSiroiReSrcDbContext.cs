@@ -12,33 +12,33 @@ namespace eSiroi.Resource.Entities
         {
         }
 
-        public virtual DbSet<CensusSubDivision> CensusSubDivisions { get; set; }
-        public virtual DbSet<District> Districts { get; set; }
-        public virtual DbSet<MajorTrans_code> MajorTrans_code { get; set; }
-        public virtual DbSet<Occupation> Occupations { get; set; }
-        public virtual DbSet<onlineapplication> onlineapplications { get; set; }
-        public virtual DbSet<OnlineClaimant> OnlineClaimants { get; set; }
-        public virtual DbSet<OnlineExecutant> OnlineExecutants { get; set; }
-        public virtual DbSet<OnlineIdentifier> OnlineIdentifiers { get; set; }
-        public virtual DbSet<onlinePlot> onlinePlots { get; set; }
-        public virtual DbSet<PoliceStation> PoliceStations { get; set; }
-        public virtual DbSet<PostOffice> PostOffices { get; set; }
-        public virtual DbSet<Presentant> Presentants { get; set; }
-        public virtual DbSet<State> States { get; set; }
-        public virtual DbSet<TransactionStatu> TransactionStatus { get; set; }
-        public virtual DbSet<censusvillage> censusvillages { get; set; }
-        public virtual DbSet<Circle> Circles { get; set; }
-        public virtual DbSet<Claimant> Claimants { get; set; }
-        public virtual DbSet<Class> Classes { get; set; }
-        public virtual DbSet<Deed> Deeds { get; set; }
-        public virtual DbSet<Executant> Executants { get; set; }
-        public virtual DbSet<Identifier> Identifiers { get; set; }
-        public virtual DbSet<LandType> LandTypes { get; set; }
-        public virtual DbSet<Plot> Plots { get; set; }
-        public virtual DbSet<RegistarOffice> RegistarOffices { get; set; }
-        public virtual DbSet<RevVillage> RevVillages { get; set; }
-        public virtual DbSet<RO> ROes { get; set; }
-        public virtual DbSet<SubDivision> SubDivisions { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.CensusSubDivision> CensusSubDivisions { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.District> Districts { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.MajorTrans_code> MajorTrans_code { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Occupation> Occupation { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.onlineapplication> onlineapplication { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.OnlineClaimant> OnlineClaimant { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.OnlineExecutant> OnlineExecutant { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.OnlineIdentifier> OnlineIdentifier { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.onlinePlot> onlinePlot { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.PoliceStation> PoliceStation { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.PostOffice> PostOffice { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Presentant> Presentant { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.State> State { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.TransactionStatu> TransactionStatus { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.censusvillage> CensusVillage { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Circle> Circle { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Claimant> Claimant { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Class> Class { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Deed> Deed { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Executant> Executant { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Identifier> Identifier { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.LandType> LandType { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Plot> Plot { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.RegistarOffice> RegistarOffice { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.RevVillage> RevVillage { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.RO> RO { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.SubDivision> SubDivision { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
