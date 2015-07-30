@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using eSiroi.Resource.Entities;
-using eSiroi.Resource.Repository;
+//using eSiroi.Resource.Repository;
 
 namespace eSiroi.Resource.Controllers
 {

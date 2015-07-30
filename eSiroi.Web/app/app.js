@@ -26,7 +26,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
          })
 
         //***************DEPARTMENT ROUTING********************//
-
+         
          .state('department', {
              url: "/department",
              templateUrl: '/Home/department',

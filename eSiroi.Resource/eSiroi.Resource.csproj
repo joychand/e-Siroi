@@ -135,9 +135,6 @@
     <Compile Include="Controllers\ComDataController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controllers\DepartmentController.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Controllers\DeptController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -168,6 +165,7 @@
     <Compile Include="Entities\District.cs" />
     <Compile Include="Entities\eSiroiReSrcDbContext.cs" />
     <Compile Include="Entities\Executant.cs" />
+    <Compile Include="Entities\Exempt_Reason.cs" />
     <Compile Include="Entities\Identifier.cs" />
     <Compile Include="Entities\LandType.cs" />
     <Compile Include="Entities\LpDbContext.cs" />

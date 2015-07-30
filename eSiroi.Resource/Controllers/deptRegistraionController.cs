@@ -47,10 +47,10 @@ namespace eSiroi.Resource.Controllers
             }
             return NotFound();       
         }
-     
 
-        // COMMON DATA SERVICE API
 
+       
+        #region COMMON DATA SERVICE API
         // get Exempt reason
         [HttpGet]
         [Route("api/deptRegistraionController/ExemptReason")]
@@ -94,8 +94,8 @@ namespace eSiroi.Resource.Controllers
             }
             return NotFound();
         }
+        #endregion
 
-       
         # region DeedForm API
 
         //POST DEED DETAILS
@@ -292,6 +292,8 @@ namespace eSiroi.Resource.Controllers
 
         }
         # endregion
+
+        #region LOUCHAPATHAP API
         // get plot
         [HttpGet]
         [Route("api/deptRegistraionController/{plotno}/{pattano}/verfiyplot")]
@@ -314,14 +316,14 @@ namespace eSiroi.Resource.Controllers
 
         }
 
-     
-     
+        #endregion
 
 
 
 
 
 
-       
+
+
     }
 }
