@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace eReg
+namespace eSiroi.Web
 {
     public class BundleConfig
     {
@@ -30,27 +30,26 @@ namespace eReg
                       "~/Scripts/angular-ui-router.js",
                       "~/Scripts/ct-ui-router-extras.js",
                       "~/Scripts/angular-sanitize.js",
-                      
-                     
-                      "~/Scripts/app/app.js",
+                       "~/app/app.js",
                        "~/Scripts/smart-table.min.js",
                         "~/Scripts/ui-utils.js",
-                       "~/Scripts/app/Modules/ErrorHandler.js",
-                      "~/Scripts/app/controller/MainController.js",
-                      "~/Scripts/app/factory/dataFactory.js",
-                       "~/Scripts/app/factory/ApplyRegModel.js",
-                      "~/Scripts/app/factory/sessionFactory.js",
-                       "~/Scripts/app/factory/dept_sessionFactory.js",
-                        "~/Scripts/app/factory/deptModelService.js",
-                        "~/Scripts/app/factory/dept_dataFactory.js",
-                        "~/Scripts/app/factory/timestampMarker.js",
-                      "~/Scripts/app/factory/angularModalService.js",
-                       "~/Scripts/app/factory/requestNotificationChannel.js",
-                       "~/Scripts/app/directive/loadingWidget.js",
-                       "~/Scripts/app/directive/uiBreadcrumbs.js",
-                      "~/Scripts/app/controller/registrationController.js",
-                       "~/Scripts/app/controller/dept_regController.js",
-                       "~/Scripts/app/service/ModalService.js"
+                       "~/app/Modules/ErrorHandler.js",
+                      "~/app/controller/MainController.js",
+                      "~/app/factory/dataFactory.js",
+                       "~/app/factory/ApplyRegModel.js",
+                      "~/app/factory/sessionFactory.js",
+                       "~/app/factory/dept_sessionFactory.js",
+                        "~/app/factory/deptModelService.js",
+                        "~/app/factory/dept_dataFactory.js",
+                        "~/app/factory/timestampMarker.js",
+                      "~/app/factory/angularModalService.js",
+                       "~/app/factory/requestNotificationChannel.js",
+                       "~/app/directive/loadingWidget.js",
+                       "~/app/directive/uiBreadcrumbs.js",
+                      "~/app/controller/registrationController.js",
+                       "~/app/controller/dept_regController.js",
+                       "~/app/service/ModalService.js",
+                       "~/services/*.js"
 
                       ));
 

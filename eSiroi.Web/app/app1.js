@@ -42,10 +42,10 @@ app.config(function ($routeProvider) {
 
 });
 
-var serviceBase = 'http://localhost/eSiroi.Authentication/';
+var AuthServiceBase = 'http://localhost/eSiroi.Authentication/';
 //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
 app.constant('ngAuthSettings', {
-    apiServiceBaseUri: serviceBase,
+    apiAuthServiceBaseUri: AuthServiceBase,
     clientId: 'ngAuthApp'
 });
 
@@ -55,8 +55,7 @@ app.config(function ($httpProvider) {
         $httpProvider.defaults.headers.get = {};
     }
 
-    // Answer edited to include suggestions from comments
-    // because previous version of code introduced browser-related errors
+    
 
     //disable IE ajax request caching
     $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';

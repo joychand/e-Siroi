@@ -1,7 +1,7 @@
 ﻿'use strict';
-app.factory('ordersService', ['$http', 'ngAuthSettings', function ($http, ngAuthSettings) {
+app.factory('ordersService', ['$http', 'eSiroiWebSettings', function ($http, eSiroiWebSettings) {
 
-    var serviceBase = ngAuthSettings.apiServiceBaseUri;
+    var serviceBase = eSiroiWebSettings.apiAuthServiceBaseUri;
 
     var ordersServiceFactory = {};
 

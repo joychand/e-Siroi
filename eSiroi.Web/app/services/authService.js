@@ -1,7 +1,7 @@
 ﻿'use strict';
-app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSettings', '$cacheFactory', function ($http, $q, localStorageService, ngAuthSettings, $cacheFactory) {
+app.factory('authService', ['$http', '$q', 'localStorageService', 'eSiroiWebSettings', '$cacheFactory', function ($http, $q, localStorageService, eSiroiWebSettings, $cacheFactory) {
 
-    var serviceBase = ngAuthSettings.apiServiceBaseUri;
+    var serviceBase = eSiroiWebSettings.apiAuthServiceBaseUri;
     var authServiceFactory = {};
 
     var _authentication = {
@@ -16,7 +16,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         externalAccessToken: ""
     };
 
-    var _saveRegistration = function (registration) {
+    var _saveSiroi.Webistration = function (registration) {
 
         _logOut();
 
@@ -31,7 +31,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
 
         if (loginData.useRefreshTokens) {
-            data = data + "&client_id=" + ngAuthSettings.clientId;
+            data = data + "&client_id=" + eSiroiWebSettings.clientId;
         }
 
         var deferred = $q.defer();
@@ -90,7 +90,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
             if (authData.useRefreshTokens) {
 
-                var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=" + ngAuthSettings.clientId;
+                var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=" + eSiroiWebSettings.clientId;
 
                 localStorageService.remove('authorizationData');
 
@@ -156,7 +156,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
     };
 
-    authServiceFactory.saveRegistration = _saveRegistration;
+    authServiceFactory.saveSiroi.Webistration = _saveSiroi.Webistration;
     authServiceFactory.login = _login;
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;

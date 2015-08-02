@@ -1,7 +1,7 @@
 ﻿'use strict';
-app.factory('tokensManagerService', ['$http','ngAuthSettings', function ($http,ngAuthSettings) {
+app.factory('tokensManagerService', ['$http','eSiroiWebSettings', function ($http,eSiroiWebSettings) {
 
-    var serviceBase = ngAuthSettings.apiServiceBaseUri;
+    var serviceBase = eSiroiWebSettings.apiAuthServiceBaseUri;
     
     var tokenManagerServiceFactory = {};
 

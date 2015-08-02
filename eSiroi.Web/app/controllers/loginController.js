@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuthSettings', function ($scope, $location, authService, ngAuthSettings) {
+app.controller('loginController', ['$scope', '$location', 'authService', 'eSiroiWebSettings', function ($scope, $location, authService, eSiroiWebSettings) {
 
     $scope.loginData = {
         userName: "",
@@ -25,8 +25,8 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
         var redirectUri = location.protocol + '//' + location.host + '/authcomplete.html';
 
-        var externalProviderUrl = ngAuthSettings.apiServiceBaseUri + "api/Account/ExternalLogin?provider=" + provider
-                                                                    + "&response_type=token&client_id=" + ngAuthSettings.clientId
+        var externalProviderUrl = eSiroiWebSettings.apiAuthServiceBaseUri + "api/Account/ExternalLogin?provider=" + provider
+                                                                    + "&response_type=token&client_id=" + eSiroiWebSettings.clientId
                                                                     + "&redirect_uri=" + redirectUri;
         window.$windowScope = $scope;
 

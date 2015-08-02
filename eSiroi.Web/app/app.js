@@ -5,13 +5,13 @@
 /// <reference path = ~/scripts/app/factory/sessionFactory.js>
 
 var app = angular.module('eSiroi.Web', ['ui.router', 'ct.ui.router.extras', 'angularModalService', 'ui.bootstrap', 'ngGrid', 'ngSanitize', 'ui.mask', 'errorHandler', 'smart-table']);
-//var app1 = angular.module('eRegDeptApp', ['ngroute']);
+//var app1 = angular.module('eSiroi.WebDeptApp', ['ngroute']);
 //app.value = ('maj_code', '');
 app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provide',function ($stateProvider, $locationProvider,$urlRouterProvider,$provide ) {
    
    
     $urlRouterProvider.otherwise('/home');
-
+    //#region MAINNAVIGATIONROUTING
     //********************** NAVIGATION TOP BAR ROUTING ******************************//
     $stateProvider
         .state('Home', {
@@ -19,12 +19,14 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: '/Home/home_page',
             controller: "HomeController"
         })
+        
          .state('login', {
              url: "/login",
              templateUrl: '/Home/login_page'
              //controller: "simpleController"
          })
-
+//#endregion MAINNAVIGATIONROUTING
+        //#region DEPARTMENTROUTING
         //***************DEPARTMENT ROUTING********************//
          
          .state('department', {
@@ -177,6 +179,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             url: '/uploadcomplete',
             templateUrl: 'Home/upload_complete'
         })
+        //#endregion 
+        //#region PUBLICROUTING
         // *************APPLY REGISTRATION ROUTING*****************//
 
          .state('registration', {
@@ -294,7 +298,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                displayName: 'ApplyComplete'
            }
        })
-         
+      //#endregion PUBLICROUTING   
     //$locationProvider.html5Mode(true).hashPrefix("!");
     //app.run(function ($rootScope, $state, $window, $timeout, $stateParams) {
     //    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
@@ -358,11 +362,33 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
 
 }]);
 
+var AuthServiceBase = 'http://localhost/eSiroi.Authentication/';
+var ResrcServiceBase = 'http://localhost/eSiroi.Resource/';
+//var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
+app.constant('eSiroiWebSettings', {
+    apiAuthServiceBaseUri: AuthServiceBase,
+    apiResrcServiceBaseUri:ResrcServiceBase,
+    clientId: 'eSiroi.Web'
+});
 
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService');
+    if (!$httpProvider.defaults.headers.get) {
+        $httpProvider.defaults.headers.get = {};
+    }
+
+
+
+    //disable IE ajax request caching
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
+    // extra
+    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+    $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
+});
 //*********** GLOBAL RUN CONFIG EVENTS *************************//
-app.run(['$rootScope', '$state', '$window', '$timeout', '$stateParams','errorHandler',
+app.run(['$rootScope', '$state', '$window', '$timeout', '$stateParams','errorHandler','authService',
 
-function ($rootScope, $state, $window, $timeout, $stateParams,errorHandler) {
+function ($rootScope, $state, $window, $timeout, $stateParams,errorHandler,authService) {
         $rootScope.$state = $state;
            $rootScope.previouState;
            $rootScope.currentState;
@@ -379,7 +405,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams,errorHandler) {
                 console.log('Current state:' + $rootScope.currentState)
     });
 
-   
+    authService.fillAuthData();
 
     }]);
 
