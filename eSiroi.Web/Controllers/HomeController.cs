@@ -10,7 +10,7 @@ namespace eSiroi.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "eRegistrar";
+            ViewBag.Title = "eSiroi";
 
             return View();
         }

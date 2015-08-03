@@ -16,7 +16,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'eSiroiWebSett
         externalAccessToken: ""
     };
 
-    var _saveSiroi.Webistration = function (registration) {
+    var _saveRegistration = function (registration) {
 
         _logOut();
 
@@ -156,7 +156,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'eSiroiWebSett
 
     };
 
-    authServiceFactory.saveSiroi.Webistration = _saveSiroi.Webistration;
+    authServiceFactory.saveRegistration = _saveRegistration;
     authServiceFactory.login = _login;
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;

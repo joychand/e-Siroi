@@ -194,6 +194,7 @@
     </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

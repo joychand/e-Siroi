@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace eSiroi.Web
+namespace eSiroi.Web.App_Start
 {
     public class BundleConfig
     {
@@ -9,30 +9,30 @@ namespace eSiroi.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/scripts/jquery-{version}.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                        "~/scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js",
-                      "~/Scripts/ui-bootstrap-tpls-0.12.0.js"));
+                      "~/scripts/bootstrap.js",
+                      "~/scripts/respond.js",
+                      "~/scripts/ui-bootstrap-tpls-0.12.0.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/ng-grid.css",
-                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/content/css").Include(
+                      "~/content/css/bootstrap.min.css",
+                      "~/content/css/ng-grid.css",
+                      "~/content/css/site.css"));
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                      "~/Scripts/angular.js",
-                      "~/Scripts/angular-ui-router.js",
-                      "~/Scripts/ct-ui-router-extras.js",
-                      "~/Scripts/angular-sanitize.js",
+                      "~/scripts/angular.js",
+                      "~/scripts/angular-ui-router.js",
+                      "~/scripts/ct-ui-router-extras.js",
+                      "~/scripts/angular-sanitize.js",
                        "~/app/app.js",
-                       "~/Scripts/smart-table.min.js",
-                        "~/Scripts/ui-utils.js",
+                       "~/scripts/smart-table.min.js",
+                        "~/scripts/ui-utils.js",
                        "~/app/Modules/ErrorHandler.js",
                       "~/app/controller/MainController.js",
                       "~/app/factory/dataFactory.js",
@@ -49,7 +49,9 @@ namespace eSiroi.Web
                       "~/app/controller/registrationController.js",
                        "~/app/controller/dept_regController.js",
                        "~/app/service/ModalService.js",
-                       "~/services/*.js"
+                       //"~/services/*.js",
+                      "~/scripts/angular-local-storage.min.js",
+                      "~/scripts/authComplete.js"
 
                       ));
 

@@ -44,7 +44,7 @@ app.config(function ($routeProvider) {
 
 var AuthServiceBase = 'http://localhost/eSiroi.Authentication/';
 //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
-app.constant('ngAuthSettings', {
+app.constant('eSiroiWebSettings', {
     apiAuthServiceBaseUri: AuthServiceBase,
     clientId: 'ngAuthApp'
 });

@@ -4,9 +4,8 @@
 /// <reference path = ~/scripts/angular-ui-router.js>
 /// <reference path = ~/scripts/app/factory/sessionFactory.js>
 
-var app = angular.module('eSiroi.Web', ['ui.router', 'ct.ui.router.extras', 'angularModalService', 'ui.bootstrap', 'ngGrid', 'ngSanitize', 'ui.mask', 'errorHandler', 'smart-table']);
-//var app1 = angular.module('eSiroi.WebDeptApp', ['ngroute']);
-//app.value = ('maj_code', '');
+var app = angular.module('eSiroi.Web', ['ui.router', 'ct.ui.router.extras', 'angularModalService', 'ui.bootstrap', 'ngGrid', 'ngSanitize', 'ui.mask', 'errorHandler', 'smart-table', 'LocalStorageModule']);
+
 app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provide',function ($stateProvider, $locationProvider,$urlRouterProvider,$provide ) {
    
    
@@ -299,72 +298,13 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
            }
        })
       //#endregion PUBLICROUTING   
-    //$locationProvider.html5Mode(true).hashPrefix("!");
-    //app.run(function ($rootScope, $state, $window, $timeout, $stateParams) {
-    //    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-    //        console.log('hahahahah');
-    //        if (toState.resolve) {
-    //            $rootScope.page.loading = true;
-    //        }
-    //    });
-
-    //    $rootScope.addError = function (error) {
-    //        $rootScope.message = error.message;
-    //        $rootScope.reason = error.reason;
-    //        $rootScope.page.loading = true;
-    //        //$rootScope.values = 'jhgkjhkj';
-    //    }
-    //    $rootScope.$state = $state;
-    //    $rootScope.previouState;
-    //    $rootScope.currentState;
-    //    $rootScope.$stateParams = $stateParams;
-    //    $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-    //        $rootScope.previousState = from.name;
-    //        $rootScope.currentState = to.name;
-    //        console.log('Previous state:' + $rootScope.previousState)
-    //        console.log('Current state:' + $rootScope.currentState)
-    //    });
-    //    //$rootScope.$on("$stateChangeSuccess", function (ev, to, toParams, from, fromParams) {
-    //    //    console.log('success');
-    //    //    $rootScope.previousState = from.name;
-    //    //    $rootScope.currentState = to.name;
-    //    //    console.log('Previous state:' + $rootScope.previousState)
-    //    //    console.log('Current state:' + $rootScope.currentState)
-    //    //    if (toState.resolve) {
-    //    //        $rootScope.page.loading = false;
-    //    //    }
-    //    //    $timeout(function () {
-    //    //        $window.ga('send', 'pageview', $window.location.pathname + $window.location.hash);
-    //    //    });
-    //    //});
-
-    //    //$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-    //    //    console.log('hahahahah');
-    //    //    if (toState.resolve) {
-    //    //        $rootScope.page.loading = true;
-    //    //    }
-    //    //});
-    //});
     
-
-    //$rootScope.$on("$routeChangeStart", function (event, next, current) {
-    //    if (sessionStorage.restorestate == "true") {
-    //        $rootScope.$broadcast('restorestate'); //let everything know we need to restore state
-    //        sessionStorage.restorestate = false;
-    //    }
-    //});
-
-    ////let everthing know that we need to save state now.
-    //window.onbeforeunload = function (event) {
-    //    $rootScope.$broadcast('savestate');
-    //};
-    //});
-
+  
 }]);
 
 var AuthServiceBase = 'http://localhost/eSiroi.Authentication/';
 var ResrcServiceBase = 'http://localhost/eSiroi.Resource/';
-//var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
+
 app.constant('eSiroiWebSettings', {
     apiAuthServiceBaseUri: AuthServiceBase,
     apiResrcServiceBaseUri:ResrcServiceBase,
