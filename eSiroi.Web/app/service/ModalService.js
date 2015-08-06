@@ -1,6 +1,6 @@
 ﻿(function () {
     // 'use strict';
-    angular.module('eRegApp').service('modalService', ['$modal', modalService]);
+    angular.module('eSiroi.Web').service('modalService', ['$modal', modalService]);
     function modalService($modal) {
 
         var modalDefaults = {

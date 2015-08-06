@@ -91,7 +91,7 @@ namespace eSiroi.Web.Controllers
         }
         public ActionResult dept_home()
         {
-            return File("/Views/Home/dept_home.html", "text/html");
+            return File("~/Views/Home/dept_home.html", "text/html");
         }
         public ActionResult dept_dataEntry()
         {

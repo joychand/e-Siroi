@@ -7,7 +7,7 @@
 var app = angular.module('eSiroi.Web', ['ui.router', 'ct.ui.router.extras', 'angularModalService', 'ui.bootstrap', 'ngGrid', 'ngSanitize', 'ui.mask', 'errorHandler', 'smart-table', 'LocalStorageModule']);
 
 app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provide',function ($stateProvider, $locationProvider,$urlRouterProvider,$provide ) {
-   
+    var baseUrl = $("base").first().attr("href");
    
     $urlRouterProvider.otherwise('/home');
     //#region MAINNAVIGATIONROUTING
@@ -15,78 +15,78 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
     $stateProvider
         .state('Home', {
             url: "/home",
-            templateUrl: '/Home/home_page',
+            templateUrl: baseUrl + '/Home/home_page',
             controller: "HomeController"
         })
         
          .state('login', {
              url: "/login",
-             templateUrl: '/Home/login_page'
+             templateUrl: baseUrl + '/Home/login_page'
              //controller: "simpleController"
          })
 //#endregion MAINNAVIGATIONROUTING
         //#region DEPARTMENTROUTING
-        //***************DEPARTMENT ROUTING********************//
+       
          
          .state('department', {
              url: "/department",
-             templateUrl: '/Home/department',
+             templateUrl: baseUrl + 'Home/department',
              controller: 'departmentController'
          })
 
-    .state('department.content',{
-        abstract: true,
-        controller: 'deptcontentController',
-        views: {
-            'sidemenu@department': {
-                templateUrl: 'Home/deptsidemenu',
-                controller: 'deptmenuController'
-            },
-            '@department':{
-                    templateUrl: '/Home/departmentcontent'
-            }
-        }
-    })
+        .state('department.content',{
+                abstract: true,
+                controller: 'deptcontentController',
+                views: {
+                        'sidemenu@department': {
+                            templateUrl: baseUrl + 'Home/deptsidemenu',
+                            controller: 'deptmenuController'
+                        },
+                       '@department':{
+                            templateUrl: baseUrl + 'Home/departmentcontent'
+                            }
+                        }
+        })
 
         .state('department.content.login',
         {
             url: '/login',
-            templateUrl: '/Home/login_page',
-            controller: 'deptloginController',
-            resolve:{
-                modalService: 'modalService',
-                $state: '$state'
-            },
-            onEnter: function (modalService,$state,$rootScope) {
-                var modalOptions = {
-                    closeButtonText: 'Cancel',
-                    actionButtonText: 'Login',
-                    headerText: 'Login',
-                    bodyText: ''
-                };
+            templateUrl: baseUrl + 'Home/login_page',
+            controller: 'deptloginController'
+    //        resolve:{
+    //            modalService: 'modalService',
+    //            $state: '$state'
+    //        },
+    //        onEnter: function (modalService,$state,$rootScope) {
+    //            var modalOptions = {
+    //                closeButtonText: 'Cancel',
+    //                actionButtonText: 'Login',
+    //                headerText: 'Login',
+    //                bodyText: ''
+    //            };
 
-                var modalDefault = {
-                    templateUrl: '/Home/loginPage',
-                    controller: 'loginModalCtrl',
-                    backdrop: 'static',
-                    size: 'lg'
+    //            var modalDefault = {
+    //                templateUrl: baseUrl + '/Home/loginPage',
+    //                controller: 'loginModalCtrl',
+    //                backdrop: 'static',
+    //                size: 'lg'
                    
-                };
+    //            };
 
-                modalService.showModal(modalDefault, modalOptions).then(function (result) {
+    //            modalService.showModal(modalDefault, modalOptions).then(function (result) {
 
-                    $state.go('department.content.home');
+    //                $state.go('department.content.home');
                     
                     
-                }, function (error) {
-                    $state.go($rootScope.previousState);
-                });
-    }
+    //            }, function (error) {
+    //                $state.go($rootScope.previousState);
+    //            });
+    //}
         })
 
         .state('department.content.home', {
             url: '/home',
-            templateUrl: '/Home/dept_home',
+            templateUrl: baseUrl +'Home/dept_home',
             controller: 'deptHomeController',
             data: {
                 status: 'Applied'
@@ -95,12 +95,12 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
        
         .state('Search', {
             url: '/Search',
-            templateUrl: '/Home/searchReg'
+            templateUrl: baseUrl + '/Home/searchReg'
            
         })
         .state('department.content.onlineapplication', {
             url: '/onlineapplication',
-            templateUrl:'/Home/dept_OnlineApplication',
+            templateUrl: baseUrl + '/Home/dept_OnlineApplication',
             controller: 'dept_OnlineController',
             data: {
                 status: 'Applied'
@@ -108,13 +108,12 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         })
         .state('department.content.data', {
             url: '/dataEntry',
-            templateUrl: '/Home/dept_dataEntry',
+            templateUrl: baseUrl + '/Home/dept_dataEntry',
             controller: 'dept_regController',
             resolve: {
                 majortrans: function (dataFactory) {
                     return dataFactory.getMajortransaction().then(function (results) {
-                        //var time = results.config.responseTimestamp - results.config.requestTimestamp;
-                        //console.log('The request took ' + (time / 1000) + ' seconds.');
+                        
                         return results;});
                 }
             }
@@ -123,18 +122,18 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         .state('department.content.form', {
             
             url: '/dataEntryform',
-            templateUrl: '/Home/dept_dataEntry_form',
+            templateUrl: baseUrl + '/Home/dept_dataEntry_form',
             controller: 'dataEntryformController',
             
         })
            .state('department.content.form.deed', {
                url: '/dataEntryformDeed',
-               templateUrl: 'Home/dept_dataEntry_form_deed',
+               templateUrl: baseUrl + 'Home/dept_dataEntry_form_deed',
                controller: 'deptDeedController'
            })
         .state('department.content.form.property', {
             url: '/dataEntryformProperty',
-            templateUrl: 'Home/dept_dataEntry_form_property',
+            templateUrl: baseUrl + 'Home/dept_dataEntry_form_property',
             controller: 'deptPropController',
             resolve:{
             district: function (dataFactory) {
@@ -146,7 +145,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
 
         .state('department.content.form.executant', {
             url: '/dataEntryformexecutant',
-            templateUrl: 'Home/dept_dataEntry_form_executant',
+            templateUrl: baseUrl + 'Home/dept_dataEntry_form_executant',
             controller: 'deptExeController',
             resolve: {
                 online: function (dept_sessionfactory) {
@@ -157,35 +156,35 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
 
          .state('department.content.form.claimant', {
              url: '/dataEntryformclaimant',
-             templateUrl: 'Home/dept_dataEntry_form_claimant',
+             templateUrl: baseUrl + 'Home/dept_dataEntry_form_claimant',
              controller: 'deptClaimController'
          })
 
         .state('department.content.form.identifier', {
             url: '/dataEntryformidentifier',
-            templateUrl: 'Home/dept_dataEntry_form_identifier',
+            templateUrl: baseUrl + 'Home/dept_dataEntry_form_identifier',
             controller: 'deptIdentController'
         })
         .state('department.content.dataentered', {
             url: '/dataEntered',
-            templateUrl: 'Home/dept_dataEntered'
+            templateUrl: baseUrl + 'Home/dept_dataEntered'
         })
         .state('department.content.upload', {
             url: '/upload',
-            templateUrl: 'Home/dept_scanDocuments'
+            templateUrl: baseUrl + 'Home/dept_scanDocuments'
         })
         .state('department.content.uploadComplete', {
             url: '/uploadcomplete',
-            templateUrl: 'Home/upload_complete'
+            templateUrl: baseUrl + 'Home/upload_complete'
         })
         //#endregion 
         //#region PUBLICROUTING
-        // *************APPLY REGISTRATION ROUTING*****************//
+       
 
          .state('registration', {
              abstract:true,
              url: "/registration",
-             templateUrl: 'Home/registration',
+             templateUrl: baseUrl + 'Home/registration',
              deepStateRedirect: true,
              data:{
                  breadcrumbProxy:'registration.content.apply'
@@ -199,53 +198,37 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             controller: 'simpleController',
             views: {
                 'sidemenu@registration': {
-                    templateUrl: 'Home/regsidemenu'
+                    templateUrl: baseUrl + 'Home/regsidemenu'
                 },
                 '@registration':{
-                    templateUrl: 'Home/registrationcontent',
+                    templateUrl: baseUrl + 'Home/registrationcontent',
                    
-
                     }
-
             },
             deepStateRedirect: true,
             data: {
                 breadcrumbProxy: 'registration.content.apply'
             }
-            
-             
+           
         })
         .state('registration.content.apply', {
             url:'/apply',
-            templateUrl: 'Home/applyregistration',
-           controller: 'applyRegistrationController',
-            //views: {
-
-            //    '@registration.content': {
-            //        templateUrl: 'Home/applyregistration',
-            //        controller: 'applyRegistrationController'
-
-            //    },
-                data: {
+            templateUrl: baseUrl + 'Home/applyregistration',
+            controller: 'applyRegistrationController',
+            data: {
                     displayName: 'ApplyHome'
-                }
-           
-            //deepStateRedirect: true
-            
+                  }
+                       
         })
         .state('registration.content.apply.login', {
-            url: '/login',
-            
-               
-                    templateUrl: "Home/applyRegLogin"
-                
-            
+            url: '/login',         
+            templateUrl: baseUrl + "Home/applyRegLogin"
         })
         
         .state('registration.content.forms', {
             abstract:true,
             url: '/forms',
-            templateUrl: 'Home/registrationforms',
+            templateUrl: baseUrl + 'Home/registrationforms',
             controller:'registrationController',
             deepStateRedirect: true,
             data: {
@@ -254,7 +237,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         })
         .state('registration.content.forms.propertydetails', {
             url: '/propertydetails',
-            templateUrl: 'Home/applyPropertyDetails',
+            templateUrl: baseUrl + 'Home/applyPropertyDetails',
             data: {
                 displayName: 'Property'
             }
@@ -263,7 +246,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         .state('registration.content.forms.executant', {
             url: '/executant',
             //template: '<h1>executant<h1>'
-            templateUrl: 'Home/executant',
+            templateUrl: baseUrl + 'Home/executant',
             //controller: 'registrationController',
            // resolve
             deepStateRedirect: true,
@@ -274,7 +257,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         })
         .state('registration.content.forms.claimant', {
             url: '/claimant',
-            templateUrl: "Home/claimant",
+            templateUrl: baseUrl + "Home/claimant",
             deepStateRedirect: true,
             data: {
                 displayName: 'Claimant'
@@ -282,7 +265,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         })
         .state('registration.content.forms.identifier', {
             url:'/identifier',
-            templateUrl: "Home/identifier",
+            templateUrl: baseUrl + "Home/identifier",
             deepStateRedirect: true,
             data: {
                 displayName: 'Identifier'
@@ -291,7 +274,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
        .state('registration.content.applyregsuccess', {
            url: '/success',
            controller:'ApplySuccessController',
-           templateUrl: "Home/ApplyRegSuccess",
+           templateUrl: baseUrl + "Home/ApplyRegSuccess",
            deepStateRedirect: true,
            data: {
                displayName: 'ApplyComplete'
@@ -308,7 +291,8 @@ var ResrcServiceBase = 'http://localhost/eSiroi.Resource/';
 app.constant('eSiroiWebSettings', {
     apiAuthServiceBaseUri: AuthServiceBase,
     apiResrcServiceBaseUri:ResrcServiceBase,
-    clientId: 'eSiroi.Web'
+    clientId: 'eSiroi.Web',
+    baseUrl : $("base").first().attr("href")
 });
 
 app.config(function ($httpProvider) {
@@ -326,18 +310,43 @@ app.config(function ($httpProvider) {
     $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 });
 //*********** GLOBAL RUN CONFIG EVENTS *************************//
-app.run(['$rootScope', '$state', '$window', '$timeout', '$stateParams','errorHandler','authService',
+app.run(['$rootScope', '$state', '$window', '$timeout', '$stateParams','errorHandler','authService','modalService','eSiroiWebSettings',
 
-function ($rootScope, $state, $window, $timeout, $stateParams,errorHandler,authService) {
-        $rootScope.$state = $state;
-           $rootScope.previouState;
-           $rootScope.currentState;
-           $rootScope.errorHandler = errorHandler;
-          $rootScope.$stateParams = $stateParams;
+function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, authService, modalService,eSiroiWebSettings) {
+    $rootScope.$state = $state;
+    $rootScope.previouState;
+    $rootScope.currentState;
+    $rootScope.errorHandler = errorHandler;
+    $rootScope.$stateParams = $stateParams;
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         console.log('statechangestart');
+        if (toState.name !== 'department.content.login') return;
+        
+                var modalOptions = {
+                    closeButtonText: 'Cancel',
+                    actionButtonText: 'Login',
+                    headerText: 'Login',
+                    bodyText: ''
+                };
+
+                var modalDefault = {
+                    templateUrl: eSiroiWebSettings.baseUrl + '/Home/loginPage',
+                    controller: 'loginModalCtrl',
+                    backdrop: 'static',
+                    size: 'lg'
+                   
+                };
+
+        modalService.showModal(modalDefault, modalOptions).then(function (result) {
+                        $state.go('department.content.home');            
+                         }, function (error) {
+                        $state.go($rootScope.previousState);
+                    });
+        event.preventDefault();  
+    })
+
        
-    });
+   
     $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
                 $rootScope.previousState = from.name;
                 $rootScope.currentState = to.name;

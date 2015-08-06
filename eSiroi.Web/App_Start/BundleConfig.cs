@@ -22,7 +22,7 @@ namespace eSiroi.Web.App_Start
                       "~/scripts/ui-bootstrap-tpls-0.12.0.js"));
 
             bundles.Add(new StyleBundle("~/content/css").Include(
-                      "~/content/css/bootstrap.min.css",
+                      "~/content/css/bootstrap.css",
                       "~/content/css/ng-grid.css",
                       "~/content/css/site.css"));
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
@@ -33,7 +33,7 @@ namespace eSiroi.Web.App_Start
                        "~/app/app.js",
                        "~/scripts/smart-table.min.js",
                         "~/scripts/ui-utils.js",
-                       "~/app/Modules/ErrorHandler.js",
+                       "~/app/Module/ErrorHandler.js",
                       "~/app/controller/MainController.js",
                       "~/app/factory/dataFactory.js",
                        "~/app/factory/ApplyRegModel.js",
@@ -49,7 +49,7 @@ namespace eSiroi.Web.App_Start
                       "~/app/controller/registrationController.js",
                        "~/app/controller/dept_regController.js",
                        "~/app/service/ModalService.js",
-                       //"~/services/*.js",
+                       "~/app/services/*.js",
                       "~/scripts/angular-local-storage.min.js",
                       "~/scripts/authComplete.js"
 

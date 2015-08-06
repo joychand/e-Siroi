@@ -140,6 +140,8 @@
     <Content Include="app\Module\ErrorHandler.js" />
     <Content Include="app\service\ModalService.js" />
     <Content Include="authComplete.html" />
+    <Content Include="content\css\bootstrap-theme.css" />
+    <Content Include="content\css\bootstrap.css" />
     <Content Include="content\css\ng-grid.css" />
     <Content Include="content\css\Site.css" />
     <Content Include="content\fonts\fontawesome-webfont.eot" />
@@ -150,6 +152,14 @@
     <Content Include="content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="favicon.ico" />
+    <Content Include="images\asasdsa.png" />
+    <Content Include="images\brand.png" />
+    <Content Include="images\image002.jpg" />
+    <Content Include="images\loktak.jpg" />
+    <Content Include="images\m1.jpg" />
+    <Content Include="images\manHouse.jpg" />
+    <Content Include="images\manHouse2.png" />
+    <Content Include="images\manipurmap.jpg" />
     <Content Include="packages.config" />
     <Content Include="scripts\angular-sanitize.js" />
     <Content Include="scripts\angular-ui-router.js" />
@@ -174,12 +184,14 @@
     <Content Include="scripts\ui-bootstrap-tpls-0.12.0.js" />
     <Content Include="scripts\ui-grid.js" />
     <Content Include="scripts\ui-utils.js" />
+    <Content Include="spinning.gif" />
     <Content Include="Views\Home\applyregistration.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -268,7 +280,6 @@
   <ItemGroup>
     <Folder Include="docs\" />
     <Folder Include="fonts\" />
-    <Folder Include="images\" />
     <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
