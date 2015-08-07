@@ -60,13 +60,6 @@
         
         $scope.displayCollection = [].concat($scope.myData);
 
-        //$scope.getSelectedStatus = function () {
-        //    if ($scope.selectedStatus && $scope.selectedStatus!='All') {
-        //        getAppln($scope.selectedStatus);
-        //    }
-            
-         
-        //}
 
         //getAppln function status
         function getDeed(status){

@@ -3,13 +3,13 @@
 /// <reference path = ~/scripts/app/controller/registrationController.js>
 
 angular.module('eSiroi.Web')
-    .factory('dataFactory', ['$http', function ($http) {
+    .factory('dataFactory', ['$http', 'eSiroiWebSettings', function ($http,eSiroiWebSettings) {
 
-        var urlBase = '/api/Districts';
-        var urlBase2 = '/api/SubDivisions';
-        var urlBase3 = '/api/ApplyRegistrationController/';
-        var urlBase4 = 'api/OnlineExecutants';
-        var urlBase5 = 'api/ComDataController/'
+        var urlBase = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/Districts';
+        var urlBase2 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/SubDivisions';
+        var urlBase3 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ApplyRegistrationController/';
+        var urlBase4 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/OnlineExecutants';
+        var urlBase5 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ComDataController/'
         var dataFactory = {};
         var ackno = 0
 
@@ -194,7 +194,7 @@ angular.module('eSiroi.Web')
         dataFactory.postProperty = function (plot) {
             return $http({
                 method: 'POST',
-                url: 'api/ApplyRegistraionController/postplot',
+                url: urlBase3 + 'postplot',
                 data:plot
             })
         }

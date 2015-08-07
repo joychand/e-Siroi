@@ -8,7 +8,7 @@ namespace eSiroi.Resource.Entities
     public partial class eSiroiReSrcDbContext : DbContext
     {
         public eSiroiReSrcDbContext()
-            : base("name=eSiroiReSrcDbConnection")
+            : base("eSiroiReSrcDbConnection")
         {
         }
 

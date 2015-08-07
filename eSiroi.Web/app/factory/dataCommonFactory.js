@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .factory('dataCommonFactory', ['$http', dataCommonFactory]);
+        .factory('dataCommonFactory', ['$http', 'eSiroiWebSettings', dataCommonFactory]);
 
-    function dataCommonFactory($http) {
+    function dataCommonFactory($http,eSiroiWebSettings) {
         var service = {
             getData: getData
         };

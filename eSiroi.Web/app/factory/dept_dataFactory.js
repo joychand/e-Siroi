@@ -3,11 +3,11 @@
 
     angular
         .module('eSiroi.Web')
-        .factory('dept_dataFactory', ['$http', dept_dataFactory]);
+        .factory('dept_dataFactory', ['$http','eSiroiWebSettings', dept_dataFactory]);
 
-    function dept_dataFactory($http) {
-        var urlBase = 'api/ApplyRegistrationController/';
-        var urlBase2 = 'api/deptRegistraionController/';
+    function dept_dataFactory($http, eSiroiWebSettings) {
+        var urlBase = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ApplyRegistrationController/';
+        var urlBase2 = eSiroiWebSettings.apiResrcServiceBaseUri +'api/deptRegistraionController/';
         var service = {
 
             /// GET ONLINE APPLICATION
