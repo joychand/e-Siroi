@@ -15,7 +15,7 @@ namespace eSiroi.Resource.App_Start
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-
+           // GlobalConfiguration.Configuration.EnsureInitialized();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

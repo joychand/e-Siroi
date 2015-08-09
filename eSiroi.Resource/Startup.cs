@@ -7,8 +7,11 @@ using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security;
 using System.Web.Http;
-using eSiroi.Resource.App_Start;
+//using eSiroi.Resource.App_Start;
 using Microsoft.Owin.Security.OAuth;
+using System.Net.Http.Formatting;
+using System.Linq;
+using Newtonsoft.Json.Serialization;
 
 [assembly: OwinStartup(typeof(eSiroi.Resource.Startup))]
 
@@ -16,14 +19,30 @@ namespace eSiroi.Resource
 {
     public class Startup
     {
-        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
+       
         public void Configuration(IAppBuilder app)
         {
+            app.UseErrorPage();
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
-            HttpConfiguration config = new HttpConfiguration();
-            WebApiConfig.Register(config);
+            HttpConfiguration appconfig = new HttpConfiguration();
+           
+            ConfigureWebApi(appconfig);
+            
+            app.UseWebApi(appconfig);
             ConfigureOAuthTokenConsumption(app);
-            app.UseWebApi(config);
+         
+        }
+        private void ConfigureWebApi(HttpConfiguration config)
+        {
+            config.MapHttpAttributeRoutes();
+            config.Routes.MapHttpRoute(
+                  name: "DefaultApi",
+                  routeTemplate: "api/{controller}/{id}",
+                  defaults: new { id = RouteParameter.Optional }
+              );
+
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
         private void ConfigureOAuthTokenConsumption(IAppBuilder app)
         {
@@ -44,5 +63,6 @@ namespace eSiroi.Resource
                     }
                 });
         }
+        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
     }
 }

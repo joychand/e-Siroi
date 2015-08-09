@@ -50,8 +50,8 @@ namespace eSiroi.Web.App_Start
                        "~/app/controller/dept_regController.js",
                        "~/app/service/ModalService.js",
                        "~/app/services/*.js",
-                      "~/scripts/angular-local-storage.min.js",
-                      "~/scripts/authComplete.js"
+                      "~/scripts/angular-local-storage.min.js"
+                      //"~/scripts/authComplete.js"
 
                       ));
 

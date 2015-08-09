@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace eSiroi.Authentication.Controllers
 {
@@ -68,5 +69,12 @@ namespace eSiroi.Authentication.Controllers
              return NotFound();
 
          }
+         [HttpGet]
+         [Route("happu/approved")]
+         public IHttpActionResult happu()
+         {
+             return Ok();
+         }
+     
      }
 }

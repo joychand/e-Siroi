@@ -15,13 +15,15 @@ using System.Web.Http.Results;
 
 namespace eSiroi.Resource.Controllers
 {
-
+    // [RoutePrefix("api/ApplyRegistrationController")]
     public class ApplyRegistrationController : ApiController
     {
         private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
+        
+        
         //UPDATE APPLICATION STATUS
 
-        [HttpPost]
+        //[HttpPost]
         [Route("api/ApplyRegistrationController/updateAppln")]
         public IHttpActionResult updateAppln([FromBody]int ackno)
         {
@@ -44,10 +46,8 @@ namespace eSiroi.Resource.Controllers
 
                     
         }
-        //get SRO
-        [HttpGet]
-        [Route ("api/ApplyRegistrationController/getSRO")]
-
+        //get SRO       
+        [Route("api/ApplyRegistrationController/getSRO")]
         public IHttpActionResult getSRO()
         {
             var sro = db.RegistarOffice;

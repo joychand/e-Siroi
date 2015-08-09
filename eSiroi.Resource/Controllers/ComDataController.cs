@@ -7,20 +7,20 @@ using System.Web.Http;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using eSiroi.Resource.Entities;
-//using eSiroi.Resource.Entities;
-//using eSiroi.Resource.Repository;
+
 using System.Web.Http.Description;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 
 namespace eSiroi.Resource.Controllers
 {
+     [RoutePrefix("api/ComDataController")]
     public class ComDataController : ApiController
     {
         private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
         //get PoliceStation
         [HttpGet]
-        [Route("api/ComDataController/getPoliceStations")]
+        [Route("getPoliceStations")]
 
         public IHttpActionResult getPoliceStations()
         {
