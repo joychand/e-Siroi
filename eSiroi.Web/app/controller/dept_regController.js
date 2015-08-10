@@ -40,7 +40,7 @@
 
     function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory) {
        
-        console.log(dept_sessionfactory.getCurrUser());
+       
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
         $scope.applnStatus = ['Approved', 'DataEntered', 'Pending'];
         if (dept_sessionfactory.getCurrUser() == 'Operator')
@@ -55,7 +55,7 @@
         }
         
        
-        //$scope.selectedStatus = $scope.applnStatus[0];
+        
         getDeed(status);
         
         $scope.displayCollection = [].concat($scope.myData);
@@ -170,24 +170,29 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('deptloginController', ['$scope', '$state','modalService',deptloginController]);
+        .controller('deptloginController', ['$scope', '$state', 'modalService', 'authService',deptloginController]);
 
-    function deptloginController($scope, $state, modalService) {
-        $scope.login = {};
-        //alert('haaaa');
-        //var modalOptions = {
-        //    closeButtonText: 'Cancel',
-        //    actionButtonText: 'Login',
-        //    headerText: 'Login',
-        //    bodyText: ''
+    function deptloginController($scope, $state, modalService, authService) {
+        //$scope.loginData = {
+        //    userName: "",
+        //    password: "",
+        //    useRefreshTokens: false
         //};
+        //$scope.message = "";
 
-        //var modalDefault = {
-        //    templateUrl: 'Home/loginPage',
-        //    controller: 'loginMocalCtrl',
-        //    backdrop: 'static'
-        //};
+        //$scope.login = function () {
 
+        //    authService.login($scope.loginData).then(function (response) {
+
+        //        $state.go('department.content.home');
+        //        //$location.path('/orders');
+
+        //    },
+        //     function (err) {
+        //         $scope.message = err.error_description;
+        //     });
+        //
+       
         //modalService.showModal(modalDefault, modalOptions).then(function (result) {
         //    alert('login successful');
         //}, function (error) {
@@ -202,31 +207,48 @@
 //LoginModalController
 (function () {
     angular.module('eSiroi.Web')
-    .controller('loginModalCtrl', ['$scope', '$modalInstance','dept_sessionfactory',loginModalCtrl]);
-    function loginModalCtrl($scope, $modalInstance, dept_sessionfactory) {
-        $scope.login = {};
+    .controller('loginModalCtrl', ['$scope', '$modalInstance','dept_sessionfactory','authService','$state','$rootScope',loginModalCtrl]);
+    function loginModalCtrl($scope, $modalInstance, dept_sessionfactory,authService,$state,$rootScope) {
+        $scope.loginData = {
+            userName: "",
+            password: "",
+            useRefreshTokens: false
+        };
+        $scope.message = "";
         // USER CLICK LOGIN EVENT
-        $scope.login.login = function () {
-            console.log($scope.login.ein);
-            if ($scope.login.ein == '6061') {
-                dept_sessionfactory.putCurrUser('Operator');
-            }
-            else {
-                dept_sessionfactory.putCurrUser('SR');
-            }
+        $scope.login = function () {
+           
+           
             //TO DO GET USER CREDENTIALS VERIFY WITH THE BACKEND API
+            authService.login($scope.loginData).then(function (response) {
 
-            $modalInstance.close();
+                if ($scope.loginData.userName == 'tombi') {
+                    dept_sessionfactory.putCurrUser('Operator');
+                }
+                else {
+                    dept_sessionfactory.putCurrUser('SR');
+                }
+                $modalInstance.close();
+                $state.go('department.content.home');
+                //$location.path('/orders');
+
+            },
+             function (err) {
+                 $scope.message = err.error_description;
+
+             });
+           // 
         }
 
         // USER CLICK CANCEL EVENT
         $scope.login.cancel = function () {
             $modalInstance.dismiss();
+            $state.go($rootScope.previousState);
         }
     }
 
 })();
-// dept_dataEntry_from Controller //
+// #region dept_dataEntry_from Controller 
 (function () {
     //'use strict';
 

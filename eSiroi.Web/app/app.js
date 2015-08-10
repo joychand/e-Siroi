@@ -86,7 +86,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
 
         .state('department.content.home', {
             url: '/home',
-            templateUrl: baseUrl +'/Department/dept_home',
+            templateUrl: baseUrl +'/Home/dept_home',
             controller: 'deptHomeController',
             data: {
                 status: 'Applied'
@@ -318,9 +318,10 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
     $rootScope.currentState;
     $rootScope.errorHandler = errorHandler;
     $rootScope.$stateParams = $stateParams;
+    authService.fillAuthData();
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         console.log('statechangestart');
-        if (toState.name !== 'department.content.login') return;
+        if (toState.name !== 'department.content.login' ) return;
         
                 var modalOptions = {
                     closeButtonText: 'Cancel',
@@ -338,9 +339,9 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
                 };
 
         modalService.showModal(modalDefault, modalOptions).then(function (result) {
-                        $state.go('department.content.home');            
+                       // $state.go('department.content.home');            
                          }, function (error) {
-                        $state.go($rootScope.previousState);
+                        //$state.go($rootScope.previousState);
                     });
         event.preventDefault();  
     })
@@ -354,7 +355,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
                 console.log('Current state:' + $rootScope.currentState)
     });
 
-    authService.fillAuthData();
+    
 
     }]);
 

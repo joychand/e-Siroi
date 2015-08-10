@@ -1,5 +1,6 @@
 ﻿'use strict';
-app.factory('authInterceptorService', ['$q', '$injector','$location', 'localStorageService', function ($q, $injector,$location, localStorageService) {
+angular.module('eSiroi.Web')
+.factory('authInterceptorService', ['$q', '$injector','$location', 'localStorageService', function ($q, $injector,$location, localStorageService) {
 
     var authInterceptorServiceFactory = {};
 
@@ -18,16 +19,18 @@ app.factory('authInterceptorService', ['$q', '$injector','$location', 'localStor
     var _responseError = function (rejection) {
         if (rejection.status === 401) {
             var authService = $injector.get('authService');
+            var state = $injector.get('$state');
             var authData = localStorageService.get('authorizationData');
 
-            if (authData) {
-                if (authData.useRefreshTokens) {
-                    $location.path('/refresh');
-                    return $q.reject(rejection);
-                }
-            }
+            //if (authData) {
+            //    if (authData.useRefreshTokens) {
+            //        $location.path('/refresh');
+            //        return $q.reject(rejection);
+            //    }
+            //}
             authService.logOut();
-            $location.path('/login');
+            // $location.path('/login');
+            state.go('department.content.login');
         }
         return $q.reject(rejection);
     }
