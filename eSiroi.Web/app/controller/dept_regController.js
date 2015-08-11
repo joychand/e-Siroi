@@ -4,10 +4,13 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('departmentController', ['$scope', 'dept_sessionfactory', deptcontentController]);
+        .controller('departmentController', ['$scope', 'dept_sessionfactory','authService', deptcontentController]);
 
-    function deptcontentController($scope, dept_sessionfactory) {
+    function deptcontentController($scope, dept_sessionfactory,authService) {
         $scope.department = {};
+        $scope.signOut=function(){
+            authService.logOut();
+        }
         //$scope.department.currUser = dept_sessionfactory.getCurrUser();
 
 

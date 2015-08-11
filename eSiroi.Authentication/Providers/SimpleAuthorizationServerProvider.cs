@@ -22,6 +22,9 @@ namespace eSiroi.Authentication.Providers
         }
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            //var allowedOrigin = "*";
+
+            //context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
@@ -66,14 +69,14 @@ namespace eSiroi.Authentication.Providers
             //context.Validated(ticket);
 
         }
-        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
-        {
-            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
-            {
-                context.AdditionalResponseParameters.Add(property.Key, property.Value);
-            }
+        //public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        //{
+        //    foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+        //    {
+        //        context.AdditionalResponseParameters.Add(property.Key, property.Value);
+        //    }
 
-            return Task.FromResult<object>(null);
-        }
+        //    return Task.FromResult<object>(null);
+        //}
     }
 }

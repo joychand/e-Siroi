@@ -3,9 +3,10 @@
 // Home Controller
 (function () {
     angular.module('eSiroi.Web')
-    .controller('HomeController',['$scope', '$state', '$window','eSiroiWebSettings', HomeController])
-    function HomeController($scope, $state, $window, eSiroiWebSettings) {
+    .controller('HomeController',['$scope', '$state', '$window','eSiroiWebSettings','authService', HomeController])
+    function HomeController($scope, $state, $window, eSiroiWebSettings, authService) {
       
+        
         $scope.myInterval = 5000;
         var slides = $scope.slides = [];
         
@@ -24,6 +25,15 @@
             text: 'House2'
         }
          );
+        
 
     }
+})();
+
+(function () {
+    angular.module('eSiroi.Web')
+    .controller('indexController', ['$scope', 'authService', function ($scope, authService) {
+        //$scope.authentication = authService.authentication;
+        //console.log('index' + $scope.authentication.isAuth);
+    }])
 })();

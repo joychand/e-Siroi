@@ -48,6 +48,7 @@ namespace eSiroi.Authentication.Formats
             var expires = data.Properties.ExpiresUtc;
 
             var token = new JwtSecurityToken(_issuer, audienceId, data.Identity.Claims, issued.Value.UtcDateTime, expires.Value.UtcDateTime, signingKey);
+            //var token = new JwtSecurityToken(_issuer, audienceId, data.Identity.Claims, issued.Value.UtcDateTime, expires.Value.UtcDateTime, signingKey);
 
             var handler = new JwtSecurityTokenHandler();
 

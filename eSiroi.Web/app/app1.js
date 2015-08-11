@@ -1,5 +1,5 @@
 ﻿
-var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
+var app = angular.module('eSiroi.Web', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
 
 app.config(function ($routeProvider) {
     var BaseUrl = "http://localhost/eSiroi.Web/"
@@ -42,11 +42,21 @@ app.config(function ($routeProvider) {
 
 });
 
+//var AuthServiceBase = 'http://localhost/eSiroi.Authentication/';
+//var
+////var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
+//app.constant('eSiroiWebSettings', {
+//    apiAuthServiceBaseUri: AuthServiceBase,
+//    clientId: 'ngAuthApp'
+//});
 var AuthServiceBase = 'http://localhost/eSiroi.Authentication/';
-//var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
+var ResrcServiceBase = 'http://localhost/eSiroi.Resource/';
+
 app.constant('eSiroiWebSettings', {
     apiAuthServiceBaseUri: AuthServiceBase,
-    clientId: 'ngAuthApp'
+    apiResrcServiceBaseUri: ResrcServiceBase,
+    clientId: 'eSiroi.Web',
+    //baseUrl: $("base").first().attr("href")
 });
 
 app.config(function ($httpProvider) {

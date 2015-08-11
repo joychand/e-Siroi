@@ -46,6 +46,7 @@ namespace eSiroi.Resource.Controllers
 
                     
         }
+        [Authorize]
         //get SRO       
         [Route("api/ApplyRegistrationController/getSRO")]
         public IHttpActionResult getSRO()

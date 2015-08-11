@@ -13,6 +13,11 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
     //#region MAINNAVIGATIONROUTING
     //********************** NAVIGATION TOP BAR ROUTING ******************************//
     $stateProvider
+        .state('Index', {
+            url: "/",
+            templateUrl: baseUrl + 'Home/Index',
+            controller: 'indexController'
+        })
         .state('Home', {
             url: "/home",
             templateUrl: baseUrl + '/Home/home_page',
@@ -319,6 +324,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
     $rootScope.errorHandler = errorHandler;
     $rootScope.$stateParams = $stateParams;
     authService.fillAuthData();
+    $rootScope.authentication = authService.authentication;
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         console.log('statechangestart');
         if (toState.name !== 'department.content.login' ) return;

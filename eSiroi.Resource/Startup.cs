@@ -13,6 +13,7 @@ using System.Net.Http.Formatting;
 using System.Linq;
 using Newtonsoft.Json.Serialization;
 
+
 [assembly: OwinStartup(typeof(eSiroi.Resource.Startup))]
 
 namespace eSiroi.Resource
@@ -25,11 +26,11 @@ namespace eSiroi.Resource
             app.UseErrorPage();
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
             HttpConfiguration appconfig = new HttpConfiguration();
-           
-            ConfigureWebApi(appconfig);
-            
-            app.UseWebApi(appconfig);
             ConfigureOAuthTokenConsumption(app);
+            ConfigureWebApi(appconfig);
+            //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            app.UseWebApi(appconfig);
+           
          
         }
         private void ConfigureWebApi(HttpConfiguration config)
@@ -44,15 +45,18 @@ namespace eSiroi.Resource
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
+
+
         private void ConfigureOAuthTokenConsumption(IAppBuilder app)
         {
 
-            var issuer = "eSiroi";
+            var issuer = "http://localhost/eSiroi.Authentication";
             string audienceId = ConfigurationManager.AppSettings["as:AudienceId"];
             byte[] audienceSecret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["as:AudienceSecret"]);
 
             // Api controllers with an [Authorize] attribute will be validated with JWT
-            app.UseJwtBearerAuthentication(
+           
+                app.UseJwtBearerAuthentication(
                 new JwtBearerAuthenticationOptions
                 {
                     AuthenticationMode = AuthenticationMode.Active,
@@ -62,6 +66,8 @@ namespace eSiroi.Resource
                         new SymmetricKeyIssuerSecurityTokenProvider(issuer, audienceSecret)
                     }
                 });
+            
+            
         }
         //public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
     }

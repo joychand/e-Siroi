@@ -9,7 +9,7 @@ using eSiroi.Authentication.Providers;
 using eSiroi.Authentication.Formats;
 using Microsoft.Owin.Security.OAuth;
 using eSiroi.Authentication.Infrastructure;
-
+using Microsoft.Owin.Cors;
 using eSiroi.Authentication.Model;
 using System.Configuration;
 using System.Linq;
@@ -25,17 +25,9 @@ namespace eSiroi.Authentication
 
             HttpConfiguration httpConfig = new HttpConfiguration();
             ConfigureOAuthTokenGeneration(app);
-            //ConfigureOAuthTokenConsumption(app);
             ConfigureWebApi(httpConfig);
             app.UseWebApi(httpConfig);
-            //
-            // Web API routes
-            //config.MapHttpAttributeRoutes();
-            //ConfigureOAuth(app);
-            //WebApiConfig.Register(config);
-            //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-            //app.UseWebApi(config);
-            // Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuthContext, AngularJSAuthentication.API.Migrations.Configuration>());
+            
 
         }
         private void ConfigureWebApi(HttpConfiguration config)
@@ -55,7 +47,7 @@ namespace eSiroi.Authentication
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(AuthDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+           app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 //For Dev enviroment only (on production should be AllowInsecureHttp = false)
@@ -63,7 +55,7 @@ namespace eSiroi.Authentication
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new SimpleAuthorizationServerProvider(),
-                AccessTokenFormat = new CustomJwtFormat("eSiroi")
+                AccessTokenFormat = new CustomJwtFormat("http://localhost/eSiroi.Authentication")
             };
 
             // OAuth 2.0 Bearer Access Token Generation

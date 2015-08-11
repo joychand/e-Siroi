@@ -12,7 +12,7 @@ namespace eSiroi.Resource.Controllers
      [RoutePrefix("api/Orders")]
     public class OrdersController : ApiController
     {
-         [Authorize]
+         [Authorize(Roles="public")]
          [Route("")]
          public IHttpActionResult Get()
          {

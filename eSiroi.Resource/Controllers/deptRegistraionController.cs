@@ -124,7 +124,7 @@ namespace eSiroi.Resource.Controllers
 
         // GET DEEDS STATUS
         [Authorize]
-        [HttpGet]
+        
         [Route("api/deptRegistraionController/{status}/getDeed")]
         public IHttpActionResult getDeed(String status)
         {
