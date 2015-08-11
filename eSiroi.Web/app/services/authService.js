@@ -1,5 +1,6 @@
 ﻿'use strict';
-app.factory('authService', ['$http', '$q', 'localStorageService', 'eSiroiWebSettings', function ($http, $q, localStorageService, eSiroiWebSettings) {
+angular.module('eSiroi.Web')
+    .factory('authService', ['$http', '$q', 'localStorageService', 'eSiroiWebSettings', function ($http, $q, localStorageService, eSiroiWebSettings) {
 
     var serviceBase = eSiroiWebSettings.apiAuthServiceBaseUri;
     var authServiceFactory = {};

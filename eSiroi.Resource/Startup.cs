@@ -63,6 +63,6 @@ namespace eSiroi.Resource
                     }
                 });
         }
-        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
+        //public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
     }
 }

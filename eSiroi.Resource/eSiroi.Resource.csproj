@@ -142,6 +142,7 @@
     <Compile Include="Controllers\OnlineExecutantsController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\SubDivisionsController.cs">
       <SubType>Code</SubType>
     </Compile>

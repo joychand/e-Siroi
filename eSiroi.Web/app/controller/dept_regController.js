@@ -228,10 +228,10 @@
                 else {
                     dept_sessionfactory.putCurrUser('SR');
                 }
-                $modalInstance.close();
+                
                 $state.go('department.content.home');
                 //$location.path('/orders');
-
+                $modalInstance.close();
             },
              function (err) {
                  $scope.message = err.error_description;

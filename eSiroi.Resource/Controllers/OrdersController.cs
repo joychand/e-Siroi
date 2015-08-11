@@ -1,4 +1,4 @@
-﻿using eSiroi.Resource.ApiFilter;
+﻿//using eSiroi.Resource.ApiFilter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace eSiroi.Resource.Controllers
 {
-     [NoCacheHeaderFilter]
+     //[NoCacheHeaderFilter]
      [RoutePrefix("api/Orders")]
     public class OrdersController : ApiController
     {
