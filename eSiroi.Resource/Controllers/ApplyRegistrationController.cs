@@ -46,8 +46,9 @@ namespace eSiroi.Resource.Controllers
 
                     
         }
-        [Authorize]
-        //get SRO       
+        
+        //get SRO 
+        [HttpGet]
         [Route("api/ApplyRegistrationController/getSRO")]
         public IHttpActionResult getSRO()
         {
@@ -300,7 +301,7 @@ namespace eSiroi.Resource.Controllers
         }
        
         [HttpPost]
-        [Route("api/ApplyRegistraionController/postplot")]
+        [Route("api/ApplyRegistrationController/postplot")]
         public async Task<IHttpActionResult> postplot([FromBody] onlinePlot plot)
         {
             if(!ModelState.IsValid)

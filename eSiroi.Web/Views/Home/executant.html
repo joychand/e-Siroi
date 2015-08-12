@@ -150,7 +150,8 @@
             <div class="col-sm-4">
                 <select name="village" id="" class="form-control"
                         data-ng-model="exec.village"
-                        data-ng-options="village.villName for village in villages | filter:{distCode:exec.district.distCode} | filter:{subDivCode: exec.subdiv.subDivCode} | orderBy: 'villName'"
+                        data-ng-options="village.villName for village in villages | filter:{distCode:exec.district.distCode} | filter:{subDivCode:exec.subdiv.subDivCode} | orderBy: 'villName' track by village.villName"
+                        
                         data-ng-disabled="!exec.subdiv||eformModel.submitted">
                     <option value="">--Select Village--</option>
                 </select>
@@ -163,7 +164,7 @@
                 <label class="control-label">Street/Locality/ Leikai</label>
             </div>
             <div class="col-sm-4">
-                <input type="text" value="" class="form-control" placeholder="Stree/Locality/Leikai" data-ng-readonly="eformModel.submitted" data-ng-model="executant.street" />
+                <input type="text" value="" class="form-control" placeholder="Stree/Locality/Leikai" data-ng-readonly="eformModel.submitted" data-ng-model=" exec.district.distCode" />
 
             </div>
             <label for="" class="control-label col-sm-2">Post Office</label>
@@ -209,6 +210,7 @@
                 <button data-ng-click="execAddmore()" class="btn btn-default btn-md pull-right">Add More</button>
 
         </div>
+             
 </form>
           
             

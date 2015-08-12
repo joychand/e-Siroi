@@ -93,8 +93,12 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             url: '/home',
             templateUrl: baseUrl +'/Home/dept_home',
             controller: 'deptHomeController',
-            data: {
-                status: 'Applied'
+            
+            resolve: {
+                applications: function (dept_dataFactory) {
+                    var status = 'Approved';
+                   return dept_dataFactory.getDeed(status)
+                }
             }
         })
        

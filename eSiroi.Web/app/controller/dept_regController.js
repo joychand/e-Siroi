@@ -4,14 +4,15 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('departmentController', ['$scope', 'dept_sessionfactory','authService', deptcontentController]);
+        .controller('departmentController', ['$scope', 'dept_sessionfactory','authService','$state', deptcontentController]);
 
-    function deptcontentController($scope, dept_sessionfactory,authService) {
+    function deptcontentController($scope, dept_sessionfactory,authService,$state) {
         $scope.department = {};
         $scope.signOut=function(){
             authService.logOut();
+            $state.go('/home');
         }
-        //$scope.department.currUser = dept_sessionfactory.getCurrUser();
+        
 
 
     }
@@ -39,40 +40,44 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory',deptHomeController]);
+        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'applications', deptHomeController]);
 
-    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory) {
+    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, applications) {
        
        
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
         $scope.applnStatus = ['Approved', 'DataEntered', 'Pending'];
-        if (dept_sessionfactory.getCurrUser() == 'Operator')
-        {
-            var status = 'Approved';
-            $scope.selectedStatus = $scope.applnStatus[0];
-        }
-        else
-        {
-            var status = 'DataEntered';
-            $scope.selectedStatus = $scope.applnStatus[1];
-        }
+        //var status = 'Approved';
+        $scope.myData = applications.data;
+        console.log($scope.myData);
+        $scope.selectedStatus = $scope.applnStatus[0];
+        //if (dept_sessionfactory.getCurrUser() == 'Operator')
+        //{
+        //    var status = 'Approved';
+        //    $scope.selectedStatus = $scope.applnStatus[0];
+        //}
+        //else
+        //{
+        //    var status = 'DataEntered';
+        //    $scope.selectedStatus = $scope.applnStatus[1];
+        //}
         
        
         
-        getDeed(status);
+       // getDeed(status);
         
         $scope.displayCollection = [].concat($scope.myData);
 
 
         //getAppln function status
-        function getDeed(status){
-           
-            dept_dataFactory.getDeed(status).then(function (response) {
-                $scope.myData = response.data;
+        //function getDeed(Approved){
+        //    var status = 'Approved';
+        //    dept_dataFactory.getDeed(status).then(function (response) {
+        //        $scope.myData = response.data;
 
 
-            })
-        }
+        //    })
+        //}
 
         // PROCESS ROW FUNCTION
        
@@ -225,14 +230,25 @@
             //TO DO GET USER CREDENTIALS VERIFY WITH THE BACKEND API
             authService.login($scope.loginData).then(function (response) {
 
-                if ($scope.loginData.userName == 'tombi') {
-                    dept_sessionfactory.putCurrUser('Operator');
+                if ($scope.loginData.userName == 'tombi' || $scope.loginData.userName==='kaibem') {
+                    if ($scope.loginData.userName === 'tombi')
+                    {
+                        dept_sessionfactory.putCurrUser('Operator');
+                    }
+                    else
+                    {
+                        dept_sessionfactory.putCurrUser('SR');
+                    }
+                    
+                    $state.go('department.content.home');
                 }
                 else {
-                    dept_sessionfactory.putCurrUser('SR');
+                    dept_sessionfactory.putCurrUser('Public');
+                    $state.go('registration.content.apply')
                 }
                 
-                $state.go('department.content.home');
+              
+                  
                 //$location.path('/orders');
                 $modalInstance.close();
             },

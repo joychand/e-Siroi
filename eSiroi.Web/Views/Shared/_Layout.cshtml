@@ -23,17 +23,69 @@
           }
       });
   </script>--> 
+    <script type="text/javascript">
 
+    window.onunload = function () {
+       // console.log(window.localStorage);
+        window.localStorage.clear();
+        return 'Do you really want to close ?';
+    };
+    </script>
 </head>
 <body ng-app="eSiroi.Web" >
-   <!-- <div class="masthead ">
-        <div class="container">
-            <h1 class="text-center"><em>eSiroi</em>
-            <small>Property Registration</small>
-            </h1>
-        </div>
-    </div>-->
-    <div class="navbar navbar-inverse navbar-fixed-top main-navbar" role="navigation" >
+   
+
+   <!-- <div class=" masthead ">
+        <div class=" container">
+    <!-- <div class="masthead ">
+         <div class="container">
+             <h1 class="text-center"><em>eSiroi</em>
+             <small>Property Registration</small>
+             </h1>
+         </div>
+     </div>-->
+    <h1 class="text-center">
+        <em>
+        <!-- <div class="masthead ">
+             <div class="container">
+                 <h1 class="text-center"><em>eSiroi</em>
+                 <small>Property Registration</small>
+                 </h1>
+             </div>
+         </div>-->
+        </em>
+        <!-- <div class="masthead ">
+             <div class="container">
+                 <h1 class="text-center"><em>eSiroi</em>
+                 <small>Property Registration</small>
+                 </h1>
+             </div>
+         </div>-->
+        <small>
+        <!-- <div class="masthead ">
+             <div class="container">
+                 <h1 class="text-center"><em>eSiroi</em>
+                 <small>Property Registration</small>
+                 </h1>
+             </div>
+         </div>-->
+        </small>
+        <!-- <div class="masthead ">
+             <div class="container">
+                 <h1 class="text-center"><em>eSiroi</em>
+                 <small>Property Registration</small>
+                 </h1>
+             </div>
+         </div>-->
+    </h1>
+    <!-- <div class="masthead ">
+         <div class="container">
+             <h1 class="text-center"><em>eSiroi</em>
+             <small>Property Registration</small>
+             </h1>
+         </div>
+     </div>-->
+    <div class="navbar navbar-inverse navbar-fixed-top main-navbar" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -46,26 +98,26 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li ><a ui-sref-active="active" ui-sref="Home"><span class="glyphicon glyphicon-home"> Home</span></a></li>
-                    
+                    <li><a ui-sref-active="active" ui-sref="Home"><span class="glyphicon glyphicon-home"> Home</span></a></li>
+
                     <li data-ng-hide="authentication.isAuth"><a ui-sref-active="active" ui-sref="department.content.login">Login</a></li>
                     <li><a href="" target="_self">Payments Screen</a></li>
-                   <li><a href="/Help" target="_self">API</a></li>
+                    <li><a href="/Help" target="_self">API</a></li>
 
-                  </ul>
+                </ul>
             </div><!--/.nav-collapse -->
         </div>
     </div>
 
 
     <div class="container body-content">
-       
+
         @RenderBody()
 
-         
+
     </div>
-    
-    
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

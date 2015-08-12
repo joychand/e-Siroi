@@ -164,7 +164,7 @@ angular.module('eSiroi.Web')
         dataFactory.postexecutant = function (executantList) {
             return $http({
                 method:'POST',
-                url: 'api/ApplyRegistrationController/postexecutant',
+                url: urlBase3 +'postexecutant',
                 data: executantList
                 });
         };
@@ -173,7 +173,7 @@ angular.module('eSiroi.Web')
         dataFactory.postclaimant = function (claimantList) {
             return $http({
                 method: 'POST',
-                url: 'api/ApplyRegistrationController/postclaimant',
+                url: urlBase3 +'postclaimant',
                 data: claimantList
             });
             
@@ -183,7 +183,7 @@ angular.module('eSiroi.Web')
         dataFactory.postidentifier = function (identifierList) {
             return $http({
                 method: 'POST',
-                url: 'api/ApplyRegistrationController/postidentifier',
+                url: urlBase3 + 'postidentifier',
                 data: identifierList
             });
             
