@@ -22,12 +22,12 @@ angular.module('eSiroi.Web')
             var state = $injector.get('$state');
             var authData = localStorageService.get('authorizationData');
 
-            if (authData) {
-                if (authData.useRefreshTokens) {
-                    $location.path('/refresh');
-                    return $q.reject(rejection);
-                }
-            }
+            //if (authData) {
+            //    if (authData.useRefreshTokens) {
+            //        $location.path('/refresh');
+            //        return $q.reject(rejection);
+            //    }
+            //}
             authService.logOut();
             //$location.path('/login');
             state.go('department.content.login');

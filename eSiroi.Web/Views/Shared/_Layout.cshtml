@@ -12,18 +12,10 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/app")
-   @Scripts.Render("~/bundles/bootstrap")
-     
-    <script src="~/Scripts/ng-grid.debug.js" type="text/javascript"></script>
+   @Scripts.Render("~/bundles/bootstrap")     
+    <script src="~/Scripts/ng-grid.debug.js" type="text/javascript"></script>   
    
- <!-- <script>
-      $(document).on('click', '.navbar-collapse.in', function (e) {
-          if ($(e.target).is('a')) {
-              $(this).collapse('hide');
-          }
-      });
-  </script>--> 
-    <script type="text/javascript">
+      <script type="text/javascript">
 
     window.onunload = function () {
        // console.log(window.localStorage);
@@ -32,59 +24,8 @@
     };
     </script>
 </head>
-<body ng-app="eSiroi.Web" >
-   
+<body ng-app="eSiroi.Web" > 
 
-   <!-- <div class=" masthead ">
-        <div class=" container">
-    <!-- <div class="masthead ">
-         <div class="container">
-             <h1 class="text-center"><em>eSiroi</em>
-             <small>Property Registration</small>
-             </h1>
-         </div>
-     </div>-->
-    <h1 class="text-center">
-        <em>
-        <!-- <div class="masthead ">
-             <div class="container">
-                 <h1 class="text-center"><em>eSiroi</em>
-                 <small>Property Registration</small>
-                 </h1>
-             </div>
-         </div>-->
-        </em>
-        <!-- <div class="masthead ">
-             <div class="container">
-                 <h1 class="text-center"><em>eSiroi</em>
-                 <small>Property Registration</small>
-                 </h1>
-             </div>
-         </div>-->
-        <small>
-        <!-- <div class="masthead ">
-             <div class="container">
-                 <h1 class="text-center"><em>eSiroi</em>
-                 <small>Property Registration</small>
-                 </h1>
-             </div>
-         </div>-->
-        </small>
-        <!-- <div class="masthead ">
-             <div class="container">
-                 <h1 class="text-center"><em>eSiroi</em>
-                 <small>Property Registration</small>
-                 </h1>
-             </div>
-         </div>-->
-    </h1>
-    <!-- <div class="masthead ">
-         <div class="container">
-             <h1 class="text-center"><em>eSiroi</em>
-             <small>Property Registration</small>
-             </h1>
-         </div>
-     </div>-->
     <div class="navbar navbar-inverse navbar-fixed-top main-navbar" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -109,15 +50,9 @@
         </div>
     </div>
 
-
     <div class="container body-content">
-
         @RenderBody()
-
-
-    </div>
-
-
-    @RenderSection("scripts", required: false)
+    </div>  
+      @RenderSection("scripts", required: false)
 </body>
 </html>

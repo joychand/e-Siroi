@@ -11,7 +11,7 @@ namespace eSiroi.Authentication.Infrastructure
 {
     public class ApplicationUser : IdentityUser
     {
-        //Rest of code is removed for brevity
+       
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);

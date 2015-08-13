@@ -13,14 +13,14 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
     //#region MAINNAVIGATIONROUTING
     //********************** NAVIGATION TOP BAR ROUTING ******************************//
     $stateProvider
-        .state('Index', {
-            url: "/",
-            templateUrl: baseUrl + 'Home/Index',
-            controller: 'indexController'
-        })
+        //.state('Index', {
+        //    url: "/",
+        //    templateUrl: baseUrl + 'Home/Index',
+        //    controller: 'indexController'
+        //})
         .state('Home', {
             url: "/home",
-            templateUrl: baseUrl + '/Home/home_page',
+            templateUrl: 'Home/home_page',
             controller: "HomeController"
         })
         
@@ -58,35 +58,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             url: '/login',
             templateUrl: baseUrl + 'Home/login_page',
             controller: 'deptloginController'
-    //        resolve:{
-    //            modalService: 'modalService',
-    //            $state: '$state'
-    //        },
-    //        onEnter: function (modalService,$state,$rootScope) {
-    //            var modalOptions = {
-    //                closeButtonText: 'Cancel',
-    //                actionButtonText: 'Login',
-    //                headerText: 'Login',
-    //                bodyText: ''
-    //            };
-
-    //            var modalDefault = {
-    //                templateUrl: baseUrl + '/Home/loginPage',
-    //                controller: 'loginModalCtrl',
-    //                backdrop: 'static',
-    //                size: 'lg'
-                   
-    //            };
-
-    //            modalService.showModal(modalDefault, modalOptions).then(function (result) {
-
-    //                $state.go('department.content.home');
-                    
-                    
-    //            }, function (error) {
-    //                $state.go($rootScope.previousState);
-    //            });
-    //}
+   
         })
 
         .state('department.content.home', {
@@ -131,7 +103,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         .state('department.content.form', {
             
             url: '/dataEntryform',
-            templateUrl: baseUrl + '/Home/dept_dataEntry_form',
+            templateUrl: baseUrl + 'Home/dept_dataEntry_form',
             controller: 'dataEntryformController',
             
         })

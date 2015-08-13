@@ -8,9 +8,9 @@
 
     function deptcontentController($scope, dept_sessionfactory,authService,$state) {
         $scope.department = {};
-        $scope.signOut=function(){
+        $scope.signOut= function () {
             authService.logOut();
-            $state.go('/home');
+            $state.go('Home');
         }
         
 
@@ -420,7 +420,10 @@
 
 
         var row = dept_sessionfactory.getRow();
+        console.log('previousstate: ' + $rootScope.previousState);
         if (row && $rootScope.previousState == 'department.content.onlineapplication') {
+
+            console.log('PROCESS ROW ACKNO: '+row.ackno);
             getPropPartyList(row.ackno);
         }
 
@@ -496,8 +499,7 @@
         }
         $scope.getOnline = function () {
             $scope.onlinedata = 'getonline';
-            //$scope.visibility = false;
-            //$scope.click = true;
+            
         }
        
         //get Online Data click
@@ -645,7 +647,6 @@
 })();
 
 //dept_dataEntry_form_property Controller //
-
 (function () {
     'use strict';
 

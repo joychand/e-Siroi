@@ -19,7 +19,7 @@ namespace eSiroi.Resource.Controllers
         private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
         private LpDbContext lpdb = new LpDbContext();
 
-        //GET ONLINE APPLICATION
+        #region GET ONLINE APPLICATION
         [HttpGet]
         [Route("api/deptRegistraionController/{status}/getAppln")]
         public IHttpActionResult getAppln(String status)
@@ -48,8 +48,8 @@ namespace eSiroi.Resource.Controllers
             return NotFound();       
         }
 
+        #endregion
 
-       
         #region COMMON DATA SERVICE API
         // get Exempt reason
         [HttpGet]
