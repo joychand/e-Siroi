@@ -208,7 +208,7 @@ namespace eSiroi.Resource.Controllers
             }
             catch(DbUpdateException e)
             {
-                throw e;
+                return InternalServerError(e);
             }
             return Ok();
 

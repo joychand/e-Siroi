@@ -344,9 +344,21 @@
             getlandclass();
             getlandtype();
             $scope.occupations = ['Govt. employee', 'Business', 'Unemployed', 'Others'];
-            $scope.unit = ['Hectare', 'Acre', 'SqFeet'];
-
-           
+            $scope.unit = [
+                {
+                    unit:'H',
+                    unitName:'Hectare'
+                },
+                {
+                    unit:'A',
+                    unitName:'Acre'
+                },
+                {
+                    unit:'S',
+                    unitName:'SqFeet'
+                }
+]
+            console.log($scope.unit[0]);
 
            // }
        
@@ -703,7 +715,8 @@
 
        // inject default values for first time visit
         if (!$scope.session.propFormIsonline && $scope.session.propFormFistVisit) {
-            $scope.property.unit = $scope.unit[0];
+            $scope.property.unit = $scope.unit[0].unit;
+            console.log($scope.property.unit)
             $scope.session.propFormFistVisit = false;
 
         }
@@ -718,6 +731,7 @@
             };
             modalService.showModal({}, modaloptions).then(function (result) {
                
+                console.log($scope.property.unit);
                 angular.extend($scope.property, {
                     TSNo:$scope.tsyear.ts,
                     TSYear: $scope.tsyear.tyear,
