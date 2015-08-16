@@ -14,6 +14,7 @@ using System.Data.Entity.SqlServer;
 
 namespace eSiroi.Resource.Controllers
 {
+    [RoutePrefix("api/deptRegistraionController")]
     public class deptRegistraionController : ApiController
     {
         private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
@@ -21,7 +22,7 @@ namespace eSiroi.Resource.Controllers
 
         #region GET ONLINE APPLICATION
         [HttpGet]
-        [Route("api/deptRegistraionController/{status}/getAppln")]
+        [Route("{status}/getAppln")]
         public IHttpActionResult getAppln(String status)
         {
             
@@ -53,7 +54,7 @@ namespace eSiroi.Resource.Controllers
         #region COMMON DATA SERVICE API
         // get Exempt reason
         [HttpGet]
-        [Route("api/deptRegistraionController/ExemptReason")]
+        [Route("ExemptReason")]
         public IHttpActionResult getReason()
         {
             var reason= db.Exempt_Reason;
@@ -66,7 +67,7 @@ namespace eSiroi.Resource.Controllers
 
         ////Get LandType 
         [HttpGet]
-        [Route("api/deptRegistraionController/landtype")]
+        [Route("landtype")]
         public IHttpActionResult getlandtype()
         {
 
@@ -83,7 +84,7 @@ namespace eSiroi.Resource.Controllers
         }
         // Get LandClass
         [HttpGet]
-        [Route("api/deptRegistraionController/landclass")]
+        [Route("landclass")]
         public IHttpActionResult getlandclass()
         {
             var landclass = db.Class;
@@ -100,7 +101,7 @@ namespace eSiroi.Resource.Controllers
 
         //POST DEED DETAILS
         [HttpPost]
-        [Route("api/deptRegistraionController/postdeed")]
+        [Route("postdeed")]
         public async Task<IHttpActionResult> postdeed([FromBody] Deed deedDetails)
         {
             if (!ModelState.IsValid)
@@ -123,9 +124,9 @@ namespace eSiroi.Resource.Controllers
         }
 
         // GET DEEDS STATUS
-        [Authorize]
+       [Authorize]
         
-        [Route("api/deptRegistraionController/{status}/getDeed")]
+        [Route("{status}/getDeed")]
         public IHttpActionResult getDeed(String status)
         {
             var query = from d in db.Deed
@@ -160,7 +161,7 @@ namespace eSiroi.Resource.Controllers
         # region PropertyFrom API
         //Get Property Details
         [HttpGet]
-        [Route("api/deptRegistraionController/{ackno}/property")]
+        [Route("{ackno}/property")]
         public IHttpActionResult getOnlineProperty(int ackno)
         {
             var plotdetail = db.onlinePlot
@@ -175,7 +176,7 @@ namespace eSiroi.Resource.Controllers
         }
 
         // Get property ddl list
-        [Route("api/deptRegistraionController/{ackno}/propertyddl")]
+        [Route("{ackno}/propertyddl")]
         public IHttpActionResult getOnlinePropertyddl(int ackno)
         {
             var plotddl = db.onlinePlot
@@ -188,12 +189,38 @@ namespace eSiroi.Resource.Controllers
             else
                 return NotFound();
         }
+
+        //INSERT PORPERTY DETAILS
+        [Route("postPlotDetail")]
+        public async Task< IHttpActionResult> postProperty(Plot plot) {
+
+            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Plot.Add(plot);
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch(DbUpdateException e)
+            {
+                throw e;
+            }
+            return Ok();
+
+        }
+
+      
         #endregion 
 
         #region PartyDetails API
         // post executantlist
         [HttpPost]
-        [Route("api/deptRegistraionController/postexecutant")]
+        [Route("postexecutant")]
         public async Task<IHttpActionResult> postexecutant([FromBody] IEnumerable<Executant> executantlist)
         {
             if (!ModelState.IsValid)
@@ -229,7 +256,7 @@ namespace eSiroi.Resource.Controllers
         
         // Get Online Claimant list 
         [HttpGet]
-        [Route("api/deptRegistraionController/{ackno}/claimantlist")]
+        [Route("{ackno}/claimantlist")]
         public IEnumerable<OnlineClaimant> claimantlist(int ackno)
         {
 
@@ -243,7 +270,7 @@ namespace eSiroi.Resource.Controllers
         }
         // GET ONLINE IDENTIFIER LIST
         [HttpGet]
-        [Route("api/deptRegistraionController/{ackno}/identifierlist")]
+        [Route("{ackno}/identifierlist")]
         public IEnumerable<OnlineIdentifier> identifierlist(int ackno)
         {
 
@@ -257,7 +284,7 @@ namespace eSiroi.Resource.Controllers
         }
         // GET ONLINE IDENTDDL LIST
         [HttpGet]
-        [Route("api/deptRegistraionController/{ackno}/identddllist")]
+        [Route("{ackno}/identddllist")]
         public System.Collections.IEnumerable identddllist(int ackno)
         {
 
@@ -275,7 +302,7 @@ namespace eSiroi.Resource.Controllers
           }
         // GET CLAIMANT DDL LIST
         [HttpGet]
-        [Route("api/deptRegistraionController/{ackno}/claimddlist")]
+        [Route("{ackno}/claimddlist")]
       
         public System.Collections.IEnumerable claimddlist(int ackno)
         {
@@ -292,32 +319,21 @@ namespace eSiroi.Resource.Controllers
 
 
         }
+
+        //POST CLAIMANT DETAILS
+        [Route("postClaimant")]
+        public IHttpActionResult postClaimant(Claimant claimantlist)
+        {
+            return Ok();
+        }
+        //POST IDENTIFIER DETAILS
+        [Route ("postIdentifier")]
+        public IHttpActionResult postIdentifier(Identifier identifierList)
+        {
+            return Ok();
+        }
         # endregion
 
-        #region LOUCHAPATHAP API
-        // get plot
-        [HttpGet]
-        [Route("api/deptRegistraionController/{plotno}/{pattano}/verfiyplot")]
-        public  IHttpActionResult getPlotDetails(string plotno, string pattano)
-        {
-
-        //IQueryable plotlist;
-
-
-            var plotlist = (from p in lpdb.Set<Uniowner>()
-                        where p.NewDagNo == plotno && p.NewPattaNo == pattano
-                        select new { p.NewDagNo,p.NewPattaNo,p.Name,p.Father,p.Address,p.PArea });
-            //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
-            if (plotlist.Any())
-            {
-                return Ok(plotlist); 
-            }
-
-            return NotFound();
-
-        }
-
-        #endregion
 
 
 

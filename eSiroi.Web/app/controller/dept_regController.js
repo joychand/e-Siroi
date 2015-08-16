@@ -1,4 +1,11 @@
-﻿//departmentController
+﻿//****************************************************dept_regController*****************************************//
+// The Single JavaScript file contains definitions of eSiroi.Web Department Views Controllers declared in 'app.js'//
+//**********************************Developed by N.Joychand Singh for NIC***************************************//
+
+
+
+
+//departmentController
 (function () {
     'use strict';
 
@@ -423,10 +430,10 @@
         console.log('previousstate: ' + $rootScope.previousState);
         if (row && $rootScope.previousState == 'department.content.onlineapplication') {
 
-            console.log('PROCESS ROW ACKNO: '+row.ackno);
+           
             getPropPartyList(row.ackno);
         }
-
+        //GET ONLINE DATA
         function getPropPartyList(ackno) {
             dept_dataFactory.getOnlineExecutantList(ackno).then(function (response) {
 
@@ -624,8 +631,10 @@
 
     function deptDeedController($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService) {
 
-        $scope.deed = {};
-        $scope.d = {};
+       
+         $scope.deed=deptModalService.deed;
+         $scope.d=deptModalService.deedddl;
+        // $scope.d.dop = new Date();
 
         /// Fee exempt reason radion button action
         $scope.isExemptYes = function (yes) {
@@ -633,9 +642,11 @@
             return yes === $scope.deed.FeeExempt
         }
         $scope.ondeedSubmit = function () {
+            
             $scope.deed.TSNo = $scope.tsyear.ts;
             $scope.deed.TSYear = $scope.tsyear.tyear
-            $scope.deed.Date_Time_Present = $scope.d.dop + $scope.d.dopt;
+            $scope.deed.Date_Time_Present = $scope.d.dop + $scope.d.time;
+         
             dept_dataFactory.postdeed($scope.deed).then(function (response) {
                 $state.go('department.content.form.property')
             }, function (result) {
@@ -652,9 +663,9 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('deptPropController', ['$scope', '$state', 'district', '$http', '$modal', 'deptModalService', 'modalService','dept_sessionfactory',  deptPropController]);
+        .controller('deptPropController', ['$scope', '$state', 'district', '$http', '$modal', 'deptModalService', 'modalService', 'dept_sessionfactory', 'dept_dataFactory', deptPropController]);
 
-    function deptPropController($scope, $state, district, $http, $modal, deptModalService, modalService, dept_sessionfactory) {
+    function deptPropController($scope, $state, district, $http, $modal, deptModalService, modalService, dept_sessionfactory, dept_dataFactory) {
         
         $scope.property = {};
         $scope.propertyddl = {};
@@ -706,7 +717,20 @@
                 bodyText: 'Do you want to submit the property details ?'
             };
             modalService.showModal({}, modaloptions).then(function (result) {
-
+               
+                angular.extend($scope.property, {
+                    TSNo:$scope.tsyear.ts,
+                    TSYear: $scope.tsyear.tyear,
+                    state: 'Manipur',
+                    district: $scope.propertyddl.district.distName,
+                    subdivision: $scope.propertyddl.subdivsion.subDivName,
+                    circle: $scope.propertyddl.circle.circleName,
+                    village: $scope.propertyddl.village.villName
+                });
+                console.log($scope.property);
+                dept_dataFactory.postPlotDetail($scope.property).then(function (result) {
+                    $state.go('department.content.form.executant');
+                });
             });
         }
         //VERIFY PLOT FUNCTION
@@ -768,10 +792,11 @@
 
         $scope.saveproperty = function () {
 
+            insertPlot();
             var modalOptions = {
                 closeButtonText: 'Cancel',
                 actionButtonText: 'Ok',
-                headerText: 'Save Property Detaisl?',
+                headerText: 'Save Property Details?',
                 bodyText: 'Are you sure you want to save the propertyDetails?'
             };
 
@@ -955,7 +980,7 @@
         }
 
     }
-})();   //***** End of deptExeController ****//
+})();   
 
 //dept_dataEntry_form_claimant Controller//
 
@@ -1078,6 +1103,7 @@
         $scope.formsubmit = function () {
             dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
                 console.log('registration data successfully  submitted');
+                dept_dataFactory.
                 $state.go('department.content.dataentered')
             }, function (result) {
                 alert('registration data entered fails');
@@ -1099,4 +1125,9 @@
         //}
     }
 })();
+
+//#region HELPER FUNCTIONS
+function insertPlot($scope) {
+
+}
 

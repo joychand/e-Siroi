@@ -19,7 +19,7 @@
             },
 
 
-            //DEED FORM DATA FACTORY
+            //#region DEED FORM DATA FACTORY
 
             // GET DEED STATUS
             getDeed: function(status){
@@ -46,8 +46,8 @@
                     cache: true
                 });
             },
-
-            // PROPERTY FORM DATA FACTORY
+            //#endregion
+            //#region PROPERTY FORM DATA FACTORY
             getPropertyDetail: function(ackno){
                 return $http({
                     method: 'GET',
@@ -79,8 +79,20 @@
                 })
             },
 
+            postPlotDetail:function(plot){
+                return $http({
+                    method:'POST',
+                    url: urlBase2 + '/postPlotDetail',
+                    data: plot
+                })
+            },
+            //#endregion
 
+
+           
+            //#region EXECUTANTFROM
             // EXECUTANT FORM DATA FACTORY
+
             getOnlineExecutantList: function (ackno) {
                 return $http({
                     method: 'GET',
@@ -101,9 +113,11 @@
                     method: 'POST',
                     data: executantlist,
                     url: urlBase2 + 'postexecutant'
+
                 });
             },
-
+            //#endregion EXECUTANTFROM
+            //#region CLAIMANTFORM
             // CLAIMANT FORM DATAFACTORY
 
             getOnlineClaimantlist: function (ackno) {
@@ -119,8 +133,17 @@
                     url: urlBase2 + ackno + '/claimddlist '
                 });
             },
+            postClaimantList: function(claimantList){
+                return({
+                    method: 'POST',
+                    url: urlBase2 + '/postClaimant',
+                    data:claimantList
 
-
+                })
+              
+            },
+            //#endregion 
+            //#region IDENTIFIERFORM
             // IDENTIFIER FORM DATAFACTORY
 
             getOnlineIdentifierlist: function (ackno) {
@@ -135,7 +158,15 @@
                 method: 'GET',
                 url: urlBase2 + ackno + '/identddllist'
             })
-        }
+            },
+            postIdentifierList: function (identifierList) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase2 + '/postIdentifier',
+                    data:identifierList
+                })
+            }
+            //#endregion
 
         };
 

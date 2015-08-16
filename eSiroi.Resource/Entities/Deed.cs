@@ -23,7 +23,8 @@ namespace eSiroi.Resource.Entities
 
         public short? RegYear { get; set; }
 
-        public DateTime? RegDate { get; set; }
+        [StringLength(100)]
+        public String RegDate { get; set; }
 
         [StringLength(2)]
         public string MajTransCode { get; set; }
@@ -32,10 +33,10 @@ namespace eSiroi.Resource.Entities
         public string TransType { get; set; }
 
         public int? SR { get; set; }
-
-        public DateTime? Date_Exec { get; set; }
-
-        public DateTime? Date_Time_Present { get; set; }
+         [StringLength(100)]
+        public String Date_Exec { get; set; }
+         [StringLength(100)]
+        public String Date_Time_Present { get; set; }
 
         [StringLength(1)]
         public string Municipal { get; set; }
