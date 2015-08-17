@@ -358,7 +358,7 @@
                     unitName:'SqFeet'
                 }
 ]
-            console.log($scope.unit[0]);
+           // console.log($scope.unit[0]);
 
            // }
        
@@ -922,7 +922,7 @@
         // Injecting executant from Modal Service
             $scope.executant = deptModalService.executant;             
             $scope.execddl = deptModalService.execddl;
-            console.log('hahahah');
+           // console.log('hahahah');
             console.log(deptModalService.execddl);
         // Set default values of the form fields
           
@@ -961,7 +961,7 @@
         //***** exsubmit() button *********//
         $scope.onexsubmit = function () {
 
-            if ($scope.OnlineStatus === 'offline') {
+            if (!$scope.session.exFormIsOnline) {
                 angular.extend($scope.executant, {
                     tsno: $scope.tsyear.ts,
                     tsyear: $scope.tsyear.tyear,
@@ -989,8 +989,9 @@
 
                 dept_sessionfactory.putOnlineExecutantlist($scope.executantlist)
             }
-            
-          
+            var exe = dept_sessionfactory.getExecutantlist();
+            //console.log(exe[0].state);
+            $state.go('department.content.form.claimant');
         }
 
     }
@@ -1041,7 +1042,7 @@
         // inject default value of forms fields
        if (!$scope.session.clFormIsOnline && $scope.session.clFormFistVisit)
        {
-           $scope.claim.state = $scope.states[21];
+          // $scope.claim.state = $scope.states[21];
            $scope.claimant.slNo = $scope.clForm.currSlno + 1;
            $scope.clForm.currSlno = $scope.claimant.slNo;
            $scope.session.clFormFistVisit = false;
@@ -1057,7 +1058,40 @@
            $scope.claim = deptModalService.claim;
         }
 
-        
+        $scope.onClaimantSubmit = function () {
+
+            if (!$scope.session.clFormIsOnline) {
+                angular.extend($scope.claimant, {
+                    tsno: $scope.tsyear.ts,
+                    tsyear: $scope.tsyear.tyear,
+                    state: $scope.claim.state.stateName,
+                    district: $scope.claim.district.distName,
+                    subDivison: $scope.claim.subDivision.subDivName,
+                    village: $scope.claim.village.villName,
+                    postOffice: $scope.claim.postOffice.postOffice1,
+                    pinCode: $scope.claim.postOffice.pinCode,
+                    enterby: 'radha' 
+                });
+
+                
+                dept_sessionfactory.pushClaimant($scope.claimant);
+               
+                              
+            }
+            else {
+                for (var i = 0; i < $scope.claimantlist.length; i++) {
+
+                    $scope.claimantlist[i].tsno = $scope.tsyear.ts;
+                    $scope.claimantlist[i].tsyear = $scope.tsyear.tyear;
+                    $scope.claimantlist[i].enterby = 'radha';
+                }
+
+                dept_sessionfactory.putOnlineClaimantlist($scope.claimantlist)
+            }
+            console.log(dept_sessionfactory.getClaimantlist());
+          $state.go('department.content.form.identifier')
+        }
+       
     }
 })();
 
@@ -1103,7 +1137,7 @@
         {
             $scope.identifier.slNo = $scope.idForm.currSlno + 1;
             $scope.idForm.currSlno = $scope.identifier.slNo;
-            $scope.ident.state = $scope.states[21];
+           // $scope.ident.state = $scope.states[21];
         }
 
         $scope.getselectedIdentifier = function () {
@@ -1115,14 +1149,45 @@
         }
         
         $scope.formsubmit = function () {
-            dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
+            //prepare identifier list
+            if (!$scope.session.idFormIsOnline) {
+                angular.extend($scope.identifier, {
+                    tsno: $scope.tsyear.ts,
+                    tsyear: $scope.tsyear.tyear,
+                    state: $scope.ident.state.stateName,
+                    district: $scope.ident.district.distName,
+                    subDivison: $scope.ident.subDivision.subDivName,
+                    village: $scope.ident.village.villName,
+                    postOffice: $scope.ident.postoffice.postOffice1,
+                    pinCode: $scope.ident.postoffice.pinCode,
+                    enterby: 'radha' 
+                });
+
+                
+                dept_sessionfactory.pushIdentifier($scope.identifier);
+               
+                              
+            }
+            else {
+                for (var i = 0; i < $scope.identifierlist.length; i++) {
+
+                    $scope.identifierlist[i].tsno = $scope.tsyear.ts;
+                    $scope.identifierlist[i].tsyear = $scope.tsyear.tyear;
+                    $scope.identifierlist[i].enterby = 'radha';
+                }
+
+                dept_sessionfactory.putOnlineIdentifierList($scope.identifierlist)
+            }
+            //#region post the party details
+           dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
                 console.log('registration data successfully  submitted');
-                dept_dataFactory.
+                dept_dataFactory.postClaimantList()
                 $state.go('department.content.dataentered')
             }, function (result) {
                 alert('registration data entered fails');
             })
         }
+        //#endregion
         $scope.displayModal=function(){
             console.log('identifier district modal' + $scope.ident.district.distName)
         }

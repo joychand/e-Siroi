@@ -106,6 +106,7 @@
 
         service.pushExecutant = function (executant) {
             executantlist.push(executant);
+            console.log(executantlist[0]);
         }
 
         service.getExecutantlist = function () {
@@ -137,7 +138,16 @@
         service.getOnlineCalimddlModal = function () {
             return sessionclaimddlist;
         }
-
+        service.pushClaimant = function (claimant) {
+            claimantlist.push(claimant);
+        }
+        service.getClaimantlist = function () {
+            return claimantlist
+        }
+        service.putOnlineClaimantlist = function (onlineClaimantlist) {
+            claimantlist = [];
+            claimantlist = onlineClaimantlist;
+        }
         //Identifier List
 
         service.updateOnlineIdentModal = function (identlist) {
@@ -158,7 +168,19 @@
         service.getOnlineIdentddlModal = function () {
             return sessionidentddlist;
         }
-        
+        service.pushIdentifier = function (identifier) {
+            identifierlist.push(identifier);
+
+        }
+        service.getIdentifierList = function () {
+            return identifierlist;
+        }
+        service.putOnlineIdentifierList = function (onlineIdentifierlist) {
+            identifierlist = [];
+            identifierlist = onlineIdentifierlist;
+
+        }
+        //clear session values
         service.clearModelList = function () {
              sessionexecutantlist = [];
              sessionexecddlist = [];

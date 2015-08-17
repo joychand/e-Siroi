@@ -156,7 +156,7 @@
                 <label for="" class="control-label col-sm-2">Sub-Division</label>
                 <div class="col-sm-4">
                     <select name="subdiv" class="form-control"
-                            data-ng-model="ident.subdiv"
+                            data-ng-model="ident.subDivision"
                             data-ng-options="subdiv.subDivName for subdiv in subdivisions | filter:{distCode:ident.district.distCode} | orderBy:'subDivName'"
                             data-ng-disabled="!ident.district">
                         <option value="">--Select Subdiv--</option>
@@ -170,8 +170,8 @@
                 <div class="col-sm-4">
                     <select name="village" id="" class="form-control"
                             data-ng-model="ident.village"
-                            data-ng-options="village.villName for village in villages | filter:{distCode:ident.district.distCode} | filter:{subDivCode: ident.subdiv.subDivCode} | orderBy: 'villName'"
-                            data-ng-disabled="!ident.subdiv">
+                            data-ng-options="village.villName for village in villages | filter:{distCode:ident.district.distCode} | filter:{subDivCode: ident.subDivision.subDivCode} | orderBy: 'villName' track by village.villName "
+                            data-ng-disabled="!ident.subDivision">
                         <option value="">--Select Village--</option>
                     </select>
                 </div>

@@ -233,7 +233,7 @@
         ================================  -->
                          <label for="" class="control-label col-sm-2">PinCode</label>
                          <div class="col-sm-4">
-                             <input type="text" class="form-control text-left" data-ng-model="claim.postOffice.pinCode" placeholder="Pincode" />
+                             <input type="text" class="form-control text-left" data-ng-model="claim.pinCode" placeholder="Pincode" />
                          </div>
                          <!--</div> -->
                      </div>
@@ -253,7 +253,7 @@
              </div>     
 <div class="form-group text-center">
     <div class="btn-group">
-        <button type="submit" data-ng-click="$state.go('department.content.identifier')" class="btn btn-primary btn-md ">Next</button>
+        <button type="submit" data-ng-click="onClaimantSubmit()" class="btn btn-primary btn-md ">Next</button>
         <button class="btn btn-success btn-md" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span>Draft</button>
         <button type="reset" class="btn btn-default btn-md">Reset</button>
     </div>
