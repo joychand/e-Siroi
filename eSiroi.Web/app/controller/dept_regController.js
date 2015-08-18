@@ -1158,8 +1158,8 @@
                     district: $scope.ident.district.distName,
                     subDivison: $scope.ident.subDivision.subDivName,
                     village: $scope.ident.village.villName,
-                    postOffice: $scope.ident.postoffice.postOffice1,
-                    pinCode: $scope.ident.postoffice.pinCode,
+                    postOffice: $scope.ident.postOffice.postOffice1,
+                    pinCode: $scope.ident.postOffice.pinCode,
                     enterby: 'radha' 
                 });
 
@@ -1181,11 +1181,14 @@
             //#region post the party details
            dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
                 console.log('registration data successfully  submitted');
-                dept_dataFactory.postClaimantList()
-                $state.go('department.content.dataentered')
-            }, function (result) {
-                alert('registration data entered fails');
+                dept_dataFactory.postClaimantList(dept_sessionfactory.getClaimantlist()).then(function (response) {
+                    dept_dataFactory.postIdentifierList(dept_sessionfactory.getIdentifierList()).then(function (response) {
+                        $state.go('department.content.dataentered');
+                    })// end of postIdentifierList
+                })
+               
             })
+           
         }
         //#endregion
         $scope.displayModal=function(){
