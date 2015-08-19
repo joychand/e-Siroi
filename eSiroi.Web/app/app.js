@@ -13,11 +13,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
     //#region MAINNAVIGATIONROUTING
     //********************** NAVIGATION TOP BAR ROUTING ******************************//
     $stateProvider
-        //.state('Index', {
-        //    url: "/",
-        //    templateUrl: baseUrl + 'Home/Index',
-        //    controller: 'indexController'
-        //})
+       
         .state('Home', {
             url: "/home",
             templateUrl: 'Home/home_page',
@@ -148,7 +144,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         })
         .state('department.content.dataentered', {
             url: '/dataEntered',
-            templateUrl: baseUrl + 'Home/dept_dataEntered'
+            templateUrl: baseUrl + 'Department/deptDataEntered'
         })
         .state('department.content.upload', {
             url: '/upload',

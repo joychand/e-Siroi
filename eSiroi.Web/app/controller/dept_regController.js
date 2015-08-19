@@ -731,20 +731,27 @@
             };
             modalService.showModal({}, modaloptions).then(function (result) {
                
-                console.log($scope.property.unit);
-                angular.extend($scope.property, {
-                    TSNo:$scope.tsyear.ts,
-                    TSYear: $scope.tsyear.tyear,
-                    state: 'Manipur',
-                    district: $scope.propertyddl.district.distName,
-                    subdivision: $scope.propertyddl.subdivsion.subDivName,
-                    circle: $scope.propertyddl.circle.circleName,
-                    village: $scope.propertyddl.village.villName
-                });
+                //console.log($scope.property.unit);
+                //if (!$scope.session.propFormIsOnline) {
+                //    angular.extend($scope.property, {
+                //        TSNo: $scope.tsyear.ts,
+                //        TSYear: $scope.tsyear.tyear,
+                //        state: 'Manipur',
+                //        district: $scope.propertyddl.district.distName,
+                //        subdivision: $scope.propertyddl.subdivsion.subDivName,
+                //        circle: $scope.propertyddl.circle.circleName,
+                //        village: $scope.propertyddl.village.villName
+                //    });
+                //}
+                //else
+                //{
+
+                //}
+               
                 console.log($scope.property);
-                dept_dataFactory.postPlotDetail($scope.property).then(function (result) {
+               // dept_dataFactory.postPlotDetail($scope.property).then(function (result) {
                     $state.go('department.content.form.executant');
-                });
+                //});
             });
         }
         //VERIFY PLOT FUNCTION
@@ -886,7 +893,7 @@
        
         // ***To get online data ***
         $scope.executantlist = angular.copy(dept_sessionfactory.getOnlineExecModallist());
-        $scope.execddlist = angular.copy(dept_sessionfactory.getOnlineExecddlModallist());
+       $scope.execddlist = angular.copy(dept_sessionfactory.getOnlineExecddlModallist());
         if ($scope.session.exFormIsOnline) {
            
            
@@ -923,7 +930,7 @@
             $scope.executant = deptModalService.executant;             
             $scope.execddl = deptModalService.execddl;
            // console.log('hahahah');
-            console.log(deptModalService.execddl);
+            //console.log(deptModalService.execddl);
         // Set default values of the form fields
           
             if (!$scope.session.exFormIsonline && $scope.session.exFormFirstVisit)
@@ -971,7 +978,7 @@
                     village: $scope.execddl.village.villName,
                     postOffice: $scope.execddl.postOffice.postOffice1,
                     pinCode: $scope.execddl.postOffice.pinCode,
-                    enterby: 'radha' 
+                    //enterby: 'radha' 
                 });
 
                 
@@ -988,8 +995,9 @@
                 }
 
                 dept_sessionfactory.putOnlineExecutantlist($scope.executantlist)
+                console.log($scope.executantlist);
             }
-            var exe = dept_sessionfactory.getExecutantlist();
+           // var exe = dept_sessionfactory.getExecutantlist();
             //console.log(exe[0].state);
             $state.go('department.content.form.claimant');
         }
@@ -1179,15 +1187,18 @@
                 dept_sessionfactory.putOnlineIdentifierList($scope.identifierlist)
             }
             //#region post the party details
-           dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
-                console.log('registration data successfully  submitted');
-                dept_dataFactory.postClaimantList(dept_sessionfactory.getClaimantlist()).then(function (response) {
-                    dept_dataFactory.postIdentifierList(dept_sessionfactory.getIdentifierList()).then(function (response) {
+            console.log(dept_sessionfactory.getExecutantlist());
+            console.log(dept_sessionfactory.getClaimantlist());
+            console.log(dept_sessionfactory.getIdentifierList());
+          // dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
+               // console.log('registration data successfully  submitted');
+              //  dept_dataFactory.postClaimantList(dept_sessionfactory.getClaimantlist()).then(function (response) {
+                   // dept_dataFactory.postIdentifierList(dept_sessionfactory.getIdentifierList()).then(function (response) {
                         $state.go('department.content.dataentered');
-                    })// end of postIdentifierList
-                })
+                   // }) // end of postIdentifierList
+               // })
                
-            })
+           // })
            
         }
         //#endregion
