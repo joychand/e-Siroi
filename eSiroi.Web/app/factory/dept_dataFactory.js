@@ -96,7 +96,7 @@
             getOnlineExecutantList: function (ackno) {
                 return $http({
                     method: 'GET',
-                    url: urlBase + ackno + '/excutantlist '
+                    url: urlBase2 + ackno + '/excutantlist '
                 });
             },
 
@@ -104,7 +104,7 @@
             getOnlineExecddlist: function (ackno) {
             return $http({
                 method: 'GET',
-                url: urlBase + ackno + '/execddllist'
+                url: urlBase2 + ackno + '/execddllist'
             });
             },
 

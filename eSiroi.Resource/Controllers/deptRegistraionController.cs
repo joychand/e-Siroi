@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http.Results;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.SqlServer;
+using System.Collections;
 
 
 namespace eSiroi.Resource.Controllers
@@ -218,6 +219,71 @@ namespace eSiroi.Resource.Controllers
         #endregion 
 
         #region PartyDetails API
+        //GET EXECUTANT LIST
+        [HttpGet]
+        [Route("{ackno}/excutantlist")]
+        public IHttpActionResult excutantlist(int ackno)
+        {
+            
+            //return db.OnlineExecutant 
+           // IEnumerable<OnlineExecutant> elist;
+            var elist = db.OnlineExecutant
+                        .Where(b => b.Ackno == ackno)
+                        .Select(list => new
+                        {
+                            list.SlNo,
+                            list.ExecSurName,
+                            list.ExecMiddleName,
+                            list.ExecLastName,
+                            list.FatherSurName,
+                            list.FatherMiddleName,
+                            list.FatherLastName,
+                            list.Sex,
+                            list.Occupation,
+                            list.Alias
+                        });
+
+
+            if (elist.Any())
+            {
+                return Ok(elist);
+            }
+            else
+                return NotFound();
+
+
+             }
+
+        //***   GET EXECUTANT DDL DATA *********//
+        [HttpGet]
+        [Route("{ackno}/execddllist")]
+        public System.Collections.IEnumerable execddlist(int ackno)
+        {
+
+            //return db.OnlineExecutant 
+            System.Collections.IEnumerable elist;
+            //elist = db.OnlineExecutant
+            //      .Where(b => b.Ackno == ackno);
+
+            //elist = (from p in db.OnlineExecutant
+            //         where p.Ackno == ackno
+            //         select p);
+            //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
+
+            //return elist;
+
+            elist = (from p in db.Set<OnlineExecutant>()
+                     where p.Ackno == ackno
+                     select new { p.State, p.District, p.SubDivision, p.Village, p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
+            //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
+
+            return elist;
+
+
+
+
+            // Request.CreateResponse(HttpStatusCode.OK, online);
+        }
         // post executantlist
         [HttpPost]
         [Route("postexecutant")]
@@ -257,30 +323,63 @@ namespace eSiroi.Resource.Controllers
         // Get Online Claimant list 
         [HttpGet]
         [Route("{ackno}/claimantlist")]
-        public IEnumerable<OnlineClaimant> claimantlist(int ackno)
+        public IHttpActionResult claimantlist(int ackno)
         {
-
+            
             //return db.OnlineExecutant 
-            IEnumerable<OnlineClaimant> clist;
-            clist = db.OnlineClaimant
-                  .Where(b => b.Ackno == ackno);
+            //IEnumerable<OnlineClaimant> clist;
+            var clist = db.OnlineClaimant
+                        .Where(b => b.Ackno == ackno)
+                        .Select(list => new
+                        {
+                            list.SlNo,
+                            list.ClaimSurName,
+                            list.ClaimMiddleName,
+                            list.ClaimLastName,
+                            list.FatherSurName,
+                            list.FatherMiddleName,
+                            list.FatherLastName,
+                            list.Sex,
+                            list.Occupation
+                        });
 
 
-            return clist;
+            if (clist.Any())
+            {
+                return Ok(clist);
+            }
+            else
+                return NotFound();
         }
         // GET ONLINE IDENTIFIER LIST
         [HttpGet]
         [Route("{ackno}/identifierlist")]
-        public IEnumerable<OnlineIdentifier> identifierlist(int ackno)
+        public IHttpActionResult identifierlist(int ackno)
         {
 
-            //return db.OnlineExecutant 
-            IEnumerable<OnlineIdentifier> ilist;
-            ilist = db.OnlineIdentifier
-                  .Where(b => b.Ackno == ackno);
 
 
-            return ilist;
+            var ilist = db.OnlineIdentifier
+                         .Where(b => b.Ackno == ackno)
+                         .Select(list => new
+                         {
+                             list.IdentSurName,
+                             list.IdentMiddleName,
+                             list.IdentLastName,
+                             list.FatherSurName,
+                             list.FatherMiddleName,
+                             list.FatherLastName,
+                             list.Occupation,
+                             list.SlNo,
+                             list.Sex,
+                             list.Identify
+                         });
+            if (ilist.Any())
+            {
+                return Ok(ilist);
+            }
+            else return NotFound();
+            
         }
         // GET ONLINE IDENTDDL LIST
         [HttpGet]

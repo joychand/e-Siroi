@@ -687,6 +687,30 @@
         $scope.IsPlotFound = false;
         $scope.propertyList = dept_sessionfactory.getOnlinePropModel();
         $scope.propertyDdlList = dept_sessionfactory.getOnlinePropddlModel();
+        //var objectA = [
+        //    {
+        //        state: 'Manipur',
+        //        name: 'happu',
+        //    },
+        //    {
+        //        state: 'delhi',
+        //        name: 'happu2'
+        //    }
+        //];
+        //var objectb = [
+        //    {
+        //        add: 'abc',
+        //        po: '123'
+        //    },
+        //    {
+        //        add: 'def',
+        //        po: '456'
+        //    }
+        //];
+        //console.log(angular.extend(objectA[0], objectb[0]));
+        //console.log(objectA);
+        //console.log(angular.merge(objectA, objectb));
+        
         if ($scope.session.propFormIsOnline)
         {
             //****** for multiple property******
@@ -728,25 +752,26 @@
                 actionButtonText: 'Ok',
                 headerText: 'Confirmation',
                 bodyText: 'Do you want to submit the property details ?'
+                //customData: $scope.session.propFormIsOnline
             };
             modalService.showModal({}, modaloptions).then(function (result) {
                
-                //console.log($scope.property.unit);
-                //if (!$scope.session.propFormIsOnline) {
-                //    angular.extend($scope.property, {
-                //        TSNo: $scope.tsyear.ts,
-                //        TSYear: $scope.tsyear.tyear,
-                //        state: 'Manipur',
-                //        district: $scope.propertyddl.district.distName,
-                //        subdivision: $scope.propertyddl.subdivsion.subDivName,
-                //        circle: $scope.propertyddl.circle.circleName,
-                //        village: $scope.propertyddl.village.villName
-                //    });
-                //}
-                //else
-                //{
-
-                //}
+                console.log($scope.session.propFormIsOnline);
+                if (!$scope.session.propFormIsOnline) {
+                    angular.extend($scope.property, {
+                        TSNo: $scope.tsyear.ts,
+                        TSYear: $scope.tsyear.tyear,
+                        state: 'Manipur',
+                        district: $scope.propertyddl.district.distName,
+                        subdivision: $scope.propertyddl.subdivsion.subDivName,
+                        circle: $scope.propertyddl.circle.circleName,
+                        village: $scope.propertyddl.village.villName
+                    });
+                }
+                else
+                {
+                   angular.extend($scope.property,$scope.propertyddl)
+                }
                
                 console.log($scope.property);
                // dept_dataFactory.postPlotDetail($scope.property).then(function (result) {
@@ -967,8 +992,8 @@
 
         //***** exsubmit() button *********//
         $scope.onexsubmit = function () {
-
-            if (!$scope.session.exFormIsOnline) {
+            console.log($scope.session.exFormIsOnline);
+            if ($scope.session.OnlineStatus === 'offline') {
                 angular.extend($scope.executant, {
                     tsno: $scope.tsyear.ts,
                     tsyear: $scope.tsyear.tyear,
@@ -988,14 +1013,17 @@
             }
             else {
                 for (var i = 0; i < $scope.executantlist.length; i++) {
-
+                    console.log($scope.execddlist);
                     $scope.executantlist[i].tsno = $scope.tsyear.ts;
                     $scope.executantlist[i].tsyear = $scope.tsyear.tyear;
                     $scope.executantlist[i].enterby = 'radha';
+                    angular.extend($scope.executantlist[i], $scope.execddlist[i]);
                 }
 
                 dept_sessionfactory.putOnlineExecutantlist($scope.executantlist)
+                console.log('hahah');
                 console.log($scope.executantlist);
+                console.log($scope.execddlist);
             }
            // var exe = dept_sessionfactory.getExecutantlist();
             //console.log(exe[0].state);
@@ -1068,7 +1096,7 @@
 
         $scope.onClaimantSubmit = function () {
 
-            if (!$scope.session.clFormIsOnline) {
+            if ($scope.session.OnlineStatus === 'offline') {
                 angular.extend($scope.claimant, {
                     tsno: $scope.tsyear.ts,
                     tsyear: $scope.tsyear.tyear,
@@ -1092,6 +1120,7 @@
                     $scope.claimantlist[i].tsno = $scope.tsyear.ts;
                     $scope.claimantlist[i].tsyear = $scope.tsyear.tyear;
                     $scope.claimantlist[i].enterby = 'radha';
+                    angular.extend($scope.claimantlist[i], $scope.claimddlist[i])
                 }
 
                 dept_sessionfactory.putOnlineClaimantlist($scope.claimantlist)
@@ -1123,7 +1152,7 @@
         $scope.ddlview = deptModalService.idFormOnline.ddlview;
 
         $scope.identifierlist = dept_sessionfactory.getOnlineIdentModallist();
-        $scope.identddlist = dept_sessionfactory.getOnlineIdentModallist();
+        $scope.identddlist = dept_sessionfactory.getOnlineIdentddlModal();
         if ( $scope.session.idFormIsOnline) {
             //get claimantlist for online data
            
@@ -1134,6 +1163,7 @@
 
             deptModalService.identifier = $scope.identifierlist[0];
             deptModalService.ident = $scope.identddlist[0];
+            console.log(deptModalService.ident);
             $scope.session.idFormIsOnline = false;
            
         }
@@ -1158,7 +1188,7 @@
         
         $scope.formsubmit = function () {
             //prepare identifier list
-            if (!$scope.session.idFormIsOnline) {
+            if ($scope.session.OnlineStatus === 'offline') {
                 angular.extend($scope.identifier, {
                     tsno: $scope.tsyear.ts,
                     tsyear: $scope.tsyear.tyear,
@@ -1182,6 +1212,7 @@
                     $scope.identifierlist[i].tsno = $scope.tsyear.ts;
                     $scope.identifierlist[i].tsyear = $scope.tsyear.tyear;
                     $scope.identifierlist[i].enterby = 'radha';
+                    angular.extend($scope.identifierlist[i], $scope.identddlist[i]);
                 }
 
                 dept_sessionfactory.putOnlineIdentifierList($scope.identifierlist)
