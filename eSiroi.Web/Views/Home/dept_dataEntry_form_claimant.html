@@ -91,8 +91,8 @@
                  <label for="" class=" control-label col-sm-2">Occupation</label>
                  <div class="col-sm-3">
                      <select name="occupation" id="" class="form-control"
-                         data-ng-model="occupation"
-                         data-ng-options="occupation for occupation in occupations">
+                             data-ng-model="claimant.occupation"
+                             data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations | orderBy:'occupation_Name'">
                          <option value="">--select Occupation--</option>
                      </select>
                  </div>
@@ -162,6 +162,11 @@
                      <!-- Post Office Dropdown
     ================================  -->
                      <div class="form-group">
+                         <label for="" class="control-label col-sm-2">Street/Locality</label>
+                         <div class="col-sm-4">
+                             <input type="text" value="" class="form-control" placeholder="Street/Locality" data-ng-model="claim.street" />
+
+                         </div>
                          <label for="" class="control-label col-sm-2">Post Office</label>
                          <div class="col-sm-4">
                              <select name="PostOffice" id="" class="form-control"
@@ -176,14 +181,15 @@
                          </div>
                          <!-- Pincode Dropdown
         ================================  -->
-                         <label for="" class="control-label col-sm-2">PinCode</label>
-                         <div class="col-sm-4">
-                             <input type="text" class="form-control text-left" data-ng-model="claim.postOffice.pinCode" placeholder="Pincode" />
-                         </div>
+                         
                          <!--</div> -->
                      </div>
 
                      <div class="form-group">
+                         <label for="" class="control-label col-sm-2">PinCode</label>
+                         <div class="col-sm-4">
+                             <input type="text" class="form-control text-left" data-ng-model="claim.postOffice.pinCode" placeholder="Pincode" />
+                         </div>
                          <label class="control-label col-sm-2">PoliceStation</label>
                          <div class="col-sm-4">
                              <input type="text" class="form-control" />
@@ -224,21 +230,27 @@
                      </div>
 
                      <div class="form-group">
+                         <label for="" class="control-label col-sm-2">Street/Locality</label>
+                         <div class="col-sm-4">
+                             <input type="text" value="" class="form-control" placeholder="Street/Locality" data-ng-model="claim.street" />
+
+                         </div>
                          <label for="" class="control-label col-sm-2">Post Office</label>
                          <div class="col-sm-4">
-                             <input type="text" value="" class="form-control" placeholder="Village" data-ng-model="claim.postOffice" />
+                             <input type="text" value="" class="form-control" placeholder="PostOffice" data-ng-model="claim.postOffice" />
 
                          </div>
                          <!-- Pincode Dropdown
         ================================  -->
-                         <label for="" class="control-label col-sm-2">PinCode</label>
-                         <div class="col-sm-4">
-                             <input type="text" class="form-control text-left" data-ng-model="claim.pinCode" placeholder="Pincode" />
-                         </div>
+                        
                          <!--</div> -->
                      </div>
 
                      <div class="form-group">
+                         <label for="" class="control-label col-sm-2">PinCode</label>
+                         <div class="col-sm-4">
+                             <input type="text" class="form-control text-left" data-ng-model="claim.pinCode" placeholder="Pincode" />
+                         </div>
                          <label class="control-label col-sm-2">PoliceStation</label>
                          <div class="col-sm-4">
                              <input type="text" class="form-control"  placeholder="PoliceStation" data-ng-model="claim.policeStatio"/>

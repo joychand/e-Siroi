@@ -134,9 +134,9 @@
                 });
             },
             postClaimantList: function(claimantList){
-                return({
+                return $http({
                     method: 'POST',
-                    url: urlBase2 + '/postClaimant',
+                    url: urlBase2 + 'postClaimant',
                     data:claimantList
 
                 })
@@ -162,7 +162,7 @@
             postIdentifierList: function (identifierList) {
                 return $http({
                     method: 'POST',
-                    url: urlBase2 + '/postIdentifier',
+                    url: urlBase2 + 'postIdentifier',
                     data:identifierList
                 })
             }

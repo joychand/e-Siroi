@@ -343,7 +343,8 @@
             getExemReason();
             getlandclass();
             getlandtype();
-            $scope.occupations = ['Govt. employee', 'Business', 'Unemployed', 'Others'];
+            getOccupation();
+            //$scope.occupations = ['Govt. employee', 'Business', 'Unemployed', 'Others'];
             $scope.unit = [
                 {
                     unit:'H',
@@ -434,6 +435,11 @@
         function getExemReason() {
             dept_dataFactory.getExempReason().then(function (response) {
                 $scope.exreason = response.data;
+            })
+        }
+        function getOccupation() {
+            dataFactory.getOccupation().then(function (response) {
+                $scope.occupations = response.data;
             })
         }
 
@@ -1162,6 +1168,7 @@
             }
 
             deptModalService.identifier = $scope.identifierlist[0];
+            
             deptModalService.ident = $scope.identddlist[0];
             console.log(deptModalService.ident);
             $scope.session.idFormIsOnline = false;
@@ -1218,18 +1225,16 @@
                 dept_sessionfactory.putOnlineIdentifierList($scope.identifierlist)
             }
             //#region post the party details
-            console.log(dept_sessionfactory.getExecutantlist());
-            console.log(dept_sessionfactory.getClaimantlist());
-            console.log(dept_sessionfactory.getIdentifierList());
-          // dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
-               // console.log('registration data successfully  submitted');
-              //  dept_dataFactory.postClaimantList(dept_sessionfactory.getClaimantlist()).then(function (response) {
-                   // dept_dataFactory.postIdentifierList(dept_sessionfactory.getIdentifierList()).then(function (response) {
+           
+           dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
+                console.log('registration data successfully  submitted');
+                dept_dataFactory.postClaimantList(dept_sessionfactory.getClaimantlist()).then(function (response) {
+                    dept_dataFactory.postIdentifierList(dept_sessionfactory.getIdentifierList()).then(function (response) {
                         $state.go('department.content.dataentered');
-                   // }) // end of postIdentifierList
-               // })
+                    }) 
+                })
                
-           // })
+            })
            
         }
         //#endregion

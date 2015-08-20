@@ -32,5 +32,19 @@ namespace eSiroi.Resource.Controllers
             }
             return NotFound();
         }
+
+         //GET OCCUPATIONS
+         [HttpGet]
+         [Route("getOccupations")]
+        public IHttpActionResult getOccupations()
+        {
+            var Ocuptn = db.Occupation;
+                         
+            if (Ocuptn.Any())
+            {
+                return Ok(Ocuptn);
+            }
+            else return NotFound();
+        }
     }
 }

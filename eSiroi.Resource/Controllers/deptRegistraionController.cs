@@ -274,7 +274,7 @@ namespace eSiroi.Resource.Controllers
 
             elist = (from p in db.Set<OnlineExecutant>()
                      where p.Ackno == ackno
-                     select new { p.State, p.District, p.SubDivision, p.Village, p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
+                     select new { p.State, p.District, p.SubDivision, p.Village,p.Street, p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
             //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
 
             return elist;
@@ -366,13 +366,14 @@ namespace eSiroi.Resource.Controllers
                              list.IdentSurName,
                              list.IdentMiddleName,
                              list.IdentLastName,
+                             list.Alias,
                              list.FatherSurName,
                              list.FatherMiddleName,
                              list.FatherLastName,
                              list.Occupation,
                              list.SlNo,
-                             list.Sex,
-                             list.Identify
+                             list.Sex
+                            
                          });
             if (ilist.Any())
             {
@@ -392,7 +393,7 @@ namespace eSiroi.Resource.Controllers
 
             iddlist = (from p in db.Set<OnlineIdentifier>()
                      where p.Ackno == ackno
-                     select new { p.State, p.District, p.SubDivision, p.Village, p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
+                     select new { p.State, p.District, p.SubDivision, p.Village, p.Street,p.PostOffice, p.PinCode, p.PoliceSt,p.Identify }).AsEnumerable();
             //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
 
             return iddlist;
@@ -411,7 +412,7 @@ namespace eSiroi.Resource.Controllers
 
             cddlist = (from p in db.Set<OnlineClaimant>()
                        where p.Ackno == ackno
-                       select new { p.State, p.District, p.SubDivision, p.Village, p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
+                       select new { p.State, p.District, p.SubDivision, p.Village, p.Street,p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
             //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
 
             return cddlist;
@@ -421,14 +422,58 @@ namespace eSiroi.Resource.Controllers
 
         //POST CLAIMANT DETAILS
         [Route("postClaimant")]
-        public IHttpActionResult postClaimant(Claimant claimantlist)
+        public async Task<IHttpActionResult> postClaimant(IEnumerable <Claimant> claimantlist)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            foreach (Claimant c in claimantlist)
+            {
+                db.Claimant.Add(c);
+
+            }
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+
+                throw;
+
+
+            }
+
             return Ok();
         }
         //POST IDENTIFIER DETAILS
         [Route ("postIdentifier")]
-        public IHttpActionResult postIdentifier(Identifier identifierList)
+        public async Task<IHttpActionResult> postIdentifier(IEnumerable<Identifier> identifierList)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            foreach (Identifier i in identifierList)
+            {
+                db.Identifier.Add(i);
+
+            }
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+
+                throw;
+
+
+            }
+
             return Ok();
         }
         # endregion

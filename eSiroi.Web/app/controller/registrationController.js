@@ -577,6 +577,8 @@ angular
             //$scope.identifier.EnterBy = 'dlkfjdlkf';
             $scope.identifier.pinCode = $scope.ident.postoffice.pinCode;
             $scope.identifier.occupation = 1;
+            $scope.identifier.identify = $scope.ident.identify;
+            
             sessionFactory.pushIdentifier($scope.identifier);
         }
 

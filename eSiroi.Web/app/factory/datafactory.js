@@ -139,6 +139,13 @@ angular.module('eSiroi.Web')
 
             });
         };
+        dataFactory.getOccupation = function () {
+            return $http({
+                method: 'GET',
+                url: urlBase5 + 'getOccupations',
+                cache: true
+            });
+        }
         // post onlineApplication
         dataFactory.postonlineapplication = function (onlineapplication) {
             return $http({
