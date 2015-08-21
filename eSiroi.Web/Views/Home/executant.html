@@ -21,7 +21,7 @@
         <label for="executant" class="col-sm-2 control-label">Executant</label>
 
         <div class="col-sm-3">
-            <input type="text" name="ExecSurName" data-ng-model="executant.ExecSurName" class="form-control" placeholder="Surnanme"  data-ng-readonly="eformModel.submitted" required>
+            <input type="text" name="ExecSurName" data-ng-model="executant.ExecSurName" class="form-control" placeholder="Surnanme" data-ng-readonly="eformModel.submitted" required>
             <span style="color:#ff0000" data-ng-show="execform.ExecSurName.$dirty && execform.ExecSurName.$invalid">
                 <span data-ng-show="execform.ExecSurName.$error.required">Plz input a surname</span>
             </span>
@@ -44,173 +44,167 @@
     <div class="form-group">
         <label for="alias" class="col-sm-2 control-label ">Alias</label>
         <div class="col-sm-3">
-            <input type="text" name="alias" data-ng-model="executant.alias" class="form-control" placeholder="alias" data-ng-readonly="eformModel.submitted"/>
+            <input type="text" name="alias" data-ng-model="executant.alias" class="form-control" placeholder="alias" data-ng-readonly="eformModel.submitted" />
         </div>
         <div class="col-sm-3">
-            <input type="text" value="" class="form-control" data-ng-model="executant.mobile" placeholder="Mobile" data-ng-readonly="eformModel.submitted"/>
+            <input type="text" value="" class="form-control" data-ng-model="executant.mobile" placeholder="Mobile" data-ng-readonly="eformModel.submitted" />
         </div>
         <div class="col-sm-3">
-            <input type="text" value="" class="form-control" data-ng-model="executant.aadhaar" placeholder="Aadhaar" data-ng-readonly="eformModel.submitted"/>
+            <input type="text" value="" class="form-control" data-ng-model="executant.aadhaar" placeholder="Aadhaar" data-ng-readonly="eformModel.submitted" />
         </div>
+    </div>
+    <div class="form-group">
+        <label for="father" class="col-sm-2 control-label">Father</label>
+
+        <div class="col-sm-3">
+            <input type="text" name="Surname" data-ng-model="executant.fatherSurname" class="form-control" placeholder="Surnanme" data-ng-readonly="eformModel.submitted" />
         </div>
-        <div class="form-group">
-            <label for="father" class="col-sm-2 control-label">Father</label>
-
-            <div class="col-sm-3">
-                <input type="text" name="Surname" data-ng-model="executant.fatherSurname" class="form-control" placeholder="Surnanme" data-ng-readonly="eformModel.submitted"/>
-            </div>
-            <div class="col-sm-3">
-                <input type="text" name="MiddleName" data-ng-model="executant.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" data-ng-readonly="eformModel.submitted"/>
-            </div>
-            <div class="col-sm-3">
-                <input type="text" name="LastName" data-ng-model="executant.fatherLastName" class="form-control text-left" placeholder="LastName" data-ng-readonly="eformModel.submitted"/>
-            </div>
+        <div class="col-sm-3">
+            <input type="text" name="MiddleName" data-ng-model="executant.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" data-ng-readonly="eformModel.submitted" />
         </div>
+        <div class="col-sm-3">
+            <input type="text" name="LastName" data-ng-model="executant.fatherLastName" class="form-control text-left" placeholder="LastName" data-ng-readonly="eformModel.submitted" />
+        </div>
+    </div>
 
 
-        <div class="form-group">
-            <label for="sex" class="col-sm-2 control-label">Sex</label>
-            <div class="col-sm-4">
-                <label for="" class="radio-inline">
-                    <input type="radio" name="sexradio" value="M"
-                           data-ng-checked="executant.sex == 'M'"
-                           data-ng-model="executant.sex" data-ng-readonly="eformModel.submitted"/>Male
-                </label>
+    <div class="form-group">
+        <label for="sex" class="col-sm-2 control-label">Sex</label>
+        <div class="col-sm-4">
+            <label for="" class="radio-inline">
+                <input type="radio" name="sexradio" value="M"
+                       data-ng-checked="executant.sex == 'M'"
+                       data-ng-model="executant.sex" data-ng-readonly="eformModel.submitted" />Male
+            </label>
 
-                <label for="" class="radio-inline">
-                    <input type="radio" name="sexradio" value="F"
-                           data-ng-checked="executant.sex == 'F'"
-                           data-ng-model="executant.sex" data-ng-readonly="eformModel.submitted"/>Female
-                </label>
-            </div>
-
-            <!-- Dropdown select with jquery
-            ============================================================  -->
-
-            <label for="" class=" control-label col-sm-2">Occupation</label>
-            <div class="col-sm-3">
-                <select name="occupation" id="" class="form-control"
-                        data-ng-model="occupation"
-                        data-ng-options="occupation for occupation in occupations"
-                        data-ng-disabled="eformModel.submitted">
-                    <option value="">--select Occupation--</option>
-                </select>
-            </div>
-
-
+            <label for="" class="radio-inline">
+                <input type="radio" name="sexradio" value="F"
+                       data-ng-checked="executant.sex == 'F'"
+                       data-ng-model="executant.sex" data-ng-readonly="eformModel.submitted" />Female
+            </label>
         </div>
 
-        <!-- State Dropdown
-        ================================  -->
+        <!-- Dropdown select with jquery
+        ============================================================  -->
 
-        <div class="form-group">
-            <label for="" class="control-label col-sm-2">State</label>
-            <div class="col-sm-4">
-                <select name="state" id="" class="form-control"
-                        data-ng-model="state"
-                        data-ng-options="state.stateName for state in states"
-                        data-ng-disabled="eformModel.submitted">
-                    <option value="">-Select State-</option>
-
-                </select>
-            </div>
-
-            <!-- District Drop down
-            ================================  -->
-            <label for="" class="control-label col-sm-2">District</label>
-            <div class="col-sm-4">
-                <select name="district" class="form-control"
-                        data-ng-model="exec.district"
-                        data-ng-options="district.distName for district in districts  | orderBy:'distName'"
-                        data-ng-change="exec.clrpincode()"
-                        data-ng-disabled="eformModel.submitted">
-                    <option value="">--Select District--</option>
-                </select>
-            </div>
-
+        <label for="" class=" control-label col-sm-2">Occupation</label>
+        <div class="col-sm-3">
+            <select name="occupation" id="" class="form-control"
+                    data-ng-model="executant.occupation"
+                    data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations | orderBy:'occupation_Name'"
+                    data-ng-disabled="eformModel.submitted">
+                <option value="">--select Occupation--</option>
+            </select>
         </div>
 
-        <!--subDivision Dropdown=  -->
-        
-        <div class="form-group">
-            <label for="" class="control-label col-sm-2">Sub-Division</label>
-            <div class="col-sm-4">
-                <select name="subdiv" class="form-control"
-                        data-ng-model="exec.subdiv"
-                        data-ng-options="subdiv.subDivName for subdiv in subdivisions | filter:{distCode:exec.district.distCode} | orderBy:'subDivName'"
-                        data-ng-disabled="!exec.district||eformModel.submitted">
-                    <option value="">--Select Sub-div--</option>
-                </select>
 
-            </div>
+    </div>
 
-            <!-- Village Dropdown
-            ================================  -->
-            <label for="" class="control-label col-sm-2">Village</label>
-            <div class="col-sm-4">
-                <select name="village" id="" class="form-control"
-                        data-ng-model="exec.village"
-                        data-ng-options="village.villName for village in villages | filter:{distCode:exec.district.distCode} | filter:{subDivCode:exec.subdiv.subDivCode} | orderBy: 'villName' track by village.villName"
-                        
-                        data-ng-disabled="!exec.subdiv||eformModel.submitted">
-                    <option value="">--Select Village--</option>
-                </select>
-            </div>
-        </div>
-        <!-- Post Office Dropdown
-        ================================  -->
-        <div class="form-group">
-            <div class="col-sm-2">
-                <label class="control-label">Street/Locality/ Leikai</label>
-            </div>
-            <div class="col-sm-4">
-                <input type="text" value="" class="form-control" placeholder="Stree/Locality/Leikai" data-ng-readonly="eformModel.submitted" data-ng-model=" exec.district.distCode" />
-
-            </div>
-            <label for="" class="control-label col-sm-2">Post Office</label>
-            <div class="col-sm-4">
-                <select name="PostOffice" id="" class="form-control"
-                        data-ng-model="aa.postoffice"
-                        data-ng-options="po.postOffice1 for po in postoffices | filter:{distCode:exec.district.distCode}  | orderBy: 'postOffice1'"
-                        data-ng-disabled="!exec.subdiv||eformModel.submitted">
-
-                    <option value="">--select post office --</option>
-
-                </select>
-
-            </div>
-           
-            
-        </div>
-             <div class="form-group">
-                 <!-- Pincode Dropdown
+    <!-- State Dropdown
     ================================  -->
-                 <label for="" class="control-label col-sm-2">PinCode</label>
-                 <div class="col-sm-4">
-                     <input type="text" class="form-control text-left" data-ng-model="aa.postoffice.pinCode" placeholder="Pincode" data-ng-readonly="eformModel.submitted" />
-                 </div> 
-                 <label for="" class="control-label col-sm-2">PoliceStation</label>
-                 <div class="col-sm-4">
-                     <select class="form-control" name="ps"
-                             data-ng-model="exec.policestation"
-                             data-ng-options="ps.polStation for ps in policestations | filter:{distCode:exec.district.distCode}"
-                             data-ng-disbaled="!exec.district||eformModel.submitted">
-                         <option value="">-select PS-</option>
-                     </select>
-                 </div>
-             </div>
 
-        <!-- ======================================== -->
-        <div class="form-group text-center ">
-            <div class="btn-group">
-                <button type="submit" data-ng-click="onexsubmit()" class="btn btn-primary btn-md " ng-disabled="execform.$pristine || execform.$invalid && execform.$dirty">Next</button>
-                <button class="btn btn-success btn-md" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Draft</button>
-                <button type="reset" class="btn btn-default btn-md">Reset</button>
-            </div>
-                <button data-ng-click="execAddmore()" class="btn btn-default btn-md pull-right">Add More</button>
+    <div class="form-group">
+        <label for="" class="control-label col-sm-2">State</label>
+        <div class="col-sm-4">
+            <select name="state" id="" class="form-control"
+                    data-ng-model="state"
+                    data-ng-options="state.stateName for state in states"
+                    data-ng-disabled="eformModel.submitted">
+                <option value="">-Select State-</option>
+
+            </select>
+        </div>
+
+        <!-- District Drop down
+        ================================  -->
+        <label for="" class="control-label col-sm-2">District</label>
+        <div class="col-sm-4">
+            <select name="district" class="form-control"
+                    data-ng-model="exec.district"
+                    data-ng-options="district.distName for district in districts  | orderBy:'distName'"
+                    data-ng-change="exec.clrpincode()"
+                    data-ng-disabled="eformModel.submitted">
+                <option value="">--Select District--</option>
+            </select>
+        </div>
+
+    </div>
+
+    <!--subDivision Dropdown=  -->
+
+    <div class="form-group">
+        <label for="" class="control-label col-sm-2">Sub-Division</label>
+        <div class="col-sm-4">
+            <select name="subdiv" class="form-control"
+                    data-ng-model="exec.subdiv"
+                    data-ng-options="subdiv.subDivName for subdiv in subdivisions | filter:{distCode:exec.district.distCode} | orderBy:'subDivName'"
+                    data-ng-disabled="!exec.district||eformModel.submitted">
+                <option value="">--Select Sub-div--</option>
+            </select>
 
         </div>
-             
+
+        <!-- Village Dropdown
+        ================================  -->
+        <label for="" class="control-label col-sm-2">Village</label>
+        <div class="col-sm-4">
+            <select name="village" id="" class="form-control"
+                    data-ng-model="exec.village"
+                    data-ng-options="village.villName for village in villages | filter:{distCode:exec.district.distCode} | filter:{subDivCode:exec.subdiv.subDivCode} | orderBy: 'villName' track by village.villName"
+                    data-ng-disabled="!exec.subdiv||eformModel.submitted">
+                <option value="">--Select Village--</option>
+            </select>
+        </div>
+    </div>
+    <!-- Post Office Dropdown
+    ================================  -->
+    <div class="form-group">
+        <div class="col-sm-2">
+            <label class="control-label">Street/Locality/ Leikai</label>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" value="" class="form-control" placeholder="Stree/Locality/Leikai" data-ng-readonly="eformModel.submitted" data-ng-model=" executant.street" />
+
+        </div>
+        <label for="" class="control-label col-sm-2">Post Office</label>
+        <div class="col-sm-4">
+            <select name="PostOffice" id="" class="form-control"
+                    data-ng-model="exec.postoffice"
+                    data-ng-options="po.postOffice1 for po in postoffices | filter:{distCode:exec.district.distCode}  | orderBy: 'postOffice1'"
+                    data-ng-disabled="!exec.subdiv||eformModel.submitted">
+
+                <option value="">--select post office --</option>
+
+            </select>
+
+        </div>
+
+
+    </div>
+    <div class="form-group">
+        <!-- Pincode Dropdown
+        ================================  -->
+        <label for="" class="control-label col-sm-2">PinCode</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control text-left" data-ng-model="exec.postoffice.pinCode" placeholder="Pincode" data-ng-readonly="eformModel.submitted" />
+        </div>
+        <label for="" class="control-label col-sm-2">PoliceStation</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" data-ng-model="executant.policest" placeholder="PoliceStation" value="" />
+        </div>
+    </div>
+
+    <!-- ======================================== -->
+    <div class="form-group text-center ">
+        <div class="btn-group">
+            <button type="submit" data-ng-click="onexsubmit()" class="btn btn-primary btn-md " ng-disabled="execform.$pristine || execform.$invalid && execform.$dirty">Next</button>
+            <button class="btn btn-success btn-md" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Draft</button>
+            <button type="reset" class="btn btn-default btn-md">Reset</button>
+        </div>
+        <button data-ng-click="execAddmore()" class="btn btn-default btn-md pull-right">Add More</button>
+
+    </div>
+
 </form>
           
             

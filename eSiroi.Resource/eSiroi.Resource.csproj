@@ -199,6 +199,10 @@
     <Compile Include="eSiroiResourceMigration\201508160801563_deed_table_modefied.Designer.cs">
       <DependentUpon>201508160801563_deed_table_modefied.cs</DependentUpon>
     </Compile>
+    <Compile Include="eSiroiResourceMigration\201508210753559_Mobile_Aadhaar.cs" />
+    <Compile Include="eSiroiResourceMigration\201508210753559_Mobile_Aadhaar.Designer.cs">
+      <DependentUpon>201508210753559_Mobile_Aadhaar.cs</DependentUpon>
+    </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -228,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="eSiroiResourceMigration\201508160801563_deed_table_modefied.resx">
       <DependentUpon>201508160801563_deed_table_modefied.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201508210753559_Mobile_Aadhaar.resx">
+      <DependentUpon>201508210753559_Mobile_Aadhaar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

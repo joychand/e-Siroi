@@ -299,6 +299,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
     $rootScope.authentication = authService.authentication;
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         console.log('statechangestart');
+       
         if (toState.name !== 'department.content.login' ) return;
         
                 var modalOptions = {
@@ -319,7 +320,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
         modalService.showModal(modalDefault, modalOptions).then(function (result) {
                        // $state.go('department.content.home');            
                          }, function (error) {
-                        //$state.go($rootScope.previousState);
+                       // $state.go($rootScope.previousState);
                     });
         event.preventDefault();  
     })

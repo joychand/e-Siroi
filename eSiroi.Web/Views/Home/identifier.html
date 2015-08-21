@@ -17,10 +17,10 @@
                     <label for="ident" class="col-sm-2 control-label">Identifier</label>
                     
                     <div class="col-sm-3" >
-                        <input type="text"  name="SurName" data-ng-model="ident.SurName" class="form-control" placeholder="Surnanme"  required data-ng-maxlength="3" >
-                        <span style="color:#f00" ng-show="identform.SurName.$dirty && identform.SurName.$invalid">
-                            <span data-ng-show="identform.SurName.$error.required">Please input a Surname</span>
-                            <span data-ng-show="identform.SurName.$error.maxlength">Your name cannot be longer than 3 characters </span>
+                        <input type="text" name="IdentSurName" data-ng-model="identifier.IdentSurName" class="form-control" placeholder="Surnanme" required>
+                        <span style="color:#f00" ng-show="identform.IdentSurName.$dirty && identform.IdentSurName.$invalid">
+                            <span data-ng-show="identform.IdentSurName.$error.required">Please input a IdentSurName</span>
+                           
                         </span>   
                         
                         
@@ -30,16 +30,16 @@
                            
                         
                     <div class="col-sm-3" >
-                        <input type="text" name="MiddleName" data-ng-model="ident.MiddleName" class="form-control text-left" placeholder="MiddleName" required >
-                        <span  ng-show="identform.MiddleName.$dirty && identform.MiddleName.$invalid">
-                            <span data-ng-show="identform.MiddleName.$error.required">Please input a LastName</span>
+                        <input type="text" name="IdentMiddleName" data-ng-model="identifier.IdentMiddleName" class="form-control text-left" placeholder="MiddleName" required>
+                        <span  ng-show="identform.IdentMiddleName.$dirty && identform.IdentMiddleName.$invalid">
+                            <span data-ng-show="identform.IdentMiddleName.$error.required">Please input a LastName</span>
                             <!--<span data-ng-show="identform.Surname.$error.maxlength">Your name cannot be longer than 3 characters </span>-->
                         </span> 
                     </div>
                     <div class="col-sm-3" >
-                        <input type="text" name="LastName" data-ng-model="ident.LastName" class="form-control text-left" placeholder="LastName" required>
-                         <span  ng-show="identform.LastName.$dirty && identform.LastName.$invalid">
-                            <span data-ng-show="identform.LastName.$error.required">Please input a LastName</span>
+                        <input type="text" name="IdentLastName" data-ng-model="identifier.IdentLastName" class="form-control text-left" placeholder="LastName" required>
+                         <span  ng-show="identform.IdentLastName.$dirty && identform.IdentLastName.$invalid">
+                            <span data-ng-show="identform.IdentLastName.$error.required">Please input a IdentLastName</span>
                             <!--<span data-ng-show="identform.Surname.$error.maxlength">Your name cannot be longer than 3 characters </span>-->
                         </span>
                     </div>
@@ -49,7 +49,7 @@
              <div class="form-group">
                  <label for="alias" class="col-sm-2 control-label ">Alias</label>
                  <div class="col-sm-3" >
-                     <input type="text" name="alias" data-ng-model="ident.alias" class="form-control" placeholder="alias"  required >
+                     <input type="text" name="alias" data-ng-model="identifier.alias" class="form-control" placeholder="alias" required>
                      <p  data-ng-show="identform.alias.$invalid && identform.alias.$dirty">Please input an alias</p>
                  </div>
                  <div class="col-sm-3">
@@ -63,13 +63,13 @@
                  <label for="father" class="col-sm-2 control-label">Father</label>
 
                  <div class="col-sm-3">
-                     <input type="text" name="Surname" data-ng-model="ident.fatherSurname" class="form-control" placeholder="Surnanme" />
+                     <input type="text" name="Surname" data-ng-model="identifier.fatherSurname" class="form-control" placeholder="Surnanme" />
                  </div>
                  <div class="col-sm-3">
-                     <input type="text" name="MiddleName" data-ng-model="ident.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" />
+                     <input type="text" name="MiddleName" data-ng-model="identifier.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" />
                  </div>
                  <div class="col-sm-3">
-                     <input type="text" name="LastName" data-ng-model="ident.fatherLastName" class="form-control text-left" placeholder="LastName" />
+                     <input type="text" name="LastName" data-ng-model="identifier.fatherLastName" class="form-control text-left" placeholder="LastName" />
                  </div>
              </div>
 
@@ -79,14 +79,14 @@
                  <div class="col-sm-4">
                      <label for="" class="radio-inline">
                          <input type="radio" name="sexradio" value="M"
-                             data-ng-checked="ident.sex == 'M'"
-                             data-ng-model="ident.sex" />Male
+                                data-ng-checked="identifier.sex == 'M'"
+                                data-ng-model="identifier.sex" />Male
                      </label>
 
                      <label for="" class="radio-inline">
                          <input type="radio" name="sexradio" value="F"
-                             data-ng-checked="ident.sex == 'F'"
-                             data-ng-model="ident.sex" />Female
+                                data-ng-checked="identifier.sex == 'F'"
+                                data-ng-model="identifier.sex" />Female
                      </label>
                  </div>
 
@@ -96,8 +96,8 @@
                  <label for="" class=" control-label col-sm-2">Occupation</label>
                  <div class="col-sm-3">
                      <select name="occupation" id="" class="form-control"
-                         data-ng-model="ident.occupation"
-                         data-ng-options="occupation for occupation in occupations">
+                         data-ng-model="identifier.occupation"
+                         data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations | orderBy:'occupation_Name'">
                          <option value="">--select Occupation--</option>
                      </select>
                  </div>
@@ -192,12 +192,8 @@
                  </div>
                  <label for="" class="control-label col-sm-2">PoliceStation</label>
                  <div class="col-sm-4">
-                     <select class="form-control" name="ps"
-                             data-ng-model="ident.policestation"
-                             data-ng-options="ps.polStation for ps in policestations | filter:{distCode:ident.district.distCode}"
-                             data-ng-disbaled="!ident.district||identform.$submitted">
-                         <option value="">-select PS-</option>
-                     </select>
+                     <input type="text" value="" class="form-control" data-ng-model="identifier.policest" placeholder="PoliceStation" />
+                     
                  </div>
              </div>
              <div class="form-group">

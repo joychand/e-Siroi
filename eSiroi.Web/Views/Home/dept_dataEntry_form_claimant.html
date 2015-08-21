@@ -48,17 +48,17 @@
                      <input type="text" name="alias" data-ng-model="claimant.alias" class="form-control" placeholder="alias">
                  </div>
                   <div class="col-sm-3">
-            <input type="text" value="" class="form-control"  placeholder="Mobile" data-ng-model="c.mobile" />
+            <input type="text" value="" class="form-control"  placeholder="Mobile" data-ng-model="claimant.mobile" />
         </div>
                  <div class="col-sm-3">
-                     <input type="text" name="alias" data-ng-model="claimant.Aadhaar" class="form-control" placeholder="Aadhaar"  >
+                     <input type="text" name="alias" data-ng-model="claimant.aadhaar" class="form-control" placeholder="Aadhaar">
                  </div>
              </div>
              <div class="form-group">
                  <label for="father" class="col-sm-2 control-label">Father</label>
 
                  <div class="col-sm-3">
-                     <input type="text" name="Surname" data-ng-model="claimant.fatherSurname" class="form-control" placeholder="Surnanme" />
+                     <input type="text" name="Surname" data-ng-model="claimant.fatherSurName" class="form-control" placeholder="Surnanme" />
                  </div>
                  <div class="col-sm-3">
                      <input type="text" name="MiddleName" data-ng-model="claimant.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" />
@@ -192,7 +192,7 @@
                          </div>
                          <label class="control-label col-sm-2">PoliceStation</label>
                          <div class="col-sm-4">
-                             <input type="text" class="form-control" />
+                             <input type="text" class="form-control" data-ng-model="claim.policeSt" />
                          </div>
                      </div>
 
@@ -253,7 +253,7 @@
                          </div>
                          <label class="control-label col-sm-2">PoliceStation</label>
                          <div class="col-sm-4">
-                             <input type="text" class="form-control"  placeholder="PoliceStation" data-ng-model="claim.policeStatio"/>
+                             <input type="text" class="form-control" placeholder="PoliceStation" data-ng-model="claim.policeSt" />
                          </div>
                      </div>
                  </div>

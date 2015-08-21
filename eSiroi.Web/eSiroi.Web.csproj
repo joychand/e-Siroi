@@ -202,6 +202,7 @@
     <Content Include="Views\Department\dept_home.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Department\FactSheet.html" />
     <Content Include="Views\Home\applyregistration.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

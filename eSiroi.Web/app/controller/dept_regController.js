@@ -1,5 +1,5 @@
 ﻿//****************************************************dept_regController*****************************************//
-// The Single JavaScript file contains definitions of eSiroi.Web Department Views Controllers declared in 'app.js'//
+// The Single JavaScript file contains definitions of each eSiroi.Web Department Views Controllers declared in 'app.js'//
 //**********************************Developed by N.Joychand Singh for NIC***************************************//
 
 
@@ -150,13 +150,15 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('dept_regController', ['$scope', '$state', 'majortrans', dept_regController]);
+        .controller('dept_regController', ['$scope', '$state', 'majortrans', 'dept_sessionfactory', 'deptModalService', dept_regController]);
 
-    function dept_regController($scope, $state, majortrans) {
+    function dept_regController($scope, $state, majortrans, dept_sessionfactory, deptModalService) {
         $scope.title = 'dept_regController';
         $scope.transactions = majortrans.data;
       
         $scope.proceed = function () {
+            deptModalService.modelClear();
+            dept_sessionfactory.clearModelList();
             //console.log($scope.links.dataSelected);
             $state.go('department.content.form');
         }
@@ -188,31 +190,7 @@
         .controller('deptloginController', ['$scope', '$state', 'modalService', 'authService',deptloginController]);
 
     function deptloginController($scope, $state, modalService, authService) {
-        //$scope.loginData = {
-        //    userName: "",
-        //    password: "",
-        //    useRefreshTokens: false
-        //};
-        //$scope.message = "";
-
-        //$scope.login = function () {
-
-        //    authService.login($scope.loginData).then(function (response) {
-
-        //        $state.go('department.content.home');
-        //        //$location.path('/orders');
-
-        //    },
-        //     function (err) {
-        //         $scope.message = err.error_description;
-        //     });
-        //
-       
-        //modalService.showModal(modalDefault, modalOptions).then(function (result) {
-        //    alert('login successful');
-        //}, function (error) {
-        //    alert('login Fail'); 
-        //});
+      
 
         
     }
@@ -269,7 +247,7 @@
         // USER CLICK CANCEL EVENT
         $scope.login.cancel = function () {
             $modalInstance.dismiss();
-            $state.go($rootScope.previousState);
+            //$state.go($rootScope.previousState);
         }
     }
 
@@ -369,8 +347,7 @@
             dataFactory.getStates().then(function (states) {
                 $scope.states = states;
                 console.log('getStates' + $scope.states[21].stateName);
-                //$scope.loadDone = true;
-               // $scope.execddl.state = $scope.states[21];
+              
             });
 
         }

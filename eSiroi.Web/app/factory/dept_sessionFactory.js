@@ -85,7 +85,7 @@
         // EXECUTANT SESSION MODEL LIST
         
         service.updateOnlineExecModal = function (executantlist) {
-            
+            sessionexecutantlist = [];
             sessionexecutantlist = executantlist;
             //console.log('service' + sessionexecutantlist[0].ackno);
         }
@@ -96,6 +96,7 @@
         }
 
         service.updateOnlineExecddllModal = function (execddlist) {
+            sessionexecddlist = [];
             sessionexecddlist = execddlist;
         }
 
@@ -121,7 +122,7 @@
         // CLAIMANT LIST
 
         service.updateOnlineClaimModal = function (claimlist) {
-
+            sessionclaimantlist = [];
             sessionclaimantlist = claimlist;
             
         }
@@ -132,6 +133,7 @@
         }
 
         service.updateOnlineClaimddlModal = function (claimddlist) {
+            sessionclaimddlist = [];
             sessionclaimddlist = claimddlist;
         }
 
@@ -151,7 +153,7 @@
         //Identifier List
 
         service.updateOnlineIdentModal = function (identlist) {
-
+            sessionidentifierlist = [];
             sessionidentifierlist = identlist;
             
         }
@@ -162,6 +164,7 @@
         }
 
         service.updateOnlineIdentddlModal = function (Identddlist) {
+            sessionidentddlist = [];
             sessionidentddlist = Identddlist;
         }
 
@@ -188,6 +191,9 @@
              sessionclaimddlist = [];
              sessionidentifierlist = [];
              sessionidentddlist = [];
+             executantlist = [];
+             claimantlist = [];
+             identifierlist = [];
         }
 
         //LOGIN MODAL SERVICE

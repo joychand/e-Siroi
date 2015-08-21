@@ -10,11 +10,11 @@
     </div>
 </div>-->
     
-<div class="row">
+<div class="row hidden-print">
     <div class="pull-left">
     <button class="btn btn-primary" ng-click="$state.go('department.content.home')">DepartmentHome</button>
 </div>
-    <div class="pull-right">
+    <div class="pull-right hidden-print">
        
         <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -32,13 +32,13 @@
     </div>
 </div>
 <div class="container">
-     <p class="pull-left visible-xs" style="padding:0">
+     <p class="pull-left visible-xs hidden-print" style="padding:0">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">SideMenu</button>
           </p>
 
    <div class="row row-offcanvas row-offcanvas-left ">
         
-      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" data-ui-view="sidemenu">
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas hidden-print" id="sidebar" data-ui-view="sidemenu">
            
         </div>
        

@@ -36,6 +36,11 @@ namespace eSiroi.Resource.Entities
         [StringLength(50)]
         public string Alias { get; set; }
 
+        [StringLength(20)]
+        public string Mobile { get; set; }
+        [StringLength(50)]
+        public string Aadhaar { get; set; }
+
         [StringLength(10)]
         public string Identify { get; set; }
 

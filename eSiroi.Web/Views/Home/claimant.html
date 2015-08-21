@@ -77,7 +77,7 @@
         <div class="col-sm-3">
             <select name="occupation" id="" class="form-control"
                     data-ng-model="claimant.occupation"
-                    data-ng-options="occupation for occupation in occupations">
+                    data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations">
                 <option value="">--select Occupation--</option>
             </select>
         </div>
@@ -170,12 +170,7 @@
         </div>
         <label for="" class="control-label col-sm-2">PoliceStation</label>
         <div class="col-sm-4">
-            <select class="form-control" name="ps"
-                    data-ng-model="claim.policestation"
-                    data-ng-options="ps.polStation for ps in policestations | filter:{distCode:claim.district.distCode}"
-                    data-ng-disbaled="!claim.district||claimantform.$submitted">
-                <option value="">-select PS-</option>
-            </select>
+            <input type="text"  class="form-control" data-ng-model="claimant.policest" placeholder="PoliceStation"/>
         </div>
     </div>
 

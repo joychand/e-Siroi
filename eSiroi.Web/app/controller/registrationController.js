@@ -9,15 +9,10 @@ angular
     function ($state,$scope, $modalInstance, ackno) {
         $scope.mod = {};
         $scope.ackno = ackno;
-        //console.log($scope.modalInstance);
-        //$scope.items = items;
-        //$scope.selected = {
-        //    item: $scope.items[0]
-        //};
+        
 
         $scope.mod.ok = function () {
-            //console.log('hello');
-            //alert('okctrl');
+            
             $modalInstance.close('dfd');
             
         };
@@ -256,28 +251,12 @@ angular
             getPoliceStations();
             getPostOffices();
             getVillages();
-            $scope.occupations = ['Govt. employee', 'Business', 'Unemployed', 'Others'];
+            // $scope.occupations = ['Govt. employee', 'Business', 'Unemployed', 'Others'];
+            getoccupations()
             getLandtype();
             getLandclass();
-           
-            //$scope.ident.slno = $scope.identSlno;
-            
+                    
         }
-
-
-      
-
-        //function getSro() {
-        //    $scope.sro = sessionFactory.getSro();
-        //}
-        //function getTransName() {
-        //    $scope.trans.transname = sessionFactory.getTransName();
-           
-        //}
-
-        //function getAckno() {
-        //    $scope.trans.currAckno = sessionFactory.getAckno();
-        //}
         function getStates() {
             dataFactory.getStates().then(function (states) {
                 $scope.states = states;
@@ -341,6 +320,12 @@ angular
                 $scope.landclass = response.data;
             })
         }
+
+        function getoccupations() {
+            dataFactory.getOccupation().then(function (response) {
+                $scope.occupations = response.data;
+            })
+        }
        
         $scope.exec.clrpincode = function () {
             return $scope.postoffice.pinCode = '';
@@ -353,6 +338,7 @@ angular
         $scope.exec.isActiveTab = function (tabUrl) {
             return tabUrl == $scope.exec.currentTab;
         }
+
 
         //VERIFY PLOT FUNCTION
         $scope.verfyplot = function () {
@@ -468,15 +454,9 @@ angular
             
             createExecutantObject();
             $scope.eformModel.submitted = true;
-            //$scope.$$childTail.execform.$setPristine();
-            //$scope.executant = {};
-            //$scope.exec = {};
-            //$scope.aa = {};
-            //$scope.executant.slno = $scope.execSlno + 1;
-            //$scope.execSlno = $scope.executant.slno;
+           
             $state.go('registration.content.forms.claimant')
-            //$scope.readonly = true;
-            //postexecutant($scope.executant);
+            
         };
 
         // executant add more
@@ -490,38 +470,38 @@ angular
             $scope.execSlno = $scope.executant.slno;
         }
         //prepare executantObject
-       var createExecutantObject = function () {
-            $scope.executant.State = $scope.state.stateName;
-            $scope.executant.District = $scope.exec.district.distName;
-            $scope.executant.SubDivision = $scope.exec.subdiv.subDivName;
-            $scope.executant.Village = $scope.exec.village.villName;
-            $scope.executant.PostOffice = $scope.aa.postoffice.postOffice1;
-            $scope.executant.Ackno = sessionFactory.getCurrAckno();
-            $scope.executant.SlNo = $scope.execSlno;
-            $scope.executant.Street = 'sdfd';
-            $scope.executant.PoliceSt = 'lkdfjdlkfd';
-            $scope.executant.EnterBy = 'dlkfjdlkf';
-            $scope.executant.pinCode = $scope.aa.postoffice.pinCode;
-            $scope.executant.occupation = 1;
+        var createExecutantObject = function () {
+            angular.extend($scope.executant, {
+            State: $scope.state.stateName,
+            District: $scope.exec.district.distName,
+            SubDivision: $scope.exec.subdiv.subDivName,
+            Village:$scope.exec.village.villName,
+            PostOffice:$scope.exec.postoffice.postOffice1,
+            Ackno:sessionFactory.getCurrAckno(),
+            SlNo:$scope.execSlno,         
+            pinCode:$scope.exec.postoffice.pinCode,
+            
+            })
+            console.log($scope.executant);
+           
             sessionFactory.pushExecutant($scope.executant);
         }
 
       
         // prepare claimant Model
         var createClaimantObject = function () {
-            $scope.claimant.State = $scope.state.stateName;
-            $scope.claimant.District = $scope.claim.district.distName;
-            $scope.claimant.SubDivision = $scope.claim.subdiv.subDivName;
-            $scope.claimant.Village = $scope.claim.village.villName;
-            $scope.claimant.PostOffice = $scope.claim.postoffice.postOffice1;
-            $scope.claimant.Ackno = sessionFactory.getCurrAckno();
-            //$scope.claimant.SlNo = $scope.claimant.slno;
-            $scope.claimant.Street = 'sdfd';
-            $scope.claimant.PoliceSt = 'lkdfjdlkfd';
-            $scope.claimant.EnterBy = 'dlkfjdlkf';
-            $scope.claimant.pinCode = $scope.claim.postoffice.pinCode;
-            $scope.claimant.occupation = 1;
-            $scope.claimant.circle = 'Lamphel';
+            angular.extend($scope.claimant, {
+            SlNo: $scope.claimSlno,  
+            State :$scope.state.stateName,
+            District : $scope.claim.district.distName,
+            SubDivision :$scope.claim.subdiv.subDivName,
+            Village : $scope.claim.village.villName,
+            PostOffice : $scope.claim.postoffice.postOffice1,
+            Ackno : sessionFactory.getCurrAckno(),
+            pinCode : $scope.claim.postoffice.pinCode,
+            
+            })
+           console.log($scope.claimant)
             sessionFactory.pushClaimant($scope.claimant);
 
         }
@@ -555,29 +535,18 @@ angular
 
         // create Identifier object
         var createIdentifierObject = function () {
-            $scope.identifier.State = $scope.state.stateName;
-            $scope.identifier.District = $scope.ident.district.distName;
-            $scope.identifier.SubDivision = $scope.ident.subdiv.subDivName;
-            $scope.identifier.Village = $scope.ident.village.villName;
-            $scope.identifier.PostOffice = $scope.ident.postoffice.postOffice1;
-            $scope.identifier.Ackno = sessionFactory.getCurrAckno();
-            $scope.identifier.slno = $scope.ident.slno;
-            $scope.identifier.IdentSurName = $scope.ident.SurName
-            $scope.identifier.IdentMiddleName = $scope.ident.MiddleName
-            $scope.identifier.IdentLastName = $scope.ident.LastName
-            $scope.identifier.Alias = $scope.ident.alias
-            //$scope.identifier.Identify = 'Identify';
-            $scope.identifier.Sex = $scope.ident.sex
-            $scope.identifier.FatherSurName = $scope.ident.fatherSurname
-            $scope.identifier.FatherMiddleName = $scope.ident.fatherMiddleName
-            $scope.identifier.FatherLastName = $scope.ident.fatherLastName
-            $scope.identifier.Street = 'sdfd';
-            $scope.identifier.PoliceSt = 'lkdfjdlkfd';
-            $scope.identifier.circle = 'Lamphel';
-            //$scope.identifier.EnterBy = 'dlkfjdlkf';
-            $scope.identifier.pinCode = $scope.ident.postoffice.pinCode;
-            $scope.identifier.occupation = 1;
-            $scope.identifier.identify = $scope.ident.identify;
+            angular.extend($scope.identifier, {
+                SlNo: $scope.ident.slno,
+                State :$scope.state.stateName,
+                District : $scope.ident.district.distName,
+                SubDivision :$scope.ident.subdiv.subDivName,
+                Village : $scope.ident.village.villName,
+                PostOffice : $scope.ident.postoffice.postOffice1,
+                Ackno : sessionFactory.getCurrAckno(),
+                pinCode : $scope.ident.postoffice.pinCode,
+                identify: $scope.ident.identify
+            })
+            console.log($scope.identifier);
             
             sessionFactory.pushIdentifier($scope.identifier);
         }

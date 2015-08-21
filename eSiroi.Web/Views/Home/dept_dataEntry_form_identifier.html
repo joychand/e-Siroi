@@ -31,10 +31,10 @@
         <label for="identifier" class="col-sm-2 control-label">Identifier</label>
 
         <div class="col-sm-3">
-            <input type="text" name="ExecSurName" data-ng-model="identifier.identSurName" class="form-control" placeholder="Surnanme" required data-ng-maxlength="3">
+            <input type="text" name="ExecSurName" data-ng-model="identifier.identSurName" class="form-control" placeholder="Surnanme" required >
             <span style="color:#f00" ng-show="identform.ExecSurName.$dirty && identform.ExecSurName.$invalid">
                 <span data-ng-show="identform.ExecSurName.$error.required">Please input a Surname</span>
-                <span data-ng-show="identform.ExecSurName.$error.maxlength">Your name cannot be longer than 3 characters </span>
+                
             </span>
 
 
@@ -67,10 +67,10 @@
             <p data-ng-show="identform.alias.$invalid && identform.alias.$dirty">Please input a alias</p>
         </div>
          <div class="col-sm-3">
-            <input type="text" value="" class="form-control"  placeholder="Mobile" data-ng-model="i.mobile" />
+            <input type="text" value="" class="form-control"  placeholder="Mobile" data-ng-model="identifier.mobile" />
         </div>
         <div class="col-sm-3">
-            <input type="text" name="alias" data-ng-model="identifier.Aadhaar" class="form-control" placeholder="Aadhaar"  >
+            <input type="text" name="alias" data-ng-model="identifier.aadhaar" class="form-control" placeholder="Aadhaar">
         </div>
     </div>
     <div class="form-group">
