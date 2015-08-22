@@ -13,5 +13,10 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Department/dept_dataEntered.html", "text/html");
         }
+
+        public ActionResult Fsheet()
+        {
+            return File("~/Views/Department/FactSheet.html", "text/html");
+        }
     }
 }

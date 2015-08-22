@@ -260,6 +260,7 @@ table {
   }
   img {
     max-width: 100% !important;
+    
   }
   @page  {
     margin: 2cm .5cm;

@@ -15,14 +15,7 @@
 
     function deptcontentController($scope, dept_sessionfactory,authService,$state) {
         $scope.department = {};
-        $scope.signOut= function () {
-            authService.logOut();
-            $state.go('Home');
-        }
-        
-
-
-    }
+      }
 
 })();
 //deptcontentController
@@ -1231,6 +1224,46 @@
         //}
     }
 })();
+//dept_DataEnteryComplete Controller
+(function () {
+    angular.module('eSiroi.Web')
+.controller('dataEntCompController', ['$state', 'modalService', '$scope', function dataEntCompController($state, modalService, $scope) {
+    $scope.printFactsheet = function () {
+        var modalOptions = {
+            closeButtonText: 'Cancel',
+            actionButtonText: 'Print',
+            headerText: 'FactSheet',
+            bodyText: ''
+        };
+
+        var modalDefault = {
+            templateUrl: 'Department/Fsheet',
+            controller: 'fsheetModalController',
+          
+            //scope: $scope,
+            backdrop: 'static',
+            //size:'lg',
+            windowClass: 'rpt-modal-window',
+           
+        };
+        modalService.showModal(modalDefault, modalOptions).then(function (result) {
+            
+            
+        });
+
+    }
+}])
+})();
+// dept_FactsheetModal Controller
+(function () {
+    angular.module('eSiroi.Web')
+    .controller('fsheetModalController', ['$scope','$window', function fsheetModalController($scope,$window){
+        $scope.printout = function ($scope) {
+            $window.print();
+            console.log('printout');
+        }
+    }])
+    })();
 
 //#region HELPER FUNCTIONS
 function insertPlot($scope) {

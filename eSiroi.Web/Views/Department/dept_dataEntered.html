@@ -1,8 +1,9 @@
-﻿<div class="container">
+﻿<div class="container hidden-print">
     <span>Data successfully for Tsno: and TsYear: </span>
     <div class="col-sm-3">
         <div class="btn-group-sm">
-            <button class=" btn btn-foursquare" ng-click="$state.go(department.content.home)">Go back </button>
+            <button class=" btn btn-foursquare" ng-click="$state.go('department.content.home')">Go back </button>
+            <button class="btn btn-pinterest" ng-click="printFactsheet()">Printfactsheet</button>
         </div>
     </div>
 </div>

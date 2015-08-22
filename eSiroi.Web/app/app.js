@@ -14,6 +14,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
     //********************** NAVIGATION TOP BAR ROUTING ******************************//
     $stateProvider
        
+       
         .state('Home', {
             url: "/home",
             templateUrl: 'Home/home_page',
@@ -144,7 +145,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         })
         .state('department.content.dataentered', {
             url: '/dataEntered',
-            templateUrl: baseUrl + 'Department/deptDataEntered'
+            templateUrl: baseUrl + 'Department/deptDataEntered',
+            controller: 'dataEntCompController'
         })
         .state('department.content.upload', {
             url: '/upload',
@@ -297,6 +299,13 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
     $rootScope.$stateParams = $stateParams;
     authService.fillAuthData();
     $rootScope.authentication = authService.authentication;
+    $rootScope.signOut=function(){
+       
+                   
+            authService.logOut();
+            $state.go('Home');
+       
+    }
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         console.log('statechangestart');
        
