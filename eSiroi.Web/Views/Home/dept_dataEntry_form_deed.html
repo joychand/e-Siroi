@@ -86,14 +86,14 @@
                 </div>
                 <div class="col-sm-12 col-md-3">
                     <input type="radio" name="Municipal"
-                           data-ng-checked="deed.municipal == 'Y'"
-                           data-ng-model="deed.municiple" />Yes
+                           data-ng-model="deed.municipal"
+                           value="Y" />Yes
 
                 </div>
                 <div class="col-sm-12 col-md-3">
                     <input type="radio" name="Municipal"
-                           data-ng-checked="deed.municipal == 'N'"
-                           data-ng-model="deed.municipal" />No
+                           data-ng-model="deed.municipal"
+                          value= "N" />No
 
                 </div>
             </div>
@@ -106,14 +106,14 @@
                 </div>
                 <div class=" col-md-3">
                     <input type="radio" name="OutJurisdiction"
-                           data-ng-checked="deed.outjuri == 'Y'"
-                           data-ng-model="deed.outjuri" />Yes
+                           data-ng-model="deed.outjuri"
+                           value="Y" />Yes
 
                 </div>
                 <div class=" col-md-3 ">
                     <input type="radio" name="OutJurisdiction"
-                           data-ng-checked="deed.outjuri == 'N'"
-                           data-ng-model="deed.outjuri" />No
+                           data-ng-model="deed.outjuri"
+                           value="N" />No
                 </div>
             </div>
 
@@ -131,11 +131,11 @@
                     </label>
                 </div>
                 <div class=" col-md-3">
-                    <input type="radio" name="visitComm" data-checked="deed.vistcomm=='Y'" data-ng-model="deed.visitcomm" />Yes
+                    <input type="radio" name="visitComm" value="Y" data-ng-model="deed.visitComm" />Yes
 
                 </div>
                 <div class=" col-md-3 ">
-                    <input type="radio" name="visitComm" data-ng-checked=" deed.vistcomm=='N'" data-ng-model="deed.vistComm" />No
+                    <input type="radio" name="visitComm" value="N" data-ng-model="deed.visitComm" />No
 
                 </div>
             </div>
@@ -166,7 +166,7 @@
                         <input type="text" class="form-control" placeholder="Stamp Payable Value" />
                         <span class="input-group-addon">
                             <input type="checkbox" name="SFeeExmp"
-                                   data-ng-checked="deed.SFeeExmp == 'Y'"
+                                   value="Y"
                                    data-ng-model="deed.SFeeExmp" />SFeeExmp
                         </span>
                     </div>

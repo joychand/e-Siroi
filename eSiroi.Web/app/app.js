@@ -148,6 +148,14 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + 'Department/deptDataEntered',
             controller: 'dataEntCompController'
         })
+        .state('department.content.printFsheet',
+        {
+            url: '/printFsheet',
+            templateUrl: baseUrl + 'Department/Fsheet',
+            controller: 'fsheetModalController'
+
+        })
+    
         .state('department.content.upload', {
             url: '/upload',
             templateUrl: baseUrl + 'Home/dept_scanDocuments'

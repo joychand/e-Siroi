@@ -11,6 +11,7 @@ using System.Web.Http.Results;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.SqlServer;
 using System.Collections;
+using eSiroi.Resource.Models;
 
 
 namespace eSiroi.Resource.Controllers
@@ -481,6 +482,31 @@ namespace eSiroi.Resource.Controllers
 
             }
 
+            return Ok();
+        }
+        [Route("updateDeedStatus")]
+        public async Task<IHttpActionResult> updateDeedStatus(StatusObject statusObject)
+        {
+            Deed d = db.Deed
+                   .Where(c => c.TSNo == statusObject.tsno && c.TSYear == statusObject.tsyear).FirstOrDefault();
+            d.Status = statusObject.status;
+
+           if(statusObject.Ackno!=0){
+               onlineapplication onlineApplication = db.onlineapplication
+                                   .Where(o => o.ackno == statusObject.Ackno).FirstOrDefault();
+               onlineApplication.status = statusObject.status;
+           }
+
+           try
+           {
+               await db.SaveChangesAsync();
+           }
+
+            catch(DbUpdateException e)
+           {
+                return NotFound();
+            }
+           
             return Ok();
         }
         # endregion

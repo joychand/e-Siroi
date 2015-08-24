@@ -286,4 +286,10 @@ padding-top:0;
     vertical-align:top;
    
     }
+    #sign{
+        text-align:left;
+    }
+    #signature{
+        text-align:right;
+    }
 }

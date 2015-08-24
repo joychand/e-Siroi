@@ -18,11 +18,20 @@
         var sessionclaimddlist = [];
         var sessionidentifierlist = [];
         var sessionidentddlist = [];
+        var sessionAckno=0;
 
         var executantlist = [];
         var claimantlist = [];
         var identifierlist = [];
+        service.putAckno = function (ackno) {
+            
+            sessionAckno = ackno;
+        }
 
+        service.getAckno = function () {
+          
+                return sessionAckno;
+        }
         service.getLinkVisibility = function () {
             return linkVisibilty;
         }

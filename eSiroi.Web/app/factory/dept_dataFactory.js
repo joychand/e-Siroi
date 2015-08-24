@@ -165,7 +165,15 @@
                     url: urlBase2 + 'postIdentifier',
                     data:identifierList
                 })
-            }
+            },
+            //update Deed Status
+            updateDeedStatus: function (statusObject) {
+            return $http({
+                method: 'POST',
+                url: urlBase2 + 'updateDeedStatus',
+                data:statusObject
+                })
+        }
             //#endregion
 
         };

@@ -107,7 +107,8 @@
         getAppln(status);
 
         $scope.displayCollection = [].concat($scope.myData);
-
+        console.log($scope.displayCollection[0]);
+        console.log($scope.myData);
         $scope.getSelectedStatus = function () {
             if ($scope.selectedStatus && $scope.selectedStatus != 'All') {
                 getAppln($scope.selectedStatus);
@@ -420,6 +421,7 @@
 
            
             getPropPartyList(row.ackno);
+            dept_sessionfactory.putAckno(row.ackno);
         }
         //GET ONLINE DATA
         function getPropPartyList(ackno) {
@@ -634,7 +636,7 @@
             $scope.deed.TSNo = $scope.tsyear.ts;
             $scope.deed.TSYear = $scope.tsyear.tyear
             $scope.deed.Date_Time_Present = $scope.d.dop + $scope.d.time;
-         
+            
             dept_dataFactory.postdeed($scope.deed).then(function (response) {
                 $state.go('department.content.form.property')
             }, function (result) {
@@ -1200,7 +1202,16 @@
                 console.log('registration data successfully  submitted');
                 dept_dataFactory.postClaimantList(dept_sessionfactory.getClaimantlist()).then(function (response) {
                     dept_dataFactory.postIdentifierList(dept_sessionfactory.getIdentifierList()).then(function (response) {
-                        $state.go('department.content.dataentered');
+                        var statusObject = {};
+                        angular.extend(statusObject, {
+                            tsno: $scope.tsyear.ts,
+                            tsyear: $scope.tsyear.tyear,
+                            ackno: dept_sessionfactory.getAckno(),
+                            status: 'Data Entered,Verify'
+                        })
+                        dept_dataFactory.updateDeedStatus(statusObject).then(function (response) {
+                            $state.go('department.content.dataentered');
+                        })
                     }) 
                 })
                
@@ -1228,6 +1239,7 @@
 (function () {
     angular.module('eSiroi.Web')
 .controller('dataEntCompController', ['$state', 'modalService', '$scope', function dataEntCompController($state, modalService, $scope) {
+
     $scope.printFactsheet = function () {
         var modalOptions = {
             closeButtonText: 'Cancel',
@@ -1257,7 +1269,11 @@
 // dept_FactsheetModal Controller
 (function () {
     angular.module('eSiroi.Web')
-    .controller('fsheetModalController', ['$scope','$window', function fsheetModalController($scope,$window){
+    .controller('fsheetModalController', ['$scope', '$window', 'deptModalService', function fsheetModalController($scope, $window, deptModalService) {
+        console.log(deptModalService.property);
+        $scope.myData = deptModalService.property;
+        $scope.displayCollection = [].concat($scope.myData);
+        console.log($scope.displayCollection);
         $scope.printout = function ($scope) {
             $window.print();
             console.log('printout');

@@ -205,7 +205,7 @@ angular.module('eSiroi.Web')
                 data:plot
             })
         }
-
+       
 
         // Add each service function description for error handler service
         dataFactory.getSRO.description = 'GetSro';
