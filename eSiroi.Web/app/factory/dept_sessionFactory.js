@@ -23,6 +23,8 @@
         var executantlist = [];
         var claimantlist = [];
         var identifierlist = [];
+        //USER PROFILE
+        service.user = {};
         service.putAckno = function (ackno) {
             
             sessionAckno = ackno;

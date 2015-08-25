@@ -61,14 +61,14 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         .state('department.content.home', {
             url: '/home',
             templateUrl: baseUrl +'/Home/dept_home',
-            controller: 'deptHomeController',
+            controller: 'deptHomeController'
             
-            resolve: {
-                applications: function (dept_dataFactory) {
-                    var status = 'Approved';
-                   return dept_dataFactory.getDeed(status)
-                }
-            }
+            //resolve: {
+            //    applications: function (dept_dataFactory) {
+            //        var status = 'Approved';
+            //       return dept_dataFactory.getDeed(status)
+            //    }
+            //}
         })
        
         .state('Search', {

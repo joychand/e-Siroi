@@ -40,44 +40,43 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'applications', deptHomeController]);
+        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory',  deptHomeController]);
 
-    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, applications) {
+    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory) {
        
-       
+        $scope.message = '';
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
-        $scope.applnStatus = ['Approved', 'DataEntered', 'Pending'];
-        //var status = 'Approved';
-        $scope.myData = applications.data;
-        console.log($scope.myData);
-        $scope.selectedStatus = $scope.applnStatus[0];
-        //if (dept_sessionfactory.getCurrUser() == 'Operator')
-        //{
-        //    var status = 'Approved';
-        //    $scope.selectedStatus = $scope.applnStatus[0];
-        //}
-        //else
-        //{
-        //    var status = 'DataEntered';
-        //    $scope.selectedStatus = $scope.applnStatus[1];
-        //}
+        $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending'];
+       if(dept_sessionfactory.user.role==='SR')
+       {
+           $scope.selectedStatus = $scope.applnStatus[1];
+       }
+       else if (dept_sessionfactory.user.role === 'Operator')
+       {
+           $scope.selectedStatus = $scope.applnStatus[0]
+
+       }
+       getData();
+      
         
        
-        
-       // getDeed(status);
         
         $scope.displayCollection = [].concat($scope.myData);
 
-
-        //getAppln function status
-        //function getDeed(Approved){
-        //    var status = 'Approved';
-        //    dept_dataFactory.getDeed(status).then(function (response) {
-        //        $scope.myData = response.data;
-
-
-        //    })
-        //}
+        $scope.getSelectedStatus = function () {
+            $scope.message = '';
+            $scope.myData = {};
+            getData();
+            $scope.displayCollection = [].concat($scope.myData);
+        }
+        
+        function getData(){
+            dept_dataFactory.getDeed($scope.selectedStatus).then(function (response) {
+                $scope.myData = response.data;
+            }, function (result) {
+                $scope.message = 'DATA NOT FOUND';
+            });
+        }
 
         // PROCESS ROW FUNCTION
        
@@ -213,16 +212,20 @@
                     if ($scope.loginData.userName === 'tombi')
                     {
                         dept_sessionfactory.putCurrUser('Operator');
+                        dept_sessionfactory.user.role = 'Operator';
                     }
                     else
                     {
                         dept_sessionfactory.putCurrUser('SR');
+                        dept_sessionfactory.user.role = 'SR';
                     }
                     
                     $state.go('department.content.home');
                 }
                 else {
+
                     dept_sessionfactory.putCurrUser('Public');
+                    dept_sessionfactory.user.role = 'Public';
                     $state.go('registration.content.apply')
                 }
                 
@@ -1209,6 +1212,7 @@
                             ackno: dept_sessionfactory.getAckno(),
                             status: 'Data Entered,Verify'
                         })
+                        deptModalService.ApplnModel = statusObject;
                         dept_dataFactory.updateDeedStatus(statusObject).then(function (response) {
                             $state.go('department.content.dataentered');
                         })
@@ -1270,10 +1274,21 @@
 (function () {
     angular.module('eSiroi.Web')
     .controller('fsheetModalController', ['$scope', '$window', 'deptModalService', function fsheetModalController($scope, $window, deptModalService) {
-        console.log(deptModalService.property);
-        $scope.myData = deptModalService.property;
-        $scope.displayCollection = [].concat($scope.myData);
-        console.log($scope.displayCollection);
+       
+        $scope.propData = {}
+        $scope.execData = {}
+        $scope.claimData = {}
+        $scope.deedData ={}
+        angular.extend($scope.propData, deptModalService.property, deptModalService.propertyddl);
+        angular.extend($scope.execData, deptModalService.executant, deptModalService.execddl);
+        angular.extend($scope.claimData, deptModalService.claimant, deptModalService.claim);
+        
+        angular.extend($scope.deedData, deptModalService.deed, deptModalService.deedddl);
+        angular.extend($scope.deedData, deptModalService.ApplnModel);
+        $scope.displayCollection1 = [].concat($scope.deedData);
+        $scope.displayCollection2 = [].concat($scope.propData);
+        $scope.displayCollection3 = [].concat($scope.execData);
+        $scope.displayCollection4 = [].concat($scope.claimData);
         $scope.printout = function ($scope) {
             $window.print();
             console.log('printout');

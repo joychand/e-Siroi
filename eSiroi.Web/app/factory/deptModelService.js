@@ -24,6 +24,8 @@
             deed: {},
             deedddl: {},
 
+           ApplnModel:{},
+
             modelClear: function () {
 
                 this.executant = {};
