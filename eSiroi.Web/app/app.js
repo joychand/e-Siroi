@@ -284,6 +284,8 @@ app.constant('eSiroiWebSettings', {
 
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
+    $httpProvider.interceptors.push('httpLoaderInterceptor');
+    console.log($httpProvider.interceptors);
     if (!$httpProvider.defaults.headers.get) {
         $httpProvider.defaults.headers.get = {};
     }

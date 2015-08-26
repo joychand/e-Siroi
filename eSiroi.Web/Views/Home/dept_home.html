@@ -7,7 +7,7 @@
         <select data-ng-model="selectedStatus"
                 data-ng-options="st for st in applnStatus"
                 data-ng-change="getSelectedStatus()" class="form-control">
-            <option value="">-SelectStatus-</option>
+               <option value="">-SelectStatus-</option>
 
 
         </select>
@@ -15,7 +15,7 @@
 </div>
 <div class="container">
     <div class="text-center">
-        <div loading-widget>Getting Data.........<img id="mySpinner" src="spinning.gif" /></div>
+        <div http-loader>Getting Data.........<img id="mySpinner" src="spinning.gif" /></div>
     </div>
 </div>
 <div class="text-center" style="border-top:20px solid white" >
@@ -40,10 +40,10 @@
                 <td>{{row.ts}}</td>
                 <td>{{row.tYear}}</td>
                 <td>{{row.transaction}}</td>
-                <td>{{row.date}}</td>
+                <td>{{row.date|date:'dd-MMM-yyyy'}}</td>
                 <td>{{row.status}}</td>
                 <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='Approved'" ng-click="$state.go('department.content.upload')">Scan</button></td>
-                <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify'" ng-click="">Approved</button></td>
+                <td><button class="btn btn-success btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify'" ng-click="">Approved</button></td>
                 <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify'" ng-click="">View</button></td>
 
             </tr>

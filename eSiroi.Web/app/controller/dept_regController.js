@@ -11,9 +11,9 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('departmentController', ['$scope', 'dept_sessionfactory','authService','$state', deptcontentController]);
+        .controller('departmentController', ['$scope', 'dept_sessionfactory','authService','$state','$rootScope', deptcontentController]);
 
-    function deptcontentController($scope, dept_sessionfactory,authService,$state) {
+    function deptcontentController($scope, dept_sessionfactory, authService, $state, $rootScope) {
         $scope.department = {};
       }
 
@@ -45,6 +45,7 @@
     function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory) {
        
         $scope.message = '';
+       // $scope.selectedStatus = '';
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
         $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending'];
        if(dept_sessionfactory.user.role==='SR')

@@ -110,6 +110,8 @@ namespace eSiroi.Resource.Controllers
             {
                 return BadRequest(ModelState);
             }
+            //DateTime entrydate=DateTime.UtcNow;
+            deedDetails.EntryDt = DateTime.UtcNow;
             db.Deed.Add(deedDetails);
             try
             {
@@ -300,7 +302,7 @@ namespace eSiroi.Resource.Controllers
             foreach (Executant E in executantlist)
             {
 
-
+                
                 db.Executant.Add(E);
 
             }

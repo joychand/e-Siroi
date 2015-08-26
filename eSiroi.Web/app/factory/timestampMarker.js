@@ -162,6 +162,7 @@ angular.module('eSiroi.Web')
                  return promise.then(success, error);
              }
          })
+         console.log($httpProvider.interceptors);
         //}];
 
     //$httpProvider.responseInterceptors.push(interceptor);
