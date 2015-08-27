@@ -44,6 +44,7 @@
 
     function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory) {
        
+        
         $scope.message = '';
        // $scope.selectedStatus = '';
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
@@ -202,12 +203,14 @@
             useRefreshTokens: false
         };
         $scope.message = "";
+        $scope.hideMessage = true;
         // USER CLICK LOGIN EVENT
         $scope.login = function () {
-           
-           
+            
+            $scope.hideMessage = true;
             //TO DO GET USER CREDENTIALS VERIFY WITH THE BACKEND API
             authService.login($scope.loginData).then(function (response) {
+                
 
                 if ($scope.loginData.userName == 'tombi' || $scope.loginData.userName==='kaibem') {
                     if ($scope.loginData.userName === 'tombi')
@@ -236,6 +239,7 @@
                 $modalInstance.close();
             },
              function (err) {
+                 $scope.hideMessage = false;
                  $scope.message = err.error_description;
 
              });
@@ -245,7 +249,15 @@
         // USER CLICK CANCEL EVENT
         $scope.login.cancel = function () {
             $modalInstance.dismiss();
-            //$state.go($rootScope.previousState);
+            try {
+                console.log('dismiss' + $rootScope.previousState);
+                $state.go($rootScope.previousState);
+            }
+            catch(error)
+            {
+                $state.go('Home');
+            }
+           
         }
     }
 

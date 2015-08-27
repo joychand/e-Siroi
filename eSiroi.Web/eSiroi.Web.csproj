@@ -147,7 +147,7 @@
     <Content Include="app\factory\deptModelService.js" />
     <Content Include="app\factory\dept_dataFactory.js" />
     <Content Include="app\factory\dept_sessionFactory.js" />
-    <Content Include="app\factory\requestNotificationChannel.js" />
+    <Content Include="app\factory\httpLoaderInterceptor.js" />
     <Content Include="app\factory\sessionFactory.js" />
     <Content Include="app\factory\timestampMarker.js" />
     <Content Include="app\Module\ErrorHandler.js" />

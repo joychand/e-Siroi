@@ -6,7 +6,7 @@
         <div class="modal-body">
 
             <div class="form-group">
-                <label for="ID" class="col-sm-2 control-label">EIN:</label>
+                <label for="ID" class="col-sm-2 control-label">UserId:</label>
                 <div class="col-sm-6">
                     <input type="text" data-ng-model="loginData.userName" class="form-control" placeholder="Enter EIN" />
                 </div>
@@ -19,8 +19,11 @@
                 </div>
 
             </div>
-            <div data-ng-hide="message == ''" class=" col-sm-6 alert alert-danger">
+            <div data-ng-hide="hideMessage" class="col-sm6 col-sm-offset-3 text-center alert alert-danger">
                 {{message}}
+            </div>
+            <div class="col-sm6 col-sm-offset-3 text-center">
+                <http-loader>Authenticating......<img id="mySpinner" src="spinning.gif" /></http-loader>
             </div>
         </div>
         <div class="modal-footer">

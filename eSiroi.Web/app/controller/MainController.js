@@ -6,7 +6,7 @@
     .controller('HomeController',['$scope', '$state', '$window','eSiroiWebSettings','authService', HomeController])
     function HomeController($scope, $state, $window, eSiroiWebSettings, authService) {
       
-        
+       
         $scope.myInterval = 5000;
         var slides = $scope.slides = [];
         

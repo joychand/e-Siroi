@@ -133,6 +133,7 @@ angular.module('eSiroi.Web')
                  $http = $http || $injector.get('$http');
                  // don't send notification until all requests are complete
                  if ($http.pendingRequests.length < 1) {
+                     
                      // get requestNotificationChannel via $injector because of circular dependency problem
                      notificationChannel = notificationChannel || $injector.get('requestNotificationChannel');
                      // send a notification requests are complete
@@ -166,6 +167,7 @@ angular.module('eSiroi.Web')
         //}];
 
     //$httpProvider.responseInterceptors.push(interceptor);
+         $httpProvider.interceptors.push('authInterceptorService');
 }]);
 
 

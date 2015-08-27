@@ -317,7 +317,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
        
     }
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-        console.log('statechangestart');
+        
        
         if (toState.name !== 'department.content.login' ) return;
         
