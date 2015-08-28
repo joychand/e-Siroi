@@ -44,6 +44,7 @@ namespace eSiroi.Web.App_Start
                         //"~/app/factory/timestampMarker.js",
                       "~/app/factory/angularModalService.js",
                        "~/app/factory/httpLoaderInterceptor.js",
+                        "~/app/factory/userService.js",
                        "~/app/directive/loadingWidget.js",
                        "~/app/directive/uiBreadcrumbs.js",
                       "~/app/controller/registrationController.js",

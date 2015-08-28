@@ -40,24 +40,26 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory',  deptHomeController]);
+        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'userService','authService', deptHomeController]);
 
-    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory) {
+    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService) {
        
         
         $scope.message = '';
        // $scope.selectedStatus = '';
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
         $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending'];
-       if(dept_sessionfactory.user.role==='SR')
+        console.log(authService.authentication.userName);
+        if (userService.userInAdmin)
        {
            $scope.selectedStatus = $scope.applnStatus[1];
        }
-       else if (dept_sessionfactory.user.role === 'Operator')
+        else if (userService.userInDept)
        {
            $scope.selectedStatus = $scope.applnStatus[0]
 
-       }
+        }
+        
        getData();
       
         
@@ -250,7 +252,7 @@
         $scope.login.cancel = function () {
             $modalInstance.dismiss();
             try {
-                console.log('dismiss' + $rootScope.previousState);
+                
                 $state.go($rootScope.previousState);
             }
             catch(error)

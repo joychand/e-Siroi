@@ -6,7 +6,47 @@
     .controller('HomeController',['$scope', '$state', '$window','eSiroiWebSettings','authService', HomeController])
     function HomeController($scope, $state, $window, eSiroiWebSettings, authService) {
       
-       
+        var currentUser = {};
+        //TO DO *****  DATA SHOULD BE FILLED FROM AUTHENTICATION SERVER******
+        var usersInrole = [
+            {
+                name: 'kaibem',
+                role: 'SR'
+            },
+            {
+                name: 'tombi',
+                role: 'Operator'
+            },
+            {
+                name: 'chibem',
+                role: 'public'
+            }
+        ]
+        var userInAdmin = false;
+        var userInDept = false;
+        var userInPublic = false;
+        getUserRole('tombi');
+        function getUserRole(userName) {
+            angular.forEach(usersInrole, function (user) {
+                if (user.name === userName) {
+                    switch (user.role) {
+                        case 'SR':
+                            userInAdmin = true;
+                            break;
+                        case 'Operator':
+                            userInDept = true;
+                            break;
+                        case 'Public':
+                            userInPublic = true;
+                            break;
+                    }
+
+                    console.log(userInDept);
+                    console.log(userInDept);
+                }
+
+            })
+        }
         $scope.myInterval = 5000;
         var slides = $scope.slides = [];
         

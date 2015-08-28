@@ -1,6 +1,6 @@
 ﻿'use strict';
 angular.module('eSiroi.Web')
-    .factory('authService', ['$http', '$q', 'localStorageService', 'eSiroiWebSettings', function ($http, $q, localStorageService, eSiroiWebSettings) {
+    .factory('authService', ['$http', '$q', 'localStorageService', 'eSiroiWebSettings', 'userService', function ($http, $q, localStorageService, eSiroiWebSettings, userService) {
 
     var serviceBase = eSiroiWebSettings.apiAuthServiceBaseUri;
     var authServiceFactory = {};
@@ -48,7 +48,7 @@ angular.module('eSiroi.Web')
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;
             _authentication.useRefreshTokens = loginData.useRefreshTokens;
-
+            userService.setUserProfile();
             deferred.resolve(response);
 
         }).error(function (err, status) {
@@ -67,6 +67,7 @@ angular.module('eSiroi.Web')
         _authentication.isAuth = false;
         _authentication.userName = "";
         _authentication.useRefreshTokens = false;
+        userService.clearUserProfile();
        //$cacheFactory('templates').removeAll();
 
     };

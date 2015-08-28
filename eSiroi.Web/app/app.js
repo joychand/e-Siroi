@@ -14,7 +14,11 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
     //********************** NAVIGATION TOP BAR ROUTING ******************************//
     $stateProvider
        
-       
+       .state('Index', {
+           url: "/",
+           templateUrl: 'Home/Index',
+           controller: "indexController"
+       })
         .state('Home', {
             url: "/home",
             templateUrl: 'Home/home_page',
@@ -320,6 +324,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
         
        
         if (toState.name !== 'department.content.login' ) return;
+        $rootScope.previousState = $rootScope.currentState;
         
                 var modalOptions = {
                     closeButtonText: 'Cancel',

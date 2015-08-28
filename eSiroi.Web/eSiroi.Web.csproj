@@ -150,6 +150,7 @@
     <Content Include="app\factory\httpLoaderInterceptor.js" />
     <Content Include="app\factory\sessionFactory.js" />
     <Content Include="app\factory\timestampMarker.js" />
+    <Content Include="app\factory\userService.js" />
     <Content Include="app\Module\ErrorHandler.js" />
     <Content Include="app\service\ModalService.js" />
     <Content Include="authComplete.html" />
