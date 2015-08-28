@@ -42,7 +42,8 @@
                     }
 
                     console.log(userInDept);
-                    console.log(userInDept);
+                    console.log(userInAdmin);
+                    console.log(userInPublic);
                 }
 
             })
