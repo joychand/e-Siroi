@@ -2,20 +2,23 @@
 (function () {
     angular.module('eSiroi.Web')
     .factory('userService', ['$injector', function ($injector) {
-        var currentUser = {};
+        var currentUser = {
+            userName: '',
+            role: []
+        };
         //TO DO *****  DATA SHOULD BE FILLED FROM AUTHENTICATION SERVER******
         var usersInrole = [
             {
                 name: 'kaibem',
-                role: 'SR'
+                role: ['SR']
             },
             {
                 name: 'tombi',
-                role: 'Operator'
+                role: ['Operator']
             },
             {
                 name: 'chibem',
-                role: 'public'
+                role: ['public']
             }
         ]
         var userInAdmin=false;
@@ -25,7 +28,7 @@
         function getUserRole(userName) {
             angular.forEach(usersInrole, function (user) {
                 if (user.name === userName) { 
-                    switch(user.role){
+                    switch(user.role[0]){
                         case 'SR':
                             userInAdmin=true;
                             break;
@@ -36,8 +39,8 @@
                             userInPublic = true;
                             break;
                     }     
-
-                        return user.role
+                   
+                    return user.role
                 }
 
             })
@@ -59,8 +62,8 @@
             },
             userInAdmin: function () { return userInAdmin; },
             userInDept:function () { return userInDept; },
-            userInPublic: function () { return userInPublic; }
-      
+            userInPublic: function () { return userInPublic; },
+            currentUser: function () { return currentUser; }
            
                 
         }

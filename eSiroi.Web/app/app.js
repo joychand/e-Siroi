@@ -17,12 +17,20 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
        .state('Index', {
            url: "/",
            templateUrl: 'Home/Index',
-           controller: "indexController"
+           controller: "indexController",
+           data: {
+               loginRequired: false,
+               roles: []
+           }
        })
         .state('Home', {
             url: "/home",
             templateUrl: 'Home/home_page',
-            controller: "HomeController"
+            controller: "HomeController",
+            data: {
+                loginRequired: false,
+                roles: []
+            }
         })
         
          .state('login', {
@@ -37,7 +45,11 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
          .state('department', {
              url: "/department",
              templateUrl: baseUrl + 'Home/department',
-             controller: 'departmentController'
+             controller: 'departmentController',
+             data: {
+                 loginRequired: true,
+                 roles:['SR','Operator']
+             }
          })
 
         .state('department.content',{
@@ -85,8 +97,13 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + '/Home/dept_OnlineApplication',
             controller: 'dept_OnlineController',
             data: {
-                status: 'Applied'
+                status: 'Applied',
+                loginRequired: false,
+                roles: []
             }
+            
+       
+    
         })
         .state('department.content.data', {
             url: '/dataEntry',
@@ -321,9 +338,36 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
        
     }
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-        
+        if (toState.name !== 'department.content.login')
+        {
+            var loggedin = toState.data.loginRequired || false;
+            var roles = toState.data.roles || [];
+            if(loggedin){
+                if (!authService.authentication.isAuth) {
+                    $state.go('department.content.login')
+                }
+                else
+                {
+                    if (roles.length > 0) {
+                        console.log(authService.authentication.roles);
+                        if(authService.authentication.roles.length===0)
+                        {
+                            $state.go('department.content.login')
+                        }
+                        for(var i=0;i<authService.authentication.roles.length;i++)
+                        {
+                            if (roles.indexOf(authService.authentication.roles[i] > -1)) {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            return;
+        }
        
-        if (toState.name !== 'department.content.login' ) return;
+        if (toState.name !== 'department.content.login') return;
+       //console.log(toState.data.loginRequired);
         $rootScope.previousState = $rootScope.currentState;
         
                 var modalOptions = {

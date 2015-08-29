@@ -17,10 +17,19 @@ angular.module('eSiroi.Web')
     }
 
     var _responseError = function (rejection) {
-        if (rejection.status === 401) {
-            var authService = $injector.get('authService');
-            var state = $injector.get('$state');
-            var authData = localStorageService.get('authorizationData');
+        var loggedin = false;
+        var authService = $injector.get('authService');
+        var state = $injector.get('$state');
+        var authData = localStorageService.get('authorizationData');
+        if (authData)
+        {
+            loggedin = true;
+        }
+        if (rejection.status === 401 && !loggedin) {
+            //*** changes****//
+            //var authService = $injector.get('authService');
+            //var state = $injector.get('$state');
+            //var authData = localStorageService.get('authorizationData');
 
             //if (authData) {
             //    if (authData.useRefreshTokens) {

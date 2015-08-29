@@ -8,7 +8,8 @@ angular.module('eSiroi.Web')
     var _authentication = {
         isAuth: false,
         userName: "",
-        useRefreshTokens: false
+        useRefreshTokens: false,
+        roles:[]
     };
 
     var _externalAuthData = {
@@ -49,6 +50,8 @@ angular.module('eSiroi.Web')
             _authentication.userName = loginData.userName;
             _authentication.useRefreshTokens = loginData.useRefreshTokens;
             userService.setUserProfile();
+            var currentUser = userService.currentUser();
+            _authentication.roles = currentUser.role;
             deferred.resolve(response);
 
         }).error(function (err, status) {
@@ -67,6 +70,7 @@ angular.module('eSiroi.Web')
         _authentication.isAuth = false;
         _authentication.userName = "";
         _authentication.useRefreshTokens = false;
+        _authentication.roles = [];
         userService.clearUserProfile();
        //$cacheFactory('templates').removeAll();
 
@@ -78,7 +82,10 @@ angular.module('eSiroi.Web')
         if (authData) {
             _authentication.isAuth = true;
             _authentication.userName = authData.userName;
-            _authentication.useRefreshTokens = authData.useRefreshTokens;
+            
+            var currentUser = userService.currentUser();
+            _authentication.roles = currentUser.role;
+            console.log(_authentication.roles);
         }
 
     };
