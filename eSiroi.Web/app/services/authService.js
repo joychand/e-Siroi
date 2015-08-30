@@ -49,9 +49,10 @@ angular.module('eSiroi.Web')
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;
             _authentication.useRefreshTokens = loginData.useRefreshTokens;
-            userService.setUserProfile();
-            var currentUser = userService.currentUser();
-            _authentication.roles = currentUser.role;
+            userService.fillUserClaim();
+           
+            _authentication.roles = userService.currentUser.role;
+            console.log(_authentication.roles);
             deferred.resolve(response);
 
         }).error(function (err, status) {
@@ -82,10 +83,9 @@ angular.module('eSiroi.Web')
         if (authData) {
             _authentication.isAuth = true;
             _authentication.userName = authData.userName;
-            
-            var currentUser = userService.currentUser();
-            _authentication.roles = currentUser.role;
-            console.log(_authentication.roles);
+            userService.fillUserClaim();
+            _authentication.roles = userService.currentUser.role;
+           // console.log(_authentication.roles);
         }
 
     };

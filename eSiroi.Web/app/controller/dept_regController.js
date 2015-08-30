@@ -50,11 +50,11 @@
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
         $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending'];
         console.log(authService.authentication.userName);
-        if (userService.userInAdmin())
+        if (authService.authentication.userName=='kaibem')
        {
            $scope.selectedStatus = $scope.applnStatus[1];
        }
-        else if (userService.userInDept())
+        else if (authService.authentication.userName == 'tombi')
        {
            $scope.selectedStatus = $scope.applnStatus[0]
 

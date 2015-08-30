@@ -224,7 +224,9 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + 'Home/applyregistration',
             controller: 'applyRegistrationController',
             data: {
-                    displayName: 'ApplyHome'
+                displayName: 'ApplyHome',
+                loginRequired: true,
+                roles: ['Public']
                   }
                        
         })
@@ -328,8 +330,14 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
     $rootScope.currentState;
     $rootScope.errorHandler = errorHandler;
     $rootScope.$stateParams = $stateParams;
-    authService.fillAuthData();
-    $rootScope.authentication = authService.authentication;
+    
+        authService.fillAuthData();
+        $rootScope.authentication = authService.authentication;
+
+   
+       
+   
+   
     $rootScope.signOut=function(){
        
                    
@@ -338,36 +346,36 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
        
     }
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-        if (toState.name !== 'department.content.login')
-        {
+
+        if (toState.name !== 'department.content.login' && toState.name !== 'Home') {
             var loggedin = toState.data.loginRequired || false;
             var roles = toState.data.roles || [];
-            if(loggedin){
+            if (loggedin) {
                 if (!authService.authentication.isAuth) {
                     $state.go('department.content.login')
                 }
-                else
-                {
+                else {
                     if (roles.length > 0) {
-                        console.log(authService.authentication.roles);
-                        if(authService.authentication.roles.length===0)
-                        {
+                        console.log(authService.authentication.userName);
+                        if (authService.authentication.roles.length === 0) {
                             $state.go('department.content.login')
                         }
-                        for(var i=0;i<authService.authentication.roles.length;i++)
-                        {
-                            if (roles.indexOf(authService.authentication.roles[i] > -1)) {
-                                break;
+                        for (var i = 0; i < authService.authentication.roles.length; i++) {
+                            if (roles.indexOf(authService.authentication.roles[i]) > -1) {
+                                return;
                             }
                         }
+                        $state.go('Home');
                     }
+
+                   
                 }
             }
             return;
         }
-       
-        if (toState.name !== 'department.content.login') return;
-       //console.log(toState.data.loginRequired);
+
+        else if (toState.name === 'Home') return;
+      
         $rootScope.previousState = $rootScope.currentState;
         
                 var modalOptions = {
