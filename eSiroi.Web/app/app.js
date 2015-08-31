@@ -14,6 +14,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
     //********************** NAVIGATION TOP BAR ROUTING ******************************//
     $stateProvider
        
+
        .state('Index', {
            url: "/",
            templateUrl: 'Home/Index',
@@ -23,6 +24,15 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                roles: []
            }
        })
+         .state('NoAuth', {
+             url: "/",
+             template: '<h1>YOU ARE NOT AUTHORIZED </h1>',
+             
+             data: {
+                 loginRequired: false,
+                 roles: []
+             }
+         })
         .state('Home', {
             url: "/home",
             templateUrl: 'Home/home_page',
@@ -45,11 +55,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
          .state('department', {
              url: "/department",
              templateUrl: baseUrl + 'Home/department',
-             controller: 'departmentController',
-             data: {
-                 loginRequired: true,
-                 roles:['SR','Operator']
-             }
+             controller: 'departmentController'
+            
          })
 
         .state('department.content',{
@@ -70,14 +77,21 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         {
             url: '/login',
             templateUrl: baseUrl + 'Home/login_page',
-            controller: 'deptloginController'
+            data: {
+                loginRequired: false,
+                roles: []
+            }
    
         })
 
         .state('department.content.home', {
             url: '/home',
-            templateUrl: baseUrl +'/Home/dept_home',
-            controller: 'deptHomeController'
+            templateUrl: baseUrl +'Home/dept_home',
+            controller: 'deptHomeController',
+            data: {
+                loginRequired: true,
+                roles: ['SR', 'Operator']
+            }
             
             //resolve: {
             //    applications: function (dept_dataFactory) {
@@ -89,17 +103,17 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
        
         .state('Search', {
             url: '/Search',
-            templateUrl: baseUrl + '/Home/searchReg'
+            templateUrl: baseUrl + 'Home/searchReg'
            
         })
         .state('department.content.onlineapplication', {
             url: '/onlineapplication',
-            templateUrl: baseUrl + '/Home/dept_OnlineApplication',
+            templateUrl: baseUrl + 'Home/dept_OnlineApplication',
             controller: 'dept_OnlineController',
             data: {
                 status: 'Applied',
-                loginRequired: false,
-                roles: []
+                loginRequired: true,
+                roles: ['Operator']
             }
             
        
@@ -109,6 +123,11 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             url: '/dataEntry',
             templateUrl: baseUrl + '/Home/dept_dataEntry',
             controller: 'dept_regController',
+            data:{
+               
+                loginRequired: true,
+                roles: ['Operator']
+            },
             resolve: {
                 majortrans: function (dataFactory) {
                     return dataFactory.getMajortransaction().then(function (results) {
@@ -345,63 +364,81 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
             $state.go('Home');
        
     }
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
+
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        console.log(toState.name);
         if (toState.name !== 'department.content.login' && toState.name !== 'Home') {
             var loggedin = toState.data.loginRequired || false;
             var roles = toState.data.roles || [];
             if (loggedin) {
                 if (!authService.authentication.isAuth) {
-                    $state.go('department.content.login')
+                    event.preventDefault();
+                    $urlRouter.sync();
+                    $state.go('department.content.login');
+                   
                 }
                 else {
                     if (roles.length > 0) {
-                        console.log(authService.authentication.userName);
+                       
                         if (authService.authentication.roles.length === 0) {
-                            $state.go('department.content.login')
+                            event.preventDefault();
+                            return $state.go('department.content.login');
                         }
                         for (var i = 0; i < authService.authentication.roles.length; i++) {
                             if (roles.indexOf(authService.authentication.roles[i]) > -1) {
                                 return;
                             }
                         }
-                        $state.go('Home');
+                        event.preventDefault();
+                        return $state.go('NoAuth');
                     }
-
+                  
                    
                 }
+
             }
-            return;
+            //return;
+            //event.preventDefault();
         }
 
         else if (toState.name === 'Home') return;
-      
-        $rootScope.previousState = $rootScope.currentState;
-        
-                var modalOptions = {
-                    closeButtonText: 'Cancel',
-                    actionButtonText: 'Login',
-                    headerText: 'Login',
-                    bodyText: ''
-                };
+        else if (toState.name == 'department.content.login') {
+            $rootScope.previousState = $rootScope.currentState;
 
-                var modalDefault = {
-                    templateUrl: eSiroiWebSettings.baseUrl + '/Home/loginPage',
-                    controller: 'loginModalCtrl',
-                    backdrop: 'static',
-                    size: 'lg'
-                   
-                };
+            var modalOptions = {
+                closeButtonText: 'Cancel',
+                actionButtonText: 'Login',
+                headerText: 'Login',
+                bodyText: ''
+            };
 
-        modalService.showModal(modalDefault, modalOptions).then(function (result) {
-                       // $state.go('department.content.home');            
-                         }, function (error) {
-                       // $state.go($rootScope.previousState);
+            var modalDefault = {
+                templateUrl: eSiroiWebSettings.baseUrl + 'Home/loginPage',
+                controller: 'loginModalCtrl',
+                backdrop: 'static',
+                backdropClass: 'dark-backdrop',
+                size: 'lg'
+
+            };
+                    event.preventDefault();         
+              
+                    modalService.showModal(modalDefault, modalOptions).then(function (result) {
+                        console.log('hahahaha');
+                                  
+                    }, function (error) {
+                        
                     });
-        event.preventDefault();  
+              
+           
+            
+          
+           
+        }
+         
     })
 
-       
+    
    
     $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
                 $rootScope.previousState = from.name;
@@ -410,7 +447,13 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
                 console.log('Current state:' + $rootScope.currentState)
     });
 
-    
+    $rootScope.$on('$locationChangeSuccess', function (ev) {
+        $urlRouter.sync();
+    })
+
+    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+        console.log('error happens');
+    })
 
     }]);
 

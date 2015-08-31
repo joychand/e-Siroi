@@ -50,7 +50,6 @@ angular.module('eSiroi.Web')
             _authentication.userName = loginData.userName;
             _authentication.useRefreshTokens = loginData.useRefreshTokens;
             userService.fillUserClaim();
-           
             _authentication.roles = userService.currentUser.role;
             console.log(_authentication.roles);
             deferred.resolve(response);

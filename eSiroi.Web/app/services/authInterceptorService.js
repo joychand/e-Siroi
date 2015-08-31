@@ -26,19 +26,9 @@ angular.module('eSiroi.Web')
             loggedin = true;
         }
         if (rejection.status === 401 && !loggedin) {
-            //*** changes****//
-            //var authService = $injector.get('authService');
-            //var state = $injector.get('$state');
-            //var authData = localStorageService.get('authorizationData');
-
-            //if (authData) {
-            //    if (authData.useRefreshTokens) {
-            //        $location.path('/refresh');
-            //        return $q.reject(rejection);
-            //    }
-            //}
+           
             authService.logOut();
-            //$location.path('/login');
+           
             state.go('department.content.login');
         }
         return $q.reject(rejection);

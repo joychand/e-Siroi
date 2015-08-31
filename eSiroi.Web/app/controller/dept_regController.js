@@ -44,23 +44,32 @@
 
     function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService) {
        
-        
+        if (authService.authentication.isAuth) {
+
+        }
+        //$scope.selectedStatus = '';
         $scope.message = '';
+        $scope.userInSR = userService.userInSR;
+        $scope.userInDept = userService.userInDept;
+        $scope.userInAdmin = userService.userInAdmin;
        // $scope.selectedStatus = '';
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
         $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending'];
-        console.log(authService.authentication.userName);
-        if (authService.authentication.userName=='kaibem')
+        console.log(userService.userInSR);
+        if (userService.userInSR)
        {
            $scope.selectedStatus = $scope.applnStatus[1];
        }
-        else if (authService.authentication.userName == 'tombi')
+        else if (userService.userInDept)
        {
            $scope.selectedStatus = $scope.applnStatus[0]
 
         }
-        
-       getData();
+        if (authService.authentication.isAuth)
+        {
+            getData();
+        }
+       
       
         
        
@@ -74,12 +83,15 @@
             $scope.displayCollection = [].concat($scope.myData);
         }
         
-        function getData(){
-            dept_dataFactory.getDeed($scope.selectedStatus).then(function (response) {
-                $scope.myData = response.data;
-            }, function (result) {
-                $scope.message = 'DATA NOT FOUND';
-            });
+        function getData() {
+            if ($scope.selectedStatus != '') {
+                dept_dataFactory.getDeed($scope.selectedStatus).then(function (response) {
+                    $scope.myData = response.data;
+                }, function (result) {
+                    $scope.message = 'DATA NOT FOUND';
+                });
+            }
+           
         }
 
         // PROCESS ROW FUNCTION

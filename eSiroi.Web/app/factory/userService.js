@@ -12,24 +12,46 @@
    
        
         
-        //userInAdmin:false,
-        //userInDept:false,
-        //userInPublic :false,        
+        userInSR:false,
+        userInDept:false,
+        userInPublic: false,
+        userInAdmin:false,
         
             //set user profiles
             fillUserClaim: function () {
                 var authService = $injector.get('authService');
                 this.currentUser.userName = authService.authentication.userName;
                 this.currentUser.role = getUserRole(authService.authentication.userName);
-                console.log(this.currentUser.role);
+                angular.forEach(this.currentUser.role, function (role) {
+                   
+                    switch (role) {
+                        case 'SR': {
+                            userfactory.userInSR = true;
+                            break;
+                        }
+                        case 'Operator': {
+                            userfactory.userInDept = true;
+                            break;
+                        }
+                        case 'Public': {
+                            
+                            userfactory.userInPublic = true;
+                            break;
+                            }
+                        case 'Admin': {
+                            userfactory.userInAdmin = true;
+                        }
+                    }
+                })
                
             },
             //clear user profiles
             clearUserProfile: function(){
                 this.currentUser = {};
+                this.userInSR=false;
+                this.userInDept=false;
+                this.userInPublic=false;
                 this.userInAdmin = false;
-                this.userInDept = false;
-                this.userInPublic = false;
             },
           
         }

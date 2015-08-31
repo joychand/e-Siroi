@@ -232,7 +232,13 @@ padding-top:0;
   .grid-align{
       text-align:center;
   }
-
+  .dark-backdrop
+    {
+      opacity:0.9 !important;
+     filter: Alpha(Opacity=90) !important;
+      background-color: #000 !important;
+     
+  }
 
   /*
  * Off Canvas
@@ -292,4 +298,5 @@ padding-top:0;
     #signature{
         text-align:right;
     }
+    
 }
