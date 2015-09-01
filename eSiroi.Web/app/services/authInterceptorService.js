@@ -29,7 +29,7 @@ angular.module('eSiroi.Web')
            
             authService.logOut();
            
-            state.go('department.content.login');
+            state.go('login');
         }
         return $q.reject(rejection);
     }

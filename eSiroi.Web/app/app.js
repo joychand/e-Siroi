@@ -45,8 +45,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         
          .state('login', {
              url: "/login",
-             templateUrl: baseUrl + '/Home/login_page'
-             //controller: "simpleController"
+             templateUrl: baseUrl + '/Home/loginPage',
+             controller: "loginModalCtrl"
          })
 //#endregion MAINNAVIGATIONROUTING
         //#region DEPARTMENTROUTING
@@ -368,14 +368,14 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         console.log(toState.name);
-        if (toState.name !== 'department.content.login' && toState.name !== 'Home') {
+        if (toState.name !== 'login' && toState.name !== 'Home') {
             var loggedin = toState.data.loginRequired || false;
             var roles = toState.data.roles || [];
             if (loggedin) {
                 if (!authService.authentication.isAuth) {
                     event.preventDefault();
-                    $urlRouter.sync();
-                    $state.go('department.content.login');
+                    //$urlRouter.sync();
+                    $state.go('login');
                    
                 }
                 else {
@@ -383,7 +383,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
                        
                         if (authService.authentication.roles.length === 0) {
                             event.preventDefault();
-                            return $state.go('department.content.login');
+                            return $state.go('login');
                         }
                         for (var i = 0; i < authService.authentication.roles.length; i++) {
                             if (roles.indexOf(authService.authentication.roles[i]) > -1) {
@@ -403,38 +403,38 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
         }
 
         else if (toState.name === 'Home') return;
-        else if (toState.name == 'department.content.login') {
-            $rootScope.previousState = $rootScope.currentState;
+        //else if (toState.name == 'department.content.login') {
+        //    $rootScope.previousState = $rootScope.currentState;
 
-            var modalOptions = {
-                closeButtonText: 'Cancel',
-                actionButtonText: 'Login',
-                headerText: 'Login',
-                bodyText: ''
-            };
+        //    var modalOptions = {
+        //        closeButtonText: 'Cancel',
+        //        actionButtonText: 'Login',
+        //        headerText: 'Login',
+        //        bodyText: ''
+        //    };
 
-            var modalDefault = {
-                templateUrl: eSiroiWebSettings.baseUrl + 'Home/loginPage',
-                controller: 'loginModalCtrl',
-                backdrop: 'static',
-                backdropClass: 'dark-backdrop',
-                size: 'lg'
+        //    var modalDefault = {
+        //        templateUrl: eSiroiWebSettings.baseUrl + 'Home/loginPage',
+        //        controller: 'loginModalCtrl',
+        //        backdrop: 'static',
+        //        backdropClass: 'dark-backdrop',
+        //        size: 'lg'
 
-            };
-                    event.preventDefault();         
+        //    };
+        //            event.preventDefault();         
               
-                    modalService.showModal(modalDefault, modalOptions).then(function (result) {
-                        console.log('hahahaha');
+        //            modalService.showModal(modalDefault, modalOptions).then(function (result) {
+        //                console.log('hahahaha');
                                   
-                    }, function (error) {
+        //            }, function (error) {
                         
-                    });
+        //            });
               
            
             
           
            
-        }
+        //}
          
     })
 
@@ -447,9 +447,9 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
                 console.log('Current state:' + $rootScope.currentState)
     });
 
-    $rootScope.$on('$locationChangeSuccess', function (ev) {
-        $urlRouter.sync();
-    })
+    //$rootScope.$on('$locationChangeSuccess', function (ev) {
+    //    $urlRouter.sync();
+    //})
 
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
         console.log('error happens');

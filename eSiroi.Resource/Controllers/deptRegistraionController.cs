@@ -159,6 +159,29 @@ namespace eSiroi.Resource.Controllers
             return NotFound();
         }
 
+       // [Authorize]
+        [Route("{ts}/{tsyear}/deedinfo")]
+       public IHttpActionResult getdeedinfo(int ts, int tyear)
+       {
+           var deedinfo = db.Deed
+                         .Where(d => d.TSNo == ts && d.TSYear == tyear)
+                         .Select(list => new 
+                         { 
+                             list.RegNo,
+                             list.RegYear,
+                             list.RegDate,
+                             list.TransType,
+                             list.EntryDt,
+                             list.EnterBy
+                           
+                         });
+           if (deedinfo.Any())
+           {
+               return Ok(deedinfo);
+           }
+           return NotFound();
+           
+       }
         # endregion DeedFrom API
 
       
@@ -218,7 +241,31 @@ namespace eSiroi.Resource.Controllers
 
         }
 
-      
+        //GET PROPERTY DETIALS
+       // [Authorize]
+        [Route("{ts}/{tyear}/propertyinfo")]
+        public IHttpActionResult getPropertyinfo(int ts,int tyear )
+        {
+            var plotinfo = db.Plot
+                         .Where(p => p.TSNo == ts && p.TSYear == tyear)
+                         .Select(list => new
+                         {
+                             list.DagNo,
+                             list.PattaNo,
+                             list.TransactedArea,
+                             list.Unit,
+                             list.LandType,
+                             list.Village,
+                             list.Circle,
+                             list.District
+
+                         });
+            if (plotinfo.Any())
+            {
+                return Ok(plotinfo);
+            }
+            return NotFound();
+        }
         #endregion 
 
         #region PartyDetails API
@@ -258,6 +305,33 @@ namespace eSiroi.Resource.Controllers
 
 
              }
+        // GET EXECUTANT INFO
+        [HttpGet]
+        [Route("{ts}/{tyear}/executantInfo")]
+        public IHttpActionResult getexecutantInfo(int ts, int tyear)
+        {
+            var execInfo = db.Executant
+                         .Where(e => e.TSNo == ts && e.TSYear == tyear)
+                         .Select(list => new
+                         {
+                             list.ExecSurName,
+                             list.ExecMiddleName,
+                             list.ExecLastName,
+                             list.FatherSurName,
+                             list.FatherMiddleName,
+                             list.FatherLastName,
+                             list.SlNo,
+                             list.Sex,
+                             list.Street,
+                             list.Village
+
+                         });
+            if (execInfo.Any())
+            {
+                return Ok(execInfo);
+            }
+            return NotFound();
+        }
 
         //***   GET EXECUTANT DDL DATA *********//
         [HttpGet]
@@ -359,6 +433,74 @@ namespace eSiroi.Resource.Controllers
             else
                 return NotFound();
         }
+        //GET CLAIMANT INFO
+        [HttpGet]
+        [Route("{ts}/{tyear}/claimantInfo")]
+        public IHttpActionResult getclaimantInfo(int ts, int tyear)
+        {
+            var claiminfo = db.Claimant
+                         .Where(c => c.TSNo == ts && c.TSYear == tyear)
+                         .Select(list => new
+                         {
+                             list.ClaimSurName,
+                             list.ClaimMiddleName,
+                             list.ClaimLastName,
+                             list.FatherSurName,
+                             list.FatherMiddleName,
+                             list.FatherLastName,
+                             list.SlNo,
+                             list.Sex,
+                             list.Street,
+                             list.Village
+
+                         });
+            if (claiminfo.Any())
+            {
+                return Ok(claiminfo);
+            }
+            return NotFound();
+        }
+        // GET IDENTIFIER INFO
+        [HttpGet]
+        [Route("{ts}/{tyear}/identifierInfo")]
+        public IHttpActionResult getidentifierInfo(int ts, int tyear)
+        {
+            var claiminfo = db.Identifier
+                          .Where(c => c.TSNo == ts && c.TSYear == tyear)
+                          .Select(list => new
+                          {
+                              list.IdentSurName,
+                              list.IdentMiddleName,
+                              list.IdentLastName,
+                              list.FatherSurName,
+                              list.FatherMiddleName,
+                              list.FatherLastName,
+                              list.SlNo,
+                              list.Sex,
+                              list.Street,
+                              list.Village
+
+                          });
+            if (claiminfo.Any())
+            {
+                return Ok(claiminfo);
+            }
+            return NotFound();
+        }
+
+        // SR APPLICATION STATUS
+        //[HttpPost]
+        //[Route("srupdate")]
+        //public async Task<IHttpActionResult> SRupdate()
+        //{
+        //    try
+        //    {
+        //        await();
+        //    }
+        //    catch (DbUpdateException e ) {
+
+        //}
+        //}
         // GET ONLINE IDENTIFIER LIST
         [HttpGet]
         [Route("{ackno}/identifierlist")]

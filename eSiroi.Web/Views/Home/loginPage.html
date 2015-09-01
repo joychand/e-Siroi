@@ -2,36 +2,39 @@
     <div class="modal-header">
         <h2>Login</h2>
     </div>
-    <form class="form-horizontal">
-        <div class="modal-body">
+    <div class="container">
+        <form class="form-horizontal">
+            <div class="modal-body">
 
-            <div class="form-group">
-                <label for="ID" class="col-sm-2 control-label">UserId:</label>
-                <div class="col-sm-6">
-                    <input type="text" data-ng-model="loginData.userName" class="form-control" placeholder="Enter EIN" />
+                <div class="form-group">
+                    <label for="ID" class="col-sm-2 control-label">UserId:</label>
+                    <div class="col-sm-6">
+                        <input type="text" data-ng-model="loginData.userName" class="form-control" placeholder="Enter EIN" />
+                    </div>
+
                 </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password:</label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" data-ng-model="loginData.password" placeholder="Enter password" />
+                    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="password" class="col-sm-2 control-label">Password:</label>
-                <div class="col-sm-6">
-                    <input type="password" class="form-control" data-ng-model="loginData.password" placeholder="Enter password" />
                 </div>
+                <div data-ng-hide="hideMessage" class="col-sm6 col-sm-offset-3 text-center alert alert-danger">
+                    {{message}}
+                </div>
+                <div class="col-sm6 col-sm-offset-3 text-center">
+                    <http-loader>Authenticating......<img id="mySpinner" src="spinning.gif" /></http-loader>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-offset-2 col-sm-6 ">
+                    <button type="submit" data-ng-click="login()" class="btn btn-primary">login</button>
+                    <button type="reset" class="btn btn-default" data-ng-click="login.cancel()">cancel</button>
+                </div>
+            </div>
 
-            </div>
-            <div data-ng-hide="hideMessage" class="col-sm6 col-sm-offset-3 text-center alert alert-danger">
-                {{message}}
-            </div>
-            <div class="col-sm6 col-sm-offset-3 text-center">
-                <http-loader>Authenticating......<img id="mySpinner" src="spinning.gif" /></http-loader>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <div class="col-sm-offset-2 col-sm-6 ">
-                <button type="submit" data-ng-click="login()" class="btn btn-primary">login</button>
-                <button type="reset" class="btn btn-default" data-ng-click="login.cancel()">cancel</button>
-            </div>
-        </div>
-
-    </form>
+        </form>
+    </div>
+    
 </div>

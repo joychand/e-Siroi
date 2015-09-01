@@ -173,8 +173,42 @@
                 url: urlBase2 + 'updateDeedStatus',
                 data:statusObject
                 })
-        }
+        },
             //#endregion
+
+            //#region DEPARTMENTHOME
+            getDeedInfo:function(tsno,tsyear){
+                return $http({
+                    method: 'GET',
+                    url: urlBase2 + tsno + '/'+ tsyear + '/deedinfo'
+                })
+            },
+
+            getPropertyInfo:function(tsno,tsyear){
+                return $http({
+                    method: 'GET',
+                    url: urlBase2 + tsno + '/'+ tsyear + '/propertyinfo'
+                })
+            },
+            getExecInfo: function(tsno,tsyear){
+                return $http({
+                    method: 'GET',
+                    url: urlBase2 + tsno + '/' + tsyear + '/executantInfo'
+                })
+            },
+            getClaimInfo: function (tsno, tsyear) {
+                return $http({
+                    method: 'GET',
+                    url: urlBase2 + tsno + '/' + tsyear + '/claimantInfo'
+                })
+            },
+            getIdentInfo: function(tsno,tsyear){
+                return $http({
+                    method: 'GET',
+                    url: urlBase2 + tsno + '/' + tsyear + '/identifierInfo'
+                })
+            }
+           
 
         };
 

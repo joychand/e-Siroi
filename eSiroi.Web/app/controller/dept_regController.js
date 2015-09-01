@@ -43,7 +43,12 @@
         .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'userService','authService', deptHomeController]);
 
     function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService) {
-       
+        $scope.deedinfo = {};
+        $scope.propertyinfo = {};
+        $scope.execInfo = {};
+        $scope.claimInfo = {};
+        $scope.identInfo = {};
+
         if (authService.authentication.isAuth) {
 
         }
@@ -55,7 +60,7 @@
        // $scope.selectedStatus = '';
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
         $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending'];
-        console.log(userService.userInSR);
+       
         if (userService.userInSR)
        {
            $scope.selectedStatus = $scope.applnStatus[1];
@@ -101,7 +106,35 @@
             // dept_sessionfactory.updateFormStatus();
              //dept_sessionfactory.putRow(row);
              //$state.go('department.content.scan')
-        }
+         }
+         $scope.viewRow = function (row) {
+             var tsno = row.ts;
+             var tyear = row.tyear;
+
+             modaldefault
+             dept_dataFactory.getDeedInfo(tsno, tyear).then(function (response) {
+                 $scope.deedinfo = response.data;
+                 dept_dataFactory.getPropertyInfo(tsno, tyear).then(function (response) {
+                     $scope.propertyinfo = response.data;
+                     dept_dataFactory.getExecInfo(tsno, tyear).then(function (response) {
+                         $scope.execInfo = response.data;
+                         dept_dataFactory.getClaimInfo(tsno, tyear).then(function (response) {
+                             $scope.claimInfo = response.data;
+                             dept_dataFactory.getIdentInfo(tsno, tyear).then(function (response) {
+                                 $scope.identInfo = response.data;
+
+
+                             })
+
+                         })
+
+                     })
+                 })
+
+
+             })
+
+         }
        
     }
 })();
@@ -209,8 +242,8 @@
 //LoginModalController
 (function () {
     angular.module('eSiroi.Web')
-    .controller('loginModalCtrl', ['$scope', '$modalInstance','dept_sessionfactory','authService','$state','$rootScope',loginModalCtrl]);
-    function loginModalCtrl($scope, $modalInstance, dept_sessionfactory,authService,$state,$rootScope) {
+    .controller('loginModalCtrl', ['$scope','dept_sessionfactory','authService','$state','$rootScope',loginModalCtrl]);
+    function loginModalCtrl($scope,  dept_sessionfactory,authService,$state,$rootScope) {
         $scope.loginData = {
             userName: "",
             password: "",
@@ -250,7 +283,7 @@
               
                   
                 //$location.path('/orders');
-                $modalInstance.close();
+               // $modalInstance.close();
             },
              function (err) {
                  $scope.hideMessage = false;
@@ -262,17 +295,14 @@
 
         // USER CLICK CANCEL EVENT
         $scope.login.cancel = function () {
-            $modalInstance.dismiss();
-            try {
+           
                 
                 $state.go($rootScope.previousState);
-            }
-            catch(error)
-            {
+            
                 $state.go('Home');
             }
            
-        }
+       
     }
 
 })();
@@ -764,11 +794,13 @@
             };
             modalService.showModal({}, modaloptions).then(function (result) {
                
+                angular.extend($scope.property, {
+                    TSNo: $scope.tsyear.ts,
+                    TSYear: $scope.tsyear.tyear
+                });
                 console.log($scope.session.propFormIsOnline);
-                if (!$scope.session.propFormIsOnline) {
+                if ($scope.session.OnlineStatus === 'offline') {
                     angular.extend($scope.property, {
-                        TSNo: $scope.tsyear.ts,
-                        TSYear: $scope.tsyear.tyear,
                         state: 'Manipur',
                         district: $scope.propertyddl.district.distName,
                         subdivision: $scope.propertyddl.subdivsion.subDivName,
@@ -782,9 +814,9 @@
                 }
                
                 console.log($scope.property);
-               // dept_dataFactory.postPlotDetail($scope.property).then(function (result) {
+               dept_dataFactory.postPlotDetail($scope.property).then(function (result) {
                     $state.go('department.content.form.executant');
-                //});
+                });
             });
         }
         //VERIFY PLOT FUNCTION
@@ -1237,7 +1269,7 @@
                             tsno: $scope.tsyear.ts,
                             tsyear: $scope.tsyear.tyear,
                             ackno: dept_sessionfactory.getAckno(),
-                            status: 'Data Entered,Verify'
+                            status: 'DataEntered,Verify'
                         })
                         deptModalService.ApplnModel = statusObject;
                         dept_dataFactory.updateDeedStatus(statusObject).then(function (response) {

@@ -45,7 +45,7 @@
                 <td>{{row.status}}</td>
                 <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='Approved' && userInDept" ng-click="$state.go('department.content.upload')">Scan</button></td>
                 <td><button class="btn btn-success btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify' &&  userInSR" ng-click="">Approved</button></td>
-                <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify' && userInSR" ng-click="">View</button></td>
+                <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify' && userInSR" ng-click="viewRow()">View</button></td>
 
             </tr>
         </tbody>
