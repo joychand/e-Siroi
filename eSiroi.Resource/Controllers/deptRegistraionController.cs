@@ -161,10 +161,10 @@ namespace eSiroi.Resource.Controllers
 
        // [Authorize]
         [Route("{ts}/{tsyear}/deedinfo")]
-       public IHttpActionResult getdeedinfo(int ts, int tyear)
+       public IHttpActionResult getdeedinfo(int ts, int tsyear)
        {
            var deedinfo = db.Deed
-                         .Where(d => d.TSNo == ts && d.TSYear == tyear)
+                         .Where(d => d.TSNo == ts && d.TSYear == tsyear)
                          .Select(list => new 
                          { 
                              list.RegNo,

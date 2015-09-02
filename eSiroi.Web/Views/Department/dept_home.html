@@ -35,8 +35,8 @@
                 <td>{{row.date}}</td>
                 <td>{{row.status}}</td>
                 <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='Approved'" ng-click="$state.go('department.content.upload')">Scan</button></td>
-                <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered'" ng-click="">Approved</button></td>
-                 <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered'" ng-click="">View</button></td>
+                <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify'" ng-click="processrow(row)">Approved</button></td>
+                 <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify'" ng-click="">View</button></td>
 
             </tr>
        </tbody>

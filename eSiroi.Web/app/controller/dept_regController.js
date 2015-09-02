@@ -43,15 +43,11 @@
         .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'userService','authService', deptHomeController]);
 
     function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService) {
-        $scope.deedinfo = {};
-        $scope.propertyinfo = {};
-        $scope.execInfo = {};
-        $scope.claimInfo = {};
-        $scope.identInfo = {};
+        
+        $scope.tsno;
+        $scope.tyear;
 
-        if (authService.authentication.isAuth) {
-
-        }
+      
         //$scope.selectedStatus = '';
         $scope.message = '';
         $scope.userInSR = userService.userInSR;
@@ -70,10 +66,9 @@
            $scope.selectedStatus = $scope.applnStatus[0]
 
         }
-        if (authService.authentication.isAuth)
-        {
+        
             getData();
-        }
+      
        
       
         
@@ -103,41 +98,120 @@
        
          $scope.processrow =function(row)
          {
+             console.log(row);
             // dept_sessionfactory.updateFormStatus();
              //dept_sessionfactory.putRow(row);
              //$state.go('department.content.scan')
          }
          $scope.viewRow = function (row) {
-             var tsno = row.ts;
-             var tyear = row.tyear;
+             console.log(row);
+             $scope.tsno = row.ts;
+             $scope.tyear = row.tYear;
+             
+             var modalOptions = {
+                 closeButtonText: 'Cancel',
+                 actionButtonText: 'Ok',
+                 headerText: 'SR Verificaton',
+                 bodyText: ''
+             };
 
-             modaldefault
-             dept_dataFactory.getDeedInfo(tsno, tyear).then(function (response) {
-                 $scope.deedinfo = response.data;
-                 dept_dataFactory.getPropertyInfo(tsno, tyear).then(function (response) {
-                     $scope.propertyinfo = response.data;
-                     dept_dataFactory.getExecInfo(tsno, tyear).then(function (response) {
-                         $scope.execInfo = response.data;
-                         dept_dataFactory.getClaimInfo(tsno, tyear).then(function (response) {
-                             $scope.claimInfo = response.data;
-                             dept_dataFactory.getIdentInfo(tsno, tyear).then(function (response) {
-                                 $scope.identInfo = response.data;
+             var modalDefault = {
+                 templateUrl: 'Department/SRVerification',
+                 controller: 'srVerifyController',
+                 //scope: $scope,
+                 backdrop: 'static',
+                windowClass: 'modal-data-view round',
+                 //windowClass: 'app-modal-window',
+                 resolve: {
+                     Tsno: function () { return $scope.tsno },
 
+                     TsYear: function () { return $scope.tyear }
+                     }
+                 }
+                
 
-                             })
+            
+                   
 
-                         })
+             modalService.showModal(modalDefault, modalOptions).then(function (result) {
+                 
 
-                     })
-                 })
+             });
+         
 
-
-             })
+           
+            
+            
+        
+            
 
          }
        
     }
 })();
+
+//srVerifyController
+
+(function () {
+    angular.module('eSiroi.Web')
+    .controller('srVerifyController', ['$scope', 'Tsno', 'TsYear', 'dept_dataFactory', '$modalInstance', function ($scope, Tsno, TsYear, dept_dataFactory, $modalInstance) {
+        $scope.tno = Tsno;
+        $scope.tyear = TsYear;
+        $scope.remarks = false;
+        $scope.deedinfo = {};
+        $scope.propertyinfo = {};
+        $scope.execInfo = {};
+        $scope.claimInfo = {};
+        $scope.identInfo = {};
+        $scope.displayCollection1 = [].concat($scope.deedinfo);
+        $scope.displayCollection2 = [].concat($scope.claimInfo);
+        $scope.displayCollection3 = [].concat($scope.propertyinfo);
+        $scope.displayCollection4 = [].concat($scope.execInfo);
+        $scope.displayCollection5 = [].concat($scope.identInfo);
+        dept_dataFactory.getDeedInfo($scope.tno, $scope.tyear).then(function (response) {
+            $scope.deedinfo = response.data;
+            dept_dataFactory.getPropertyInfo($scope.tno, $scope.tyear).then(function (response) {
+                $scope.propertyinfo = response.data;
+                dept_dataFactory.getExecInfo($scope.tno, $scope.tyear).then(function (response) {
+                    $scope.execInfo = response.data;
+                    dept_dataFactory.getClaimInfo($scope.tno, $scope.tyear).then(function (response) {
+                        $scope.claimInfo = response.data;
+                        dept_dataFactory.getIdentInfo($scope.tno, $scope.tyear).then(function (response) {
+                            $scope.identInfo = response.data;
+
+
+                        })
+
+                    })
+
+                })
+            })
+
+
+        })
+
+
+        $scope.cancel = function ()
+        { $modalInstance.dismiss('cancel'); }
+
+        $scope.onApproved = function () {
+           
+            $modalInstance.close('close');
+            //$scope.refresh();
+            console.log($scope.userInDept);
+
+        }
+        $scope.onreject = function () {
+            $scope.remarks = true;
+
+        }
+        $scope.submitremarks = function () {
+            $modalInstance.close('close')
+        }
+
+    }])
+})();
+
 
 //dept_OnlineController
 (function () {
@@ -178,6 +252,7 @@
         // PROCESS ROW FUNCTION
 
         $scope.processrow = function (row) {
+            console.log(row);
             // dept_sessionfactory.updateFormStatus();
             dept_sessionfactory.putRow(row);
             $state.go('department.content.form')

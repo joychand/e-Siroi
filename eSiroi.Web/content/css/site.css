@@ -229,6 +229,10 @@ padding-top:0;
       /*min-width:900px;
       height: auto;*/
   }
+  .modal-data-view .modal-dialog {
+      height: 60% !important;
+      width:70% !important;
+  }
   .grid-align{
       text-align:center;
   }
@@ -239,6 +243,12 @@ padding-top:0;
       background-color: #000 !important;
      
   }
+  .round {
+      
+-webkit-border-radius: 15px !important;
+-moz-border-radius: 15px !important;
+border-radius: 15px !important;
+}
 
   /*
  * Off Canvas
