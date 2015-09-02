@@ -205,6 +205,9 @@
             $scope.remarks = true;
 
         }
+        $scope.onRejectCancel = function () {
+            $scope.remarks = false;
+        }
         $scope.submitremarks = function () {
             $modalInstance.close('close')
         }
