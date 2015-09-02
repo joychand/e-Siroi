@@ -195,8 +195,11 @@
         { $modalInstance.dismiss('cancel'); }
 
         $scope.onApproved = function () {
+            dept_dataFactory.approveApplication($scope.tno, $scope.tyear).then(function (result) {
+               // $modalInstance.close('close');
+                $state.go('department.content.home');
+            })
            
-            $modalInstance.close('close');
             //$scope.refresh();
             console.log($scope.userInDept);
 

@@ -173,7 +173,18 @@
                 url: urlBase2 + 'updateDeedStatus',
                 data:statusObject
                 })
-        },
+            },
+            //SR approve applicaiton
+            approveApplication: function (ts,tyear) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase2 + 'approvedApplication',
+                    data: {
+                        ts: ts,
+                        tyear:tyear,
+                    }
+                })
+            },
             //#endregion
 
             //#region DEPARTMENTHOME

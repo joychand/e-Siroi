@@ -628,6 +628,41 @@ namespace eSiroi.Resource.Controllers
 
             return Ok();
         }
+       
+        # endregion
+
+        #region APPLICATION UPDATE
+        //SR approve application
+        [HttpPost]
+        [Route("approvedApplication")]
+        public async Task<IHttpActionResult> approve(int ts, int tsyear)
+        {
+            var status = "Approved";
+            Deed d = db.Deed
+                   .Where(c => c.TSNo == ts && c.TSYear == tsyear).FirstOrDefault();
+            d.Status = status;
+
+            //if (statusObject.Ackno != 0)
+            //{
+            //    onlineapplication onlineApplication = db.onlineapplication
+            //                        .Where(o => o.ackno == statusObject.Ackno).FirstOrDefault();
+            //    onlineApplication.status = statusObject.status;
+            //}
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+
+            catch (DbUpdateException e)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
+        //Data entry applicaiton update
         [Route("updateDeedStatus")]
         public async Task<IHttpActionResult> updateDeedStatus(StatusObject statusObject)
         {
@@ -635,26 +670,26 @@ namespace eSiroi.Resource.Controllers
                    .Where(c => c.TSNo == statusObject.tsno && c.TSYear == statusObject.tsyear).FirstOrDefault();
             d.Status = statusObject.status;
 
-           if(statusObject.Ackno!=0){
-               onlineapplication onlineApplication = db.onlineapplication
-                                   .Where(o => o.ackno == statusObject.Ackno).FirstOrDefault();
-               onlineApplication.status = statusObject.status;
-           }
+            if (statusObject.Ackno != 0)
+            {
+                onlineapplication onlineApplication = db.onlineapplication
+                                    .Where(o => o.ackno == statusObject.Ackno).FirstOrDefault();
+                onlineApplication.status = statusObject.status;
+            }
 
-           try
-           {
-               await db.SaveChangesAsync();
-           }
+            try
+            {
+                await db.SaveChangesAsync();
+            }
 
-            catch(DbUpdateException e)
-           {
+            catch (DbUpdateException e)
+            {
                 return NotFound();
             }
-           
+
             return Ok();
         }
-        # endregion
-
+        #endregion
 
 
 
