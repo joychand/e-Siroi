@@ -24,7 +24,8 @@
             deed: {},
             deedddl: {},
 
-           ApplnModel:{},
+            ApplnModel: {},
+            onlineAppln:{},
 
             modelClear: function () {
 
@@ -38,6 +39,8 @@
                 this.deedddl = {};
                 this.property = {};
                 this.propertyddl = {};
+                this.ApplnModel= {};
+                this.onlineAppln = {};
 
             },
             clFormOnline: {

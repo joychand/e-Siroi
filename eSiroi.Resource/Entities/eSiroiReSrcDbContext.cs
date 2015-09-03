@@ -40,6 +40,8 @@ namespace eSiroi.Resource.Entities
         public virtual DbSet<eSiroi.Resource.Entities.RO> RO { get; set; }
         public virtual DbSet<eSiroi.Resource.Entities.SubDivision> SubDivision { get; set; }
         public virtual DbSet<eSiroi.Resource.Entities.Exempt_Reason> Exempt_Reason { get; set; }
+        public virtual DbSet<eSiroi.Resource.Entities.Application> Application { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CensusSubDivision>()

@@ -4,7 +4,7 @@
 </div>
 <div class="row text-center hidden-print">
     <div class="col-sm-4 col-sm-push-4">
-        <select data-ng-model="selectedStatus"
+        <select data-ng-model="status.selectedStatus"
                 data-ng-options="st for st in applnStatus"
                 data-ng-change="getSelectedStatus()" class="form-control">
                <option value="">-SelectStatus-</option>
@@ -43,9 +43,9 @@
                 <td>{{row.transaction}}</td>
                 <td>{{row.date|date:'dd-MMM-yyyy'}}</td>
                 <td>{{row.status}}</td>
-                <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='Approved' && userInDept" ng-click="$state.go('department.content.upload')">Scan</button></td>
-                <td><button class="btn btn-success btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify' &&  userInSR" ng-click="">Approved</button></td>
-                <td><button class="btn btn-primary btn-xs" ng-if="selectedStatus && selectedStatus=='DataEntered,Verify' && userInSR" ng-click="viewRow(row)">View</button></td>
+                <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='Approved' && userInDept" ng-click="$state.go('department.content.upload')">Scan</button></td>
+                <td><button class="btn btn-success btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DataEntered,Verify' &&  userInSR" ng-click="">Approved</button></td>
+                <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DataEntered,Verify' && userInSR" ng-click="viewRow(row)">View</button></td>
 
             </tr>
         </tbody>

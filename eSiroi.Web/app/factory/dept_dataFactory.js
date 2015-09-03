@@ -22,10 +22,10 @@
             //#region DEED FORM DATA FACTORY
 
             // GET DEED STATUS
-            getDeed: function(status){
+            getApplication: function (status) {
                 return $http({
                     method:'GET',
-                    url:urlBase2 + status + '/getDeed'
+                    url: urlBase2 + status + '/getApplication'
                 });
             },
 
@@ -175,14 +175,14 @@
                 })
             },
             //SR approve applicaiton
-            approveApplication: function (ts,tyear) {
+            approveApplication: function () {
                 return $http({
                     method: 'POST',
-                    url: urlBase2 + 'approvedApplication',
-                    data: {
-                        ts: ts,
-                        tyear:tyear,
-                    }
+                    url: urlBase2 + 'approvedApplication'
+                    //data: {
+                    //    ts: ts,
+                    //    tyear:tyear,
+                    //}
                 })
             },
             //#endregion
@@ -218,8 +218,35 @@
                     method: 'GET',
                     url: urlBase2 + tsno + '/' + tsyear + '/identifierInfo'
                 })
+            },
+            //#region APPLICATION
+            updateApplicationStatus: function (Application) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase2 + 'updateApplication',
+                    data: Application
+                });
+            },
+            addApplication: function (Application) {
+            return $http({
+                method: 'POST',
+                url: urlBase2 + 'applicationAdd',
+                data: Application
+            });
+            },
+
+            fillAppln: function (){
+                return $http({
+
+                });
+            },
+            fillOnlineAppln: function () {
+                return $http({
+
+                });
             }
-           
+
+            //#endregion 
 
         };
 

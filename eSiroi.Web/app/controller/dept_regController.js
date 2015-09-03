@@ -40,9 +40,9 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'userService','authService', deptHomeController]);
+        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'userService','authService','deptModalService', deptHomeController]);
 
-    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService) {
+    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService, deptModalService) {
         
         $scope.tsno;
         $scope.tyear;
@@ -53,17 +53,17 @@
         $scope.userInSR = userService.userInSR;
         $scope.userInDept = userService.userInDept;
         $scope.userInAdmin = userService.userInAdmin;
-       // $scope.selectedStatus = '';
+        $scope.status = {};
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
         $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending'];
        
         if (userService.userInSR)
        {
-           $scope.selectedStatus = $scope.applnStatus[1];
+            $scope.status.selectedStatus = $scope.applnStatus[1];
        }
         else if (userService.userInDept)
        {
-           $scope.selectedStatus = $scope.applnStatus[0]
+            $scope.status.selectedStatus = $scope.applnStatus[0]
 
         }
         
@@ -83,10 +83,11 @@
             $scope.displayCollection = [].concat($scope.myData);
         }
         
-        function getData() {
-            if ($scope.selectedStatus != '') {
-                dept_dataFactory.getDeed($scope.selectedStatus).then(function (response) {
+        function getData () {
+            if ($scope.status.selectedStatus != '') {
+                dept_dataFactory.getApplication($scope.status.selectedStatus).then(function (response) {
                     $scope.myData = response.data;
+                   
                 }, function (result) {
                     $scope.message = 'DATA NOT FOUND';
                 });
@@ -104,7 +105,19 @@
              //$state.go('department.content.scan')
          }
          $scope.viewRow = function (row) {
-             console.log(row);
+             
+            // console.log(row.ackno);
+             var ackno = ((row.akcno === null) ? 0 : row.ackno);
+             console.log(ackno);
+             deptModalService.ApplnModel = {};
+             angular.extend(deptModalService.ApplnModel, {
+                 tsno:row.ts,
+                 tsyear:row.tYear,
+                 sro:row.roCode,
+                 ackno: ackno,
+                 trans_code:row.trans_code
+             })
+            // console.log(deptModalService.ApplnModel);
              $scope.tsno = row.ts;
              $scope.tyear = row.tYear;
              
@@ -134,7 +147,7 @@
                    
 
              modalService.showModal(modalDefault, modalOptions).then(function (result) {
-                 
+                 getData();
 
              });
          
@@ -154,7 +167,7 @@
 
 (function () {
     angular.module('eSiroi.Web')
-    .controller('srVerifyController', ['$scope', 'Tsno', 'TsYear', 'dept_dataFactory', '$modalInstance', function ($scope, Tsno, TsYear, dept_dataFactory, $modalInstance) {
+    .controller('srVerifyController', ['$scope', 'Tsno', 'TsYear', 'dept_dataFactory', '$modalInstance', '$state', 'deptModalService', function ($scope, Tsno, TsYear, dept_dataFactory, $modalInstance, $state, deptModalService) {
         $scope.tno = Tsno;
         $scope.tyear = TsYear;
         $scope.remarks = false;
@@ -195,13 +208,36 @@
         { $modalInstance.dismiss('cancel'); }
 
         $scope.onApproved = function () {
-            dept_dataFactory.approveApplication($scope.tno, $scope.tyear).then(function (result) {
-               // $modalInstance.close('close');
-                $state.go('department.content.home');
+            var statusobject = {}
+            angular.extend(statusobject, {
+                tsno: deptModalService.ApplnModel.tsno,
+                tsyear: deptModalService.ApplnModel.tsyear,
+                Ackno: deptModalService.ApplnModel.ackno,
+                sro: deptModalService.ApplnModel.sro,
+                status:'Approved'
+                });
+            dept_dataFactory.updateApplicationStatus(statusobject).then(function (result) {
+               // console.log($scope.status.selectedStatus);
+                //if ($scope.selectedStatus != '') {
+                //    dept_dataFactory.getApplication($scope.selectedStatus).then(function (response) {
+                //        $scope.myData = response.data;
+
+                //    }, function (result) {
+                //        $scope.message = 'DATA NOT FOUND';
+                //    });
+                //}
+
+                $modalInstance.close('close');
+                
+               
             })
            
-            //$scope.refresh();
-            console.log($scope.userInDept);
+            //dept_dataFactory.updateDeedStatus().then(function (result) {
+            //    // $modalInstance.close('close');
+            //    $state.go('department.content.home');
+            //})
+            ////$scope.refresh();
+            //console.log($scope.userInDept);
 
         }
         $scope.onreject = function () {
@@ -225,9 +261,9 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('dept_OnlineController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', dept_OnlineController]);
+        .controller('dept_OnlineController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory','deptModalService', dept_OnlineController]);
 
-    function dept_OnlineController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory) {
+    function dept_OnlineController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, deptModalService) {
 
         var status = $state.current.data.status;
         $scope.applnStatus = ['All', 'Applied', 'incomplete'];
@@ -261,6 +297,14 @@
             console.log(row);
             // dept_sessionfactory.updateFormStatus();
             dept_sessionfactory.putRow(row);
+            deptModalService.onlineAppln = {};
+            angular.extend(deptModalService.onlineAppln, {
+                ackno: row.ackno,
+                sro: row.roCode,
+                trans_code: row.trans_code
+
+            });
+
             $state.go('department.content.form')
         }
 
@@ -324,7 +368,7 @@
 (function () {
     angular.module('eSiroi.Web')
     .controller('loginModalCtrl', ['$scope','dept_sessionfactory','authService','$state','$rootScope',loginModalCtrl]);
-    function loginModalCtrl($scope,  dept_sessionfactory,authService,$state,$rootScope) {
+    function loginModalCtrl($scope,dept_sessionfactory,authService,$state,$rootScope) {
         $scope.loginData = {
             userName: "",
             password: "",
@@ -378,7 +422,7 @@
         $scope.login.cancel = function () {
            
                 
-                $state.go($rootScope.previousState);
+                //$state.go($rootScope.previousState);
             
                 $state.go('Home');
             }
@@ -1350,10 +1394,12 @@
                             tsno: $scope.tsyear.ts,
                             tsyear: $scope.tsyear.tyear,
                             ackno: dept_sessionfactory.getAckno(),
-                            status: 'DataEntered,Verify'
+                            status: 'DataEntered,Verify',
+                            sro:1,
+                            trans_maj_code:'01'
                         })
                         deptModalService.ApplnModel = statusObject;
-                        dept_dataFactory.updateDeedStatus(statusObject).then(function (response) {
+                        dept_dataFactory.addApplication(statusObject).then(function (response) {
                             $state.go('department.content.dataentered');
                         })
                     }) 

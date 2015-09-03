@@ -37,8 +37,11 @@ namespace eSiroi.Resource.Controllers
                                 select new
                                 {
                                     ackno = oAppln.ackno,
+
                                     sro = ro.RegOfficeName,
+                                    roCode=ro.RegOfficeCode,
                                     transaction = trans.tran_name,
+                                    trans_code=trans.tran_maj_code,
                                     date = oAppln.date
                                    
                                     
@@ -128,26 +131,29 @@ namespace eSiroi.Resource.Controllers
         }
 
         // GET DEEDS STATUS
-       [Authorize]
+       //[Authorize]
         
-        [Route("{status}/getDeed")]
-        public IHttpActionResult getDeed(String status)
+        [Route("{status}/getApplication")]
+        public IHttpActionResult getApplication(String status)
         {
-            var query = from d in db.Deed
+            var query = from apln in db.Application
                         join ro in db.RegistarOffice
-                        on d.SR equals ro.RegOfficeCode
+                        on apln.sro equals ro.RegOfficeCode.ToString()
                         join trans in db.MajorTrans_code
-                        on d.TransType equals trans.tran_maj_code
-                        where d.Status == status
+                        on apln.trans_maj_code equals trans.tran_maj_code
+                        where apln.status == status
                         select new
                         {
-                            TS = d.TSNo,
-                            TYear = d.TSYear,
+                            TS = apln.TSNo,
+                            TYear = apln.TSYear,
                             sro = ro.RegOfficeName,
+                            ackno=apln.ackno,
+                            roCode=ro.RegOfficeCode,
                             transaction = trans.tran_name,
-                            status = d.Status,
-                            enterby = d.EnterBy,
-                            date = d.EntryDt
+                            trans_code=trans.tran_maj_code,
+                            status = apln.status,
+                            //enterby = d.EnterBy,
+                            date = apln.Entrydate
 
 
 
@@ -632,22 +638,54 @@ namespace eSiroi.Resource.Controllers
         # endregion
 
         #region APPLICATION UPDATE
+        [HttpPost]
+        [Route("applicationAdd")]
+        public async Task<IHttpActionResult> addApplication(Application application)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            //DateTime entrydate=DateTime.UtcNow;
+            application.Entrydate = DateTime.UtcNow.ToString();
+            db.Application.Add(application);
+
+            if (application.ackno != 0)
+            {
+                onlineapplication onlineApplication = db.onlineapplication
+                                    .Where(o => o.ackno == application.ackno).FirstOrDefault();
+                onlineApplication.status = application.status;
+            }
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+
+            catch (DbUpdateException e)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
         //SR approve application
         [HttpPost]
-        [Route("approvedApplication")]
-        public async Task<IHttpActionResult> approve(int ts, int tsyear)
+        [Route("updateApplication")]
+        public async Task<IHttpActionResult> approve(ApplicationStatus application)
         {
-            var status = "Approved";
-            Deed d = db.Deed
-                   .Where(c => c.TSNo == ts && c.TSYear == tsyear).FirstOrDefault();
-            d.Status = status;
+            
+            var appln = db.Application
+                   .Where(a => a.TSNo == application.tsno && a.TSYear == application.tsyear && a.sro==application.sro).FirstOrDefault();
+            appln.status = application.status;
 
-            //if (statusObject.Ackno != 0)
-            //{
-            //    onlineapplication onlineApplication = db.onlineapplication
-            //                        .Where(o => o.ackno == statusObject.Ackno).FirstOrDefault();
-            //    onlineApplication.status = statusObject.status;
-            //}
+            if (application.Ackno != 0)
+            {
+                onlineapplication onlineApplication = db.onlineapplication
+                                    .Where(o => o.ackno == application.Ackno).FirstOrDefault();
+                onlineApplication.status = application.status;
+            }
 
             try
             {

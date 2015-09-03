@@ -45,7 +45,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         
          .state('login', {
              url: "/login",
-             templateUrl: baseUrl + '/Home/loginPage',
+             templateUrl: baseUrl + 'Home/loginPage',
              controller: "loginModalCtrl"
          })
 //#endregion MAINNAVIGATIONROUTING

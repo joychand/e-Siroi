@@ -18,7 +18,8 @@
         var sessionclaimddlist = [];
         var sessionidentifierlist = [];
         var sessionidentddlist = [];
-        var sessionAckno=0;
+        var sessionAckno = 0;
+        var sessionSro;
 
         var executantlist = [];
         var claimantlist = [];
@@ -33,6 +34,12 @@
         service.getAckno = function () {
           
                 return sessionAckno;
+        }
+        service.putSro = function (sroCode) {
+            sessionSro = sroCode;
+        }
+        service.getSro = function () {
+            return sessionSro;
         }
         service.getLinkVisibility = function () {
             return linkVisibilty;
