@@ -220,7 +220,7 @@
                 Ackno: deptModalService.ApplnModel.ackno,
                 sro: deptModalService.ApplnModel.sro,
                 status: 'Approved',
-                remarks: $scope.verify.reason
+                remarks: ''
                 });
             dept_dataFactory.updateApplicationStatus(statusobject).then(function (result) {
                
@@ -337,6 +337,7 @@
         $scope.proceed = function () {
             deptModalService.modelClear();
             dept_sessionfactory.clearModelList();
+            dept_sessionfactory.putTransCd($scope.transaction.tran_maj_code);
             //console.log($scope.links.dataSelected);
             $state.go('department.content.form');
         }
@@ -452,7 +453,7 @@
         .controller('dataEntryformController', ['$scope', '$state', 'dept_sessionfactory', 'dataFactory', 'dept_dataFactory', 'deptModalService', 'modalService', '$rootScope', 'transID', dataEntryformController]);
 
     function dataEntryformController($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService, $rootScope, transID) {
-        console.log(transID);
+        
         $scope.tsyear = {};
         $scope.tsyear.tyear = transID[0];
 
@@ -623,6 +624,7 @@
            
             getPropPartyList(row.ackno);
             dept_sessionfactory.putAckno(row.ackno);
+            dept_sessionfactory.putTransCd(row.trans_code);
         }
         //GET ONLINE DATA
         function getPropPartyList(ackno) {
@@ -837,6 +839,8 @@
             $scope.deed.TSNo = $scope.tsyear.ts;
             $scope.deed.TSYear = $scope.tsyear.tyear
             $scope.deed.Date_Time_Present = $scope.d.dop + $scope.d.time;
+            $scope.deed.transtype = dept_sessionfactory.getTransCd();
+            $scope.deed.SR = dept_sessionfactory.user.sro;
             
             dept_dataFactory.postdeed($scope.deed).then(function (response) {
                 $state.go('department.content.form.property')
@@ -1378,8 +1382,8 @@
                     district: $scope.ident.district.distName,
                     subDivison: $scope.ident.subDivision.subDivName,
                     village: $scope.ident.village.villName,
-                    postOffice: $scope.ident.postOffice.postOffice1,
-                    pinCode: $scope.ident.postOffice.pinCode,
+                    postOffice: $scope.ident.postoffice.postOffice1,
+                    pinCode: $scope.ident.postoffice.pinCode,
                     enterby: 'radha' 
                 });
 
@@ -1412,7 +1416,7 @@
                             ackno: dept_sessionfactory.getAckno(),
                             status: 'DataEntered,Verify',
                             sro:dept_sessionfactory.user.sro,
-                            trans_maj_code: '01',
+                            trans_maj_code: dept_sessionfactory.getTransCd(),
                             
                         })
                         deptModalService.ApplnModel = statusObject;

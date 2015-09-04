@@ -20,6 +20,7 @@
         var sessionidentddlist = [];
         var sessionAckno = 0;
         var sessionSro;
+        var sessiontransCode = '';
 
         var executantlist = [];
         var claimantlist = [];
@@ -41,6 +42,8 @@
         service.getSro = function () {
             return sessionSro;
         }
+        service.getTransCd = function () { return sessiontransCode; }
+        service.putTransCd = function (transcode) { sessiontransCode = transcode;}
         service.getLinkVisibility = function () {
             return linkVisibilty;
         }
@@ -212,6 +215,9 @@
              executantlist = [];
              claimantlist = [];
              identifierlist = [];
+             sessionAckno = 0;
+             
+             sessiontransCode = '';
         }
 
         //LOGIN MODAL SERVICE
