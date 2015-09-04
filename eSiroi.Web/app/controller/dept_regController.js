@@ -44,6 +44,8 @@
 
     function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService, deptModalService) {
         
+       
+        
         $scope.tsno;
         $scope.tyear;
 
@@ -147,6 +149,7 @@
                    
 
              modalService.showModal(modalDefault, modalOptions).then(function (result) {
+                 //refresh the view 
                  getData();
 
              });
@@ -171,6 +174,8 @@
         $scope.tno = Tsno;
         $scope.tyear = TsYear;
         $scope.remarks = false;
+        $scope.verify = {}
+        //$scope.verify.reason
         $scope.deedinfo = {};
         $scope.propertyinfo = {};
         $scope.execInfo = {};
@@ -214,30 +219,18 @@
                 tsyear: deptModalService.ApplnModel.tsyear,
                 Ackno: deptModalService.ApplnModel.ackno,
                 sro: deptModalService.ApplnModel.sro,
-                status:'Approved'
+                status: 'Approved',
+                remarks: $scope.verify.reason
                 });
             dept_dataFactory.updateApplicationStatus(statusobject).then(function (result) {
-               // console.log($scope.status.selectedStatus);
-                //if ($scope.selectedStatus != '') {
-                //    dept_dataFactory.getApplication($scope.selectedStatus).then(function (response) {
-                //        $scope.myData = response.data;
-
-                //    }, function (result) {
-                //        $scope.message = 'DATA NOT FOUND';
-                //    });
-                //}
+               
 
                 $modalInstance.close('close');
                 
                
             })
            
-            //dept_dataFactory.updateDeedStatus().then(function (result) {
-            //    // $modalInstance.close('close');
-            //    $state.go('department.content.home');
-            //})
-            ////$scope.refresh();
-            //console.log($scope.userInDept);
+           
 
         }
         $scope.onreject = function () {
@@ -248,7 +241,25 @@
             $scope.remarks = false;
         }
         $scope.submitremarks = function () {
-            $modalInstance.close('close')
+            
+            var statusobject = {}
+            
+            angular.extend(statusobject, {
+                tsno: deptModalService.ApplnModel.tsno,
+                tsyear: deptModalService.ApplnModel.tsyear,
+                Ackno: deptModalService.ApplnModel.ackno,
+                sro: deptModalService.ApplnModel.sro,
+                status: 'Pending',
+                remarks: $scope.verify.reason
+            });
+            dept_dataFactory.updateApplicationStatus(statusobject).then(function (result) {
+
+                
+                $modalInstance.close('close');
+
+
+            })
+            
         }
 
     }])
@@ -389,13 +400,14 @@
                     {
                         dept_sessionfactory.putCurrUser('Operator');
                         dept_sessionfactory.user.role = 'Operator';
+                        
                     }
                     else
                     {
                         dept_sessionfactory.putCurrUser('SR');
                         dept_sessionfactory.user.role = 'SR';
                     }
-                    
+                    dept_sessionfactory.user.sro = ("1");
                     $state.go('department.content.home');
                 }
                 else {
@@ -437,10 +449,14 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('dataEntryformController', ['$scope', '$state', 'dept_sessionfactory', 'dataFactory', 'dept_dataFactory', 'deptModalService', 'modalService', '$rootScope', dataEntryformController]);
+        .controller('dataEntryformController', ['$scope', '$state', 'dept_sessionfactory', 'dataFactory', 'dept_dataFactory', 'deptModalService', 'modalService', '$rootScope', 'transID', dataEntryformController]);
 
-    function dataEntryformController($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService, $rootScope) {
+    function dataEntryformController($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService, $rootScope, transID) {
+        console.log(transID);
         $scope.tsyear = {};
+        $scope.tsyear.tyear = transID[0];
+
+        $scope.tsyear.ts = transID[1];
         $scope.visibility = true;
         $scope.click = false;
 
@@ -1395,8 +1411,9 @@
                             tsyear: $scope.tsyear.tyear,
                             ackno: dept_sessionfactory.getAckno(),
                             status: 'DataEntered,Verify',
-                            sro:1,
-                            trans_maj_code:'01'
+                            sro:dept_sessionfactory.user.sro,
+                            trans_maj_code: '01',
+                            
                         })
                         deptModalService.ApplnModel = statusObject;
                         dept_dataFactory.addApplication(statusObject).then(function (response) {

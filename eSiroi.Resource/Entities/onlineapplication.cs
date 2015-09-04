@@ -41,5 +41,8 @@ namespace eSiroi.Resource.Entities
 
         [StringLength(50)]
         public string status { get; set; }
+
+        [StringLength(50)]
+        public string remarks { get; set; }
     }
 }

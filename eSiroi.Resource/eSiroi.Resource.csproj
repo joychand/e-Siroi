@@ -208,6 +208,14 @@
     <Compile Include="eSiroiResourceMigration\201509030657136_applicaiton_table_added.Designer.cs">
       <DependentUpon>201509030657136_applicaiton_table_added.cs</DependentUpon>
     </Compile>
+    <Compile Include="eSiroiResourceMigration\201509040448054_added_remarks_column.cs" />
+    <Compile Include="eSiroiResourceMigration\201509040448054_added_remarks_column.Designer.cs">
+      <DependentUpon>201509040448054_added_remarks_column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eSiroiResourceMigration\201509040523163_added_remarks_onlineapplication.cs" />
+    <Compile Include="eSiroiResourceMigration\201509040523163_added_remarks_onlineapplication.Designer.cs">
+      <DependentUpon>201509040523163_added_remarks_onlineapplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
     <Compile Include="Models\ApplicationStatus.cs" />
     <Compile Include="Models\ApplnID.cs" />
@@ -246,6 +254,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="eSiroiResourceMigration\201509030657136_applicaiton_table_added.resx">
       <DependentUpon>201509030657136_applicaiton_table_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201509040448054_added_remarks_column.resx">
+      <DependentUpon>201509040448054_added_remarks_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201509040523163_added_remarks_onlineapplication.resx">
+      <DependentUpon>201509040523163_added_remarks_onlineapplication.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,5 +12,6 @@ namespace eSiroi.Resource.Models
         public int Ackno { get; set; }
         public string status { get; set; }
         public string sro { get; set; }
+        public string remarks { get; set; }
     }
 }

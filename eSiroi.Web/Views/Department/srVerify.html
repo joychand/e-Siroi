@@ -159,13 +159,13 @@
                 
             </div>
             <div class="input-group text-center" ng-if="remarks">
-                <input class="form-control" type="text" placeholder="Rejection Reason" data-ng-model="reason" />
+                <input class="form-control" type="text" placeholder="Rejection Reason" data-ng-model="verify.reason" />
                 <span class="input-group-addon">
                     
                     <button class="btn btn-success btn-xs" ng-click="submitremarks()">submit</button>
                     <button class="btn btn-danger btn-xs" ng-click="onRejectCancel()">cancel</button>
                 </span>
-
+                {{verify.reason}}
             </div>
            
            </div>

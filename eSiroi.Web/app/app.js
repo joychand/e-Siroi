@@ -142,6 +142,14 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             url: '/dataEntryform',
             templateUrl: baseUrl + 'Home/dept_dataEntry_form',
             controller: 'dataEntryformController',
+            resolve: {
+                transID: function (dept_dataFactory, dept_sessionfactory) {
+                    return dept_dataFactory.generateTsID(dept_sessionfactory.user.sro).then(function (results) {
+
+                        return results.data;
+                    });
+                }
+            }
             
         })
            .state('department.content.form.deed', {
@@ -452,7 +460,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
     //})
 
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-        console.log('error happens');
+        console.log(error);
     })
 
     }]);

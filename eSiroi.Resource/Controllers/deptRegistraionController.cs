@@ -31,6 +31,7 @@ namespace eSiroi.Resource.Controllers
             var query =from oAppln in db.onlineapplication
                                 join ro in db.RegistarOffice
                                 on oAppln.sro equals SqlFunctions.StringConvert((double) ro.RegOfficeCode ).Trim()
+                               
                                 join trans in db.MajorTrans_code
                                 on oAppln.trans_maj_code equals trans.tran_maj_code
                                  where oAppln.status == status
@@ -153,7 +154,8 @@ namespace eSiroi.Resource.Controllers
                             trans_code=trans.tran_maj_code,
                             status = apln.status,
                             //enterby = d.EnterBy,
-                            date = apln.Entrydate
+                            date = apln.Entrydate,
+                            remarks=apln.remarks,
 
 
 
@@ -679,12 +681,22 @@ namespace eSiroi.Resource.Controllers
             var appln = db.Application
                    .Where(a => a.TSNo == application.tsno && a.TSYear == application.tsyear && a.sro==application.sro).FirstOrDefault();
             appln.status = application.status;
+            var reason = "plot";
+            if (application.remarks.Length > 0)
+            //if(reason.Length>0)
+            {
+                appln.remarks = application.remarks;
+            }
 
             if (application.Ackno != 0)
             {
                 onlineapplication onlineApplication = db.onlineapplication
                                     .Where(o => o.ackno == application.Ackno).FirstOrDefault();
                 onlineApplication.status = application.status;
+                if (application.remarks.Length > 0)
+                {
+                    onlineApplication.remarks = application.remarks;
+                }
             }
 
             try
@@ -729,11 +741,22 @@ namespace eSiroi.Resource.Controllers
         }
         #endregion
 
+        #region GENERATE TSNO TSYEAR
+        [HttpPost]
+        [Route("generateTS")]
+        public IHttpActionResult generateTS([FromBody]string sro)
+        {
+            int tsyear = 2021;
+            
+            int? curTsno = db.Application
+                .Where(a => a.sro == sro && a.TSYear == tsyear).Max(a => (int?)a.TSNo);
+            int nextcurTsno = (curTsno ?? default(int)) + 1;
+            IEnumerable<int> transidlist = new List<int> { tsyear, nextcurTsno };
 
+            return Ok (transidlist);
+        }
 
-
-
-
+#endregion
 
 
     }

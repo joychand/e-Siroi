@@ -31,7 +31,7 @@
                 <th class="text-center">Trans_Type</th>
                 <th class="text-center">DataEnterDate</th>
                 <th class="text-center">Status</th>
-                <th class="text-center"></th>
+                <th class="text-center">TransactionMethod</th>
                 <th class="text-center"></th>
                 <th class="text-center"></th>
             </tr>
@@ -43,8 +43,9 @@
                 <td>{{row.transaction}}</td>
                 <td>{{row.date|date:'dd-MMM-yyyy'}}</td>
                 <td>{{row.status}}</td>
+                <td ng-if="row.ackno">{{row.remarks}}</td>
                 <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='Approved' && userInDept" ng-click="$state.go('department.content.upload')">Scan</button></td>
-                <td><button class="btn btn-success btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DataEntered,Verify' &&  userInSR" ng-click="">Approved</button></td>
+               
                 <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DataEntered,Verify' && userInSR" ng-click="viewRow(row)">View</button></td>
 
             </tr>

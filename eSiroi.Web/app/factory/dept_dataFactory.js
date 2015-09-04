@@ -244,6 +244,14 @@
                 return $http({
 
                 });
+            },
+
+            generateTsID: function (sro) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase2 + 'generateTS',
+                    data: sro
+                })
             }
 
             //#endregion 
