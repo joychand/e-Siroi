@@ -22,5 +22,9 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Department/srVerify.html", "text/html");
         }
+        public ActionResult Scheduler_Modal()
+        {
+            return File("~/Views/Department/Appoint_Calendar.html", "text/html");
+        }
     }
 }

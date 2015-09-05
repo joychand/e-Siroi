@@ -252,9 +252,17 @@
                     url: urlBase2 + 'generateTS',
                     data: sro
                 })
-            }
+            },
 
             //#endregion 
+
+            getDate:function(){
+                return $http({
+                    method:'GET',
+                    url: urlBase2 + 'getDate'
+
+                })
+        }
 
         };
 

@@ -1,0 +1,28 @@
+﻿<div class="container text-center">
+    <div class="modal-header row text-center">
+        <h1>Appointment Scheduler</h1>
+    </div>
+    <div class="row text-center modal-body">
+        <table>
+            <tr>
+                <td style="vertical-align:top">
+                    <input datepicker-popup="dd-MM-yyyy" close-on-date-selection='false' min-date="scheduler.minDate" ng-model='activeDate' ng-click='opened=true' is-open='opened' multi-select='scheduler.selectedDates' />
+                </td>
+                <td style='width:50px'></td>
+                <td>
+                    <div>Selected Dates:</div>
+                    <div class='well well-sm'>
+                        <div ng-repeat='d in scheduler.selectedDates | orderBy : identity'>
+                            {{d | date : 'fullDate'}}
+                            <button class='btn btn-xs btn-warning' style='margin:5px' ng-click='removeFromSelected(d)'>Remove</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row modal-footer">
+        <button class="btn btn-xs btn-default" ng-click="cancel()">Cancel</button>
+    </div>
+   
+</div>

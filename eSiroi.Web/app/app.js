@@ -4,7 +4,7 @@
 /// <reference path = ~/scripts/angular-ui-router.js>
 /// <reference path = ~/scripts/app/factory/sessionFactory.js>
 
-var app = angular.module('eSiroi.Web', ['ui.router', 'ct.ui.router.extras', 'angularModalService', 'ui.bootstrap', 'ngGrid', 'ngSanitize', 'ui.mask', 'errorHandler', 'smart-table', 'LocalStorageModule']);
+var app = angular.module('eSiroi.Web', ['ui.router', 'ct.ui.router.extras', 'angularModalService', 'ui.bootstrap', 'ngGrid', 'ngSanitize', 'ui.mask', 'errorHandler', 'smart-table', 'LocalStorageModule', 'gm.datepickerMultiSelect']);
 
 app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provide',function ($stateProvider, $locationProvider,$urlRouterProvider,$provide ) {
     var baseUrl = $("base").first().attr("href");

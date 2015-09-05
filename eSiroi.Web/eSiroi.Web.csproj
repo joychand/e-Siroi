@@ -135,6 +135,7 @@
     <Content Include="app\controller\dept_regController.js" />
     <Content Include="app\controller\dept_VapplController.js" />
     <Content Include="app\controller\MainController.js" />
+    <Content Include="app\controller\Operator\schedulerController.js" />
     <Content Include="app\controller\regApplyController.js" />
     <Content Include="app\controller\registrationController.js" />
     <Content Include="app\controller\VapplController.js" />
@@ -152,6 +153,7 @@
     <Content Include="app\factory\timestampMarker.js" />
     <Content Include="app\factory\userService.js" />
     <Content Include="app\Module\ErrorHandler.js" />
+    <Content Include="app\Module\MultiDatePicker.js" />
     <Content Include="app\service\ModalService.js" />
     <Content Include="authComplete.html" />
     <Content Include="content\css\bootstrap-theme.css" />
@@ -200,6 +202,7 @@
     <Content Include="scripts\ui-grid.js" />
     <Content Include="scripts\ui-utils.js" />
     <Content Include="spinning.gif" />
+    <Content Include="Views\Department\Appoint_Calendar.html" />
     <Content Include="Views\Department\dept_dataEntered.html" />
     <Content Include="Views\Department\dept_home.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

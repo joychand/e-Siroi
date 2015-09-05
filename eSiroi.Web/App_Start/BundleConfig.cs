@@ -34,6 +34,7 @@ namespace eSiroi.Web.App_Start
                        "~/scripts/smart-table.min.js",
                         "~/scripts/ui-utils.js",
                        "~/app/Module/ErrorHandler.js",
+                       "~/app/Module/MultiDatePicker.js",
                       "~/app/controller/MainController.js",
                       "~/app/factory/dataFactory.js",
                        "~/app/factory/ApplyRegModel.js",
@@ -51,7 +52,9 @@ namespace eSiroi.Web.App_Start
                        "~/app/controller/dept_regController.js",
                        "~/app/service/ModalService.js",
                        "~/app/services/*.js",
-                      "~/scripts/angular-local-storage.min.js"
+                      "~/scripts/angular-local-storage.min.js",
+                      
+                       "~/app/controller/Operator/schedulerController.js"
                       //"~/scripts/authComplete.js"
 
                       ));

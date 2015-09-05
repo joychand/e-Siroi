@@ -739,6 +739,13 @@ namespace eSiroi.Resource.Controllers
 
             return Ok();
         }
+
+        [Route("getDate")]
+        public IHttpActionResult getDate()
+        {
+            var datenow = DateTime.UtcNow;
+            return Ok(datenow);
+        }
         #endregion
 
         #region GENERATE TSNO TSYEAR

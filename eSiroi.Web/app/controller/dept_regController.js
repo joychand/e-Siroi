@@ -119,16 +119,16 @@
                  ackno: ackno,
                  trans_code:row.trans_code
              })
-            // console.log(deptModalService.ApplnModel);
+
              $scope.tsno = row.ts;
              $scope.tyear = row.tYear;
              
-             var modalOptions = {
-                 closeButtonText: 'Cancel',
-                 actionButtonText: 'Ok',
-                 headerText: 'SR Verificaton',
-                 bodyText: ''
-             };
+             //var modalOptions = {
+             //    closeButtonText: 'Cancel',
+             //    actionButtonText: 'Ok',
+             //    headerText: 'SR Verificaton',
+             //    bodyText: ''
+             //};
 
              var modalDefault = {
                  templateUrl: 'Department/SRVerification',
@@ -148,7 +148,7 @@
             
                    
 
-             modalService.showModal(modalDefault, modalOptions).then(function (result) {
+             modalService.showModal(modalDefault, {}).then(function (result) {
                  //refresh the view 
                  getData();
 
@@ -162,7 +162,29 @@
             
 
          }
-       
+         $scope.schedule = function (row) {
+             var modalDefault = {
+                 templateUrl: 'Department/Scheduler_Modal',
+                 controller: 'schedulerController',
+                 //scope: $scope,
+                 backdrop: 'static',
+                 windowClass: 'modal-data-view round',
+                 //windowClass: 'app-modal-window',
+                
+             }
+
+
+
+
+
+             modalService.showModal(modalDefault, {}).then(function (result) {
+                 //refresh the view 
+                 getData();
+
+             });
+
+
+         }
     }
 })();
 
