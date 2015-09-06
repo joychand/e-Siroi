@@ -744,6 +744,13 @@ namespace eSiroi.Resource.Controllers
         public IHttpActionResult getDate()
         {
             var datenow = DateTime.UtcNow;
+            datenow = datenow.AddDays(10);
+            return Ok(datenow);
+        }
+        [Route("postDate")]
+        public IHttpActionResult postDate(String dt)
+        {
+            var datenow = DateTime.Parse(dt);
             return Ok(datenow);
         }
         #endregion

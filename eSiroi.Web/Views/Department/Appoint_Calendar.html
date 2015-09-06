@@ -6,15 +6,15 @@
         <table>
             <tr>
                 <td style="vertical-align:top">
-                    <input datepicker-popup="dd-MM-yyyy" close-on-date-selection='false' min-date="scheduler.minDate" ng-model='activeDate' ng-click='opened=true' is-open='opened' multi-select='scheduler.selectedDates' />
+                    <input class="form-control" datepicker-popup="dd-MM-yyyy" close-on-date-selection='false' min-date="scheduler.minDate" ng-model='activeDate' ng-click='opened=true' is-open='opened' multi-select='scheduler.selectedDates' />
                 </td>
-                <td style='width:50px'></td>
-                <td>
+                <td style='width:150px'></td>
+                <td style="vertical-align: top">
                     <div>Selected Dates:</div>
                     <div class='well well-sm'>
                         <div ng-repeat='d in scheduler.selectedDates | orderBy : identity'>
-                            {{d | date : 'fullDate'}}
-                            <button class='btn btn-xs btn-warning' style='margin:5px' ng-click='removeFromSelected(d)'>Remove</button>
+                            {{d | date : 'mediumDate'}}
+                            <button class='btn btn-xs btn-warning' style='margin: 5px' ng-click='removeFromSelected(d)'>Remove</button>
                         </div>
                     </div>
                 </td>
@@ -22,7 +22,10 @@
         </table>
     </div>
     <div class="row modal-footer">
+        <div class="button-group button-group-xs">
         <button class="btn btn-xs btn-default" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-xs btn-success" ng-click="fixed()">Fixed</button>
+        </div>
     </div>
    
 </div>

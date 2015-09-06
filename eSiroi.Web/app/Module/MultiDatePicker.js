@@ -57,14 +57,16 @@
 
             scope.$watch(attrs.ngModel, function (newVal, oldVal) {
                 if (!newVal) return;
-                var dateVal = new Date();
-                dateVal = newVal.getTime();
-
-                if (selectedDates.indexOf(dateVal) < 0) {
+                console.log(newVal);
+                //var dateVal = new Date();
+                var dateVal = new Date(newVal).setHours(0, 0, 0, 0);
+                console.log(dateVal);
+                if (selectedDates.indexOf(dateVal) < 0 ) {
                     selectedDates.push(dateVal);
-                } else {
-                    selectedDates.splice(selectedDates.indexOf(dateVal), 1);
                 }
+                //else {
+                //    selectedDates.splice(selectedDates.indexOf(dateVal), 1);
+                //}
             });
         }
     }

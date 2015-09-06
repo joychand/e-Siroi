@@ -262,7 +262,15 @@
                     url: urlBase2 + 'getDate'
 
                 })
-        }
+            },
+            postDate: function (d) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase2 + 'postDate',
+                    data: d
+
+                })
+            },
 
         };
 
