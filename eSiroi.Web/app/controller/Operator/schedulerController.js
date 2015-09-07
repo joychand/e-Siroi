@@ -6,6 +6,7 @@
 .controller('schedulerController', ['$scope', '$state', '$modalInstance', 'dept_dataFactory', '$filter', 'row',function ($scope, $state, $modalInstance, dept_dataFactory,$filter,row) {
     $scope.activeDate;
     $scope.scheduler = {};
+    $scope.status = {};
     
     var datenow = new Date();
     dept_dataFactory.getDate().then(function (result) {
@@ -19,6 +20,11 @@
         
         $scope.scheduler.minDate = new Date(availDate);
         $scope.identity = angular.identity;
+
+        $scope.open = function ($event) {
+            $scope.status.opened = true;
+        };
+
 
         $scope.removeFromSelected = function (dt) {
             $scope.scheduler.selectedDates.splice($scope.scheduler.selectedDates.indexOf(dt), 1);

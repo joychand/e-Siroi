@@ -2,8 +2,30 @@
     <div class="modal-header row text-center">
         <h1>Appointment Scheduler</h1>
     </div>
-    <div class="row text-center modal-body">
-        <table>
+    <div class="container modal-body">
+      <div class="row text-center ">
+        <div class="col-sm-4 col-sm-offset-1">
+            <p class="input-group">
+              <input  class="form-control" datepicker-popup="dd-MM-yyyy" close-on-date-selection='false' min-date="scheduler.minDate" ng-model='activeDate'  is-open='opened' multi-select='scheduler.selectedDates' />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click='opened=true'><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+        <div class="col-sm-4 col-sm-offset-1">
+            Selected Dates for Appointment:
+        </div>
+      </div>
+    <div class="row">
+    <div class="col-sm-6 col-sm-offset-6">
+        <div class='well well-sm'>
+            <div ng-repeat='d in scheduler.selectedDates | orderBy : identity' style="border:2px solid #ffffff">
+                {{d | date : 'mediumDate'}}
+            <button class='btn btn-xs btn-warning' style='margin: 5px' ng-click='removeFromSelected(d)'>Remove</button>
+            </div>
+        </div>
+     </div>
+        <!--<table>
             <tr>
                 <td style="vertical-align:top">
                     <input class="form-control" datepicker-popup="dd-MM-yyyy" close-on-date-selection='false' min-date="scheduler.minDate" ng-model='activeDate' ng-click='opened=true' is-open='opened' multi-select='scheduler.selectedDates' />
@@ -19,8 +41,10 @@
                     </div>
                 </td>
             </tr>
-        </table>
+        </table>-->
     </div>
+    </div>
+   
     <div class="row modal-footer">
         <div class="button-group button-group-xs">
         <button class="btn btn-xs btn-default" ng-click="cancel()">Cancel</button>
