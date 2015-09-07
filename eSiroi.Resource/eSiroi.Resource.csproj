@@ -156,6 +156,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\Application.cs" />
+    <Compile Include="Entities\Appointment.cs" />
     <Compile Include="Entities\CensusSubDivision.cs" />
     <Compile Include="Entities\censusvillage.cs" />
     <Compile Include="Entities\Circle.cs" />
@@ -216,6 +217,14 @@
     <Compile Include="eSiroiResourceMigration\201509040523163_added_remarks_onlineapplication.Designer.cs">
       <DependentUpon>201509040523163_added_remarks_onlineapplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="eSiroiResourceMigration\201509070916155_added_appointment_table.cs" />
+    <Compile Include="eSiroiResourceMigration\201509070916155_added_appointment_table.Designer.cs">
+      <DependentUpon>201509070916155_added_appointment_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eSiroiResourceMigration\201509070919492_added_appointment2_table.cs" />
+    <Compile Include="eSiroiResourceMigration\201509070919492_added_appointment2_table.Designer.cs">
+      <DependentUpon>201509070919492_added_appointment2_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
     <Compile Include="Models\ApplicationStatus.cs" />
     <Compile Include="Models\ApplnID.cs" />
@@ -260,6 +269,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="eSiroiResourceMigration\201509040523163_added_remarks_onlineapplication.resx">
       <DependentUpon>201509040523163_added_remarks_onlineapplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201509070916155_added_appointment_table.resx">
+      <DependentUpon>201509070916155_added_appointment_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201509070919492_added_appointment2_table.resx">
+      <DependentUpon>201509070919492_added_appointment2_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

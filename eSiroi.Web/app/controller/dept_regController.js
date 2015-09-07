@@ -123,12 +123,7 @@
              $scope.tsno = row.ts;
              $scope.tyear = row.tYear;
              
-             //var modalOptions = {
-             //    closeButtonText: 'Cancel',
-             //    actionButtonText: 'Ok',
-             //    headerText: 'SR Verificaton',
-             //    bodyText: ''
-             //};
+           
 
              var modalDefault = {
                  templateUrl: 'Department/SRVerification',
@@ -154,14 +149,8 @@
 
              });
          
-
-           
-            
-            
-        
-            
-
          }
+        //scheduling function
          $scope.schedule = function (row) {
              var modalDefault = {
                  templateUrl: 'Department/Scheduler_Modal',
@@ -170,6 +159,9 @@
                  backdrop: 'static',
                  windowClass: 'modal-data-view round',
                  //windowClass: 'app-modal-window',
+                 resolve: {
+                     row: function () { return row;}
+                 }
                 
              }
 

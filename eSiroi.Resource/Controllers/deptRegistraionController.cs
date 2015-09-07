@@ -748,10 +748,35 @@ namespace eSiroi.Resource.Controllers
             return Ok(datenow);
         }
         [Route("postDate")]
-        public IHttpActionResult postDate(String dt)
+        public async Task < IHttpActionResult>  postDate(Appointment appntObject)
         {
-            var datenow = DateTime.Parse(dt);
-            return Ok(datenow);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Appointment.Add(appntObject);
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+
+            catch (DbUpdateException e)
+            {
+                return InternalServerError(e);
+            }
+
+            var appDate = from  appln  in db.Application 
+                          where appln.ackno != null
+                          join oAppln in db.onlineapplication
+                          on new { ackno=appln.ackno.Value, appln.sro } equals new { oAppln.ackno, oAppln.sro }
+                          join appnt in db.Appointment
+                          on new { appln.TSNo, appln.TSYear, appln.sro } equals new { appnt.TSNo, appnt.TSYear, appnt.sro }
+                          select appnt;
+                         
+
+            return Ok(appDate);
         }
         #endregion
 

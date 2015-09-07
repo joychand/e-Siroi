@@ -263,11 +263,11 @@
 
                 })
             },
-            postDate: function (d) {
+            postAppointment: function (appnObject) {
                 return $http({
                     method: 'POST',
                     url: urlBase2 + 'postDate',
-                    data: d
+                    data: appnObject
 
                 })
             },
