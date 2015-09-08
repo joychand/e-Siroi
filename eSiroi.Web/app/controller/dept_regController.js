@@ -57,7 +57,7 @@
         $scope.userInAdmin = userService.userInAdmin;
         $scope.status = {};
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
-        $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending'];
+        $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending', 'DateFixed'];
        
         if (userService.userInSR)
        {
@@ -291,7 +291,7 @@
     function dept_OnlineController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, deptModalService) {
 
         var status = $state.current.data.status;
-        $scope.applnStatus = ['All', 'Applied', 'incomplete'];
+        $scope.applnStatus = ['All', 'Applied', 'incomplete','DateFixed'];
         $scope.selectedStatus = $scope.applnStatus[1];
         getAppln(status);
 
@@ -320,6 +320,7 @@
 
         $scope.processrow = function (row) {
             console.log(row);
+
             // dept_sessionfactory.updateFormStatus();
             dept_sessionfactory.putRow(row);
             deptModalService.onlineAppln = {};
@@ -633,13 +634,27 @@
 
         var row = dept_sessionfactory.getRow();
         console.log('previousstate: ' + $rootScope.previousState);
-        if (row && $rootScope.previousState == 'department.content.onlineapplication') {
-
+        //if (row && $rootScope.previousState == 'department.content.onlineapplication' || 'department.content.enterdeed') {
+        //    if ($rootScope.previousState == 'department.content.onlineapplication' || 'department.content.enterdeed')
            
-            getPropPartyList(row.ackno);
-            dept_sessionfactory.putAckno(row.ackno);
-            dept_sessionfactory.putTransCd(row.trans_code);
-        }
+        //    getPropPartyList(row.ackno);
+        //    dept_sessionfactory.putAckno(row.ackno);
+        //    dept_sessionfactory.putTransCd(row.trans_code);
+        //}
+        if (row)
+        {
+                if ($rootScope.previousState == 'department.content.onlineapplication' || 'department.content.enterdeed')
+                {
+                    console.log(row);
+                    console.log(row.ackno);
+                    getPropPartyList(row.ackno);
+                    dept_sessionfactory.putAckno(row.ackno);
+                    dept_sessionfactory.putTransCd(row.trans_code);
+            }
+            //    getPropPartyList(row.ackno);
+            //    dept_sessionfactory.putAckno(row.ackno);
+            //    dept_sessionfactory.putTransCd(row.trans_code);
+         }
         //GET ONLINE DATA
         function getPropPartyList(ackno) {
             dept_dataFactory.getOnlineExecutantList(ackno).then(function (response) {

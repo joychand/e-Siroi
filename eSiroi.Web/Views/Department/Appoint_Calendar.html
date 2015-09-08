@@ -1,26 +1,32 @@
 ﻿<div class="container text-center">
     <div class="modal-header row text-center">
         <h1>Appointment Scheduler</h1>
+        <div class="row">
+            <h4><em>Plz Select max 3  from available appointment dates for TSno: {{row.ts}} of TsYear: {{row.tYear}}</em></h4>
+        </div>
+        <div class="row" ng-if="error.message">
+            <span class="alert-danger alert">{{error.message}}</span>
+        </div>
     </div>
     <div class="container modal-body">
       <div class="row text-center ">
         <div class="col-sm-4 col-sm-offset-1">
             <p class="input-group">
-              <input  class="form-control" datepicker-popup="dd-MM-yyyy" close-on-date-selection='false' min-date="scheduler.minDate" ng-model='activeDate'  is-open='opened' multi-select='scheduler.selectedDates' />
+                <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" close-on-date-selection='false' min-date="scheduler.minDate" ng-model='activeDate' is-open='scheduler.isopen' ng-click="scheduler.isopen=true" multi-select='scheduler.selectedDates' />
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click='opened=true'><i class="glyphicon glyphicon-calendar"></i></button>
+                  <button type="button" class="btn btn-default" ng-click='open($event)'><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
             </p>
         </div>
         <div class="col-sm-4 col-sm-offset-1">
-            Selected Dates for Appointment:
+            Selected Dates for Appointment:{{scheduler.isopen}}
         </div>
       </div>
     <div class="row">
     <div class="col-sm-6 col-sm-offset-6">
         <div class='well well-sm'>
             <div ng-repeat='d in scheduler.selectedDates | orderBy : identity' style="border:2px solid #ffffff">
-                {{d | date : 'mediumDate'}}
+                {{d | date : 'fullDate'}}
             <button class='btn btn-xs btn-warning' style='margin: 5px' ng-click='removeFromSelected(d)'>Remove</button>
             </div>
         </div>

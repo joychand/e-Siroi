@@ -50,6 +50,7 @@ namespace eSiroi.Web.App_Start
                        "~/app/directive/uiBreadcrumbs.js",
                       "~/app/controller/registrationController.js",
                        "~/app/controller/dept_regController.js",
+                       "~/app/controller/Operator/dept_OnlineDeedController.js",
                        "~/app/service/ModalService.js",
                        "~/app/services/*.js",
                       "~/scripts/angular-local-storage.min.js",

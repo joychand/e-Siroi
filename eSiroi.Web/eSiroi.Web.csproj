@@ -135,6 +135,7 @@
     <Content Include="app\controller\dept_regController.js" />
     <Content Include="app\controller\dept_VapplController.js" />
     <Content Include="app\controller\MainController.js" />
+    <Content Include="app\controller\Operator\dept_OnlineDeedController.js" />
     <Content Include="app\controller\Operator\schedulerController.js" />
     <Content Include="app\controller\regApplyController.js" />
     <Content Include="app\controller\registrationController.js" />
@@ -208,6 +209,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Department\FactSheet.html" />
+    <Content Include="Views\Department\OnlineDeedEntry.html" />
     <Content Include="Views\Department\srVerify.html" />
     <Content Include="Views\Home\applyregistration.cshtml" />
     <Content Include="Views\Home\index.cshtml" />

@@ -26,5 +26,9 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Department/Appoint_Calendar.html", "text/html");
         }
+        public ActionResult online_deed()
+        {
+            return File("~/Views/Department/OnlineDeedEntry.html", "text/html");
+        }
     }
 }

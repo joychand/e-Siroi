@@ -797,6 +797,36 @@ namespace eSiroi.Resource.Controllers
 
 #endregion
 
+        #region OnlineDeedEntry
+        [Route("getOnlineData")]
+        [HttpPost]
+        public IHttpActionResult getOnlineData([FromBody] int ackno)
+        {
+            var onlinedata = from appln in db.Application
+                             where (appln.ackno != null ? appln.ackno==ackno:true) && appln.status == "DateFixed" 
+                             join oAppln in db.onlineapplication
+                             
+                             on new { ackno = appln.ackno.Value, appln.sro } equals new { oAppln.ackno, oAppln.sro } into a
+                             from x in a.Take(1)
+                             select new
+                             {
+                                 ackno = appln.ackno,
+                                 sro = appln.sro,
+                                 ts = appln.TSNo,
+                                 tsyear = appln.TSYear,
+                                 trans_code = appln.trans_maj_code,
+                                 status = appln.status
 
+                             };
+
+            if (onlinedata.Any())
+            {
+                return Ok(onlinedata);
+
+
+            }
+            return NotFound();
+        }
+        #endregion
     }
 }

@@ -219,6 +219,7 @@
                     url: urlBase2 + tsno + '/' + tsyear + '/identifierInfo'
                 })
             },
+            //#endregion 
             //#region APPLICATION
             updateApplicationStatus: function (Application) {
                 return $http({
@@ -271,6 +272,16 @@
 
                 })
             },
+
+            //#region OnlineDeedEntry
+            getOnlineData: function (ackno) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase2 + 'getOnlineData',
+                    data: ackno
+                })
+            }
+            //#endregion
 
         };
 

@@ -42,8 +42,13 @@
 .directive('multiSelect', function () {
     return {
         require: ['ngModel'],
+        //scope:{
+        //    opened:'=isopen'
+        //},
         link: function (scope, elem, attrs, ctrls) {
             var selectedDates;
+
+
 
             /* Called when directive is compiled */
             scope.$on('requestSelectedDates', function () {
@@ -53,6 +58,11 @@
             scope.$watchCollection(attrs.multiSelect, function (newVal) {
                 selectedDates = newVal || [];
                 scope.$broadcast('update', selectedDates);
+            });
+            scope.$watch(attrs.isopen, function (newVal) {
+                console.log(attrs.isopen);
+                console.log(newVal);
+                
             });
 
             scope.$watch(attrs.ngModel, function (newVal, oldVal) {

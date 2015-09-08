@@ -115,7 +115,15 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                 loginRequired: true,
                 roles: ['Operator']
             }
-            
+        })
+           .state('department.content.enterdeed', {
+               url: '/onlineDeedEntry',
+               templateUrl: baseUrl + 'Department/online_deed',
+               controller: 'dept_OnlineDeedController',
+               data: {
+                   loginRequired: true,
+                   roles: ['Operator']
+               } 
        
     
         })

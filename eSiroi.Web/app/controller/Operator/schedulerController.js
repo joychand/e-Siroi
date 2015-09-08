@@ -7,7 +7,10 @@
     $scope.activeDate;
     $scope.scheduler = {};
     $scope.status = {};
-    
+    $scope.row=row;
+    //$scope.scheduler.isopen = false;
+    $scope.error = {};
+    $scope.error.message=''
     var datenow = new Date();
     dept_dataFactory.getDate().then(function (result) {
         var availDate = result.data;
@@ -22,7 +25,7 @@
         $scope.identity = angular.identity;
 
         $scope.open = function ($event) {
-            $scope.status.opened = true;
+            $scope.scheduler.isopen = true;
         };
 
 
@@ -52,10 +55,28 @@
             console.log(appointment)
             var date1 = $filter('date')(appointment[0].date1, 'dd-MMM-yyyy');
             console.log(date1);
+            var statusObject={};
+            angular.extend(statusObject,{
+                tsno:row.ts,
+                tsyear:row.tYear,
+                sro:row.roCode,
+                ackno: row.ackno,
+                trans_code:row.trans_code,
+                status: 'DateFixed',
+                remarks:''
+            })
+            console.log(statusObject);
+            dept_dataFactory.updateApplicationStatus(statusObject).then(function (result) {
+                $modalInstance.close();
+            }, function (error) {
+                $scope.error.message='Error in fixing AppointmentDate'
+            })
+        
+            //dept_dataFactory
           
            
         })
-        $modalInstance.close();
+       
     }
 }]);
 })();
