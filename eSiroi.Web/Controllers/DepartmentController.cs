@@ -30,5 +30,29 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Department/OnlineDeedEntry.html", "text/html");
         }
+        public ActionResult online_update()
+        {
+            return File("~/Views/Department/online_update.html", "text/html");
+        }
+        public ActionResult online_deed_update()
+        {
+            return File("~/Views/Department/online_deed_entry.html", "text/html");
+        }
+        public ActionResult online_property_update()
+        {
+            return File("~/Views/Department/online_update_property.html", "text/html");
+        }
+        public ActionResult online_executant_update()
+        {
+            return File("~/Views/Department/online_update_executant.html", "text/html");
+        }
+        public ActionResult online_claimant_update()
+        {
+            return File("~/Views/Department/online_update_claimant.html", "text/html");
+        }
+        public ActionResult online_identifier_update()
+        {
+            return File("~/Views/Department/online_update_identifier.html", "text/html");
+        }
     }
 }

@@ -4,20 +4,22 @@
         $scope.online = {}
         $scope.onlineData = function () {
             dept_dataFactory.getOnlineData($scope.online.ackno).then(function (result) {
-                var appln = result.data;
+                var appln = result.data[0];
+                console.log(appln);
                 dept_sessionfactory.putRow(appln);
                 deptModalService.onlineAppln = {};
                 angular.extend(deptModalService.onlineAppln, {
                     ackno: appln.ackno,
                     sro: appln.sro,
-                    ts: appln.ts,
-                    tyear: appln.tyear,
+                    tsno: appln.ts,
+                    tsyear: appln.tsyear,
                     trans_code: appln.trans_code,
                     status: appln.status
 
                 });
-                $state.go('department.content.form')
+                $state.go('department.content.updateform')
             })
+            
         }
         
        

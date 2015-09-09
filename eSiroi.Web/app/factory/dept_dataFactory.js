@@ -8,6 +8,7 @@
     function dept_dataFactory($http, eSiroiWebSettings) {
         var urlBase = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ApplyRegistrationController/';
         var urlBase2 = eSiroiWebSettings.apiResrcServiceBaseUri +'api/deptRegistraionController/';
+        var urlBase3 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/OnlineUpdate/'
         var service = {
 
             /// GET ONLINE APPLICATION
@@ -273,12 +274,41 @@
                 })
             },
 
-            //#region OnlineDeedEntry
+            //#region UPDATE
             getOnlineData: function (ackno) {
                 return $http({
                     method: 'POST',
                     url: urlBase2 + 'getOnlineData',
                     data: ackno
+                })
+            },
+            getUpExecutantList: function (Oappln) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase3 + 'getExecutantlist',
+                    data:Oappln
+                })
+            },
+            getUpClaimantlist: function (Oappln) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase3 + 'getClaimantlist',
+                    data: Oappln
+                })
+            },
+            getUpIdentifierlist: function (Oappln) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase3 + 'getIdentifierlist',
+                    data: Oappln
+                })
+            },
+            
+            getUpPropertyDetails: function (Oappln) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase3 + 'getProperty',
+                    data: Oappln
                 })
             }
             //#endregion

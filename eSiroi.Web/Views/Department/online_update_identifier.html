@@ -1,0 +1,220 @@
+﻿<div class="row">
+    <div class="col-sm-6">
+        <h3>IdentifierDetailForm</h3>
+    </div>
+    <div class=" col-sm-2 pull-right"><span class="text-danger"> #<em>optional</em></span></div>
+
+</div>
+<hr />
+<ng-form class="form-horizontal" role="form" name="identform" data-ng-submit="submit()" novalidate>
+    <div class="form-group" >
+        <label class="col-sm-4 control-label pull-left">Select Identifier Slno:</label>
+        <div class="col-sm-2">
+            <select name="slno" id="" class="form-control"
+                    data-ng-model="Ilist.slNo"
+                    data-ng-options="slno for slno in identslnolist"
+                    data-ng-change="getselectedIdentifier()">
+                <option value="">slno</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Slno:</label>
+        <div class="col-sm-1">
+            <input type="text" data-ng-model="identifier.slNo" class="form-control" readonly />
+        </div>
+    </div>
+    <div class="form-group">
+        <!--<div class="form-group" ng-class="{'has-error': identform.Surname.$invalid, 'has-success': !identform.Surname.$invalid}" >-->
+        <label for="identifier" class="col-sm-2 control-label">Identifier</label>
+
+        <div class="col-sm-3">
+            <input type="text" name="ExecSurName" data-ng-model="identifier.identSurName" class="form-control" placeholder="Surnanme" required>
+            <span style="color:#f00" ng-show="identform.ExecSurName.$dirty && identform.ExecSurName.$invalid">
+                <span data-ng-show="identform.ExecSurName.$error.required">Please input a Surname</span>
+
+            </span>
+
+
+        </div>
+
+        <!--<div class="error" data-ng-show="identform.Surname.$dirty && identform.Surname.$invalid">-->
+
+
+        <div class="col-sm-3">
+            <input type="text" name="ExecMiddleName" data-ng-model="identifier.identMiddleName" class="form-control text-left" placeholder="MiddleName" required>
+            <span ng-show="identform.ExecMiddleName.$dirty && identform.ExecMiddleName.$invalid">
+                <span data-ng-show="identform.ExecMiddleName.$error.required">Please input a LastName</span>
+                <!--<span data-ng-show="identform.Surname.$error.maxlength">Your name cannot be longer than 3 characters </span>-->
+            </span>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="ExecLastName" data-ng-model="identifier.identLastName" class="form-control text-left" placeholder="LastName" required>
+            <span ng-show="identform.ExecLastName.$dirty && identform.ExecLastName.$invalid">
+                <span data-ng-show="identform.ExecLastName.$error.required">Please input a LastName</span>
+                <!--<span data-ng-show="identform.Surname.$error.maxlength">Your name cannot be longer than 3 characters </span>-->
+            </span>
+        </div>
+
+
+    </div>
+    <div class="form-group">
+        <label for="alias" class="col-sm-2 control-label ">Alias</label>
+        <div class="col-sm-3">
+            <input type="text" name="alias" data-ng-model="identifier.alias" class="form-control" placeholder="alias" required>
+            <p data-ng-show="identform.alias.$invalid && identform.alias.$dirty">Please input a alias</p>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" value="" class="form-control" placeholder="Mobile" data-ng-model="identifier.mobile" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="alias" data-ng-model="identifier.aadhaar" class="form-control" placeholder="Aadhaar">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="father" class="col-sm-2 control-label">Father</label>
+
+        <div class="col-sm-3">
+            <input type="text" name="Surname" data-ng-model="identifier.fatherSurName" class="form-control" placeholder="Surnanme" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="MiddleName" data-ng-model="identifier.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="LastName" data-ng-model="identifier.fatherLastName" class="form-control text-left" placeholder="LastName" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="sex" class="col-sm-2 control-label">Sex</label>
+        <div class="col-sm-4">
+            <label for="" class="radio-inline">
+                <input type="radio" name="sexradio" value="M"
+                       data-ng-checked="identifier.sex == 'M'"
+                       data-ng-model="identifier.sex" />Male
+            </label>
+
+            <label for="" class="radio-inline">
+                <input type="radio" name="sexradio" value="F"
+                       data-ng-checked="identifier.sex == 'F'"
+                       data-ng-model="identifier.sex" />Female
+            </label>
+        </div>
+
+        <!-- Dropdown select with jquery
+        ============================================================  -->
+
+        <label for="" class=" control-label col-sm-2">Occupation</label>
+        <div class="col-sm-3">
+            <select name="occupation" id="" class="form-control"
+                    data-ng-model="identifier.occupation"
+                    data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations | orderBy:'occupation_Name'">
+                <option value="">--select Occupation--</option>
+            </select>
+        </div>
+
+
+    </div>
+    <!-- Dropdownlist template
+    ========================================================  --->
+
+
+    <div class="container" >
+
+       
+        <!-- ========= Online Dropdownlist template ======= -->
+        <div class="container" >
+            <!-- State Dropdown
+                      ================================  -->
+
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">State</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="identifier.state" class="form-control" />
+
+                </div>
+
+                <!-- District Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">District</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="identifier.district" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <!-- SubDivision Dropdown
+            ================================  -->
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">Sub-Division</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="identifier.subDivision" class="form-control" />
+
+                </div>
+
+                <!-- Village Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">Village</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="identifier.village" class="form-control" />
+                </div>
+            </div>
+            <!-- Post Office Dropdown
+            ================================  -->
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">Street/Locality</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="identifier.street" class="form-control" />
+
+                </div>
+                <label for="" class="control-label col-sm-2">Post Office</label>
+                <div class="col-sm-4">
+                    <input type="text" data-ng-model="identifier.postOffice" class="form-control" />
+
+                </div>
+
+                <!--</div> -->
+            </div>
+
+            <div class="form-group">
+                <!-- Pincode Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">PinCode</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control text-left" data-ng-model="identifier.pinCode" placeholder="Pincode" />
+                </div>
+                <label class="control-label col-sm-2">PoliceStation</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" data-ng-model="identifier.policeSt" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Identified By</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" data-ng-model="identifier.identify" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-push-8">
+            <button type="submit" data-ng-click="identifier.Addmore()" class="btn btn-default btn-md pull-right">Add More</button>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <div class="btn-group ">
+            <button type="submit" ng-disabled="execform.$pristine || execform.$invalid && execform.$dirty  || identform.$pristine || identform.$invalid && identform.$dirty" class="btn btn-primary btn-md " data-ng-click="formsubmit()">Submit</button>
+            <button class="btn btn-success btn-md" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span>Draft</button>
+            <button type="reset" class="btn btn-default btn-md">Reset</button>
+        </div>
+    </div>
+
+</ng-form>
+

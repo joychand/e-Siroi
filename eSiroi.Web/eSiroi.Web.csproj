@@ -137,6 +137,7 @@
     <Content Include="app\controller\MainController.js" />
     <Content Include="app\controller\Operator\dept_OnlineDeedController.js" />
     <Content Include="app\controller\Operator\schedulerController.js" />
+    <Content Include="app\controller\Operator\updateController.js" />
     <Content Include="app\controller\regApplyController.js" />
     <Content Include="app\controller\registrationController.js" />
     <Content Include="app\controller\VapplController.js" />
@@ -210,6 +211,12 @@
     </Content>
     <Content Include="Views\Department\FactSheet.html" />
     <Content Include="Views\Department\OnlineDeedEntry.html" />
+    <Content Include="Views\Department\online_deed_entry.html" />
+    <Content Include="Views\Department\online_update.html" />
+    <Content Include="Views\Department\online_update_claimant.html" />
+    <Content Include="Views\Department\online_update_executant.html" />
+    <Content Include="Views\Department\online_update_identifier.html" />
+    <Content Include="Views\Department\online_update_property.html" />
     <Content Include="Views\Department\srVerify.html" />
     <Content Include="Views\Home\applyregistration.cshtml" />
     <Content Include="Views\Home\index.cshtml" />

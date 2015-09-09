@@ -116,6 +116,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                 roles: ['Operator']
             }
         })
+        //#region UPDATE
            .state('department.content.enterdeed', {
                url: '/onlineDeedEntry',
                templateUrl: baseUrl + 'Department/online_deed',
@@ -126,7 +127,76 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                } 
        
     
+           })
+        .state('department.content.updateform', {
+            url: '/updateForm',
+            templateUrl: baseUrl + 'Department/online_update',
+            controller: 'updateController',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
+
+
         })
+        .state('department.content.updateform.deed', {
+            url: '/updateDeed',
+            templateUrl: baseUrl + 'Department/online_deed_update',
+            controller: 'upDeedController',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
+
+
+        })
+        .state('department.content.updateform.property', {
+            url: '/updateProperty',
+            templateUrl: baseUrl + 'Department/online_property_update',
+            controller: 'upPropertyController',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
+
+
+        })
+        .state('department.content.updateform.executant', {
+            url: '/updateExecutant',
+            templateUrl: baseUrl + 'Department/online_executant_update',
+            controller: 'upExecController',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
+
+
+        })
+        .state('department.content.updateform.claimant', {
+            url: '/updateclaimant',
+            templateUrl: baseUrl + 'Department/online_claimant_update',
+            controller: 'upClaimController',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
+
+
+        })
+        .state('department.content.updateform.identifier', {
+            url: '/updateidentifier',
+            templateUrl: baseUrl + 'Department/online_identifier_update',
+            controller: 'upIdentController',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
+
+
+        })
+        //#endregion UPDATE
+
+        //#region OFFLINE DATAENTRY
         .state('department.content.data', {
             url: '/dataEntry',
             templateUrl: baseUrl + '/Home/dept_dataEntry',
@@ -144,7 +214,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                 }
             }
         })
-
+        //#endregion OFFLINE
+        //#region FORM ENTRY
         .state('department.content.form', {
             
             url: '/dataEntryform',
@@ -199,6 +270,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + 'Home/dept_dataEntry_form_identifier',
             controller: 'deptIdentController'
         })
+
+        //#endregion FORM ENTRY
         .state('department.content.dataentered', {
             url: '/dataEntered',
             templateUrl: baseUrl + 'Department/deptDataEntered',

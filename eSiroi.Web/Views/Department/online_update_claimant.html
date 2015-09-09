@@ -1,0 +1,179 @@
+﻿<div class="row">
+    <div class="col-sm-6">
+        <h3>ClaimantDetailForm</h3>
+    </div>
+    <div class=" col-sm-2 pull-right"><span class="text-danger"> #<em>optional</em></span></div>
+
+</div>
+<hr />
+<ng-form class="form-horizontal" role="form" name="claimantform" novalidate>
+
+    <div class="form-group" >
+        <label class="col-sm-4 control-label pull-left">Select Claimant Slno:</label>
+        <div class="col-sm-2">
+            <select name="slno" id="" class="form-control"
+                    data-ng-model="Clist.slNo"
+                    data-ng-options="sl for sl in upClaimForm.claimslnolist"
+                    data-ng-change="getselectedClaimant()">
+                <option value="">slno</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Slno:</label>
+        <div class="col-sm-1">
+            <input type="text" class="form-control" data-ng-model="claimant.slNo" readonly />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="claimant" class="col-sm-2 control-label">Claimant</label>
+
+        <div class="col-sm-3">
+            <input type="text" name="Surname" data-ng-model="claimant.claimSurName" class="form-control" placeholder="Surnanme" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="name" data-ng-model="claimant.claimMiddleName" class="form-control text-left" placeholder="MiddleName" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="name" data-ng-model="claimant.claimLastName" class="form-control text-left" placeholder="LastName" />
+        </div>
+
+
+    </div>
+    <div class="form-group">
+        <label for="alias" class="col-sm-2 control-label ">Alias</label>
+        <div class="col-sm-3">
+            <input type="text" name="alias" data-ng-model="claimant.alias" class="form-control" placeholder="alias">
+        </div>
+        <div class="col-sm-3">
+            <input type="text" value="" class="form-control" placeholder="Mobile" data-ng-model="claimant.mobile" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="alias" data-ng-model="claimant.aadhaar" class="form-control" placeholder="Aadhaar">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="father" class="col-sm-2 control-label">Father</label>
+
+        <div class="col-sm-3">
+            <input type="text" name="Surname" data-ng-model="claimant.fatherSurName" class="form-control" placeholder="Surnanme" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="MiddleName" data-ng-model="claimant.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" />
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="LastName" data-ng-model="claimant.fatherLastName" class="form-control text-left" placeholder="LastName" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="sex" class="col-sm-2 control-label">Sex</label>
+        <div class="col-sm-4">
+            <label for="" class="radio-inline">
+                <input type="radio" name="sexradio" value="M"
+                       data-ng-checked="claimant.sex == 'M'"
+                       data-ng-model="claimant.sex" />Male
+            </label>
+
+            <label for="" class="radio-inline">
+                <input type="radio" name="sexradio" value="F"
+                       data-ng-checked="claimant.sex == 'F'"
+                       data-ng-model="claimant.sex" />Female
+            </label>
+        </div>
+
+        <!-- Dropdown select with jquery
+        ============================================================  -->
+
+        <label for="" class=" control-label col-sm-2">Occupation</label>
+        <div class="col-sm-3">
+            <select name="occupation" id="" class="form-control"
+                    data-ng-model="claimant.occupation"
+                    data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations | orderBy:'occupation_Name'">
+                <option value="">--select Occupation--</option>
+            </select>
+        </div>
+
+
+    </div>
+
+    <!--Dropdownlist Template-->
+
+    <div >
+
+        <!-- DROPDOWLIST TEMPLATE FOR ONLINE DATA ENTRY-->
+        <div >
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">State</label>
+                <div class="col-sm-4">
+                    <input type="text" value="" class="form-control" placeholder="State" data-ng-model="claimant.state" />
+                </div>
+
+                <!-- District
+                ================================  -->
+                <label for="" class="control-label col-sm-2">District</label>
+                <div class="col-sm-4">
+                    <input type="text" value="" class="form-control" placeholder="District" data-ng-model="claimant.district" />
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">Sub-Division</label>
+                <div class="col-sm-4">
+                    <input type="text" value="" class="form-control" placeholder="Subdivision" data-ng-model="claimant.subDivision" />
+                </div>
+
+                <!-- Village Dropdown
+                ================================  -->
+                <label for="" class="control-label col-sm-2">Village</label>
+                <div class="col-sm-4">
+                    <input type="text" value="" class="form-control" placeholder="Village" data-ng-model="claimant.village" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">Street/Locality</label>
+                <div class="col-sm-4">
+                    <input type="text" value="" class="form-control" placeholder="Street/Locality" data-ng-model="claimant.street" />
+
+                </div>
+                <label for="" class="control-label col-sm-2">Post Office</label>
+                <div class="col-sm-4">
+                    <input type="text" value="" class="form-control" placeholder="PostOffice" data-ng-model="claimant.postOffice" />
+
+                </div>
+                <!-- Pincode Dropdown
+                ================================  -->
+                <!--</div> -->
+            </div>
+
+            <div class="form-group">
+                <label for="" class="control-label col-sm-2">PinCode</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control text-left" data-ng-model="claimant.pinCode" placeholder="Pincode" />
+                </div>
+                <label class="control-label col-sm-2">PoliceStation</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="PoliceStation" data-ng-model="claimant.policeSt" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-3 col-sm-push-8">
+            <button data-ng-click="claimantAddmore()" class="btn btn-default btn-md pull-right">Add More</button>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <div class="btn-group">
+            <button type="submit" data-ng-click="onClaimantSubmit()" class="btn btn-primary btn-md ">Next</button>
+            <button class="btn btn-success btn-md" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span>Draft</button>
+            <button type="reset" class="btn btn-default btn-md">Reset</button>
+        </div>
+    </div>
+</ng-form>
+
