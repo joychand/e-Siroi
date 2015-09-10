@@ -12,10 +12,17 @@
         <div class="col-sm-2">
             <select name="slno" id="" class="form-control"
                     data-ng-model="Ilist.slNo"
-                    data-ng-options="slno for slno in identslnolist"
+                    data-ng-options="slno for slno in upIdentForm.identslnolist"
                     data-ng-change="getselectedIdentifier()">
                 <option value="">slno</option>
             </select>
+        </div>
+        <div class="col-sm-2 col-sm-offset-4">
+            <div class="btn-group">
+                <button ng-if="upIdentForm.fieldReadOnly" data-ng-click="onEdit()" class="btn btn-default btn-md ">Edit</button>
+                <button ng-if="!upIdentForm.fieldReadOnly" data-ng-click="editCancel()" class="btn btn-danger btn-md ">EditCancel</button>
+
+            </div>
         </div>
 
     </div>
@@ -31,7 +38,7 @@
         <label for="identifier" class="col-sm-2 control-label">Identifier</label>
 
         <div class="col-sm-3">
-            <input type="text" name="ExecSurName" data-ng-model="identifier.identSurName" class="form-control" placeholder="Surnanme" required>
+            <input type="text" name="ExecSurName" data-ng-model="identifier.identSurName" class="form-control" placeholder="Surnanme" required ng-readonly="upIdentForm.fieldReadOnly">
             <span style="color:#f00" ng-show="identform.ExecSurName.$dirty && identform.ExecSurName.$invalid">
                 <span data-ng-show="identform.ExecSurName.$error.required">Please input a Surname</span>
 
@@ -44,14 +51,14 @@
 
 
         <div class="col-sm-3">
-            <input type="text" name="ExecMiddleName" data-ng-model="identifier.identMiddleName" class="form-control text-left" placeholder="MiddleName" required>
+            <input type="text" name="ExecMiddleName" data-ng-model="identifier.identMiddleName" class="form-control text-left" placeholder="MiddleName" required ng-readonly="upIdentForm.fieldReadOnly">
             <span ng-show="identform.ExecMiddleName.$dirty && identform.ExecMiddleName.$invalid">
                 <span data-ng-show="identform.ExecMiddleName.$error.required">Please input a LastName</span>
                 <!--<span data-ng-show="identform.Surname.$error.maxlength">Your name cannot be longer than 3 characters </span>-->
             </span>
         </div>
         <div class="col-sm-3">
-            <input type="text" name="ExecLastName" data-ng-model="identifier.identLastName" class="form-control text-left" placeholder="LastName" required>
+            <input type="text" name="ExecLastName" data-ng-model="identifier.identLastName" class="form-control text-left" placeholder="LastName" required ng-readonly="upIdentForm.fieldReadOnly">
             <span ng-show="identform.ExecLastName.$dirty && identform.ExecLastName.$invalid">
                 <span data-ng-show="identform.ExecLastName.$error.required">Please input a LastName</span>
                 <!--<span data-ng-show="identform.Surname.$error.maxlength">Your name cannot be longer than 3 characters </span>-->
@@ -63,27 +70,27 @@
     <div class="form-group">
         <label for="alias" class="col-sm-2 control-label ">Alias</label>
         <div class="col-sm-3">
-            <input type="text" name="alias" data-ng-model="identifier.alias" class="form-control" placeholder="alias" required>
+            <input type="text" name="alias" data-ng-model="identifier.alias" class="form-control" placeholder="alias" required ng-readonly="upIdentForm.fieldReadOnly">
             <p data-ng-show="identform.alias.$invalid && identform.alias.$dirty">Please input a alias</p>
         </div>
         <div class="col-sm-3">
-            <input type="text" value="" class="form-control" placeholder="Mobile" data-ng-model="identifier.mobile" />
+            <input type="text" value="" class="form-control" placeholder="Mobile" data-ng-model="identifier.mobile" ng-readonly="upIdentForm.fieldReadOnly" />
         </div>
         <div class="col-sm-3">
-            <input type="text" name="alias" data-ng-model="identifier.aadhaar" class="form-control" placeholder="Aadhaar">
+            <input type="text" name="alias" data-ng-model="identifier.aadhaar" class="form-control" placeholder="Aadhaar" ng-readonly="upIdentForm.fieldReadOnly">
         </div>
     </div>
     <div class="form-group">
         <label for="father" class="col-sm-2 control-label">Father</label>
 
         <div class="col-sm-3">
-            <input type="text" name="Surname" data-ng-model="identifier.fatherSurName" class="form-control" placeholder="Surnanme" />
+            <input type="text" name="Surname" data-ng-model="identifier.fatherSurName" class="form-control" placeholder="Surnanme" ng-readonly="upIdentForm.fieldReadOnly" />
         </div>
         <div class="col-sm-3">
-            <input type="text" name="MiddleName" data-ng-model="identifier.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" />
+            <input type="text" name="MiddleName" data-ng-model="identifier.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" ng-readonly="upIdentForm.fieldReadOnly" />
         </div>
         <div class="col-sm-3">
-            <input type="text" name="LastName" data-ng-model="identifier.fatherLastName" class="form-control text-left" placeholder="LastName" />
+            <input type="text" name="LastName" data-ng-model="identifier.fatherLastName" class="form-control text-left" placeholder="LastName" ng-readonly="upIdentForm.fieldReadOnly" />
         </div>
     </div>
 
@@ -94,13 +101,13 @@
             <label for="" class="radio-inline">
                 <input type="radio" name="sexradio" value="M"
                        data-ng-checked="identifier.sex == 'M'"
-                       data-ng-model="identifier.sex" />Male
+                       data-ng-model="identifier.sex" ng-readonly="upIdentForm.fieldReadOnly" />Male
             </label>
 
             <label for="" class="radio-inline">
                 <input type="radio" name="sexradio" value="F"
                        data-ng-checked="identifier.sex == 'F'"
-                       data-ng-model="identifier.sex" />Female
+                       data-ng-model="identifier.sex" ng-readonly="upIdentForm.fieldReadOnly" />Female
             </label>
         </div>
 
@@ -111,7 +118,7 @@
         <div class="col-sm-3">
             <select name="occupation" id="" class="form-control"
                     data-ng-model="identifier.occupation"
-                    data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations | orderBy:'occupation_Name'">
+                    data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations | orderBy:'occupation_Name'" ng-readonly="upIdentForm.fieldReadOnly">
                 <option value="">--select Occupation--</option>
             </select>
         </div>
@@ -133,7 +140,7 @@
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">State</label>
                 <div class="col-sm-4">
-                    <input type="text" data-ng-model="identifier.state" class="form-control" />
+                    <input type="text" data-ng-model="identifier.state" class="form-control" ng-readonly="upIdentForm.fieldReadOnly" />
 
                 </div>
 
@@ -141,7 +148,7 @@
                 ================================  -->
                 <label for="" class="control-label col-sm-2">District</label>
                 <div class="col-sm-4">
-                    <input type="text" data-ng-model="identifier.district" class="form-control" />
+                    <input type="text" data-ng-model="identifier.district" class="form-control" ng-readonly="upIdentForm.fieldReadOnly" />
 
                 </div>
 
@@ -152,7 +159,7 @@
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">Sub-Division</label>
                 <div class="col-sm-4">
-                    <input type="text" data-ng-model="identifier.subDivision" class="form-control" />
+                    <input type="text" data-ng-model="identifier.subDivision" class="form-control" ng-readonly="upIdentForm.fieldReadOnly" />
 
                 </div>
 
@@ -160,7 +167,7 @@
                 ================================  -->
                 <label for="" class="control-label col-sm-2">Village</label>
                 <div class="col-sm-4">
-                    <input type="text" data-ng-model="identifier.village" class="form-control" />
+                    <input type="text" data-ng-model="identifier.village" class="form-control" ng-readonly="upIdentForm.fieldReadOnly" />
                 </div>
             </div>
             <!-- Post Office Dropdown
@@ -168,12 +175,12 @@
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">Street/Locality</label>
                 <div class="col-sm-4">
-                    <input type="text" data-ng-model="identifier.street" class="form-control" />
+                    <input type="text" data-ng-model="identifier.street" class="form-control" ng-readonly="upIdentForm.fieldReadOnly" />
 
                 </div>
                 <label for="" class="control-label col-sm-2">Post Office</label>
                 <div class="col-sm-4">
-                    <input type="text" data-ng-model="identifier.postOffice" class="form-control" />
+                    <input type="text" data-ng-model="identifier.postOffice" class="form-control" ng-readonly="upIdentForm.fieldReadOnly" />
 
                 </div>
 
@@ -185,18 +192,18 @@
                 ================================  -->
                 <label for="" class="control-label col-sm-2">PinCode</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control text-left" data-ng-model="identifier.pinCode" placeholder="Pincode" />
+                    <input type="text" class="form-control text-left" data-ng-model="identifier.pinCode" placeholder="Pincode" ng-readonly="upIdentForm.fieldReadOnly" />
                 </div>
                 <label class="control-label col-sm-2">PoliceStation</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" data-ng-model="identifier.policeSt" />
+                    <input type="text" class="form-control" data-ng-model="identifier.policeSt" ng-readonly="upIdentForm.fieldReadOnly" />
                 </div>
 
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2">Identified By</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" data-ng-model="identifier.identify" />
+                    <input type="text" class="form-control" data-ng-model="identifier.identify" ng-readonly="upIdentForm.fieldReadOnly" />
                 </div>
             </div>
 
@@ -209,10 +216,15 @@
         </div>
     </div>
     <div class="form-group text-center">
-        <div class="btn-group ">
+        <!--<div class="btn-group ">
             <button type="submit" ng-disabled="execform.$pristine || execform.$invalid && execform.$dirty  || identform.$pristine || identform.$invalid && identform.$dirty" class="btn btn-primary btn-md " data-ng-click="formsubmit()">Submit</button>
             <button class="btn btn-success btn-md" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span>Draft</button>
             <button type="reset" class="btn btn-default btn-md">Reset</button>
+        </div>-->
+        <div class="btn-group">
+            <button ng-if="!upIdentForm.fieldReadOnly" data-ng-click="onUpdate()" class="btn btn-primary btn-md ">Update/Submit</button>
+            <button ng-if="upIdentForm.fieldReadOnly" data-ng-click="next()" class="btn btn-success btn-md ">Submit</button>
+
         </div>
     </div>
 

@@ -18,6 +18,13 @@
                 <option value="">slno</option>
             </select>
         </div>
+        <div class="col-sm-2 col-sm-offset-4">
+            <div class="btn-group">
+                <button ng-if="upClaimForm.fieldReadOnly" data-ng-click="onEdit()" class="btn btn-default btn-md ">Edit</button>
+                <button ng-if="!upClaimForm.fieldReadOnly" data-ng-click="editCancel()" class="btn btn-danger btn-md ">EditCancel</button>
+
+            </div>
+        </div>
 
     </div>
 
@@ -31,13 +38,13 @@
         <label for="claimant" class="col-sm-2 control-label">Claimant</label>
 
         <div class="col-sm-3">
-            <input type="text" name="Surname" data-ng-model="claimant.claimSurName" class="form-control" placeholder="Surnanme" />
+            <input type="text" name="Surname" data-ng-model="claimant.claimSurName" class="form-control" placeholder="Surnanme" ng-readonly="upClaimForm.fieldReadOnly" />
         </div>
         <div class="col-sm-3">
-            <input type="text" name="name" data-ng-model="claimant.claimMiddleName" class="form-control text-left" placeholder="MiddleName" />
+            <input type="text" name="name" data-ng-model="claimant.claimMiddleName" class="form-control text-left" placeholder="MiddleName" ng-readonly="upClaimForm.fieldReadOnly" />
         </div>
         <div class="col-sm-3">
-            <input type="text" name="name" data-ng-model="claimant.claimLastName" class="form-control text-left" placeholder="LastName" />
+            <input type="text" name="name" data-ng-model="claimant.claimLastName" class="form-control text-left" placeholder="LastName" ng-readonly="upClaimForm.fieldReadOnly" />
         </div>
 
 
@@ -45,26 +52,26 @@
     <div class="form-group">
         <label for="alias" class="col-sm-2 control-label ">Alias</label>
         <div class="col-sm-3">
-            <input type="text" name="alias" data-ng-model="claimant.alias" class="form-control" placeholder="alias">
+            <input type="text" name="alias" data-ng-model="claimant.alias" class="form-control" placeholder="alias" ng-readonly="upClaimForm.fieldReadOnly">
         </div>
         <div class="col-sm-3">
-            <input type="text" value="" class="form-control" placeholder="Mobile" data-ng-model="claimant.mobile" />
+            <input type="text" value="" class="form-control" placeholder="Mobile" data-ng-model="claimant.mobile" ng-readonly="upClaimForm.fieldReadOnly" />
         </div>
         <div class="col-sm-3">
-            <input type="text" name="alias" data-ng-model="claimant.aadhaar" class="form-control" placeholder="Aadhaar">
+            <input type="text" name="alias" data-ng-model="claimant.aadhaar" class="form-control" placeholder="Aadhaar" ng-readonly="upClaimForm.fieldReadOnly">
         </div>
     </div>
     <div class="form-group">
         <label for="father" class="col-sm-2 control-label">Father</label>
 
         <div class="col-sm-3">
-            <input type="text" name="Surname" data-ng-model="claimant.fatherSurName" class="form-control" placeholder="Surnanme" />
+            <input type="text" name="Surname" data-ng-model="claimant.fatherSurName" class="form-control" placeholder="Surnanme" ng-readonly="upClaimForm.fieldReadOnly" />
         </div>
         <div class="col-sm-3">
-            <input type="text" name="MiddleName" data-ng-model="claimant.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" />
+            <input type="text" name="MiddleName" data-ng-model="claimant.fatherMiddleName" class="form-control text-left" placeholder="MiddleName" ng-readonly="upClaimForm.fieldReadOnly" />
         </div>
         <div class="col-sm-3">
-            <input type="text" name="LastName" data-ng-model="claimant.fatherLastName" class="form-control text-left" placeholder="LastName" />
+            <input type="text" name="LastName" data-ng-model="claimant.fatherLastName" class="form-control text-left" placeholder="LastName" ng-readonly="upClaimForm.fieldReadOnly" />
         </div>
     </div>
 
@@ -75,13 +82,13 @@
             <label for="" class="radio-inline">
                 <input type="radio" name="sexradio" value="M"
                        data-ng-checked="claimant.sex == 'M'"
-                       data-ng-model="claimant.sex" />Male
+                       data-ng-model="claimant.sex" ng-readonly="upClaimForm.fieldReadOnly" />Male
             </label>
 
             <label for="" class="radio-inline">
                 <input type="radio" name="sexradio" value="F"
                        data-ng-checked="claimant.sex == 'F'"
-                       data-ng-model="claimant.sex" />Female
+                       data-ng-model="claimant.sex" ng-readonly="upClaimForm.fieldReadOnly" />Female
             </label>
         </div>
 
@@ -92,7 +99,7 @@
         <div class="col-sm-3">
             <select name="occupation" id="" class="form-control"
                     data-ng-model="claimant.occupation"
-                    data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations | orderBy:'occupation_Name'">
+                    data-ng-options="o.occupation_Code as o.occupation_Name for o in occupations | orderBy:'occupation_Name'" ng-readonly="upClaimForm.fieldReadOnly">
                 <option value="">--select Occupation--</option>
             </select>
         </div>
@@ -109,14 +116,14 @@
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">State</label>
                 <div class="col-sm-4">
-                    <input type="text" value="" class="form-control" placeholder="State" data-ng-model="claimant.state" />
+                    <input type="text" value="" class="form-control" placeholder="State" data-ng-model="claimant.state" ng-readonly="upClaimForm.fieldReadOnly" />
                 </div>
 
                 <!-- District
                 ================================  -->
                 <label for="" class="control-label col-sm-2">District</label>
                 <div class="col-sm-4">
-                    <input type="text" value="" class="form-control" placeholder="District" data-ng-model="claimant.district" />
+                    <input type="text" value="" class="form-control" placeholder="District" data-ng-model="claimant.district" ng-readonly="upClaimForm.fieldReadOnly" />
                 </div>
 
             </div>
@@ -124,26 +131,26 @@
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">Sub-Division</label>
                 <div class="col-sm-4">
-                    <input type="text" value="" class="form-control" placeholder="Subdivision" data-ng-model="claimant.subDivision" />
+                    <input type="text" value="" class="form-control" placeholder="Subdivision" data-ng-model="claimant.subDivision" ng-readonly="upClaimForm.fieldReadOnly" />
                 </div>
 
                 <!-- Village Dropdown
                 ================================  -->
                 <label for="" class="control-label col-sm-2">Village</label>
                 <div class="col-sm-4">
-                    <input type="text" value="" class="form-control" placeholder="Village" data-ng-model="claimant.village" />
+                    <input type="text" value="" class="form-control" placeholder="Village" data-ng-model="claimant.village" ng-readonly="upClaimForm.fieldReadOnly" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">Street/Locality</label>
                 <div class="col-sm-4">
-                    <input type="text" value="" class="form-control" placeholder="Street/Locality" data-ng-model="claimant.street" />
+                    <input type="text" value="" class="form-control" placeholder="Street/Locality" data-ng-model="claimant.street" ng-readonly="upClaimForm.fieldReadOnly" />
 
                 </div>
                 <label for="" class="control-label col-sm-2">Post Office</label>
                 <div class="col-sm-4">
-                    <input type="text" value="" class="form-control" placeholder="PostOffice" data-ng-model="claimant.postOffice" />
+                    <input type="text" value="" class="form-control" placeholder="PostOffice" data-ng-model="claimant.postOffice" ng-readonly="upClaimForm.fieldReadOnly" />
 
                 </div>
                 <!-- Pincode Dropdown
@@ -154,11 +161,11 @@
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">PinCode</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control text-left" data-ng-model="claimant.pinCode" placeholder="Pincode" />
+                    <input type="text" class="form-control text-left" data-ng-model="claimant.pinCode" placeholder="Pincode" ng-readonly="upClaimForm.fieldReadOnly" />
                 </div>
                 <label class="control-label col-sm-2">PoliceStation</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" placeholder="PoliceStation" data-ng-model="claimant.policeSt" />
+                    <input type="text" class="form-control" placeholder="PoliceStation" data-ng-model="claimant.policeSt" ng-readonly="upClaimForm.fieldReadOnly" />
                 </div>
             </div>
         </div>
@@ -170,9 +177,9 @@
     </div>
     <div class="form-group text-center">
         <div class="btn-group">
-            <button type="submit" data-ng-click="onClaimantSubmit()" class="btn btn-primary btn-md ">Next</button>
-            <button class="btn btn-success btn-md" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span>Draft</button>
-            <button type="reset" class="btn btn-default btn-md">Reset</button>
+            <button ng-if="!upClaimForm.fieldReadOnly" data-ng-click="onUpdate()" class="btn btn-primary btn-md ">Update</button>
+            <button ng-if="upClaimForm.fieldReadOnly" data-ng-click="next()" class="btn btn-success btn-md ">Next</button>
+            
         </div>
     </div>
 </ng-form>
