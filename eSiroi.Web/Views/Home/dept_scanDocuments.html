@@ -4,10 +4,17 @@
         <form class="form-group">
             <div class="row">
                 <div class="col-sm-4">
-                     <input type="file" class=" col-sm-6 form-control" file-model="myFile"/>
+                     <input type="file" class="form-control" file-model="myFile"/>
                 </div>
-                <div class="col-sm-4">
-                    <button class=" col-sm-3 btn btn-primary btn-primary-sm"ng-click="uploadFile()">upload</button>
+                <div class="col-sm-1" >
+                    <button class="btn btn-primary btn-primary-sm"ng-click="uploadFile()">upload</button>
+                </div>
+                <div class="col-sm-3" ng-if="uploading">
+                    <img ng-src="images/loading-bar.gif">
+                </div>
+                <div class="col-sm-4" ng-if="completed">
+                    <span  ng-if="!success"class="alert alert-danger" >{{message}}</span>
+                    <span ng-if="success"class="alert alert-success">{{message}}</span>
                 </div>
             
             </div>
@@ -30,7 +37,7 @@
             
             </div>
             <div class="pull-left">
-                <button class="btn btn-success" ng-click="$state.go('department.content.uploadComplete')">Submit</button>
+                <button class="btn btn-success" ng-click="$state.go('')">Submit</button>
             </div>
         </form>
     

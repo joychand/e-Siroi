@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,6 +9,34 @@ namespace eSiroi.Web.Controllers
 {
     public class DepartmentController : Controller
     {
+        [HttpPost]
+        public ActionResult upload()
+        {
+            string Message, fileName, actualFileName;
+            Message = fileName = actualFileName = string.Empty;
+             bool flag = false;
+             if (Request.Files != null)
+               {
+
+                    var file = Request.Files[0];
+                    actualFileName = file.FileName;
+                    fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                    int size = file.ContentLength;
+ 
+                        try
+                        {
+                            //file.SaveAs(Path.Combine(Server.MapPath("~/fileUpload"), fileName));
+                            file.SaveAs(Path.Combine(Server.MapPath("~/fileUpload"), fileName));
+                        }
+                 catch (Exception)
+                        {
+                            Message = "File upload failed! Please try again";
+                        }
+
+                        
+             }
+             return Json("file saved");
+        }
         // GET: Department
         public ActionResult deptDataEntered()
         {

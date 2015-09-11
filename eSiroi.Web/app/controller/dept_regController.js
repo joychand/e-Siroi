@@ -1531,7 +1531,40 @@
         }
     }])
     })();
+//dept_upload Controller
+(function () {
+    angular.module('eSiroi.Web')
+    .controller('uploadController', ['$http', '$scope', 'fileupLoading', '$state', uploadController]);
+    function uploadController($http, $scope, fileupLoading, $state) {
+        $scope.uploading = false
+        $scope.message = '';
+        $scope.success = true;
+        $scope.completed = false;
+        $scope.uploadFile = function () {
+            $scope.uploading = true;
+            var file = $scope.myFile;
+            console.log('file is ');
+            console.dir(file);
+            var uploadUrl = "Department/upload";
+            fileupLoading.uploadFileToUrl(file, uploadUrl);
 
+            $scope.$on('upLoadFinish', function () {
+                $scope.uploading = false;
+                $scope.success = true;
+                $scope.completed = true;
+                $scope.message= 'File successfully uploaded....'
+            });
+            $scope.$on('upLoadError', function () {
+                $scope.uploading = false;
+                $scope.success = false;
+                $scope.completed = true;
+                $scope.message = 'Error in uploading file...'
+            });
+
+
+        };
+    }
+})();
 //#region HELPER FUNCTIONS
 function insertPlot($scope) {
 

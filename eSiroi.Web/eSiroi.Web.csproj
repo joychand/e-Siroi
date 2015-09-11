@@ -141,6 +141,7 @@
     <Content Include="app\controller\regApplyController.js" />
     <Content Include="app\controller\registrationController.js" />
     <Content Include="app\controller\VapplController.js" />
+    <Content Include="app\directive\fileUpload.js" />
     <Content Include="app\directive\loadingWidget.js" />
     <Content Include="app\directive\uiBreadcrumbs.js" />
     <Content Include="app\factory\angularModalService.js" />
@@ -171,6 +172,7 @@
     <Content Include="content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\emblem.png" />
+    <Content Include="fonts\loading-bar.gif" />
     <Content Include="images\asasdsa.png" />
     <Content Include="images\brand.png" />
     <Content Include="images\image002.jpg" />
@@ -179,6 +181,7 @@
     <Content Include="images\manHouse.jpg" />
     <Content Include="images\manHouse2.png" />
     <Content Include="images\manipurmap.jpg" />
+    <Content Include="images\loading-bar.gif" />
     <Content Include="packages.config" />
     <Content Include="scripts\angular-sanitize.js" />
     <Content Include="scripts\angular-ui-router.js" />
@@ -315,6 +318,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="docs\" />
+    <Folder Include="fileUpload\" />
     <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>

@@ -287,7 +287,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
     
         .state('department.content.upload', {
             url: '/upload',
-            templateUrl: baseUrl + 'Home/dept_scanDocuments'
+            templateUrl: baseUrl + 'Home/dept_scanDocuments',
+            controller: 'uploadController'
         })
         .state('department.content.uploadComplete', {
             url: '/uploadcomplete',

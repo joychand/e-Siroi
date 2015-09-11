@@ -47,6 +47,7 @@ namespace eSiroi.Web.App_Start
                        "~/app/factory/httpLoaderInterceptor.js",
                         "~/app/factory/userService.js",
                        "~/app/directive/loadingWidget.js",
+                        "~/app/directive/fileUpload.js",
                        "~/app/directive/uiBreadcrumbs.js",
                       "~/app/controller/registrationController.js",
                        "~/app/controller/dept_regController.js",
