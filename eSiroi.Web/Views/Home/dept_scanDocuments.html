@@ -2,12 +2,12 @@
     <label class="info">Upload of scanned documents</label>
     <div class="text-center" >
         <form class="form-group">
-            <div class="row">
+            <div  class="row">
                 <div class="col-sm-4">
                      <input type="file" class="form-control" file-model="myFile"/>
                 </div>
                 <div class="col-sm-1" >
-                    <button class="btn btn-primary btn-primary-sm"ng-click="uploadFile()">upload</button>
+                    <button ng-disabled="uploading || (completed && success)"class="btn btn-primary btn-primary-sm"ng-click="uploadFile()">upload</button>
                 </div>
                 <div class="col-sm-3" ng-if="uploading">
                     <img ng-src="images/loading-bar.gif">
@@ -18,7 +18,13 @@
                 </div>
             
             </div>
-            <div class="row">
+            <div class="row" ng-if="!uploading && completed && success">
+                <div class="col-sm-1 col-sm-offset-4">
+                    <button class=" btn btn-default" ng-click="uploadMore()">uploadMore</button>
+
+                </div>
+            </div>
+            <!--<div class="row">
                 <div class="col-sm-4">
                      <input type="file" class=" col-sm-6 form-control" file-model="myFile"/>
                 </div>
@@ -35,7 +41,7 @@
                     <button class=" col-sm-3 btn btn-primary btn-primary-sm"ng-click="uploadFile()">upload</button>
                 </div>
             
-            </div>
+            </div>-->
             <div class="pull-left">
                 <button class="btn btn-success" ng-click="$state.go('')">Submit</button>
             </div>

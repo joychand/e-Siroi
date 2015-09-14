@@ -1534,8 +1534,11 @@
 //dept_upload Controller
 (function () {
     angular.module('eSiroi.Web')
-    .controller('uploadController', ['$http', '$scope', 'fileupLoading', '$state', uploadController]);
-    function uploadController($http, $scope, fileupLoading, $state) {
+    .controller('uploadController', ['$http', '$scope', 'fileupLoading', '$state','eSiroiWebSettings', uploadController]);
+    function uploadController($http, $scope, fileupLoading, $state, eSiroiWebSettings) {
+       
+        $scope.uploadedfile = [];
+        //$scope.uploadedfile.push(i)
         $scope.uploading = false
         $scope.message = '';
         $scope.success = true;
@@ -1543,16 +1546,19 @@
         $scope.uploadFile = function () {
             $scope.uploading = true;
             var file = $scope.myFile;
-            console.log('file is ');
-            console.dir(file);
-            var uploadUrl = "Department/upload";
+           
+            //var uploadUrl = "Department/upload";
+            var urlbase = eSiroiWebSettings.apiResrcServiceBaseUri
+            var uploadUrl = urlbase + "api/UploadController/upload";
             fileupLoading.uploadFileToUrl(file, uploadUrl);
 
             $scope.$on('upLoadFinish', function () {
                 $scope.uploading = false;
                 $scope.success = true;
                 $scope.completed = true;
-                $scope.message= 'File successfully uploaded....'
+                $scope.message = 'File successfully uploaded....'
+                
+              
             });
             $scope.$on('upLoadError', function () {
                 $scope.uploading = false;
@@ -1563,6 +1569,20 @@
 
 
         };
+        $scope.uploadMore = function () {
+            $scope.message = '';
+            $scope.uploading = false
+            
+            $scope.success = true;
+            $scope.completed = false;
+            
+            angular.forEach(
+                            angular.element("input[type='file']"),
+                    function (inputElem) {
+                            angular.element(inputElem).val(null);
+                             });
+           
+        }
     }
 })();
 //#region HELPER FUNCTIONS
