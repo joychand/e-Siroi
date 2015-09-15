@@ -1534,8 +1534,8 @@
 //dept_upload Controller
 (function () {
     angular.module('eSiroi.Web')
-    .controller('uploadController', ['$http', '$scope', 'fileupLoading', '$state','eSiroiWebSettings', uploadController]);
-    function uploadController($http, $scope, fileupLoading, $state, eSiroiWebSettings) {
+    .controller('uploadController', ['$http', '$scope', 'fileupLoading', '$state', 'eSiroiWebSettings', 'deptModalService', uploadController]);
+    function uploadController($http, $scope, fileupLoading, $state, eSiroiWebSettings, deptModalService) {
        
         $scope.uploadedfile = [];
         //$scope.uploadedfile.push(i)
@@ -1550,7 +1550,7 @@
             //var uploadUrl = "Department/upload";
             var urlbase = eSiroiWebSettings.apiResrcServiceBaseUri
             var uploadUrl = urlbase + "api/UploadController/upload";
-            fileupLoading.uploadFileToUrl(file, uploadUrl);
+            fileupLoading.uploadFileToUrl(file, uploadUrl, deptModalService.onlineAppln);
 
             $scope.$on('upLoadFinish', function () {
                 $scope.uploading = false;
@@ -1582,6 +1582,9 @@
                             angular.element(inputElem).val(null);
                              });
            
+        }
+        $scope.submit=funciton(){
+
         }
     }
 })();

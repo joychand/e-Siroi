@@ -191,6 +191,7 @@
     <Compile Include="Entities\TransactionStatu.cs" />
     <Compile Include="Entities\Uniowner.cs" />
     <Compile Include="Entities\Uniplot.cs" />
+    <Compile Include="ErrorResponse\HttpActionResult.cs" />
     <Compile Include="eSiroiResourceMigration\201507270620556_initial_create.cs" />
     <Compile Include="eSiroiResourceMigration\201507270620556_initial_create.Designer.cs">
       <DependentUpon>201507270620556_initial_create.cs</DependentUpon>
@@ -226,6 +227,10 @@
     <Compile Include="eSiroiResourceMigration\201509070919492_added_appointment2_table.cs" />
     <Compile Include="eSiroiResourceMigration\201509070919492_added_appointment2_table.Designer.cs">
       <DependentUpon>201509070919492_added_appointment2_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eSiroiResourceMigration\201509151109452_add_upload_filepath_column.cs" />
+    <Compile Include="eSiroiResourceMigration\201509151109452_add_upload_filepath_column.Designer.cs">
+      <DependentUpon>201509151109452_add_upload_filepath_column.cs</DependentUpon>
     </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
     <Compile Include="Models\ApplicationStatus.cs" />
@@ -278,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="eSiroiResourceMigration\201509070919492_added_appointment2_table.resx">
       <DependentUpon>201509070919492_added_appointment2_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201509151109452_add_upload_filepath_column.resx">
+      <DependentUpon>201509151109452_add_upload_filepath_column.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

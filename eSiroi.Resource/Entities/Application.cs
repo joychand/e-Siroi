@@ -55,5 +55,7 @@ namespace eSiroi.Resource.Entities
         public string status { get; set; }
         [StringLength(50)]
         public string remarks { get; set; }
+        [StringLength(50)]
+        public string filePath { get; set; }
     }
     }

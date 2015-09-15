@@ -89,5 +89,50 @@ namespace eSiroi.Resource.Controllers
             return NotFound();
 
         }
+
+        [HttpPost]
+        [Route("DeedEntered")]
+        public async Task<IHttpActionResult> uDeedEntered([FromBody] ApplicationStatus ApplnModel)
+        {
+            var appln = dbase.Application
+                   .Where(a => a.TSNo == ApplnModel.tsno && a.TSYear == ApplnModel.tsyear && a.sro == ApplnModel.sro).FirstOrDefault();
+            appln.status = ApplnModel.status;
+            //var reason = "plot";
+            if (ApplnModel.remarks.Length > 0)
+            //if(reason.Length>0)
+            {
+                appln.remarks = ApplnModel.remarks;
+            }
+
+            if (ApplnModel.Ackno != 0)
+            {
+                onlineapplication onlineApplication = dbase.onlineapplication
+                                    .Where(o => o.ackno == ApplnModel.Ackno).FirstOrDefault();
+                onlineApplication.status = ApplnModel.status;
+                if (ApplnModel.remarks.Length > 0)
+                {
+                    onlineApplication.remarks = ApplnModel.remarks;
+                }
+            }
+
+            try
+            {
+                await dbase.SaveChangesAsync();
+            }
+
+            catch (DbUpdateException e)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
+        //[HttpPost]
+        //[Route("uploadComplete")]
+        //public IHttpActionResult uDeedEntered([FromBody] ApplicationStatus ApplnModel)
+        //{
+        //    return Ok();
+        //}
     }
 }
