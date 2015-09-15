@@ -45,15 +45,7 @@ namespace eSiroi.Resource.Controllers
                         //appln.filePath = fi.FullName;
                     }
 
-                    try
-                    {
-                        await dbase.SaveChangesAsync();
-                    }
-
-                    catch (DbUpdateException e)
-                    {
-                        return new HttpActionResult(HttpStatusCode.InternalServerError, "could not update filepath");
-                    }
+                   
 
                     return Ok(filename);
                 }

@@ -310,7 +310,14 @@
                     url: urlBase3 + 'getProperty',
                     data: Oappln
                 })
-            }
+            },
+            uploadcomplete: function(Uappln){
+                return $http({
+                    method:'POST',
+                    url: urlBase3+'uploadComplete',
+                    data:Uappln
+                })
+        }
             //#endregion
 
         };

@@ -1534,8 +1534,8 @@
 //dept_upload Controller
 (function () {
     angular.module('eSiroi.Web')
-    .controller('uploadController', ['$http', '$scope', 'fileupLoading', '$state', 'eSiroiWebSettings', 'deptModalService', uploadController]);
-    function uploadController($http, $scope, fileupLoading, $state, eSiroiWebSettings, deptModalService) {
+    .controller('uploadController', ['$http', '$scope', 'fileupLoading', '$state', 'eSiroiWebSettings', 'deptModalService', 'dept_dataFactory', uploadController]);
+    function uploadController($http, $scope, fileupLoading, $state, eSiroiWebSettings, deptModalService, dept_dataFactory) {
        
         $scope.uploadedfile = [];
         //$scope.uploadedfile.push(i)
@@ -1550,7 +1550,7 @@
             //var uploadUrl = "Department/upload";
             var urlbase = eSiroiWebSettings.apiResrcServiceBaseUri
             var uploadUrl = urlbase + "api/UploadController/upload";
-            fileupLoading.uploadFileToUrl(file, uploadUrl, deptModalService.onlineAppln);
+            fileupLoading.uploadFileToUrl(file, uploadUrl);
 
             $scope.$on('upLoadFinish', function () {
                 $scope.uploading = false;
@@ -1583,7 +1583,19 @@
                              });
            
         }
-        $scope.submit=funciton(){
+        $scope.submit = function () {
+            var applnUploadmodel = {};
+            angular.extend(applnUploadmodel, {
+                tsno:deptModalService.onlineAppln.tsno,
+                tsyear:deptModalService.onlineAppln.tsyear,
+                sro:deptModalService.onlineAppln.sro,
+                filePath: deptModalService.onlineAppln.filePath
+            })
+            dept_dataFactory.uploadcomplete(applnUploadmodel).then(function (result) {
+                alert('Application successfully update');
+            }, function (error) {
+                alert('Application update fail');
+            })
 
         }
     }

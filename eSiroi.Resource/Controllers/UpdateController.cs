@@ -12,6 +12,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.SqlServer;
 using System.Collections;
 using eSiroi.Resource.Models;
+using eSiroi.Resource.ErrorResponse;
 namespace eSiroi.Resource.Controllers
 {
     [RoutePrefix("api/OnlineUpdate")]
@@ -128,11 +129,22 @@ namespace eSiroi.Resource.Controllers
             return Ok();
         }
 
-        //[HttpPost]
-        //[Route("uploadComplete")]
-        //public IHttpActionResult uDeedEntered([FromBody] ApplicationStatus ApplnModel)
-        //{
-        //    return Ok();
-        //}
+        [HttpPost]
+        [Route("uploadComplete")]
+        public async Task<IHttpActionResult> uDeedEntered([FromBody] ApplicationUploadModel ApplnModel)
+        {
+            var appln = dbase.Application
+                   .Where(a => a.TSNo == ApplnModel.tsno && a.TSYear == ApplnModel.tsyear && a.sro == ApplnModel.sro).FirstOrDefault();
+            appln.filePath = ApplnModel.filePath;
+            try
+            {
+                await dbase.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                 return new HttpActionResult(HttpStatusCode.InternalServerError, "could not update filepath");
+            }
+            return Ok();
+        }
     }
 }

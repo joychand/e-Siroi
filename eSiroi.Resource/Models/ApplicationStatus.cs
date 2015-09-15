@@ -14,4 +14,11 @@ namespace eSiroi.Resource.Models
         public string sro { get; set; }
         public string remarks { get; set; }
     }
+    public class ApplicationUploadModel
+    {
+        public int tsno { get; set; }
+        public int tsyear { get; set; }
+        public string sro { get; set; }
+        public string filePath { get; set; }
+    }
 }
