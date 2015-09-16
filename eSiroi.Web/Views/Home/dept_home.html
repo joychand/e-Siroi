@@ -47,6 +47,7 @@
                 <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='Approved' && userInDept && !row.ackno" ng-click="$state.go('department.content.upload')">Scan</button></td>
                 <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='Approved' && userInDept && row.ackno" ng-click="schedule(row)">Schedule</button></td>
                 <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DataEntered,Verify' && userInSR"  ng-click="viewRow(row)">View</button></td>
+                <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DeedEntered' && userInSR"  ng-click="viewDeed(row)">ViewDeed</button></td>
 
             </tr>
         </tbody>

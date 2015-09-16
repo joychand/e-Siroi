@@ -40,9 +40,9 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'userService','authService','deptModalService', deptHomeController]);
+        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'userService','authService','deptModalService','$http', deptHomeController]);
 
-    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService, deptModalService) {
+    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService, deptModalService, $http) {
         
        
         
@@ -57,7 +57,7 @@
         $scope.userInAdmin = userService.userInAdmin;
         $scope.status = {};
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
-        $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending', 'DateFixed'];
+        $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending', 'DateFixed', 'DeedEntered'];
        
         if (userService.userInSR)
        {
@@ -176,6 +176,15 @@
              });
 
 
+         }
+         $scope.viewDeed = function (row) {
+             $http.get('http://localhost/eSiroi.Resource/api/SRController/getPdf', { responseType: 'arraybuffer' })
+                .success(function (data) {
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    var fileURL = URL.createObjectURL(file);
+                   // window.open(fileURL);
+                    window.open(fileURL, 'deedView', "height=600,width=600");
+                });
          }
     }
 })();
