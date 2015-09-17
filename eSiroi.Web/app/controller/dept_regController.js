@@ -91,7 +91,7 @@
                     $scope.myData = response.data;
                    
                 }, function (result) {
-                    $scope.message = 'DATA NOT FOUND';
+                    $scope.message = 'No Applications';
                 });
             }
            
@@ -186,6 +186,29 @@
                     window.open(fileURL, 'deedView', "height=600,width=600");
                 });
          }
+         $scope.finalized = function (row) {
+             var modaloptions = {
+                 closeButtonText: 'Cancel',
+                 actionButtonText: 'Ok',
+                 headerText: 'Finalization',
+                 bodyText: 'Do you want to finalize the applications ?'
+                
+             };
+
+             modalService.showModal({}, modaloptions).then(function (result) {
+               
+                 var statusObject = {};
+                 angular.extend(statusObject, {
+                     tsno: row.tsno,
+                     tsyear: row.tsyear,
+                     sro: row.sro,
+                     status:'Finalized'
+
+                 })
+
+             });
+
+         }
     }
 })();
 
@@ -209,8 +232,8 @@
         $scope.displayCollection3 = [].concat($scope.propertyinfo);
         $scope.displayCollection4 = [].concat($scope.execInfo);
         $scope.displayCollection5 = [].concat($scope.identInfo);
-        dept_dataFactory.getDeedInfo($scope.tno, $scope.tyear).then(function (response) {
-            $scope.deedinfo = response.data;
+        //dept_dataFactory.getDeedInfo($scope.tno, $scope.tyear).then(function (response) {
+        //    $scope.deedinfo = response.data;
             dept_dataFactory.getPropertyInfo($scope.tno, $scope.tyear).then(function (response) {
                 $scope.propertyinfo = response.data;
                 dept_dataFactory.getExecInfo($scope.tno, $scope.tyear).then(function (response) {
@@ -229,7 +252,7 @@
             })
 
 
-        })
+        //})
 
 
         $scope.cancel = function ()
@@ -475,8 +498,7 @@
     angular
         .module('eSiroi.Web')
         .controller('dataEntryformController', ['$scope', '$state', 'dept_sessionfactory', 'dataFactory', 'dept_dataFactory', 'deptModalService', 'modalService', '$rootScope', 'transID', dataEntryformController]);
-
-    function dataEntryformController($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService, $rootScope, transID) {
+    function dataEntryformController ($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService, $rootScope, transID) {
         
         $scope.tsyear = {};
         $scope.tsyear.tyear = transID[0];
