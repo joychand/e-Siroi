@@ -208,6 +208,7 @@
     <Content Include="scripts\ui-utils.js" />
     <Content Include="spinning.gif" />
     <Content Include="Views\Department\Appoint_Calendar.html" />
+    <Content Include="Views\Department\Certificate.html" />
     <Content Include="Views\Department\dept_dataEntered.html" />
     <Content Include="Views\Department\dept_home.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

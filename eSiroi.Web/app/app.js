@@ -295,6 +295,16 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + 'Home/upload_complete'
         })
         //#endregion 
+        //#region REPORT ROUTING
+         .state('report', {
+             url: '/certificate',
+             templateUrl: baseUrl + 'Department/Certificate',
+             data: {
+                 loginRequired: true,
+                 roles: ['Operator']
+             }
+         })
+        //#endregion REPORTROUTING
         //#region PUBLICROUTING
        
 
@@ -399,7 +409,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                displayName: 'ApplyComplete'
            }
        })
-      //#endregion PUBLICROUTING   
+    //#endregion PUBLICROUTING   
+
     
   
 }]);

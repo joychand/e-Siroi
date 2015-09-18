@@ -14,11 +14,12 @@ using System.Web.Http;
 
 namespace eSiroi.Resource.Controllers
 {
+    [RoutePrefix("api/SRController")]
     public class SRController : ApiController
     {
         private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
         [HttpGet]
-        [Route("api/SRController/getPdf")]
+        [Route("getPdf")]
         public HttpResponseMessage GetPdf()
         {
             HttpResponseMessage result = null;

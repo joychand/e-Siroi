@@ -57,7 +57,7 @@
         $scope.userInAdmin = userService.userInAdmin;
         $scope.status = {};
         $scope.department.currUser = dept_sessionfactory.getCurrUser();
-        $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending', 'DateFixed', 'DeedEntered'];
+        $scope.applnStatus = ['Approved', 'DataEntered,Verify', 'Pending', 'DateFixed', 'DeedEntered', 'Finalized'];
        
         if (userService.userInSR)
        {
@@ -191,7 +191,7 @@
                  closeButtonText: 'Cancel',
                  actionButtonText: 'Ok',
                  headerText: 'Finalization',
-                 bodyText: 'Do you want to finalize the applications ?'
+                 bodyText: 'Do you want to finalize the Application ?'
                 
              };
 
@@ -199,11 +199,18 @@
                
                  var statusObject = {};
                  angular.extend(statusObject, {
-                     tsno: row.tsno,
-                     tsyear: row.tsyear,
-                     sro: row.sro,
-                     status:'Finalized'
+                     tsno: row.ts,
+                     tsyear: row.tYear,
+                     sro: row.roCode,
+                     ackno:row.ackno,
+                     status: 'Finalized'
 
+                 });
+                 console.log(row);
+                 console.log(statusObject);
+                 dept_dataFactory.finalizeAppln(statusObject).then(function (result) {
+                     alert('Application successfully finalized');
+                     getData();
                  })
 
              });

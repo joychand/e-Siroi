@@ -8,7 +8,8 @@
     function dept_dataFactory($http, eSiroiWebSettings) {
         var urlBase = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ApplyRegistrationController/';
         var urlBase2 = eSiroiWebSettings.apiResrcServiceBaseUri +'api/deptRegistraionController/';
-        var urlBase3 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/OnlineUpdate/'
+        var urlBase3 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/OnlineUpdate/';
+        var urlBase4 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/SRController/';
         var service = {
 
             /// GET ONLINE APPLICATION
@@ -317,8 +318,19 @@
                     url: urlBase3+'uploadComplete',
                     data:Uappln
                 })
-        }
+        },
             //#endregion
+
+            //#region SRFACTORY
+            finalizeAppln: function (appln) {
+                return $http({
+                    method: 'POST',
+                    url: urlBase4 + 'finalizeApplication',
+                    data: appln
+                })
+            }
+            //#endregion 
+
 
         };
 

@@ -83,5 +83,9 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Department/online_update_identifier.html", "text/html");
         }
+        public ActionResult Certificate()
+        {
+            return File("~/Views/Department/Certificate.html", "text/html");
+        }
     }
 }
