@@ -299,6 +299,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
          .state('report', {
              url: '/certificate',
              templateUrl: baseUrl + 'Department/Certificate',
+             controller:'certyController',
              data: {
                  loginRequired: true,
                  roles: ['Operator']

@@ -165,10 +165,7 @@
                 
              }
 
-
-
-
-
+             
              modalService.showModal(modalDefault, {}).then(function (result) {
                  //refresh the view 
                  getData();
@@ -215,6 +212,19 @@
 
              });
 
+         }
+         $scope.genCerty = function (row) {
+             console.log(row);
+             deptModalService.ApplnModel = {};
+             angular.extend(deptModalService.ApplnModel, {
+                 tsno: row.ts,
+                 tsyear: row.tYear,
+                 sro: row.sro,
+                 transName: row.transaction
+             })
+
+             $state.go('report');
+             
          }
     }
 })();
@@ -1637,6 +1647,48 @@
 
         }
     }
+})();
+
+//report Controller
+(function () {
+    angular.module('eSiroi.Web')
+.controller('certyController', ['$scope', '$state', 'dept_dataFactory', 'deptModalService', function ($scope, $state, dept_dataFactory, deptModalService) {
+
+    $scope.deedinfo = {};
+    $scope.propertyinfo = {};
+    $scope.buyerinfo = {};
+    $scope.sellerinfo = {};
+    $scope.winessinfo = {};
+    $scope.mesg = '';
+    $scope.loading = true;
+    $scope.tno = deptModalService.ApplnModel.tsno;
+    $scope.tyear = deptModalService.ApplnModel.tsyear;
+    $scope.sro = deptModalService.ApplnModel.sro;
+    $scope.transName = deptModalService.ApplnModel.transName;
+
+    dept_dataFactory.getDeedInfo($scope.tno, $scope.tyear).then(function (response) {
+        $scope.deedinfo = response.data;
+    dept_dataFactory.getPropertyInfo($scope.tno, $scope.tyear).then(function (response) {
+        $scope.propertyinfo = response.data;
+        dept_dataFactory.getExecInfo($scope.tno, $scope.tyear).then(function (response) {
+            $scope.sellerinfo = response.data;
+            dept_dataFactory.getClaimInfo($scope.tno, $scope.tyear).then(function (response) {
+                $scope.buyerinfo = response.data;
+                dept_dataFactory.getIdentInfo($scope.tno, $scope.tyear).then(function (response) {
+                    $scope.winessinfo = response.data;
+                    
+
+
+                })
+
+            })
+
+        })
+    })
+   // $scope.on()
+
+    })
+}])
 })();
 //#region HELPER FUNCTIONS
 function insertPlot($scope) {

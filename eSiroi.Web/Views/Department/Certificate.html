@@ -15,27 +15,22 @@
         <span>Office of the Sub-Registrar Imphal(HQ)</span>
     </div>
     <div class="row text-center" id="emblem">
-        <span>{Certificate of {TransName}}</span>
+        <span>Certificate of <strong>{{transName}}</strong></span>
     </div>
     <div class="row" style="border-top:6px solid #fcfcfe">
         <span><em><strong>TSNo{{TSNo}}of {{TSYear}}</strong>.</em></span>
     </div>
     <div style="text-align:justify; border-top:20px solid #fcfcfe">
-        <p style="text-indent:20px"> Certified that land measuring .................................... (Area of Land in Hectares) situated in .............................[Plot No.(s)/Survey No.(s)/Khasra No. (s)], at ............................................(name of street/village, sub-division, district and state) fully described in the schedule mentioned herein after, is owned by </p>
+        <p style="text-indent:20px"> Certified that land measuring {{}} (Area of Land in Hectares) situated in .............................[Plot No.(s)/Survey No.(s)/Khasra No. (s)], at ............................................(name of street/village, sub-division, district and state) fully described in the schedule mentioned herein after, is owned by </p>
         <p><strong>(Name of the owner/owners)</strong> </p>
         <p>1.............................</p>
-        <p>2.............................</p>
-        <p>3.............................</p>
-        <p>in terms of ............... (give details of document/deed - i.e. sale deed/perpetual lease deed/gift deed/will/trust deed or other document of title) dated...............executed by .............duly registered on ........(date) at Serial No. ................ in book no................, volume no..................on page..........to..........(complete details of registration) in the office of .................(details of registration office). The validity period of lease is form ...................(Date) to .................(Date).</p>
+       
         <p style="text-indent:20px">It is further certified that the owner of the land has Gifted/Sold the said land <strong>Wholly/Partly</strong>  to</p>
         <p>(name of buyer/buyers)</p>
         <p>1............................................</p>
-        <p>2............................................</p>
-        <p>3............................................</p>
-        <p>................................. vide Sale/Gift deed dated.......................duly registered on....................(date) at Serial No......................... and the same is executed on ....................................... in the office of <strong>Sub-Registrar Imphal (HQ)</strong> (details of registration office) in presence of Witness/Witnesses</p>
-        <p>1.........................................</p>
-        <p>2.........................................</p>
-        <p>3.........................................</p>
+        <p>vide Sale/Gift deed dated {{deedinfo.regDate}} duly registered on {{deedinfo.regDate}} (date) at Deed No<strong>{{deedinfo.regNo}}</strong>  and the same is executed on <strong>{{deedinfo.regNo}}</strong> in the office of <strong>{{transName}}</strong> (details of registration office) in presence of Witness/Witnesses</p>
+        <p><strong>{{winessinfo.identSurName + winessinfo.identMiddleName + winessinfo.identLastName}} </strong></p>
+        
 
         <p class="text-center"><strong>THE SCHEDULE OF LAND ABOVE REFERRED TO</strong></p>
         <p>All that piece and parcel of land measuring ...................(area of land in Hectares) situated in .........................[Plot No. (s)/Survey No.(s)/ Khasra No. (s)] at .....................................(name of street/village, sub division, district and state) and bounded as follows:</p>

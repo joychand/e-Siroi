@@ -49,7 +49,7 @@
                 <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DataEntered,Verify' && userInSR"  ng-click="viewRow(row)">View</button></td>
                 <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DeedEntered' && userInSR"  ng-click="viewDeed(row)">ViewDeed</button></td>
                 <td><button class="btn btn-success btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DeedEntered' && userInSR" ng-click="finalized(row)">Finalize</button></td>
-                <td><button class="btn btn-success btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='Finalized' && userInDept" ng-click="$state.go('report')">GenCerty</button></td>
+                <td><button class="btn btn-success btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='Finalized' && userInDept" ng-click="genCerty(row)">GenCerty</button></td>
 
             </tr>
         </tbody>
