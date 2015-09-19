@@ -136,6 +136,7 @@
     <Content Include="app\controller\dept_VapplController.js" />
     <Content Include="app\controller\MainController.js" />
     <Content Include="app\controller\Operator\dept_OnlineDeedController.js" />
+    <Content Include="app\controller\Operator\operatorController.js" />
     <Content Include="app\controller\Operator\schedulerController.js" />
     <Content Include="app\controller\Operator\updateController.js" />
     <Content Include="app\controller\regApplyController.js" />
@@ -214,6 +215,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Department\FactSheet.html" />
+    <Content Include="Views\Department\FinalUpload.html" />
     <Content Include="Views\Department\OnlineDeedEntry.html" />
     <Content Include="Views\Department\online_deed_entry.html" />
     <Content Include="Views\Department\online_update.html" />
@@ -224,6 +226,7 @@
     <Content Include="Views\Department\srVerify.html" />
     <Content Include="Views\Home\applyregistration.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Public\PublicHome.html" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -313,6 +316,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

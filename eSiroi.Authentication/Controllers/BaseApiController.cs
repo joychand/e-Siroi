@@ -25,7 +25,7 @@ namespace eSiroi.Authentication.Controllers
                 return _AppUserManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
         }
-
+       
 
 
         protected ApplicationRoleManager AppRoleManager

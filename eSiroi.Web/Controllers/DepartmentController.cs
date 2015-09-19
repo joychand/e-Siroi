@@ -87,5 +87,9 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Department/Certificate.html", "text/html");
         }
+        public ActionResult FinalUpload()
+        {
+            return File("~/Views/Department/FinalUpload.html", "text/html");
+        }
     }
 }

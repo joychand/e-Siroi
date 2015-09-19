@@ -15,29 +15,31 @@
         <span>Office of the Sub-Registrar Imphal(HQ)</span>
     </div>
     <div class="row text-center" id="emblem">
-        <span>Certificate of <strong>{{transName}}</strong></span>
+        <span>Certificate of {{transName}}</span>
     </div>
     <div class="row" style="border-top:6px solid #fcfcfe">
-        <span><em><strong>TSNo{{TSNo}}of {{TSYear}}</strong>.</em></span>
-    </div>
-    <div style="text-align:justify; border-top:20px solid #fcfcfe">
-        <p style="text-indent:20px"> Certified that land measuring {{}} (Area of Land in Hectares) situated in .............................[Plot No.(s)/Survey No.(s)/Khasra No. (s)], at ............................................(name of street/village, sub-division, district and state) fully described in the schedule mentioned herein after, is owned by </p>
-        <p><strong>(Name of the owner/owners)</strong> </p>
-        <p>1.............................</p>
-       
-        <p style="text-indent:20px">It is further certified that the owner of the land has Gifted/Sold the said land <strong>Wholly/Partly</strong>  to</p>
-        <p>(name of buyer/buyers)</p>
-        <p>1............................................</p>
-        <p>vide Sale/Gift deed dated {{deedinfo.regDate}} duly registered on {{deedinfo.regDate}} (date) at Deed No<strong>{{deedinfo.regNo}}</strong>  and the same is executed on <strong>{{deedinfo.regNo}}</strong> in the office of <strong>{{transName}}</strong> (details of registration office) in presence of Witness/Witnesses</p>
-        <p><strong>{{winessinfo.identSurName + winessinfo.identMiddleName + winessinfo.identLastName}} </strong></p>
+        <div class="col-sm-4">
+            <span><em><strong> TSNo {{tsno}}of {{tsyear}}</strong>.</em></span>
+        </div>
+        <div class="col-sm-2 col-sm-offset-6">
+           Dated: {{certyDate}}
+        </div>
         
-
+    </div>
+    <div class="text-center" http-loader ng-if="loading">
+        Loading........<img id="mySpinner" src="spinning.gif" />
+    </div>
+    <div style="text-align:justify; border-top:20px solid #fcfcfe" ng-if="!loading">
+        <p style="text-indent:20px"> Certified that land measuring <strong>{{propertyinfo.transactedArea}}</strong> (Area of Land in Hectares) situated in NewDagno:<strong>{{propertyinfo.dagNo}}</strong> NewPattano:<strong>{{propertyinfo.pattaNo}}</strong>[Plot No.(s)/Survey No.(s)/Khasra No. (s)], at <strong>{{propertyinfo.village}}</strong>,<strong>{{propertyinfo.circle}}</strong>,<strong>{{propertyinfo.district}}</strong>,<strong>MANIPUR</strong> (name of street/village,Circle,district and state) fully described in the schedule mentioned herein after, is owned by (Name of the owner/owners)</p>
+        <p><strong><em>{{sellerinfo.slNo}}. {{sellerinfo.execSurName + sellerinfo.execMiddleName + sellerinfo.execLastName}} </em></strong>s/o <strong><em>{{sellerinfo.fatherSurName + sellerinfo.fatherMiddleName + sellerinfo.fatherLastName}}</em></strong> of <strong><em>{{sellerinfo.street}}, {{sellerinfo.village}}</em></strong></p>
+         <p style="text-indent:20px">It is further certified that the owner of the land has Gifted/Sold the said land <strong>Wholly/Partly</strong> to(name of buyer/buyers)</p>
+        <p><strong><em>{{buyerinfo.slNo}}.{{buyerinfo.claimSurName + buyerinfo.claimMiddleName + buyerinfo.claimLastName}}</em></strong> s/o <strong><em>{{buyerinfo.fatherSurName + buyerinfo.fatherMiddleName + buyerinfo.fatherLastName}}</em></strong> of <strong><em>{{buyerinfo.street}}, {{buyerinfo.village}}</em></strong></p>
+        <p>vide Sale/Gift deed dated <strong>{{deedinfo.date_Exec}}</strong>(ExecuteDate) duly registered on <strong>{{deedinfo.regDate}}</strong> (RegdDate) at Deed No <strong>{{deedinfo.regNo}}</strong> of <strong>{{deedinfo.regYear}}</strong>  and the same is presented on<strong>{{deedinfo.date_Time_Present}}</strong>(PresDate) in the office of <strong>{{sro}}</strong>  in presence of Witness/Witnesses</p>
+        <p><strong><em>{{winessinfo.slNo}}.{{winessinfo.identSurName + winessinfo.identMiddleName + winessinfo.identLastName}}</em> </strong></p>
         <p class="text-center"><strong>THE SCHEDULE OF LAND ABOVE REFERRED TO</strong></p>
-        <p>All that piece and parcel of land measuring ...................(area of land in Hectares) situated in .........................[Plot No. (s)/Survey No.(s)/ Khasra No. (s)] at .....................................(name of street/village, sub division, district and state) and bounded as follows:</p>
-        <p>North..............................</p>
-        <p>East................................</p>
-        <p>West..............................</p>
-        <p>South.............................</p>
+        <p>All that piece and parcel of land measuring {{propertyinfo.transactedArea}}(area of land in Hectares) situated in <strong>{{propertyinfo.dagNo}}</strong>, <strong>{{propertyinfo.pattaNo}}</strong> [NewDagNo, NewPattaNo] at <strong>{{propertyinfo.village}}</strong>,<strong>{{propertyinfo.circle}}</strong>,<strong>{{propertyinfo.district}}</strong>,<strong>MANIPUR</strong>(name of street/village,sub division,district and state) and bounded as follows:</p>
+        <p>North..............................East................................West..............................South.............................</p>
+
         <p class="text-right">REGISTERING AUTHORITY WITH DESIGNATION</p>
 
         <p class="text-right">(Name of Officer)</p>
@@ -178,7 +180,7 @@
     </div>-->
 
 </div>
-<div class="container hidden-print" style="border-top:20px solid white;">
+<div class="container hidden-print" style="border-top:20px solid #fcfcfe;">
     <div class="row text-center ">
         <button class="btn btn-md btn-info" data-ng-click="printout()"><span class="glyphicon glyphicon-print">Printout</span></button>
     </div>

@@ -44,6 +44,7 @@ angular.module('eSiroi.Web')
                 localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
             }
             else {
+
                 localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: "", useRefreshTokens: false });
             }
             _authentication.isAuth = true;

@@ -57,7 +57,8 @@ namespace eSiroi.Web.App_Start
                       "~/scripts/angular-local-storage.min.js",
                       
                        "~/app/controller/Operator/schedulerController.js",
-                       "~/app/controller/Operator/updateController.js"
+                       "~/app/controller/Operator/updateController.js",
+                        "~/app/controller/Operator/operatorController.js"
                        
                       //"~/scripts/authComplete.js"
 

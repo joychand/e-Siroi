@@ -10,6 +10,7 @@ angular.module('eSiroi.Web')
         var urlBase3 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ApplyRegistrationController/';
         var urlBase4 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/OnlineExecutants';
         var urlBase5 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ComDataController/'
+        var urlBase6 = eSiroiWebSettings.apiAuthServiceBaseUri + 'api/accounts/'
         var dataFactory = {};
         var ackno = 0
 
@@ -202,10 +203,17 @@ angular.module('eSiroi.Web')
             return $http({
                 method: 'POST',
                 url: urlBase3 + 'postplot',
-                data:plot
+                data: plot
             })
-        }
-       
+        };
+
+        dataFactory.signUpUsr = function (usrModel) {
+            return $http({
+                method: 'POST',
+                url: urlBase6 + 'signup',
+                data: usrModel
+            })
+        };
 
         // Add each service function description for error handler service
         dataFactory.getSRO.description = 'GetSro';

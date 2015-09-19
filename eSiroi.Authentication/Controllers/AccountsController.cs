@@ -54,7 +54,60 @@ namespace eSiroi.Authentication.Controllers
 
              return Created(locationHeader, TheModelFactory.Create(user));
          }
+         [Route("signup")]
+         public async Task<IHttpActionResult> signup(CreateUserBindingModel createUserModel)
+         {
+             if (!ModelState.IsValid)
+             {
+                 return BadRequest(ModelState);
+             }
 
+             var user = new ApplicationUser()
+             {
+                 UserName = createUserModel.Username,
+                 //Email = createUserModel.Email,
+                 //FirstName = createUserModel.FirstName,
+                 //LastName = createUserModel.LastName,
+                 //Level = 3,
+                 //JoinDate = DateTime.Now.Date,
+             };
+
+             IdentityResult addUserResult = await this.AppUserManager.CreateAsync(user, createUserModel.Password);
+
+             if (!addUserResult.Succeeded)
+             {
+                 return GetErrorResult(addUserResult);
+             }
+             // Adding pulic user role 
+
+             string role = "public";
+             IdentityResult result = await this.AppUserManager.AddToRoleAsync(user.Id, role);
+
+             if (!result.Succeeded)
+             {
+                 return GetErrorResult(result);
+             }
+
+             Uri locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
+
+             return Created(locationHeader, TheModelFactory.Create(user));
+         }
+         [HttpPost]
+         [Route("getUserRoles")]
+         public async Task<IHttpActionResult> getuserroles([FromBody]string userName)
+         {
+             var user = await this.AppUserManager.FindByNameAsync(userName);
+             if (user != null)
+             {
+                 var roles = await this.AppUserManager.GetRolesAsync(user.Id);
+                 if (roles!=null)
+                 {
+                     return Ok(roles);
+                 }
+             }
+             return NotFound();
+
+         }
 
          [Route("user/{id:guid}", Name = "GetUserById")]
          public async Task<IHttpActionResult> GetUser(string Id)

@@ -426,7 +426,20 @@ angular
                   console.log(ApplyRegModel.onlineapplication);
                   dataFactory.postonlineapplication(ApplyRegModel.onlineapplication).then(function (reponse) {
                       $scope.tabdisabled = false;
-                      $state.go('registration.content.forms.executant');
+                      console.log(ApplyRegModel.onlineapplication);
+                      var usrModel = {};
+                      angular.extend(usrModel, {
+                          Username: ApplyRegModel.onlineapplication.ackno,
+                          Password: ApplyRegModel.onlineapplication.password,
+                          ConfirmPassword: ApplyRegModel.onlineapplication.password,
+                          RoleName:'Public'
+                      })
+                      dataFactory.signUpUsr(usrModel).then(function (result) {
+                          $state.go('registration.content.forms.executant');
+                      }, function (error) {
+                          alert('registration fails')
+                      });
+                     
                   })
 
               })

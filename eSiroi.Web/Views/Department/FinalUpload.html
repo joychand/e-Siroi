@@ -1,0 +1,101 @@
+﻿<div class="container" ng-if="!upload.show">
+    <h4>Enter TsNO and TSYear to enter upload Documents</h4>
+    <div class="form-group text-center">
+        <div class="col-sm-9 col-sm-push-1">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                    TsNo:
+                </span>
+
+                <input type="text" class="form-control" ng-model="upload.tsno" />
+                <span class="input-group-addon">
+                    TsYear:
+                </span>
+
+                <input type="text" class="form-control" ng-model="upload.tsyear" />
+                <span class="input-group-addon ">
+                    <button class="btn btn-success btn-xs" data-ng-click="getAppln()">GetData</button>
+                    <button class="btn btn-default btn-xs" data-ng-click="cancel()">cancel</button>
+                </span>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container" ng-if="upload.show">
+    <label class="info">Final Upload of scanned documents</label>
+    <div class="text-center">
+        <!--<form class="form-group">-->
+        <!--<div class="row">
+            <div class="col-sm-4">
+                <input type="file" class="form-control" file-model="myFile" />
+            </div>
+            <div class="col-sm-1">
+                <button ng-disabled="uploading || (completed && success)" class="btn btn-primary btn-primary-sm" ng-click="uploadFile()">upload</button>
+            </div>
+            <div class="col-sm-3" ng-if="uploading">
+                <img ng-src="images/loading-bar.gif">
+            </div>
+            <div class="col-sm-4" ng-if="completed">
+                <span ng-if="!success" class="alert alert-danger">{{message}}</span>
+                <span ng-if="success" class="alert alert-success">{{message}}</span>
+            </div>
+
+        </div>
+        <div class="row" ng-if="!uploading && completed && success">
+            <div class="col-sm-1 col-sm-offset-4">
+                <button class=" btn btn-default" ng-click="uploadMore()">uploadMore</button>
+
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col-sm-2 text-right control-label">Deed:</div>
+            
+            <div class="col-sm-4 text-left">
+                <input type="file" class="form-control" file-model="myFile" />
+            </div>
+            <div class="col-sm-2 pull-left">
+                <button class="  btn btn-primary btn-primary-sm" ng-click="uploadFile()">Upload</button>
+
+            </div>
+
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-sm-2 text-right control-label">Certificate:</div>
+
+            <div class="col-sm-4 text-left">
+                <input type="file" class="form-control" file-model="myFile" />
+            </div>
+            <div class="col-sm-2 pull-left">
+                <button class="  btn btn-primary btn-primary-sm" ng-click="uploadFile()">Upload</button>
+
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-sm-2 text-right control-label">Factsheet:</div>
+
+            <div class="col-sm-4 text-left">
+                <input type="file" class="form-control" file-model="myFile" />
+            </div>
+            <div class="col-sm-2 pull-left">
+                <button class="  btn btn-primary btn-primary-sm" ng-click="uploadFile()">Upload</button>
+
+            </div>
+
+
+
+
+        </div>
+        
+        <div class="pull-left">
+            <button class="btn btn-success" ng-click="submit()">Submit</button>
+        </div>
+        <!--</form>-->
+
+    </div>
+</div>

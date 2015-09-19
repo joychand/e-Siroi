@@ -180,7 +180,10 @@ namespace eSiroi.Resource.Controllers
                              list.RegDate,
                              list.TransType,
                              list.EntryDt,
-                             list.EnterBy
+                             list.EnterBy,
+                             list.Date_Exec,
+                             list.Date_Time_Present
+                            
                            
                          });
            if (deedinfo.Any())

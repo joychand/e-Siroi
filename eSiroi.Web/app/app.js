@@ -294,6 +294,15 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             url: '/uploadcomplete',
             templateUrl: baseUrl + 'Home/upload_complete'
         })
+         .state('department.content.finalupload', {
+             url: '/finalupload',
+             templateUrl: baseUrl + 'Department/FinalUpload',
+             controller: 'finaluploadController',
+             data: {
+                 loginRequired: true,
+                 roles: ['Operator']
+             }
+         })
         //#endregion 
         //#region REPORT ROUTING
          .state('report', {
@@ -345,8 +354,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             controller: 'applyRegistrationController',
             data: {
                 displayName: 'ApplyHome',
-                loginRequired: true,
-                roles: ['Public']
+                loginRequired: false,
+                roles: []
                   }
                        
         })
