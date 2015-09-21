@@ -47,13 +47,19 @@ angular.module('eSiroi.Web')
 
                 localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: "", useRefreshTokens: false });
             }
-            _authentication.isAuth = true;
-            _authentication.userName = loginData.userName;
-            _authentication.useRefreshTokens = loginData.useRefreshTokens;
-            userService.fillUserClaim();
-            _authentication.roles = userService.currentUser.role;
-            console.log(_authentication.roles);
-            deferred.resolve(response);
+            $http.post(serviceBase +'api/accounts/getUserRoles', '"' + loginData.userName + '"').then(function (result) {
+                _authentication.isAuth = true;
+                _authentication.userName = loginData.userName;
+                _authentication.useRefreshTokens = loginData.useRefreshTokens;
+                userService.fillUserClaim(result.data);
+                _authentication.roles = userService.currentUser.role;
+                deferred.resolve(response);
+               
+               
+                
+
+            });
+
 
         }).error(function (err, status) {
             _logOut();

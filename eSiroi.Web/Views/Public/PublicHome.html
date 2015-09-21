@@ -2,7 +2,7 @@
 <div class=" row text-center hidden-print ">
     <h3><span class="label label-info">ApplicationStatus</span></h3>
 </div>
-<div class="row text-center hidden-print">
+<!--<!--<div class="row text-center hidden-print">
     <div class="col-sm-4 col-sm-push-4">
         <select data-ng-model="status.selectedStatus"
                 data-ng-options="st for st in applnStatus"
@@ -12,7 +12,7 @@
 
         </select>
     </div>
-</div>
+</div>-->
 <div class="container">
     <div class="text-center">
         <div http-loader>Getting Data.........<img id="mySpinner" src="spinning.gif" /></div>
@@ -27,30 +27,24 @@
         <thead class="text-center">
             <tr>
                 <th class="text-center">ApplnNo</th>
+                <th class="text-center">Year</th>
                 <th class="text-center">SRO</th>
-                <th class="text-center">Trans_Type</th>
                 <th class="text-center">AppliedDate</th>
+                <th class="text-center">Trans_Type</th>
                 <th class="text-center">Status</th>
-                <th class="text-center">Apply_type</th>
-                <th class="text-center"></th>
-                <th class="text-center"></th>
+                
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="row in displayCollection">
-                <td>{{row.ts}}</td>
-                <td>{{row.tYear}}</td>
-                <td>{{row.transaction}}</td>
-                <td>{{row.date|date:'dd-MMM-yyyy'}}</td>
+                <td>{{row.ackno}}</td>
+                <td>{{row.year}}</td>
+                <td>{{row.sro}}</td>
+                <td>{{row.date}}</td>
+                <td>{{row.trans_maj_code}}</td>
                 <td>{{row.status}}</td>
-                <td>{{row.ackno ? 'ONline':'OFFline'}}</td>
-                <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='Approved' && userInDept && !row.ackno" ng-click="$state.go('department.content.upload')">Scan</button></td>
-                <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='Approved' && userInDept && row.ackno" ng-click="schedule(row)">Schedule</button></td>
-                <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DataEntered,Verify' && userInSR" ng-click="viewRow(row)">View</button></td>
-                <td><button class="btn btn-primary btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DeedEntered' && userInSR" ng-click="viewDeed(row)">ViewDeed</button></td>
-                <td><button class="btn btn-success btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='DeedEntered' && userInSR" ng-click="finalized(row)">Finalize</button></td>
-                <td><button class="btn btn-success btn-xs" ng-if="status.selectedStatus && status.selectedStatus=='Finalized' && userInDept" ng-click="genCerty(row)">GenCerty</button></td>
-
+                <td><button class="btn btn-success btn-xs" ng-if="row.Status=='DateFixed' " ng-click="getScheduled(row)">ViewDates</button></td>
+                <td><button class="btn btn-info btn-xs" ng-if="row.status=='Completed' " ng-click="getDeed(row)">ViewDeed</button></td>
             </tr>
         </tbody>
 

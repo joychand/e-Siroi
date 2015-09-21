@@ -9,8 +9,9 @@ angular.module('eSiroi.Web')
         var urlBase2 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/SubDivisions';
         var urlBase3 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ApplyRegistrationController/';
         var urlBase4 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/OnlineExecutants';
-        var urlBase5 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ComDataController/'
-        var urlBase6 = eSiroiWebSettings.apiAuthServiceBaseUri + 'api/accounts/'
+        var urlBase5 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/ComDataController/';
+        var urlBase6 = eSiroiWebSettings.apiAuthServiceBaseUri + 'api/accounts/';
+        var urlBase7 = eSiroiWebSettings.apiResrcServiceBaseUri + 'api/Public/';
         var dataFactory = {};
         var ackno = 0
 
@@ -214,6 +215,13 @@ angular.module('eSiroi.Web')
                 data: usrModel
             })
         };
+        dataFactory.getOnlineApplnStatus=function(ackno){
+
+            return $http({
+                method: 'GET',
+                url:urlBase7 + ackno +'/applnStatus'
+            })
+        }
 
         // Add each service function description for error handler service
         dataFactory.getSRO.description = 'GetSro';

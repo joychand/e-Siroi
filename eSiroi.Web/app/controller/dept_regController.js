@@ -443,8 +443,8 @@
 //LoginModalController
 (function () {
     angular.module('eSiroi.Web')
-    .controller('loginModalCtrl', ['$scope','dept_sessionfactory','authService','$state','$rootScope',loginModalCtrl]);
-    function loginModalCtrl($scope,dept_sessionfactory,authService,$state,$rootScope) {
+    .controller('loginModalCtrl', ['$scope','dept_sessionfactory','authService','$state','$rootScope','userService',loginModalCtrl]);
+    function loginModalCtrl($scope,dept_sessionfactory,authService,$state,$rootScope,userService) {
         $scope.loginData = {
             userName: "",
             password: "",
@@ -458,42 +458,75 @@
             $scope.hideMessage = true;
             //TO DO GET USER CREDENTIALS VERIFY WITH THE BACKEND API
             authService.login($scope.loginData).then(function (response) {
-                
-
-                if ($scope.loginData.userName == 'tombi' || $scope.loginData.userName==='kaibem') {
-                    if ($scope.loginData.userName === 'tombi')
-                    {
+                if (!userService.userInPublic) {
+                    if (userService.userInDept) {
                         dept_sessionfactory.putCurrUser('Operator');
                         dept_sessionfactory.user.role = 'Operator';
-                        
                     }
-                    else
-                    {
+                    else {
                         dept_sessionfactory.putCurrUser('SR');
                         dept_sessionfactory.user.role = 'SR';
                     }
                     dept_sessionfactory.user.sro = ("1");
                     $state.go('department.content.home');
+
                 }
+                 
                 else {
 
-                    dept_sessionfactory.putCurrUser('Public');
-                    dept_sessionfactory.user.role = 'Public';
-                    $state.go('registration.content.apply')
+                    dept_sessionfactory.putCurrUser('public');
+                    dept_sessionfactory.user.role = 'public';
+                    $state.go('registration.content.publicHome')
                 }
                 
               
-                  
-                //$location.path('/orders');
-               // $modalInstance.close();
             },
-             function (err) {
-                 $scope.hideMessage = false;
-                 $scope.message = err.error_description;
+ function (err) {
+     $scope.hideMessage = false;
+     $scope.message = err.error_description;
 
-             });
-           // 
+ });
+            
         }
+        //    //#region OldVersion
+        //    authService.login($scope.loginData).then(function (response) {
+                
+
+        //        if ($scope.loginData.userName == 'tombi' || $scope.loginData.userName==='kaibem') {
+        //            if ($scope.loginData.userName === 'tombi')
+        //            {
+        //                dept_sessionfactory.putCurrUser('Operator');
+        //                dept_sessionfactory.user.role = 'Operator';
+                        
+        //            }
+        //            else
+        //            {
+        //                dept_sessionfactory.putCurrUser('SR');
+        //                dept_sessionfactory.user.role = 'SR';
+        //            }
+        //            dept_sessionfactory.user.sro = ("1");
+        //            $state.go('department.content.home');
+        //        }
+        //        else {
+
+        //            dept_sessionfactory.putCurrUser('Public');
+        //            dept_sessionfactory.user.role = 'Public';
+        //            $state.go('registration.content.apply')
+        //        }
+                
+              
+                  
+        //        //$location.path('/orders');
+        //       // $modalInstance.close();
+        //    },
+        //     function (err) {
+        //         $scope.hideMessage = false;
+        //         $scope.message = err.error_description;
+
+        //     });
+        //   // 
+        //}
+        ////#endregion OldVersion
 
         // USER CLICK CANCEL EVENT
         $scope.login.cancel = function () {

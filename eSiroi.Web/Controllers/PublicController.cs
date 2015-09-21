@@ -9,9 +9,9 @@ namespace eSiroi.Web.Controllers
     public class PublicController : Controller
     {
         // GET: Public
-        public ActionResult Fsheet()
+        public ActionResult PublicHome()
         {
-            return File("~/Views/Department/FactSheet.html", "text/html");
+            return File("~/Views/Public/PublicHome.html", "text/html");
         }
     }
 }

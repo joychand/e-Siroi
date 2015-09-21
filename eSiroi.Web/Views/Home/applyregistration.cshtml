@@ -71,36 +71,44 @@
 <div class="col-sm-6">
     <div class="row">
     <div class="col-sm-12 ">
-        <h4><span class="label label-default">Plz login with Ackno and password to view application</span></h4>
+        <h4><span class="label label-default">Plz login with ApplnNo and password to view application</span></h4>
     </div>
     </div>
     <div class="row" data-ng-switch="loginVisibility">
     <div class="col-sm-12" data-ng-switch-when="clickLogin">
-        <button class="btn btn-primary col-sm-3 col-sm-offset-4" data-ng-click="login()" >View</button>
+        <button class="btn btn-primary col-sm-3 col-sm-offset-4" data-ng-click="onloginClick()" >View</button>
     </div>
-   
-        <div class="row" data-ng-switch-when="Login">
-            <form class="form-horizontal" role="form" name="applyReglogin" ng-submit="">
-                <div class="form-group">
-                    <label class="control-label col-sm-4">Ackno:</label>
-                    <div class="col-sm-6">
-                        <input type="text" data-ng-model="applylogin.ackno" class="form-control" />
+        <div class="container" data-ng-switch-when="Login">
+            <div class="row">
+                <form class="form-horizontal" role="form" name="applyReglogin" ng-submit="">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">ApplNo:</label>
+                        <div class="col-sm-6">
+                            <input type="text" data-ng-model="loginData.userName" class="form-control" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-4">Password:</label>
-                    <div class="col-sm-6">
-                        <input type="password" data-ng-model="applylogin.passwd"class="form-control" />
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Password:</label>
+                        <div class="col-sm-6">
+                            <input type="password" data-ng-model="loginData.password" class="form-control" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group  text-center">
-                    <div class="btn-group">
-                        <button class="btn btn-success" type="submit">login</button>
-                        <button class="btn btn-default" data-ng-click="loginCancel()">cancel</button>
+                    <div class="form-group  text-center">
+                        <div class="btn-group">
+                            <button class="btn btn-success"  ng-click="login()">login</button>
+                            <button class="btn btn-default" data-ng-click="loginCancel()">cancel</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
+            <div class="row text-center" ng-if="message">
+                <div class="col-sm-4 col-sm-offset-4 alert alert-danger">{{message}}</div>
+            </div>
+            <div class="col-sm6 col-sm-offset-3 text-center">
+                <http-loader>Authenticating......<img id="mySpinner" src="spinning.gif" /></http-loader>
+            </div>
         </div>
+       
     </div>
 </div>
         

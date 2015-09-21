@@ -18,10 +18,11 @@
         userInAdmin:false,
         
             //set user profiles
-            fillUserClaim: function () {
+            fillUserClaim: function (roles) {
                 var authService = $injector.get('authService');
                 this.currentUser.userName = authService.authentication.userName;
-                this.currentUser.role = getUserRole(authService.authentication.userName);
+               
+                this.currentUser.role = roles;
                 angular.forEach(this.currentUser.role, function (role) {
                    
                     switch (role) {
@@ -33,7 +34,7 @@
                             userfactory.userInDept = true;
                             break;
                         }
-                        case 'Public': {
+                        case 'public': {
                             
                             userfactory.userInPublic = true;
                             break;
@@ -60,29 +61,32 @@
 
         function getUserRole(userName) {
             //TO DO *****  DATA SHOULD BE FILLED FROM AUTHENTICATION SERVER******
-            $http.post('http://localhost/eSiroi.Authentication/api/accounts/getUserRoles')
-            var usersInrole = [
-           {
-               name: 'kaibem',
-               role: ['SR']
-           },
-           {
-               name: 'tombi',
-               role: ['Operator']
-           },
-           {
-               name: 'chibem',
-               role: ['Public']
-           }
-            ];
+            $http.post('http://localhost/eSiroi.Authentication/api/accounts/getUserRoles','"'+ userName +'"' ).then(function (result) {
+                console.log(result.data);
+                return result.data;
+            })
+            //var usersInrole = [
+           //{
+           //    name: 'kaibem',
+           //    role: ['SR']
+           //},
+           //{
+           //    name: 'tombi',
+           //    role: ['Operator']
+           //},
+           //{
+           //    name: 'chibem',
+           //    role: ['Public']
+           //}
+           // ];
            
-            for(var i=0;usersInrole.length>i;i++){
-                if (usersInrole[i].name === userName) {
+           // for(var i=0;usersInrole.length>i;i++){
+           //     if (usersInrole[i].name === userName) {
                     
-                    return usersInrole[i].role;
-                }
+           //         return usersInrole[i].role;
+           //     }
                
-            }
+           // }
            
                 
 

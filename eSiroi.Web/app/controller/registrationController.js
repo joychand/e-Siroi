@@ -25,7 +25,13 @@ angular
 //***********APPLY REGISTRATION CONTROLLER***********************//
 (function () {
     angular.module('eSiroi.Web')
-    .controller('applyRegistrationController', ['$scope', '$state', 'dataFactory', '$rootScope', 'sessionFactory', '$timeout', 'errors', 'ApplyRegModel', 'modalService', function ($scope, $state, dataFactory, $rootScope, sessionFactory, $timeout, errors, ApplyRegModel) {
+    .controller('applyRegistrationController', ['$scope', '$state', 'dataFactory', '$rootScope', 'sessionFactory', '$timeout', 'errors', 'ApplyRegModel', 'modalService', 'authService','userService', function ($scope, $state, dataFactory, $rootScope, sessionFactory, $timeout, errors, ApplyRegModel,modalService, authService, userService) {
+        $scope.loginData = {
+            userName: "",
+            password: "",
+            useRefreshTokens: false
+        };
+        $scope.message = '';
         $scope.transactions = {};
        
         
@@ -99,16 +105,41 @@ angular
         }
 
        
-        $scope.login = function () {
+        $scope.onloginClick = function () {
             $scope.loginVisibility = 'Login';
             $scope.click = true;
             //$scope.state = $state;
             //$state.go('registration.content.apply.login')
         }
+        $scope.login = function () {
+            console.log($scope.loginData);
+            authService.login($scope.loginData).then(function (response) {
+                if (userService.userInPublic) {
+
+                    //dept_sessionfactory.putCurrUser('public');
+                    //dept_sessionfactory.user.role = 'public';
+                    $state.go('registration.content.publicHome')
+
+                }
+                else {
+                    $scope.message = 'Invalid Username\Password'
+                }
+
+            },
+                    function (err) {
+                             $scope.hideMessage = false;
+                             $scope.message = err.error_description;
+
+                });
+        }
 
         $scope.loginCancel = function () {
             $scope.loginVisibility = 'clickLogin';
-            $scope.applylogin = {};
+            $scope.loginData = {
+                userName: "",
+                password: "",
+                useRefreshTokens: false
+            };
 
         }
 
@@ -686,3 +717,57 @@ angular
         }
     }
 })();
+
+//#regionPUBLICCONTROLLER
+//publichomepage
+(function () {
+    angular.module('eSiroi.Web')
+.controller('publicHomeCtrl', ['$scope', '$state', 'dataFactory', 'authService', function ($scope, $state, dataFactory, authService) {
+    $scope.myData = {};
+    $scope.message = '';
+    $scope.displayCollection={}
+    if (authService.authentication.userName) {
+        var ackno = parseInt(authService.authentication.userName)
+
+    }
+    dataFactory.getOnlineApplnStatus(ackno).then(function (result) {
+        $scope.myData = result.data[0];
+        $scope.displayCollection = [].concat($scope.myData);
+    });
+}])
+})();
+//publicloginpage
+//(function () {
+//    angular.module('eSiroi.Web')
+//.controller('applyLoginCtrl', ['$scope', '$state', 'authService', 'userService', function ($scope, $state, authService, userService) {
+//    $scope.loginData = {
+//        userName: "",
+//        password: "",
+//        useRefreshTokens: false
+//    };
+//    $scope.message = "";
+//    $scope.login = function () {
+//        authService.login($scope.loginData).then(function (response) {
+//            if (userService.userInPublic) {
+                
+//                dept_sessionfactory.putCurrUser('public');
+//                dept_sessionfactory.user.role = 'public';
+//                $state.go('registration.content.publicHome')
+
+//            }
+//            else {
+//                $scope.message='Invalid Username\Password'
+//            }
+
+//        },
+//function (err) {
+//    $scope.hideMessage = false;
+//    $scope.message = err.error_description;
+
+//});
+
+
+//    }
+//}])
+//})();
+//#endregion PUBLICCONTROLLER

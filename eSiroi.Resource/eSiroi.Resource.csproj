@@ -149,6 +149,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\SRController.cs" />
     <Compile Include="Controllers\SubDivisionsController.cs">
       <SubType>Code</SubType>

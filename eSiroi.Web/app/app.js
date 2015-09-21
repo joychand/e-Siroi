@@ -353,7 +353,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + 'Home/applyregistration',
             controller: 'applyRegistrationController',
             data: {
-                displayName: 'ApplyHome',
+                displayName: 'Apply',
                 loginRequired: false,
                 roles: []
                   }
@@ -417,6 +417,17 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
            deepStateRedirect: true,
            data: {
                displayName: 'ApplyComplete'
+           }
+       })
+       .state('registration.content.publicHome', {
+           url: '/publicHome',
+           controller: 'publicHomeCtrl',
+           templateUrl: baseUrl + "Public/PublicHome",
+           //: true,
+           data: {
+               displayName: 'Home',
+               loginRequired: true,
+               roles: ['public']
            }
        })
     //#endregion PUBLICROUTING   
