@@ -724,7 +724,7 @@
         //}
         if (row)
         {
-                if ($rootScope.previousState == 'department.content.onlineapplication' || 'department.content.enterdeed')
+                if ($rootScope.previousState === 'department.content.onlineapplication' )
                 {
                     console.log(row);
                     console.log(row.ackno);
@@ -1514,29 +1514,31 @@
                 dept_sessionfactory.putOnlineIdentifierList($scope.identifierlist)
             }
             //#region post the party details
-           
-           dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
-                console.log('registration data successfully  submitted');
-                dept_dataFactory.postClaimantList(dept_sessionfactory.getClaimantlist()).then(function (response) {
-                    dept_dataFactory.postIdentifierList(dept_sessionfactory.getIdentifierList()).then(function (response) {
-                        var statusObject = {};
-                        angular.extend(statusObject, {
-                            tsno: $scope.tsyear.ts,
-                            tsyear: $scope.tsyear.tyear,
-                            ackno: dept_sessionfactory.getAckno(),
-                            status: 'DataEntered,Verify',
-                            sro:dept_sessionfactory.user.sro,
-                            trans_maj_code: dept_sessionfactory.getTransCd(),
-                            
-                        })
-                        deptModalService.ApplnModel = statusObject;
-                        dept_dataFactory.addApplication(statusObject).then(function (response) {
+            console.log(dept_sessionfactory.getAckno());
+            var statusObject = {};
+            angular.extend(statusObject, {
+                tsno: $scope.tsyear.ts,
+                tsyear: $scope.tsyear.tyear,
+                ackno: dept_sessionfactory.getAckno(),
+                status: 'DataEntered,Verify',
+                sro: dept_sessionfactory.user.sro,
+                trans_maj_code: dept_sessionfactory.getTransCd(),
+
+            })
+            deptModalService.ApplnModel = statusObject;
+            dept_dataFactory.addApplication(statusObject).then(function (response) {
+                dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
+                    console.log('registration data successfully  submitted');
+                    dept_dataFactory.postClaimantList(dept_sessionfactory.getClaimantlist()).then(function (response) {
+                        dept_dataFactory.postIdentifierList(dept_sessionfactory.getIdentifierList()).then(function (response) {
                             $state.go('department.content.dataentered');
                         })
-                    }) 
+                    })
+
                 })
                
             })
+          
            
         }
         //#endregion
