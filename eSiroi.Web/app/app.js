@@ -1,6 +1,6 @@
 ﻿
 var app = angular.module('eSiroi.Web', ['ui.router', 'ct.ui.router.extras', 'angularModalService', 'ui.bootstrap', 'ngGrid', 'ngSanitize', 'ui.mask', 'errorHandler', 'smart-table', 'LocalStorageModule', 'gm.datepickerMultiSelect']);
-
+//var app = angular.module('eSiroi.Web', ['ui.router', 'ct.ui.router.extras', 'ui.bootstrap', 'ngGrid', 'ngSanitize', 'ui.mask', 'errorHandler', 'smart-table', 'LocalStorageModule']);
 app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provide',function ($stateProvider, $locationProvider,$urlRouterProvider,$provide ) {
     var baseUrl = $("base").first().attr("href");
    
@@ -460,11 +460,11 @@ app.config(['$httpProvider',function ($httpProvider) {
 //*********** GLOBAL RUN CONFIG EVENTS *************************//
 app.run(['$rootScope', '$state', '$window', '$timeout', '$stateParams','errorHandler','authService','modalService','eSiroiWebSettings',
 
-function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, authService, modalService,eSiroiWebSettings) {
+function ($rootScope, $state, $window, $timeout, $stateParams,errorHandler,authService, modalService,eSiroiWebSettings) {
     $rootScope.$state = $state;
     $rootScope.previouState;
     $rootScope.currentState;
-    $rootScope.errorHandler = errorHandler;
+   $rootScope.errorHandler = errorHandler;
     $rootScope.$stateParams = $stateParams;
     
         authService.fillAuthData();
@@ -545,44 +545,44 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
 
 
 
-app.controller('propertyController', ['$scope', '$state','dataFactory', function ($scope, $state, dataFactory) {
+//app.controller('propertyController', ['$scope', '$state','dataFactory', function ($scope, $state, dataFactory) {
 
-    $scope.districts = {}
-    $scope.circles = {}
-    $scope.RevVillages = {}
+//    $scope.districts = {}
+//    $scope.circles = {}
+//    $scope.RevVillages = {}
 
-    init();
+//    init();
 
-    function init() {
-        getDistricts()
-        getCircles()
-        getRevVillages()
+//    function init() {
+//        getDistricts()
+//        getCircles()
+//        getRevVillages()
 
-    }
+//    }
 
-    function getDistricts() {
-        dataFactory.getDistricts().then(function (districts) {
-            $scope.districts = districts;
-        });
-    }
+//    function getDistricts() {
+//        dataFactory.getDistricts().then(function (districts) {
+//            $scope.districts = districts;
+//        });
+//    }
 
-    function getCircles() {
-        dataFactory.getCircle().then(function (Circles) {
-            $scope.Circles = Circles;
-        });
-    }
+//    function getCircles() {
+//        dataFactory.getCircle().then(function (Circles) {
+//            $scope.Circles = Circles;
+//        });
+//    }
 
-    function getRevVillages() {
-        dataFactory.getRevVillage().then(function (RevVillages) {
-            $scope.RevVillages = RevVillages;
-        });
-    }
+//    function getRevVillages() {
+//        dataFactory.getRevVillage().then(function (RevVillages) {
+//            $scope.RevVillages = RevVillages;
+//        });
+//    }
 
-    $scope.nextparty = function () {
-        $scope.state = $state;
-        $state.go('registration.content.forms.executant');
-    }
-    //$scope.showvillage = function (village) {
-    //   return village === 
-    //}
-}]);
+//    $scope.nextparty = function () {
+//        $scope.state = $state;
+//        $state.go('registration.content.forms.executant');
+//    }
+//    //$scope.showvillage = function (village) {
+//    //   return village === 
+//    //}
+//}]);

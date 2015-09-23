@@ -338,10 +338,10 @@
 
         
     }
-    angular.module('eSiroi.Web').config(function (errorHandlerProvider, $provide) {
+    angular.module('eSiroi.Web').config(['errorHandlerProvider','$provide',function (errorHandlerProvider, $provide) {
 
         errorHandlerProvider.decorate($provide, ['dept_dataFactory'])
-    });
+    }]);
 })();
 
 
