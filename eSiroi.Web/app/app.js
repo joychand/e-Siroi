@@ -1,9 +1,4 @@
-﻿/// <reference path = ~/scripts/angular.js />
-/// <reference path = ~/scripts/app/factory/datafactory.js>
-
-/// <reference path = ~/scripts/angular-ui-router.js>
-/// <reference path = ~/scripts/app/factory/sessionFactory.js>
-
+﻿
 var app = angular.module('eSiroi.Web', ['ui.router', 'ct.ui.router.extras', 'angularModalService', 'ui.bootstrap', 'ngGrid', 'ngSanitize', 'ui.mask', 'errorHandler', 'smart-table', 'LocalStorageModule', 'gm.datepickerMultiSelect']);
 
 app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provide',function ($stateProvider, $locationProvider,$urlRouterProvider,$provide ) {
@@ -207,11 +202,11 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                 roles: ['Operator']
             },
             resolve: {
-                majortrans: function (dataFactory) {
+                majortrans: ['dataFactory', function (dataFactory) {
                     return dataFactory.getMajortransaction().then(function (results) {
                         
                         return results;});
-                }
+                }]
             }
         })
         //#endregion OFFLINE
@@ -222,12 +217,12 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + 'Home/dept_dataEntry_form',
             controller: 'dataEntryformController',
             resolve: {
-                transID: function (dept_dataFactory, dept_sessionfactory) {
+                transID: ['dept_dataFactory', 'dept_sessionfactory',function (dept_dataFactory, dept_sessionfactory) {
                     return dept_dataFactory.generateTsID(dept_sessionfactory.user.sro).then(function (results) {
 
                         return results.data;
                     });
-                }
+                }]
             }
             
         })
@@ -241,10 +236,10 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + 'Home/dept_dataEntry_form_property',
             controller: 'deptPropController',
             resolve:{
-            district: function (dataFactory) {
+                district: ['dataFactory', function (dataFactory) {
                 return dataFactory.getDistricts();
 
-            }
+            }]
             }
         })
 
@@ -253,9 +248,9 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + 'Home/dept_dataEntry_form_executant',
             controller: 'deptExeController',
             resolve: {
-                online: function (dept_sessionfactory) {
+                online: ['dept_sessionfactory',function (dept_sessionfactory) {
                     return dept_sessionfactory.getOnline();
-                }
+                }]
             }
         })
 
@@ -446,7 +441,7 @@ app.constant('eSiroiWebSettings', {
     baseUrl : $("base").first().attr("href")
 });
 
-app.config(function ($httpProvider) {
+app.config(['$httpProvider',function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
     $httpProvider.interceptors.push('httpLoaderInterceptor');
     console.log($httpProvider.interceptors);
@@ -461,7 +456,7 @@ app.config(function ($httpProvider) {
     // extra
     $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-});
+}]);
 //*********** GLOBAL RUN CONFIG EVENTS *************************//
 app.run(['$rootScope', '$state', '$window', '$timeout', '$stateParams','errorHandler','authService','modalService','eSiroiWebSettings',
 
@@ -525,38 +520,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
         }
 
         else if (toState.name === 'Home') return;
-        //else if (toState.name == 'department.content.login') {
-        //    $rootScope.previousState = $rootScope.currentState;
-
-        //    var modalOptions = {
-        //        closeButtonText: 'Cancel',
-        //        actionButtonText: 'Login',
-        //        headerText: 'Login',
-        //        bodyText: ''
-        //    };
-
-        //    var modalDefault = {
-        //        templateUrl: eSiroiWebSettings.baseUrl + 'Home/loginPage',
-        //        controller: 'loginModalCtrl',
-        //        backdrop: 'static',
-        //        backdropClass: 'dark-backdrop',
-        //        size: 'lg'
-
-        //    };
-        //            event.preventDefault();         
-              
-        //            modalService.showModal(modalDefault, modalOptions).then(function (result) {
-        //                console.log('hahahaha');
-                                  
-        //            }, function (error) {
-                        
-        //            });
-              
-           
-            
-          
-           
-        //}
+       
          
     })
 
@@ -569,9 +533,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams, errorHandler, aut
                 console.log('Current state:' + $rootScope.currentState)
     });
 
-    //$rootScope.$on('$locationChangeSuccess', function (ev) {
-    //    $urlRouter.sync();
-    //})
+   
 
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
         console.log(error);

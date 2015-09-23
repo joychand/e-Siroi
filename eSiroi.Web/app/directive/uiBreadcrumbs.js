@@ -3,15 +3,15 @@
 
 (function() {
 
-    /**
-     * Config
-     */
+    ///**
+    // * Config
+    // */
     var moduleName = 'eSiroi.Web';
     var templateUrl = 'Home/tpl';
-   // var templateUrl = '';
-    /**
-     * Module
-     */
+   //// var templateUrl = '';
+   // /**
+   //  * Module
+   //  */
     var module;
     try {
         module = angular.module(moduleName);
@@ -39,10 +39,10 @@
                         updateBreadcrumbsArray();
                     });
 
-                    /**
-                     * Start with the current state and traverse up the path to build the
-                     * array of breadcrumbs that can be used in an ng-repeat in the template.
-                     */
+                    ///**
+                    // * Start with the current state and traverse up the path to build the
+                    // * array of breadcrumbs that can be used in an ng-repeat in the template.
+                    // */
                     function updateBreadcrumbsArray() {
                         var workingState;
                         var displayName;
@@ -67,13 +67,13 @@
                         scope.breadcrumbs = breadcrumbs;
                     }
 
-                    /**
-                     * Get the state to put in the breadcrumbs array, taking into account that if the current state is abstract,
-                     * we need to either substitute it with the state named in the `scope.abstractProxyProperty` property, or
-                     * set it to `false` which means this breadcrumb level will be skipped entirely.
-                     * @param currentState
-                     * @returns {*}
-                     */
+                    ///**
+                    // * Get the state to put in the breadcrumbs array, taking into account that if the current state is abstract,
+                    // * we need to either substitute it with the state named in the `scope.abstractProxyProperty` property, or
+                    // * set it to `false` which means this breadcrumb level will be skipped entirely.
+                    // * @param currentState
+                    // * @returns {*}
+                    // */
                     function getWorkingState(currentState) {
                         var proxyStateName;
                         var workingState = currentState;
@@ -92,13 +92,13 @@
                         return workingState;
                     }
 
-                    /**
-                     * Resolve the displayName of the specified state. Take the property specified by the `displayname-property`
-                     * attribute and look up the corresponding property on the state's config object. The specified string can be interpolated against any resolved
-                     * properties on the state config object, by using the usual {{ }} syntax.
-                     * @param currentState
-                     * @returns {*}
-                     */
+                    ///**
+                    // * Resolve the displayName of the specified state. Take the property specified by the `displayname-property`
+                    // * attribute and look up the corresponding property on the state's config object. The specified string can be interpolated against any resolved
+                    // * properties on the state config object, by using the usual {{ }} syntax.
+                    // * @param currentState
+                    // * @returns {*}
+                    // */
                     function getDisplayName(currentState) {
                         var interpolationContext;
                         var propertyReference;
@@ -122,14 +122,14 @@
                         }
                     }
 
-                    /**
-                     * Given a string of the type 'object.property.property', traverse the given context (eg the current $state object) and return the
-                     * value found at that path.
-                     *
-                     * @param objectPath
-                     * @param context
-                     * @returns {*}
-                     */
+                    ///**
+                    // * Given a string of the type 'object.property.property', traverse the given context (eg the current $state object) and return the
+                    // * value found at that path.
+                    // *
+                    // * @param objectPath
+                    // * @param context
+                    // * @returns {*}
+                    // */
                     function getObjectValue(objectPath, context) {
                         var i;
                         var propertyArray = objectPath.split('.');
@@ -146,13 +146,13 @@
                         return propertyReference;
                     }
 
-                    /**
-                     * Check whether the current `state` has already appeared in the current breadcrumbs array. This check is necessary
-                     * when using abstract states that might specify a proxy that is already there in the breadcrumbs.
-                     * @param state
-                     * @param breadcrumbs
-                     * @returns {boolean}
-                     */
+                    ///**
+                    // * Check whether the current `state` has already appeared in the current breadcrumbs array. This check is necessary
+                    // * when using abstract states that might specify a proxy that is already there in the breadcrumbs.
+                    // * @param state
+                    // * @param breadcrumbs
+                    // * @returns {boolean}
+                    // */
                     function stateAlreadyInBreadcrumbs(state, breadcrumbs) {
                         var i;
                         var alreadyUsed = false;

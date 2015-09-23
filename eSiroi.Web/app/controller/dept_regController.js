@@ -1133,7 +1133,7 @@
 
         $scope.saveproperty = function () {
 
-            insertPlot();
+            //insertPlot();
             var modalOptions = {
                 closeButtonText: 'Cancel',
                 actionButtonText: 'Ok',
@@ -1727,8 +1727,5 @@
     })
 }])
 })();
-//#region HELPER FUNCTIONS
-function insertPlot($scope) {
 
-}
 

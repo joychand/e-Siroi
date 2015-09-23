@@ -129,25 +129,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\controller\controller1.js" />
-    <Content Include="app\controller\controller2.js" />
-    <Content Include="app\controller\controller3.js" />
     <Content Include="app\controller\dept_regController.js" />
-    <Content Include="app\controller\dept_VapplController.js" />
     <Content Include="app\controller\MainController.js" />
     <Content Include="app\controller\Operator\dept_OnlineDeedController.js" />
     <Content Include="app\controller\Operator\operatorController.js" />
     <Content Include="app\controller\Operator\schedulerController.js" />
     <Content Include="app\controller\Operator\updateController.js" />
-    <Content Include="app\controller\regApplyController.js" />
     <Content Include="app\controller\registrationController.js" />
-    <Content Include="app\controller\VapplController.js" />
     <Content Include="app\directive\fileUpload.js" />
     <Content Include="app\directive\loadingWidget.js" />
     <Content Include="app\directive\uiBreadcrumbs.js" />
     <Content Include="app\factory\angularModalService.js" />
     <Content Include="app\factory\ApplyRegModel.js" />
-    <Content Include="app\factory\dataCommonFactory.js" />
     <Content Include="app\factory\datafactory.js" />
     <Content Include="app\factory\deptModelService.js" />
     <Content Include="app\factory\dept_dataFactory.js" />
@@ -231,7 +224,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -240,26 +232,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\app1.js" />
-    <Content Include="app\controllers\associateController.js" />
-    <Content Include="app\controllers\homeController.js" />
-    <Content Include="app\controllers\indexController.js" />
-    <Content Include="app\controllers\loginController.js" />
-    <Content Include="app\controllers\ordersController.js" />
-    <Content Include="app\controllers\refreshController.js" />
-    <Content Include="app\controllers\signupController.js" />
-    <Content Include="app\controllers\tokensManagerController.js" />
     <Content Include="app\services\authInterceptorService.js" />
     <Content Include="app\services\authService.js" />
-    <Content Include="app\services\ordersService.js" />
-    <Content Include="app\services\tokensManagerService.js" />
-    <Content Include="app\views\associate.html" />
-    <Content Include="app\views\home.html" />
-    <Content Include="app\views\login.html" />
-    <Content Include="app\views\orders.html" />
-    <Content Include="app\views\refresh.html" />
-    <Content Include="app\views\signup.html" />
-    <Content Include="app\views\tokens.html" />
     <Content Include="content\css\bootstrap.min.css" />
     <Content Include="content\css\font-awesome.min.css" />
     <Content Include="content\css\loading-bar.css" />
