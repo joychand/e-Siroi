@@ -464,7 +464,8 @@ function ($rootScope, $state, $window, $timeout, $stateParams,errorHandler,authS
     $rootScope.$state = $state;
     $rootScope.previouState;
     $rootScope.currentState;
-   $rootScope.errorHandler = errorHandler;
+    $rootScope.errorHandler = errorHandler;
+    console.log(errorHandler);
     $rootScope.$stateParams = $stateParams;
     
         authService.fillAuthData();

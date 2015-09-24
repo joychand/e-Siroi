@@ -31,13 +31,13 @@ angular.module('errorHandler', [])
       // The actual service:
       return {
           // Decorate the mentioned [services] with automatic error handling. See demo.js for an example.
-          decorate: function ($provide, services) {
+          decorate:  function ($provide, services) {
               angular.forEach(services, function (service) {
                   $provide.decorator(service, decorator);
               });
           },
 
-          $get: function ($log, httpErrors) {
+          $get: ['$log',function ($log, httpErrors) {
 
               var handler = {
 
@@ -107,6 +107,6 @@ angular.module('errorHandler', [])
               };
 
               return handler;
-          }
+          }]
       };
   });
