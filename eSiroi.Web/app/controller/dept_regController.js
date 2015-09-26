@@ -40,9 +40,9 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'userService','authService','deptModalService','$http', deptHomeController]);
+        .controller('deptHomeController', ['$state', '$scope', '$rootScope', 'dept_dataFactory', 'modalService', 'dept_sessionfactory', 'userService','authService','deptModalService','$http','eSiroiWebSettings', deptHomeController]);
 
-    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService, deptModalService, $http) {
+    function deptHomeController($state, $scope, $rootScope, dept_dataFactory, modalService, dept_sessionfactory, userService, authService, deptModalService, $http, eSiroiWebSettings) {
         
        
         
@@ -175,7 +175,7 @@
 
          }
          $scope.viewDeed = function (row) {
-             $http.get('http://localhost/eSiroi.Resource/api/SRController/getPdf', { responseType: 'arraybuffer' })
+             $http.get(eSiroiWebSettings.apiResrcServiceBaseUri + 'api/SRController/getPdf', { responseType: 'arraybuffer' })
                 .success(function (data) {
                     var file = new Blob([data], { type: 'application/pdf' });
                     var fileURL = URL.createObjectURL(file);

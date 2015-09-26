@@ -24,29 +24,17 @@ namespace eSiroi.Resource.Entities
         [StringLength(50)]
         public string sro { get; set; }
 
-       
-        
+              
         
         public int ? ackno { get; set; }
 
         
-        //[Column(Order = 4)]
-        //[StringLength(50)]
-        //public string year { get; set; }
-
        
-
-        //[StringLength(50)]
-        //public string mobile { get; set; }
-
-        //[StringLength(50)]
-        //public string aadhar { get; set; }
 
         [StringLength(2)]
         public string trans_maj_code { get; set; }
 
-        //[StringLength(50)]
-        //public string password { get; set; }
+        
 
         [StringLength(50)]
         public string Entrydate { get; set; }

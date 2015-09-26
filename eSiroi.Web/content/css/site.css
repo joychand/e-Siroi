@@ -26,10 +26,7 @@ body {
     min-height: 100%;
     overflow-x:hidden;
     padding-top:5px;
-    /*margin:0 auto -155px;*/
-    /*margin-top: 0px;*/*/
-    /*overflow-y:scroll;*/
-    
+   
 }
 .masthead{
     width:100%;
@@ -61,24 +58,7 @@ textarea {
 	position: static;
 }
 
-/*@media (min-width: 979px) {
-  #sidebar.affix-top {
-    position: static;
-  	margin-top:30px;
-  	width:228px;
-  }
-  
-  #sidebar.affix {
-    position: fixed;
-    top:100px;
-    width:228px;
-  }
-}
 
-#sidebar li.active {
-  	border:0 #eee solid;
-  	border-right-width:4px;
-}*/
 #footer,.push{
      /*padding: 30px 0;*/
      padding-top:30px;

@@ -37,7 +37,7 @@ angular.module('errorHandler', [])
               });
           },
 
-          $get: ['$log',function ($log, httpErrors) {
+          $get: ['$log', 'httpErrors', function ($log, httpErrors) {
 
               var handler = {
 

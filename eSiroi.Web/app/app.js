@@ -486,6 +486,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams,errorHandler,authS
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         console.log(toState.name);
+        $rootScope.errorHandler.errors.length = 0;
         if (toState.name !== 'login' && toState.name !== 'Home') {
             var loggedin = toState.data.loginRequired || false;
             var roles = toState.data.roles || [];

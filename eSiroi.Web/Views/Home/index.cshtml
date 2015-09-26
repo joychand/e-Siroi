@@ -5,7 +5,7 @@
 
    <div class="error-msgs">
     <!-- Show error messages (typically a reusable directive) -->
-    <div class="alert alert-danger alert-dismissable" ng-repeat="msg in errorHandler.errors track by $index" ng-if="showerror">
+    <div class="alert alert-danger alert-dismissable" ng-repeat="msg in errorHandler.errors track by $index" >
         <button type="button" class="close" ng-click="errorHandler.errors.splice($index, 1)">&times;</button>
         {{msg}}
     </div>

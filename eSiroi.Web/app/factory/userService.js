@@ -1,7 +1,7 @@
 ﻿'use strict';
 (function () {
     angular.module('eSiroi.Web')
-    .factory('userService', ['$injector','$http', function ($injector,$http) {
+    .factory('userService', ['$injector','$http','eSiroiWebSettings', function ($injector,$http,eSiroiWebSettings) {
        
         var userfactory = {
             currentUser: {
@@ -61,7 +61,7 @@
 
         function getUserRole(userName) {
             //TO DO *****  DATA SHOULD BE FILLED FROM AUTHENTICATION SERVER******
-            $http.post('http://localhost/eSiroi.Authentication/api/accounts/getUserRoles','"'+ userName +'"' ).then(function (result) {
+            $http.post(eSiroiWebSettings.apiAuthServiceBaseUri + 'api/accounts/getUserRoles','"'+ userName +'"' ).then(function (result) {
                 console.log(result.data);
                 return result.data;
             })

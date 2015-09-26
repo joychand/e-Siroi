@@ -25,7 +25,7 @@ angular
 //***********APPLY REGISTRATION CONTROLLER***********************//
 (function () {
     angular.module('eSiroi.Web')
-    .controller('applyRegistrationController', ['$scope', '$state', 'dataFactory', '$rootScope', 'sessionFactory', '$timeout', 'errors', 'ApplyRegModel', 'modalService', 'authService','userService', function ($scope, $state, dataFactory, $rootScope, sessionFactory, $timeout, errors, ApplyRegModel,modalService, authService, userService) {
+    .controller('applyRegistrationController',['$scope','$state','dataFactory','sessionFactory','ApplyRegModel','modalService','authService','userService', function ($scope, $state, dataFactory,sessionFactory,ApplyRegModel,modalService, authService, userService) {
         $scope.loginData = {
             userName: "",
             password: "",
@@ -92,10 +92,7 @@ angular
                
                
 
-            //}
-            //catch (error) {
-            //    console.log("error " + error);
-            //}
+        
         }
 
         $scope.clearform = function () {
@@ -151,8 +148,10 @@ angular
 
 // ****** REGISTRATION APPLY FORMS CONTROLLER ******************//
 (function () {
-    
-    var registrationController = function registrationController($scope, $state, dataFactory, $location, $rootScope, sessionFactory, ModalService, $modal, $log, ApplyRegModel, dept_dataFactory, modalService,$http) {
+    angular
+       .module('eSiroi.Web')
+       .controller('registrationController',['$scope', '$state', 'dataFactory', '$location', '$rootScope', 'sessionFactory', 'ModalService', '$modal', '$log', 'ApplyRegModel', 'dept_dataFactory', 'modalService','$http', registrationController]);
+    function registrationController ($scope, $state, dataFactory, $location, $rootScope, sessionFactory, ModalService, $modal, $log, ApplyRegModel, dept_dataFactory, modalService,$http) {
         $scope.title = 'registrationController';
         //****** COMMON VARIABLES ********//
         $scope.districts = {};
@@ -404,14 +403,14 @@ angular
                         backdrop: 'static',
                         windowClass: 'app-modal-window',
                         resolve: {
-                            IsPlotFound: function () {
+                            IsPlotFound: ['$scope',function ($scope) {
                                 return $scope.IsPlotFound;
-                            },
+                            }],
 
-                            plot: function () {
+                            plot: ['$scope',function ($scope) {
                                 return $scope.PlotDetails;
                                 //return (($scope.IsPlotFound)?$scope.PlotDetails:$scope.BlankPlot);
-                            }
+                            }]
                         }
 
                     };
@@ -679,10 +678,8 @@ angular
 }
 
 
-    registrationController.$inject = ['$scope', '$state', 'dataFactory', '$location', '$rootScope', 'sessionFactory', 'ModalService', '$modal', '$log', 'ApplyRegModel', 'dept_dataFactory', 'modalService','$http'];
-    angular
-       .module('eSiroi.Web')
-       .controller('registrationController', registrationController);
+  
+    
 
 }());
 
@@ -730,10 +727,22 @@ angular
         var ackno = parseInt(authService.authentication.userName)
 
     }
+
     dataFactory.getOnlineApplnStatus(ackno).then(function (result) {
         $scope.myData = result.data[0];
+        console.log($scope.myData);
         $scope.displayCollection = [].concat($scope.myData);
     });
+   
+    $scope.getScheduled = function (row) {
+        dataFactory.getScheduled(row.ackno, row.year, row.sro).then(function (result) {
+
+
+        })
+    }
+        
+
+    
 }])
 })();
 //publicloginpage

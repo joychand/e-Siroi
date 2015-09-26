@@ -33,7 +33,9 @@ namespace eSiroi.Resource.Controllers
                             ackno = OnlineAppln.apln.a.ackno,
                             year = OnlineAppln.apln.a.year,
                             sro = OnlineAppln.apln.ro.RegOfficeName,
-                            trans_maj_code = OnlineAppln.trans.tran_name,
+                            roCode=OnlineAppln.apln.ro.RegOfficeCode,
+                            trans_maj_code=OnlineAppln.trans.tran_maj_code,
+                            trans_name = OnlineAppln.trans.tran_name,
                             date = OnlineAppln.apln.a.date,
                             status = OnlineAppln.apln.a.status
                         }
@@ -46,5 +48,9 @@ namespace eSiroi.Resource.Controllers
             }
             return NotFound();
         }
+
+        [HttpPost]
+        [Route("getSchedules")]
+        public IHttpActionResult getSchedules()
     }
 }
