@@ -150,8 +150,8 @@ angular
 (function () {
     angular
        .module('eSiroi.Web')
-       .controller('registrationController',['$scope', '$state', 'dataFactory', '$location', '$rootScope', 'sessionFactory', 'ModalService', '$modal', '$log', 'ApplyRegModel', 'dept_dataFactory', 'modalService','$http', registrationController]);
-    function registrationController ($scope, $state, dataFactory, $location, $rootScope, sessionFactory, ModalService, $modal, $log, ApplyRegModel, dept_dataFactory, modalService,$http) {
+       .controller('registrationController',['$scope', '$state', 'dataFactory',  '$rootScope', 'sessionFactory', 'ModalService', '$modal', '$log', 'ApplyRegModel', 'dept_dataFactory', 'modalService','$http', registrationController]);
+    function registrationController ($scope, $state, dataFactory,  $rootScope, sessionFactory, ModalService, $modal, $log, ApplyRegModel, dept_dataFactory, modalService,$http) {
         $scope.title = 'registrationController';
         //****** COMMON VARIABLES ********//
         $scope.districts = {};
@@ -719,7 +719,7 @@ angular
 //publichomepage
 (function () {
     angular.module('eSiroi.Web')
-.controller('publicHomeCtrl', ['$scope', '$state', 'dataFactory', 'authService', function ($scope, $state, dataFactory, authService) {
+.controller('publicHomeCtrl', ['$scope', '$state', 'dataFactory', 'authService', 'publicFactory', function ($scope, $state, dataFactory, authService, publicFactory) {
     $scope.myData = {};
     $scope.message = '';
     $scope.displayCollection={}
@@ -734,10 +734,17 @@ angular
         $scope.displayCollection = [].concat($scope.myData);
     });
    
-    $scope.getScheduled = function (row) {
-        dataFactory.getScheduled(row.ackno, row.year, row.sro).then(function (result) {
+    $scope.getSchedules = function (row) {
+        console.log(row);
+        var applnObject = {};
+        angular.extend(applnObject,{
+            sro: row.roCode,
+            year: '2021',
+            akno: row.ackno
+        })
+        publicFactory.getSchedules(applnObject).then(function (result) {
 
-
+            console.log(result.data[0]);
         })
     }
         

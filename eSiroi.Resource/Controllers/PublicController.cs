@@ -12,6 +12,7 @@ using eSiroi.Resource.Entities;
 using System.Web.Http.Description;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
+using eSiroi.Resource.Models;
 
 namespace eSiroi.Resource.Controllers
 {
@@ -51,6 +52,19 @@ namespace eSiroi.Resource.Controllers
 
         [HttpPost]
         [Route("getSchedules")]
-        public IHttpActionResult getSchedules()
+        public IHttpActionResult getSchedules(OnlineApplnId appln)
+        {
+            var query = db.Application
+                       .Where(a => a.status == "DateFixed" && a.sro == appln.sro && a.TSYear.ToString() == appln.year && a.ackno == appln.ackno)
+                       .Join(db.Appointment,
+                       a => new { a.TSNo, a.TSYear, a.sro },
+                       appnt => new { appnt.TSNo, appnt.TSYear, appnt.sro },
+                       (t1, t2) => new { t1.TSNo, t1.TSYear, t1.sro, t1.ackno, t2.date1, t2.date2, t2.date3 });
+            if (query.Any())
+            {
+                return Ok(query);
+            }
+            return NotFound();
+        }
     }
 }

@@ -1155,8 +1155,8 @@
     'use strict';
     angular
         .module('eSiroi.Web')
-        .controller('PlotVerifyModalInstanceCtrl', ['$scope', '$modalInstance', 'plot', 'IsPlotFound', '$modal',
-            function ($scope, $modalInstance,plot,IsPlotFound ,$modal) {
+        .controller('PlotVerifyModalInstanceCtrl', ['$scope', '$modalInstance', 'plot', 'IsPlotFound', 
+            function ($scope, $modalInstance,plot,IsPlotFound ) {
                 $scope.visibility = false;
                 $scope.mod = {};
                 if (IsPlotFound)
