@@ -719,7 +719,7 @@ angular
 //publichomepage
 (function () {
     angular.module('eSiroi.Web')
-.controller('publicHomeCtrl', ['$scope', '$state', 'dataFactory', 'authService', 'publicFactory', function ($scope, $state, dataFactory, authService, publicFactory) {
+.controller('publicHomeCtrl', ['$scope', '$state', 'dataFactory', 'authService', 'publicFactory', 'modalService', function ($scope, $state, dataFactory, authService, publicFactory, modalService) {
     $scope.myData = {};
     $scope.message = '';
     $scope.displayCollection={}
@@ -738,13 +738,25 @@ angular
         console.log(row);
         var applnObject = {};
         angular.extend(applnObject,{
-            sro: row.roCode,
-            year: '2021',
-            akno: row.ackno
+            sro: row.roCode.toString(),
+            ackno: row.ackno,
+            year: '2021'
+           
         })
         publicFactory.getSchedules(applnObject).then(function (result) {
-
             console.log(result.data[0]);
+            $scope.date1 = result.data[0].date1;
+            var modalOptions = {
+                closeButtonText: 'Cancel',
+                actionButtonText: 'Ok',
+                headerText: 'Appointment',
+                bodyText: 'Your Appointment is scheduled at: ',
+                customData: $scope.date1
+            };
+            modalService.showModal({}, modalOptions).then(function (result) {
+                
+
+            })
         })
     }
         
