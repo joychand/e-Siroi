@@ -1,0 +1,21 @@
+﻿<div class="container">
+    <div class="modal-header">
+        <h3 >Appointment Schedules</h3>
+    </div>
+    <div class="modal-body">
+        <p>Your Application no. {{modalOptions.customData.ackno}} of 2021 is provisionally approved and your are required to present and registered the deed (with relevant documents) in any one of the following dates  during office hour:  </p>
+        <p><mark>{{modalOptions.customData.date1| date:'fullDate'}}</mark></p>
+        <p><mark>{{modalOptions.customData.date2| date:'fullDate'}}</mark></p>
+        <p><mark>{{modalOptions.customData.date3| date:'fullDate'}}</mark></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn"
+                data-ng-click="modalOptions.close()">
+            {{modalOptions.closeButtonText}}
+        </button>
+        <button class="btn btn-primary"
+                data-ng-click="modalOptions.ok();">
+            {{modalOptions.actionButtonText}}
+        </button>
+    </div>
+</div>

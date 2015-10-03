@@ -744,16 +744,22 @@ angular
            
         })
         publicFactory.getSchedules(applnObject).then(function (result) {
-            console.log(result.data[0]);
+            $scope.appointment = result.data[0];
             $scope.date1 = result.data[0].date1;
             var modalOptions = {
                 closeButtonText: 'Cancel',
                 actionButtonText: 'Ok',
-                headerText: 'Appointment',
-                bodyText: 'Your Appointment is scheduled at: ',
-                customData: $scope.date1
+                //headerText: 'Appointment',
+                //bodyText: 'Your Appointment is scheduled at: ',
+                customData: $scope.appointment
             };
-            modalService.showModal({}, modalOptions).then(function (result) {
+            var modalDefaults = {
+                templateUrl: 'Public/appntView',
+                backdrop: 'static',
+                windowClass: 'app-modal-window'
+
+            }
+            modalService.showModal(modalDefaults, modalOptions).then(function (result) {
                 
 
             })

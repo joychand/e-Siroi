@@ -219,6 +219,7 @@
     <Content Include="Views\Department\srVerify.html" />
     <Content Include="Views\Home\applyregistration.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Public\appointmntView.html" />
     <Content Include="Views\Public\PublicHome.html" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />

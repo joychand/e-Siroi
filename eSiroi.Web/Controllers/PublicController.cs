@@ -13,5 +13,9 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Public/PublicHome.html", "text/html");
         }
+        public ActionResult appntView()
+        {
+            return File("~/Views/Public/appointmntView.html", "text/html");
+        }
     }
 }
