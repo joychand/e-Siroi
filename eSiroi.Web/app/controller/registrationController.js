@@ -690,9 +690,9 @@ angular
 //ApplySuccessController
 (function () {
     angular.module('eSiroi.Web')
-    .controller('ApplySuccessController', ['$scope', 'modalService', 'sessionFactory', ApplySuccessController]);
+    .controller('ApplySuccessController', ['$scope', 'modalService', 'sessionFactory','$state', ApplySuccessController]);
 
-    function ApplySuccessController($scope, modalService, sessionFactory) {
+    function ApplySuccessController($scope, modalService, sessionFactory,$state) {
 
         $scope.currAckno = sessionFactory.getCurrAckno();
         $scope.getdraftdeed=function() {
@@ -715,7 +715,9 @@ angular
                 console.log('hahaha');
             })
         }
-        $scope.prntAck=function(){}
+        $scope.prntAck = function () {
+            $state.go('report.ack');
+        }
     }
 })();
 
@@ -776,7 +778,7 @@ angular
 })();
 (function () {
     angular.module('eSiroi.Web')
-.controller('public.printackCtrl', ['ApplyRegModel', '$state', '$scope', function (ApplyRegModel, $state, $scope) {
+.controller('publicPrintackCtrl', ['ApplyRegModel', '$state', '$scope', 'dataFactory', function (ApplyRegModel, $state, $scope, dataFactory) {
     var applnObject = {};
     angular.extend(applnObject, {
         ackno:ApplyRegModel.onlineapplication.ackno,
@@ -786,9 +788,9 @@ angular
     })
     dataFactory.getAckn(applnObject).then(function (result) {
         console.log(result.data);
-        //$scope.displayCollection = [].concat(result.data);
-        //$scope.displayCollection[0].transName = ApplyRegModel.transName;
-        //$scope.displayCollection[0].sroName = ApplyRegModel.sroName;
+        $scope.displayCollection = [].concat(result.data[0]);
+        $scope.displayCollection[0].transName = ApplyRegModel.transName;
+        $scope.displayCollection[0].sroName = ApplyRegModel.sroName;
     })
     
     

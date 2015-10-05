@@ -1,8 +1,8 @@
 ﻿(function () {
     angular
    .module('eSiroi.Web')
-   .factory('ApplyRegModel',[ ApplyRegModel]);
-    function ApplyRegModel() {
+   .factory('ApplyRegModel',['$http', ApplyRegModel]);
+    function ApplyRegModel($http) {
 
         var model = {
             //application model

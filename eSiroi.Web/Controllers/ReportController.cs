@@ -21,5 +21,9 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Report/FactSheet.html", "text/html");
         }
+        public ActionResult PrintAck()
+        {
+            return File("~/Views/Report/publicAckno.html", "text/html");
+        }
     }
 }

@@ -215,13 +215,13 @@ angular.module('eSiroi.Web')
                 data: usrModel
             })
         };
-        dataFactory.getOnlineApplnStatus=function(ackno){
+        dataFactory.getOnlineApplnStatus = function (ackno) {
 
             return $http({
                 method: 'GET',
-                url:urlBase7 + ackno +'/applnStatus'
+                url: urlBase7 + ackno + '/applnStatus'
             })
-        }
+        };
         dataFactory.getAckn = function (applnID) {
             return $http({
                 method: 'POST',

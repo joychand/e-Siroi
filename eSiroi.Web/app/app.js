@@ -321,17 +321,17 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                  roles: ['Operator']
              }
          })
-        .state('report.ack'), {
+        .state('report.ack', {
             url: '/Acknowledgement',
-            templateUrl: baseUrl + 'Report/Ack',
-            controller: 'public.printackCtrl',
+            templateUrl: baseUrl + 'Report/PrintAck',
+            controller: 'publicPrintackCtrl',
             data: {
-                loginRequired: true,
-                roles: ['public']
+                loginRequired: false,
+                roles: []
             }
             
 
-        }
+        })
         //#endregion REPORTROUTING
         //#region PUBLICROUTING
        

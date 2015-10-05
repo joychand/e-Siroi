@@ -33,11 +33,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="row in displayCollection1">
+                <tr ng-repeat="row in displayCollection">
                     <td>{{row.ackno}}</td>
                     <td>{{row.year}}</td>
                     <td>{{row.sroName}}</td>
-                    <td>{{row.RegYear}}</td>
+                    <td>{{row.date|'date':'dd/MM/yyy'}}</td>
                     <td>{{row.transName}}</td>
 
                 </tr>
