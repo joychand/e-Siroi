@@ -222,7 +222,13 @@ angular.module('eSiroi.Web')
                 url:urlBase7 + ackno +'/applnStatus'
             })
         }
-
+        dataFactory.getAckn = function (applnID) {
+            return $http({
+                method: 'POST',
+                url: urlBase7 + 'getAckn',
+                data:applnID
+            })
+        }
         // Add each service function description for error handler service
         dataFactory.getSRO.description = 'GetSro';
         dataFactory.getTransName.description = 'getTransName';

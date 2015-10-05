@@ -223,7 +223,7 @@
                  transName: row.transaction
              })
 
-             $state.go('report');
+             $state.go('report.certificate');
              
          }
     }
@@ -1684,7 +1684,7 @@
     }
 })();
 
-//report Controller
+//certyController
 (function () {
     angular.module('eSiroi.Web')
 .controller('certyController', ['$scope', '$state', 'dept_dataFactory', 'deptModalService', '$filter', function ($scope, $state, dept_dataFactory, deptModalService, $filter) {
@@ -1726,6 +1726,8 @@
 
     })
 }])
+   
+   
 })();
 
 

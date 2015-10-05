@@ -85,6 +85,7 @@ angular
 
                     dataFactory.getTransName(ApplyRegModel.onlineapplication.trans_maj_code).then(function (transName) {
                         ApplyRegModel.transName = transName[0];
+                        
                         $state.go('registration.content.forms.propertydetails');
                     })
                    
@@ -452,6 +453,7 @@ angular
                   ApplyRegModel.onlineapplication.ackno = response.data;
                   ApplyRegModel.onlineapplication.year = '2015';
                   ApplyRegModel.onlineapplication.date = '';
+                 
                   ApplyRegModel.onlineapplication.status = 'incomplete';
                   console.log(ApplyRegModel.onlineapplication);
                   dataFactory.postonlineapplication(ApplyRegModel.onlineapplication).then(function (reponse) {
@@ -462,7 +464,7 @@ angular
                           Username: ApplyRegModel.onlineapplication.ackno,
                           Password: ApplyRegModel.onlineapplication.password,
                           ConfirmPassword: ApplyRegModel.onlineapplication.password,
-                          RoleName:'Public'
+                          RoleName:'public'
                       })
                       dataFactory.signUpUsr(usrModel).then(function (result) {
                           $state.go('registration.content.forms.executant');
@@ -685,6 +687,7 @@ angular
 
 
 //****** REGISTRATION SUCCESS PAGE CONTROLLER
+//ApplySuccessController
 (function () {
     angular.module('eSiroi.Web')
     .controller('ApplySuccessController', ['$scope', 'modalService', 'sessionFactory', ApplySuccessController]);
@@ -693,7 +696,7 @@ angular
 
         $scope.currAckno = sessionFactory.getCurrAckno();
         $scope.getdraftdeed=function() {
-            console.log('click');
+           
             var modalOptions = {
                 closeButtonText: 'Print',
                 actionButtonText: 'Ok',
@@ -712,11 +715,12 @@ angular
                 console.log('hahaha');
             })
         }
+        $scope.prntAck=function(){}
     }
 })();
 
 //#regionPUBLICCONTROLLER
-//publichomepage
+//publicHomeCtrl
 (function () {
     angular.module('eSiroi.Web')
 .controller('publicHomeCtrl', ['$scope', '$state', 'dataFactory', 'authService', 'publicFactory', 'modalService', function ($scope, $state, dataFactory, authService, publicFactory, modalService) {
@@ -770,38 +774,25 @@ angular
     
 }])
 })();
-//publicloginpage
-//(function () {
-//    angular.module('eSiroi.Web')
-//.controller('applyLoginCtrl', ['$scope', '$state', 'authService', 'userService', function ($scope, $state, authService, userService) {
-//    $scope.loginData = {
-//        userName: "",
-//        password: "",
-//        useRefreshTokens: false
-//    };
-//    $scope.message = "";
-//    $scope.login = function () {
-//        authService.login($scope.loginData).then(function (response) {
-//            if (userService.userInPublic) {
-                
-//                dept_sessionfactory.putCurrUser('public');
-//                dept_sessionfactory.user.role = 'public';
-//                $state.go('registration.content.publicHome')
+(function () {
+    angular.module('eSiroi.Web')
+.controller('public.printackCtrl', ['ApplyRegModel', '$state', '$scope', function (ApplyRegModel, $state, $scope) {
+    var applnObject = {};
+    angular.extend(applnObject, {
+        ackno:ApplyRegModel.onlineapplication.ackno,
+        sro:ApplyRegModel.onlineapplication.sro.toString(),
+        trans_code:ApplyRegModel.onlineapplication.trans_maj_code,
+        year:ApplyRegModel.onlineapplication.year
+    })
+    dataFactory.getAckn(applnObject).then(function (result) {
+        console.log(result.data);
+        //$scope.displayCollection = [].concat(result.data);
+        //$scope.displayCollection[0].transName = ApplyRegModel.transName;
+        //$scope.displayCollection[0].sroName = ApplyRegModel.sroName;
+    })
+    
+    
+}])
+})();
 
-//            }
-//            else {
-//                $scope.message='Invalid Username\Password'
-//            }
-
-//        },
-//function (err) {
-//    $scope.hideMessage = false;
-//    $scope.message = err.error_description;
-
-//});
-
-
-//    }
-//}])
-//})();
 //#endregion PUBLICCONTROLLER

@@ -272,13 +272,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + 'Department/deptDataEntered',
             controller: 'dataEntCompController'
         })
-        .state('department.content.printFsheet',
-        {
-            url: '/printFsheet',
-            templateUrl: baseUrl + 'Department/Fsheet',
-            controller: 'fsheetModalController'
-
-        })
+       
     
         .state('department.content.upload', {
             url: '/upload',
@@ -300,15 +294,44 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
          })
         //#endregion 
         //#region REPORT ROUTING
-         .state('report', {
-             url: '/certificate',
-             templateUrl: baseUrl + 'Department/Certificate',
+        .state('report', {
+           abstract:true,
+            templateUrl: baseUrl + 'Report/ReportMain',
+           
+            data: {
+                loginRequired: true,
+                roles: ['Operator','public']
+            }
+        })
+         .state('report.certificate', {
+             url: '/CertyFcate',
+             templateUrl: baseUrl + 'Report/Certificate',
              controller:'certyController',
              data: {
                  loginRequired: true,
                  roles: ['Operator']
              }
          })
+         .state('report.factsheet', {
+             url: '/Fact_sheet',
+             templateUrl: baseUrl + 'Report/Fsheet',
+             controller:  'fsheetModalController',
+             data: {
+                 loginRequired: true,
+                 roles: ['Operator']
+             }
+         })
+        .state('report.ack'), {
+            url: '/Acknowledgement',
+            templateUrl: baseUrl + 'Report/Ack',
+            controller: 'public.printackCtrl',
+            data: {
+                loginRequired: true,
+                roles: ['public']
+            }
+            
+
+        }
         //#endregion REPORTROUTING
         //#region PUBLICROUTING
        

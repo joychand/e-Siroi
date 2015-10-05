@@ -66,5 +66,22 @@ namespace eSiroi.Resource.Controllers
             }
             return NotFound();
         }
+        [HttpPost]
+        [Route("getAckn")]
+        public IHttpActionResult printAcknowledgement(OnlineApplnId appln)
+        {
+            var query = db.onlineapplication
+                      .Where(a => a.ackno == appln.ackno && a.sro == appln.sro && a.year == appln.year)
+                      .Select(list=>new{
+                          list.ackno,
+                          list.date,
+                          list.year
+                      });
+            if (query.Any())
+            {
+                return Ok(query);
+            }
+            return NotFound();
+        }
     }
 }
