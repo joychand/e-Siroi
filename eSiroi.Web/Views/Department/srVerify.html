@@ -1,4 +1,4 @@
-﻿<div class="container round" style="background-color:aliceblue;">
+﻿<div class="container round" >
     
     <div class="row text-center modal-header" style="border-top:10px solid white">
         <h2>Application View</h2> 
@@ -8,148 +8,131 @@
         <span style=" font:bold;" ><em>Tsno: {{tno}} of {{tyear}}</em></span>
     </div>
     <div class="modal-body">
-        <div class="col-sm6 col-sm-offset-3 text-center">
-            <http-loader>Loading......<img id="mySpinner" src="spinning.gif" /></http-loader>
-         </div>
-        <div class="row text-center">
-            <span class="text-center" style="font-weight: bold; text-decoration: underline;">1.TRANSACTIONDETAIL:</span>
-
+        <div class="container" ng-if="loading">
+            <div class="col-sm6 col-sm-offset-3 text-center">
+                <http-loader>Loading......<img id="mySpinner" src="spinning.gif" /></http-loader>
+            </div>
         </div>
-        <div class="row">
-          <table class="table table-striped table-responsive text-center" style="height:100%;width:100%;" st-table="displayCollection1" st-safe-src="deedinfo">
-            <thead class="text-center">
-                <tr>
-                    <th class="text-center">Regno</th>
-                    <th class="text-center">RegYear</th>
-                    <th class="text-center">RegDate</th>
-                    <th class="text-center">Transactiontype</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in displayCollection1">
-                    <td>{{row.regNo}}</td>
-                    <td>{{row.regYear}}</td>
-                    <td>{{row.regDate}}</td>
-                    <td>{{row.transType}}</td>
+        <div class="container" ng-if="!loading">
+            
+            <div class="row text-center">
+                <span class="text-center" style="font-weight: bold; text-decoration: underline;">1.TRANSACTIONDETAIL:</span>
+
+            </div>
+            <div class="row">
+                <table class="table table-striped table-responsive text-center" style="height:100%;width:100%;" st-table="displayCollection1" >
+                    <thead class="text-center">
+                        <tr>
+                            <th class="text-center">ApplnType</th>
+                            <th class="text-center">EntryDate</th>
+                            <th class="text-center">TransType</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in displayCollection1">
+                            <td>{{row.ackno ? 'Online':'Offline'}}</td>
+                            <td>{{row.date | date:'dd/MM/yyyy'}}</td>
+                            <td>{{row.transName}}</td>
+                           
 
 
-                </tr>
-            </tbody>
+                        </tr>
+                    </tbody>
 
-        </table>
-        </div>
-       
-    
-    <div class="row text-center">
-        <span class="text-center" style="font-weight:bold;text-decoration: underline;">2.PROPERTYDETAILS:</span>
+                </table>
+            </div>
 
-    </div>
-        <div class="row">
-        <table class="table table-striped table-responsive text-center" st-table="displayCollection3" st-safe-src="propertyinfo">
-            <thead class="text-center">
-                <tr>
-                    <th class="text-center">DagNo</th>
-                    <th class="text-center">PattaNo</th>
-                    <th class="text-center">Area(H)</th>
-                    <th class="text-center">District</th>
-                    <th class="text-center">Circle</th>
-                    <th class="text-center">village</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in displayCollection3">
-                    <td>{{row.dagNo}}</td>
-                    <td>{{row.pattaNo}}</td>
-                    <td>{{row.transactedArea}}</td>
-                    <td>{{row.district}}</td>
-                    <td>{{row.circle}}</td>
-                    <td>{{row.village}}</td>
-                </tr>
-            </tbody>
 
-        </table>
-    </div>
-    <div class="row text-center">
-        <span style="font-weight:bold;text-decoration: underline;">3.PARTYDETAILS:</span>
-    </div>
-        <div class="row ">
-            <span style="font-weight: bold; text-decoration: underline;">a):Executant:</span>
-        </div>
-        <div class="row">
-        <table class="table table-striped table-responsive text-center" st-table="displayCollection4" st-safe-src="execInfo">
-            <thead class="text-center">
-                <tr>
-                    <th class="text-center">SlNo</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Father</th>
-                    <th class="text-center">Address</th>
+            <div class="row text-center">
+                <span class="text-center" style="font-weight:bold;text-decoration: underline;">2.PROPERTYDETAILS:</span>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in displayCollection4">
-                    <td>{{row.slNo}}</td>
-                    <td>{{row.execSurName + row.execMiddleName + row.execLastName }}</td>
-                    <td>{{ row.fatherSurName + row.fatherMiddleName + row.fatherLastName}}</td>
-                    <td>{{row.street + ', ' + row.village}}</td>
-                </tr>
-            </tbody>
+            </div>
+            <div class="row">
+                <table class="table table-striped table-responsive text-center" st-table="displayCollection3" st-safe-src="propertyinfo">
+                    <thead class="text-center">
+                        <tr>
+                            <th class="text-center">DagNo</th>
+                            <th class="text-center">PattaNo</th>
+                            <th class="text-center">Area(H)</th>
+                            <th class="text-center">District</th>
+                            <th class="text-center">Circle</th>
+                            <th class="text-center">village</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in displayCollection3">
+                            <td>{{row.dagNo}}</td>
+                            <td>{{row.pattaNo}}</td>
+                            <td>{{row.transactedArea}}</td>
+                            <td>{{row.district}}</td>
+                            <td>{{row.circle}}</td>
+                            <td>{{row.village}}</td>
+                        </tr>
+                    </tbody>
 
-        </table>
-    </div>
-    <div class="row " >
-        <div><span style="font-weight:bold;text-decoration: underline;">b):Claimant:</span></div>
-    </div>
-         <div class="row  " >
-           <table class="table table-striped table-responsive text-center" st-table="displayCollection5" st-safe-src="claimInfo">
-            <thead class="text-center">
-                <tr>
-                    <th class="text-center"></th>
-                    <!--<th class="text-center">Name</th>
+                </table>
+            </div>
+            <div class="row text-center">
+                <span style="font-weight:bold;text-decoration: underline;">3.PARTYDETAILS:</span>
+            </div>
+            <div class="row ">
+                <span style="font-weight: bold; text-decoration: underline;">a):Executant:</span>
+            </div>
+            <div class="row">
+                <table class="table table-striped table-responsive text-center" st-table="displayCollection4" st-safe-src="execInfo">
+                    <thead class="text-center">
+                        <tr>
+                            <th class="text-center">SlNo</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Father</th>
+                            <th class="text-center">Address</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in displayCollection4">
+                            <td>{{row.slNo}}</td>
+                            <td>{{row.execSurName + row.execMiddleName + row.execLastName }}</td>
+                            <td>{{ row.fatherSurName + row.fatherMiddleName + row.fatherLastName}}</td>
+                            <td>{{row.street + ', ' + row.village}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="row ">
+                <div><span style="font-weight:bold;text-decoration: underline;">b):Claimant:</span></div>
+            </div>
+            <div class="row  ">
+                <table class="table table-striped table-responsive text-center" st-table="displayCollection5" st-safe-src="claimInfo">
+                    <thead class="text-center">
+                        <tr>
+                            <th class="text-center"></th>
+                            <!--<th class="text-center">Name</th>
                     <th class="text-center">Father</th>
                     <th class="text-center">Address</th>-->
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in displayCollection5">
-                    <td>{{row.slNo}}</td>
-                    <td>{{row.claimSurName + row.claimMiddleName + row.claimLastName }}</td>
-                    <td>{{ row.fatherSurName + row.fatherMiddleName + row.fatherLastName}}</td>
-                    <td>{{row.street +', '+ row.village}}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in displayCollection5">
+                            <td>{{row.slNo}}</td>
+                            <td>{{row.claimSurName + row.claimMiddleName + row.claimLastName }}</td>
+                            <td>{{ row.fatherSurName + row.fatherMiddleName + row.fatherLastName}}</td>
+                            <td>{{row.street +', '+ row.village}}</td>
 
-                </tr>
-            </tbody>
+                        </tr>
+                    </tbody>
 
-        </table>
+                </table>
+            </div>
         </div>
+      
     </div>
    
       
     
-    <!--<div class="row ">
-        <span style="font-weight:bold;text-decoration: underline;">3 c)Identifier/Witness:</span>
-        <table class="table table-striped table-responsive text-center" st-table="displayCollection5" st-safe-src="myData">
-            <thead class="text-center">
-                <tr>
-                    <th class="text-center">SlNo</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Father</th>
-                    <th class="text-center">Address</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in displayCollection">
-                    <td>dsfd</td>
-                    <td>dfdfd</td>
-                    <td>dfdfd</td>
-
-                </tr>
-            </tbody>
-
-        </table>
-    </div>-->
+   
     <div class="row modal-footer" style="border-bottom: 10px solid white">
         <div class="text-center col-sm-6 col-sm-offset-3">
             <div class="btn-group" ng-if="!remarks">

@@ -9,8 +9,12 @@
             onlineapplication: {},
 
             transName: '',
-            sroName: ''
-
+            sroName: '',
+            clearmodel: function () {
+                this.sroName = '';
+                this.transName = '';
+                this.onlineapplication = {};
+            }
         }
         return model;
     }

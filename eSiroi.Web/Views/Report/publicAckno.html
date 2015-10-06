@@ -13,7 +13,7 @@
     <div class="row text-center" id="emblem">
         <span>Office of the Sub-Registrar Imphal(HQ)</span>
     </div>
-    <div class="row text-center" id="emblem">
+    <div class="row text-center" id="emblem" style="border-bottom:solid #fcfcfe; border-bottom-width:10px;">
         <span>Acknowledgement of Online Applicaition of Registrattion</span>
     </div>
     
@@ -37,7 +37,7 @@
                     <td>{{row.ackno}}</td>
                     <td>{{row.year}}</td>
                     <td>{{row.sroName}}</td>
-                    <td>{{row.date|'date':'dd/MM/yyy'}}</td>
+                    <td>{{row.date|date:'dd/MM/yyyy'}}</td>
                     <td>{{row.transName}}</td>
 
                 </tr>
@@ -59,6 +59,7 @@
         </div>
 
 
+    </div>
     </div>
 <div class="container hidden-print" style="border-top:20px solid white;">
     <div class="row text-center ">

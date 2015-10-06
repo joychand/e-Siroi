@@ -229,6 +229,14 @@ angular.module('eSiroi.Web')
                 data:applnID
             })
         }
+        //to do combine ackno , sro & year to generate unique key
+        dataFactory.getOApplicationModel = function (ackno) {
+            return $http({
+                method: 'POST',
+                url: urlBase7 + 'getOAppln',
+                data: ackno
+            })
+        }
         // Add each service function description for error handler service
         dataFactory.getSRO.description = 'GetSro';
         dataFactory.getTransName.description = 'getTransName';

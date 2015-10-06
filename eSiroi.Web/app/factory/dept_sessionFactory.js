@@ -43,7 +43,8 @@
             return sessionSro;
         }
         service.getTransCd = function () { return sessiontransCode; }
-        service.putTransCd = function (transcode) { sessiontransCode = transcode;}
+        service.putTransCd = function (transcode)
+        { sessiontransCode = transcode; }
         service.getLinkVisibility = function () {
             return linkVisibilty;
         }

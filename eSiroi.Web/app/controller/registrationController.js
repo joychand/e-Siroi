@@ -75,9 +75,9 @@ angular
 
 
         }
-
+        //next property add page
         $scope.next = function () {
-            //try {
+           
                 ApplyRegModel.onlineapplication = $scope.onlineapplication;
                 dataFactory.getSroName(ApplyRegModel.onlineapplication.sro).then(function (sroName) {
                     ApplyRegModel.sroName = sroName[0];
@@ -109,14 +109,28 @@ angular
             //$scope.state = $state;
             //$state.go('registration.content.apply.login')
         }
+        //login with application no
         $scope.login = function () {
             console.log($scope.loginData);
             authService.login($scope.loginData).then(function (response) {
+                
                 if (userService.userInPublic) {
+                    var ackno = parseInt($scope.loginData.userName);
+                    dataFactory.getOApplicationModel(ackno).then(function (result) {
+                        ApplyRegModel.onlineapplication = result.data[0];
+                        dataFactory.getSroName(ApplyRegModel.onlineapplication.sro).then(function (sroName) {
+                            ApplyRegModel.sroName = sroName[0];
 
-                    //dept_sessionfactory.putCurrUser('public');
-                    //dept_sessionfactory.user.role = 'public';
-                    $state.go('registration.content.publicHome')
+
+                            dataFactory.getTransName(ApplyRegModel.onlineapplication.trans_maj_code).then(function (transName) {
+                                ApplyRegModel.transName = transName[0];
+
+                            })
+
+                        })
+                        $state.go('registration.content.publicHome')
+                    })
+                    
 
                 }
                 else {
@@ -776,13 +790,14 @@ angular
     
 }])
 })();
+//printAcknowledgement
 (function () {
     angular.module('eSiroi.Web')
-.controller('publicPrintackCtrl', ['ApplyRegModel', '$state', '$scope', 'dataFactory', function (ApplyRegModel, $state, $scope, dataFactory) {
+.controller('publicPrintackCtrl', ['ApplyRegModel', '$state', '$scope', 'dataFactory', '$window', function (ApplyRegModel, $state, $scope, dataFactory, $window) {
     var applnObject = {};
     angular.extend(applnObject, {
         ackno:ApplyRegModel.onlineapplication.ackno,
-        sro:ApplyRegModel.onlineapplication.sro.toString(),
+        sro:ApplyRegModel.onlineapplication.sro,
         trans_code:ApplyRegModel.onlineapplication.trans_maj_code,
         year:ApplyRegModel.onlineapplication.year
     })
@@ -793,7 +808,9 @@ angular
         $scope.displayCollection[0].sroName = ApplyRegModel.sroName;
     })
     
-    
+    $scope.printout = function () {
+        $window.print();
+    }
 }])
 })();
 

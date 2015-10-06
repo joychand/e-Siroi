@@ -108,16 +108,19 @@
          }
          $scope.viewRow = function (row) {
              
-            // console.log(row.ackno);
-             var ackno = ((row.akcno === null) ? 0 : row.ackno);
+            console.log(row);
+             var ackno = ((row.ackno === null) ? 0 : row.ackno);
              console.log(ackno);
              deptModalService.ApplnModel = {};
              angular.extend(deptModalService.ApplnModel, {
                  tsno:row.ts,
                  tsyear:row.tYear,
-                 sro:row.roCode,
+                 sro: row.roCode,
+                 sroName: row.sro,
                  ackno: ackno,
-                 trans_code:row.trans_code
+                 trans_code: row.trans_code,
+                 transName: row.transaction,
+                 date: new Date(row.date),
              })
 
              $scope.tsno = row.ts;
@@ -233,24 +236,27 @@
 
 (function () {
     angular.module('eSiroi.Web')
-    .controller('srVerifyController', ['$scope', 'Tsno', 'TsYear', 'dept_dataFactory', '$modalInstance', '$state', 'deptModalService', function ($scope, Tsno, TsYear, dept_dataFactory, $modalInstance, $state, deptModalService) {
+    .controller('srVerifyController', ['$scope', 'Tsno', 'TsYear', 'dept_dataFactory', '$modalInstance', '$state', 'deptModalService', 'dept_sessionfactory', '$filter', function ($scope, Tsno, TsYear, dept_dataFactory, $modalInstance, $state, deptModalService, dept_sessionfactory, $filter) {
         $scope.tno = Tsno;
         $scope.tyear = TsYear;
         $scope.remarks = false;
-        $scope.verify = {}
+        $scope.verify = {};
+        $scope.loading = true;
         //$scope.verify.reason
         $scope.deedinfo = {};
         $scope.propertyinfo = {};
         $scope.execInfo = {};
         $scope.claimInfo = {};
         $scope.identInfo = {};
-        $scope.displayCollection1 = [].concat($scope.deedinfo);
-        $scope.displayCollection2 = [].concat($scope.claimInfo);
-        $scope.displayCollection3 = [].concat($scope.propertyinfo);
-        $scope.displayCollection4 = [].concat($scope.execInfo);
-        $scope.displayCollection5 = [].concat($scope.identInfo);
+        //$scope.displayCollection1 = [].concat($scope.deedinfo);
+        //$scope.displayCollection2 = [].concat($scope.claimInfo);
+        //$scope.displayCollection3 = [].concat($scope.propertyinfo);
+        //$scope.displayCollection4 = [].concat($scope.execInfo);
+        //$scope.displayCollection5 = [].concat($scope.identInfo);
         //dept_dataFactory.getDeedInfo($scope.tno, $scope.tyear).then(function (response) {
         //    $scope.deedinfo = response.data;
+        console.log(deptModalService.ApplnModel);
+        //console.log(dept_sessionfactory.getAckno());
             dept_dataFactory.getPropertyInfo($scope.tno, $scope.tyear).then(function (response) {
                 $scope.propertyinfo = response.data;
                 dept_dataFactory.getExecInfo($scope.tno, $scope.tyear).then(function (response) {
@@ -259,7 +265,21 @@
                         $scope.claimInfo = response.data;
                         dept_dataFactory.getIdentInfo($scope.tno, $scope.tyear).then(function (response) {
                             $scope.identInfo = response.data;
+                            if (deptModalService.ApplnModel.ackno === 0) {
+                                dept_dataFactory.getDeedInfo($scope.tno, $scope.tyear).then(function (response) {
+                                    $scope.applnOffline = true;
+                                    $scope.deedinfo = response.data;
+                                    $scope.displayCollection5 = [].concat($scope.deedinfo);
+                                })
+                            }
+                            $scope.loading = false;
 
+                           // console.log($filter('date')(new Date(deptModalService.ApplnModel.date),'yyyy-MM-dd'));
+                                $scope.displayCollection1 = [].concat(deptModalService.ApplnModel);
+                                $scope.displayCollection2 = [].concat($scope.claimInfo);
+                                $scope.displayCollection3 = [].concat($scope.propertyinfo);
+                                $scope.displayCollection4 = [].concat($scope.execInfo);
+                              
 
                         })
 
@@ -443,8 +463,8 @@
 //LoginModalController
 (function () {
     angular.module('eSiroi.Web')
-    .controller('loginModalCtrl', ['$scope','dept_sessionfactory','authService','$state','$rootScope','userService',loginModalCtrl]);
-    function loginModalCtrl($scope,dept_sessionfactory,authService,$state,$rootScope,userService) {
+    .controller('loginModalCtrl', ['$scope', 'dept_sessionfactory', 'authService', '$state', '$rootScope', 'userService', 'ApplyRegModel','dataFactory', loginModalCtrl]);
+    function loginModalCtrl($scope, dept_sessionfactory, authService, $state, $rootScope, userService, ApplyRegModel, dataFactory) {
         $scope.loginData = {
             userName: "",
             password: "",
@@ -476,7 +496,21 @@
 
                     dept_sessionfactory.putCurrUser('public');
                     dept_sessionfactory.user.role = 'public';
-                    $state.go('registration.content.publicHome')
+                    var ackno = parseInt($scope.loginData.userName);
+                    dataFactory.getOApplicationModel(ackno).then(function (result) {
+                        ApplyRegModel.onlineapplication = result.data[0];
+                        dataFactory.getSroName(ApplyRegModel.onlineapplication.sro).then(function (sroName) {
+                            ApplyRegModel.sroName = sroName[0];
+
+
+                            dataFactory.getTransName(ApplyRegModel.onlineapplication.trans_maj_code).then(function (transName) {
+                                ApplyRegModel.transName = transName[0];
+
+                            })
+
+                        })
+                        $state.go('registration.content.publicHome')
+                    })
                 }
                 
               
