@@ -379,7 +379,12 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         })
         .state('registration.content.apply.login', {
             url: '/login',         
-            templateUrl: baseUrl + "Home/applyRegLogin"
+            templateUrl: baseUrl + "Home/applyRegLogin",
+            data: {
+                
+                 loginRequired: false,
+                 roles: []
+                 }
         })
         
         .state('registration.content.forms', {
@@ -389,14 +394,18 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             controller:'registrationController',
             deepStateRedirect: true,
             data: {
-                breadcrumbProxy: 'registration.content.apply'
+                breadcrumbProxy: 'registration.content.apply',
+                loginRequired: false,
+                roles: []
             }
         })
         .state('registration.content.forms.propertydetails', {
             url: '/propertydetails',
             templateUrl: baseUrl + 'Home/applyPropertyDetails',
             data: {
-                displayName: 'Property'
+                displayName: 'Property',
+                loginRequired: false,
+                roles: []
             }
             //controller: 'propertyController'
         })
@@ -408,7 +417,9 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
            // resolve
             deepStateRedirect: true,
             data: {
-                displayName: 'Executant'
+                displayName: 'Executant',
+                loginRequired: false,
+                roles: []
             }
 
         })
@@ -417,7 +428,9 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + "Home/claimant",
             deepStateRedirect: true,
             data: {
-                displayName: 'Claimant'
+                displayName: 'Claimant',
+                loginRequired: false,
+                roles: []
             }
         })
         .state('registration.content.forms.identifier', {
@@ -425,7 +438,9 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             templateUrl: baseUrl + "Home/identifier",
             deepStateRedirect: true,
             data: {
-                displayName: 'Identifier'
+                displayName: 'Identifier',
+                loginRequired: false,
+                roles: []
             }
         })
        .state('registration.content.applyregsuccess', {
@@ -434,7 +449,9 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
            templateUrl: baseUrl + "Home/ApplyRegSuccess",
            deepStateRedirect: true,
            data: {
-               displayName: 'ApplyComplete'
+               displayName: 'ApplyComplete',
+               loginRequired: false,
+               roles: []
            }
        })
        .state('registration.content.publicHome', {

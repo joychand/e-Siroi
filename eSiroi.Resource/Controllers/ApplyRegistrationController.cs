@@ -309,6 +309,7 @@ namespace eSiroi.Resource.Controllers
                 return BadRequest(ModelState);
             }
             var currAckno = getAck();
+            //var currAckno = db.onlineapplication.Where(s=>s.sro).Max(s => s.ackno);
             plot.ackno = currAckno + 1;
             //db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
             db.onlinePlot.Add(plot);

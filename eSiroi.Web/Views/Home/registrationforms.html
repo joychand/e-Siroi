@@ -4,19 +4,21 @@
 
         <div class="container">
             
-        <ul class="nav nav-tabs nav-justified" role="tablist">
+        <!--<ul class="nav nav-tabs nav-justified" role="tablist">
               
             <li ui-sref-active="active"><a  ui-sref="registration.content.forms.propertydetails">PropertyDetails</a></li>
             <li data-ng-disabled="tabdisabled" ui-sref-active="active"><a  ui-sref="registration.content.forms.executant">Executant</a></li>
             <li data-ng-disabled="tabdisabled" ui-sref-active="active"><a  ui-sref="registration.content.forms.claimant">Claimant</a></li>
             <li ui-sref-active="active"><a  ui-sref="registration.content.forms.identifier">Identifier</a></li>
             
-        </ul>
-            <!-- <tabset justified="true">
-           <tab heading="Justified" ui-sref="registration.content.forms.propertydetails"></tab>
-          <tab heading="SJ" ui-sref="registration.content.forms.propertydetails"></tab>
-         <tab heading="Long Justified"></tab>
-        </tabset>-->
+        </ul>-->
+           
+            <tabset justified="true">
+                <tab heading="PropertyDetails" select="$state.go('registration.content.forms.propertydetails')"  active="propActive"></tab>
+                <tab heading="Executant" select="$state.go('registration.content.forms.executant')" active="execActive" disabled="regForm.execTabdisabled"></tab>
+                <tab heading="Claimant" select="$state.go('registration.content.forms.claimant')" active="claimActive" disabled="regForm.claimTabdisabled"></tab>
+                <tab heading="Identifier" select="$state.go('registration.content.forms.identifier')" active="identActive" disabled="regForm.identTabdisabled"></tab>
+        </tabset>
             <div class="text-center" http-loader>
                 <img id="mySpinner" src="spinning.gif" />
             </div>

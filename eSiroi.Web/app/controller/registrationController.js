@@ -22,7 +22,7 @@ angular
         };
     }]);
 
-//***********APPLY REGISTRATION CONTROLLER***********************//
+//***********APPLY REGISTRATION SIGN UP CONTROLLER***********************//
 (function () {
     angular.module('eSiroi.Web')
     .controller('applyRegistrationController',['$scope','$state','dataFactory','sessionFactory','ApplyRegModel','modalService','authService','userService', function ($scope, $state, dataFactory,sessionFactory,ApplyRegModel,modalService, authService, userService) {
@@ -181,6 +181,7 @@ angular
         $scope.landclass = {};
         $scope.landtype = {};
         $scope.tabdisabled = true;
+        $scope.disabled = true;
         $scope.unit = [
             {
                 unitcode: "H",
@@ -199,7 +200,10 @@ angular
     ]
 
        
-        $scope.regForm = {};
+        $scope.regForm = {
+            execTabdisabled: true,
+            claimTabdisabled: true,
+            identTabdisabled:true};
 
 
         angular.extend($scope.regForm, {
@@ -455,7 +459,7 @@ angular
                 $scope.property.subdivision = $scope.propertyddl.subdivsion.subDivName;
                 $scope.property.Circle = $scope.propertyddl.circle.circleName;
                 $scope.property.Village = $scope.propertyddl.village.villName;
-
+               
                 //POST PROPERTY DETAIL 
                 dataFactory.postProperty($scope.property)
               .then(function (response) {
@@ -471,7 +475,7 @@ angular
                   ApplyRegModel.onlineapplication.status = 'incomplete';
                   console.log(ApplyRegModel.onlineapplication);
                   dataFactory.postonlineapplication(ApplyRegModel.onlineapplication).then(function (reponse) {
-                      $scope.tabdisabled = false;
+                      $scope.identTabdisabled = false;
                       console.log(ApplyRegModel.onlineapplication);
                       var usrModel = {};
                       angular.extend(usrModel, {
@@ -481,6 +485,8 @@ angular
                           RoleName:'public'
                       })
                       dataFactory.signUpUsr(usrModel).then(function (result) {
+                          $scope.regForm.execTabdisabled = false;
+                          $scope.execActive = true;
                           $state.go('registration.content.forms.executant');
                       }, function (error) {
                           alert('registration fails')
@@ -513,7 +519,8 @@ angular
             
             createExecutantObject();
             $scope.eformModel.submitted = true;
-           
+            $scope.claimActive=true
+            $scope.regForm.claimTabdisabled = false;
             $state.go('registration.content.forms.claimant')
             
         };
@@ -577,6 +584,8 @@ angular
         //submit claimant
         $scope.onclaimantsubmit = function () {
             createClaimantObject();
+            $scope.identActive = true
+            $scope.regForm.identTabdisabled = false;
             $state.go('registration.content.forms.identifier');
         }
         //addmore
@@ -625,30 +634,7 @@ angular
                 postpartydetail();
 
 
-                //    //$scope.mod = {};
-                //    $scope.modalInstance = {};
-                //    $scope.modalInstance = $modal.open({
-                //        templateUrl: 'Home/modal',
-                //        controller: 'ModalInstanceCtrl',
-                //        //scope: $scope,
-                //        backdrop: 'static',
-                //        //size: size,
-                //        resolve: {
-                //            ackno: function () {
-                //                return sessionFactory.getCurrAckno();
-                //            }
-                //        }
-                //});
-
-
-                //$scope.modalInstance.result.then(function (result) {
-                //    //alert('ok');
-                //    //$scope.selected = selectedItem;
-                //    $state.go('department.content.home');
-                //}, function () {
-                //    $log.info('Modal dismissed at: ' + new Date());
-                //    console.log('cancel pressed');
-                //});
+              
 
             });
 
