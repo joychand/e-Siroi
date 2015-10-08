@@ -454,47 +454,89 @@ angular
                 bodyText: 'Do you want to submit the propertyDetails ?'
             };
             modalService.showModal({}, modalOptions).then(function (result) {
-                $scope.property.state = 'Manipur'
-                $scope.property.district = $scope.propertyddl.district.distName;
-                $scope.property.subdivision = $scope.propertyddl.subdivsion.subDivName;
-                $scope.property.Circle = $scope.propertyddl.circle.circleName;
-                $scope.property.Village = $scope.propertyddl.village.villName;
                
                 //POST PROPERTY DETAIL 
-                dataFactory.postProperty($scope.property)
-              .then(function (response) {
-                  sessionFactory.putCurrAckno(response.data);
-                  $scope.trans.currAckno = response.data;
+                $scope.pformModel.submitted = true;
+                    ApplyRegModel.onlineapplication.ackno = 0;
+                   
+                   
 
+                dataFactory.postonlineapplication(ApplyRegModel.onlineapplication).then(function (response) {
+                    var regApplication = response.data;
+                    console.log(response.data);
+                    ApplyRegModel.onlineapplication.ackno = regApplication.ackno;
+                    ApplyRegModel.onlineapplication.year = regApplication.year;
+                    console.log(ApplyRegModel.onlineapplication.ackno.toString() + ApplyRegModel.onlineapplication.sro + ApplyRegModel.onlineapplication.year)
+                    
 
-                  $scope.pformModel.submitted = true;
-                  ApplyRegModel.onlineapplication.ackno = response.data;
-                  ApplyRegModel.onlineapplication.year = '2015';
-                  ApplyRegModel.onlineapplication.date = '';
-                 
-                  ApplyRegModel.onlineapplication.status = 'incomplete';
-                  console.log(ApplyRegModel.onlineapplication);
-                  dataFactory.postonlineapplication(ApplyRegModel.onlineapplication).then(function (reponse) {
-                      $scope.identTabdisabled = false;
-                      console.log(ApplyRegModel.onlineapplication);
-                      var usrModel = {};
-                      angular.extend(usrModel, {
-                          Username: ApplyRegModel.onlineapplication.ackno,
-                          Password: ApplyRegModel.onlineapplication.password,
-                          ConfirmPassword: ApplyRegModel.onlineapplication.password,
-                          RoleName:'public'
-                      })
-                      dataFactory.signUpUsr(usrModel).then(function (result) {
-                          $scope.regForm.execTabdisabled = false;
-                          $scope.execActive = true;
-                          $state.go('registration.content.forms.executant');
-                      }, function (error) {
-                          alert('registration fails')
-                      });
+                   
+                    //var currackno = response.data;
+                    sessionFactory.putCurrAckno(ApplyRegModel.onlineapplication.ackno);
+                    $scope.trans.currAckno = ApplyRegModel.onlineapplication.ackno;
+                    var usrModel = {};
+                   angular.extend(usrModel, {
+                     Username: ApplyRegModel.onlineapplication.ackno,
+                     Password: ApplyRegModel.onlineapplication.password,
+                     ConfirmPassword: ApplyRegModel.onlineapplication.password,
+                     RoleName:'public'
+                    })
+                   dataFactory.signUpUsr(usrModel).then(function (result) {
+                                $scope.property.state = 'Manipur';
+                                $scope.property.ackno = ApplyRegModel.onlineapplication.ackno;
+                                $scope.property.district = $scope.propertyddl.district.distName;
+                                $scope.property.subdivision = $scope.propertyddl.subdivsion.subDivName;
+                                $scope.property.Circle = $scope.propertyddl.circle.circleName;
+                                $scope.property.Village = $scope.propertyddl.village.villName;
+                                dataFactory.postProperty($scope.property)
+                                .then(function (response) {
+                                    $scope.regForm.execTabdisabled = false;
+                                    $scope.execActive = true;
+                                    $state.go('registration.content.forms.executant')
+                                    ;
+                                });
+                                
+                            }, function (error) {
+                                alert('registration fails')
+                            });
                      
-                  })
+                        })
 
-              })
+                //#region POSTPROPERTYOLDVERSION
+              //  dataFactory.postProperty($scope.property)
+              //.then(function (response) {
+              //    sessionFactory.putCurrAckno(response.data);
+              //    $scope.trans.currAckno = response.data;
+
+
+              //    $scope.pformModel.submitted = true;
+              //    ApplyRegModel.onlineapplication.ackno = response.data;
+              //    ApplyRegModel.onlineapplication.year = '2015';
+              //    ApplyRegModel.onlineapplication.date = '';
+                 
+              //    ApplyRegModel.onlineapplication.status = 'incomplete';
+              //    console.log(ApplyRegModel.onlineapplication);
+              //    dataFactory.postonlineapplication(ApplyRegModel.onlineapplication).then(function (reponse) {
+              //        $scope.identTabdisabled = false;
+              //        console.log(ApplyRegModel.onlineapplication);
+              //        var usrModel = {};
+              //        angular.extend(usrModel, {
+              //            Username: ApplyRegModel.onlineapplication.ackno,
+              //            Password: ApplyRegModel.onlineapplication.password,
+              //            ConfirmPassword: ApplyRegModel.onlineapplication.password,
+              //            RoleName:'public'
+              //        })
+              //        dataFactory.signUpUsr(usrModel).then(function (result) {
+              //            $scope.regForm.execTabdisabled = false;
+              //            $scope.execActive = true;
+              //            $state.go('registration.content.forms.executant');
+              //        }, function (error) {
+              //            alert('registration fails')
+              //        });
+                     
+              //    })
+
+                //})
+                //#endregion
 
             })
            
@@ -651,7 +693,7 @@ angular
                                   .then(function (response) {
                                       console.log('idetifierlist inserted');
                                       updateApplnStatus();
-                                     
+                                      sessionFactory.clearSession();
                                     
 
                                   });

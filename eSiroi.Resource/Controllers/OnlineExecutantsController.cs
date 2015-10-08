@@ -44,39 +44,39 @@ namespace eSiroi.Resource.Controllers
         //}
 
         // PUT: api/OnlineExecutants/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutOnlineExecutant(int id, OnlineExecutant onlineExecutant)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[ResponseType(typeof(void))]
+        //public async Task<IHttpActionResult> PutOnlineExecutant(int id, OnlineExecutant onlineExecutant)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != onlineExecutant.Ackno)
-            {
-                return BadRequest();
-            }
+        //    if (id != onlineExecutant.Ackno)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(onlineExecutant).State = EntityState.Modified;
+        //    db.Entry(onlineExecutant).State = EntityState.Modified;
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OnlineExecutantExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!OnlineExecutantExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
         // POST: api/OnlineExecutants
         [ResponseType(typeof(OnlineExecutant))]
@@ -134,7 +134,7 @@ namespace eSiroi.Resource.Controllers
             base.Dispose(disposing);
         }
 
-        private bool OnlineExecutantExists(int id)
+        private bool OnlineExecutantExists(String id)
         {
             return db.OnlineExecutant.Count(e => e.Ackno == id) > 0;
         }

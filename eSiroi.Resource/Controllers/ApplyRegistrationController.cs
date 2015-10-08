@@ -12,6 +12,7 @@ using eSiroi.Resource.Entities;
 using System.Web.Http.Description;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
+using eSiroi.Resource.Models;
 
 namespace eSiroi.Resource.Controllers
 {
@@ -186,7 +187,7 @@ namespace eSiroi.Resource.Controllers
 
         [HttpGet]
         [Route("api/ApplyRegistrationController/{ackno}/excutantlist")]
-        public IEnumerable <OnlineExecutant> excutantlist(int ackno)
+        public IEnumerable <OnlineExecutant> excutantlist(string ackno)
         {
 
             //return db.OnlineExecutant 
@@ -217,7 +218,7 @@ namespace eSiroi.Resource.Controllers
         //***   GET EXECUTANT DDL DATA *********//
         [HttpGet]
         [Route("api/ApplyRegistrationController/{ackno}/execddllist")]
-        public System.Collections.IEnumerable execddlist(int ackno)
+        public System.Collections.IEnumerable execddlist(string ackno)
         {
 
             //return db.OnlineExecutant 
@@ -276,30 +277,41 @@ namespace eSiroi.Resource.Controllers
             return CreatedAtRoute("DefaultApi", new { controller = "onlineapplication", id = onlineapplication.ackno }, onlineapplication);
         }
 
-        private bool onlineapplicationExists(int id)
+        
+        //Add Online application
+       [HttpPost]
+       [Route("api/ApplyRegistrationController/addOapplication")]
+        public async Task<IHttpActionResult> addapplication(onlineapplication oAppln)
         {
-            return db.onlineapplication.Count(e => e.ackno == id) > 0;
-        }
-
-        private IQueryable<int> getackno(String sro){
-             return from s in db.onlineapplication
-                   where s.sro == sro
-                   select s.ackno;
-
-        }
-        private int getAck()
-        {
-            try { 
-            int currAckno = db.onlinePlot.Max(s => s.ackno);
-            return currAckno;
-            }
-            catch(Exception)
+            var maxackno = db.onlineapplication
+                         .Where(o => o.sro == oAppln.sro && o.year == DateTime.Now.Year.ToString())
+                         .Max(o => o.ackno) + 1;
+          
+            while (onlineapplicationExists(maxackno))
             {
-                return 0;
+                maxackno = maxackno + 1;
             }
-            
-        }
-       
+            oAppln.ackno = maxackno;
+            oAppln.date = DateTime.Now.ToShortDateString();
+            oAppln.year = DateTime.Now.Year.ToString();
+            oAppln.status="incomplete";
+            db.onlineapplication.Add(oAppln);
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+
+                return Conflict();
+
+            }
+            OnlineApplnId OApplnReturnModel= new OnlineApplnId();
+            OApplnReturnModel.ackno = maxackno;
+            OApplnReturnModel.sro = oAppln.sro;
+            OApplnReturnModel.year = oAppln.year;
+            return Ok(OApplnReturnModel);
+       }
         [HttpPost]
         [Route("api/ApplyRegistrationController/postplot")]
         public async Task<IHttpActionResult> postplot([FromBody] onlinePlot plot)
@@ -308,10 +320,10 @@ namespace eSiroi.Resource.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var currAckno = getAck();
-            //var currAckno = db.onlineapplication.Where(s=>s.sro).Max(s => s.ackno);
-            plot.ackno = currAckno + 1;
-            //db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            //var currAckno = getAck();
+            ////var currAckno = db.onlineapplication.Where(s=>s.sro).Max(s => s.ackno);
+            //plot.ackno = currAckno + 1;
+            ////db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
             db.onlinePlot.Add(plot);
              try
             {
@@ -364,7 +376,7 @@ namespace eSiroi.Resource.Controllers
         // POST CLAIMANT LIST
         [HttpPost]
         [Route("api/ApplyRegistrationController/postclaimant")]
-        public async Task<IHttpActionResult> postexecutant([FromBody] IEnumerable<OnlineClaimant> claimantlist)
+        public async Task<IHttpActionResult> postclaimant([FromBody] IEnumerable<OnlineClaimant> claimantlist)
         {
             if (!ModelState.IsValid)
             {
@@ -399,7 +411,7 @@ namespace eSiroi.Resource.Controllers
         // POST IDENTIFIER LIST
         [HttpPost]
         [Route("api/ApplyRegistrationController/postidentifier")]
-        public async Task<IHttpActionResult> postexecutant([FromBody] IEnumerable<OnlineIdentifier> identifierlist)
+        public async Task<IHttpActionResult> postidentifier([FromBody] IEnumerable<OnlineIdentifier> identifierlist)
         {
             if (!ModelState.IsValid)
             {
@@ -432,5 +444,32 @@ namespace eSiroi.Resource.Controllers
             return Ok();
         }
 
+        #region helper functions
+        private bool onlineapplicationExists(int id)
+        {
+            return db.onlineapplication.Count(e => e.ackno == id) > 0;
+        }
+
+        private IQueryable<int> getackno(String sro)
+        {
+            return from s in db.onlineapplication
+                   where s.sro == sro
+                   select s.ackno;
+
+        }
+        //private int getAck()
+        //{
+        //    try
+        //    {
+        //        int currAckno = db.onlinePlot.Max(s => s.ackno);
+        //        return currAckno;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return 0;
+        //    }
+
+        //}
+        #endregion
     }
 }

@@ -569,6 +569,7 @@ function ($rootScope, $state, $window, $timeout, $stateParams,errorHandler,authS
     
    
     $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+        $window.scrollTo(0, 0);
                 $rootScope.previousState = from.name;
                 $rootScope.currentState = to.name;
                 console.log('Previous state:' + $rootScope.previousState)

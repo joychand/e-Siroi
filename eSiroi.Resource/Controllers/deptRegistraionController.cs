@@ -200,7 +200,7 @@ namespace eSiroi.Resource.Controllers
         //Get Property Details
         [HttpGet]
         [Route("{ackno}/property")]
-        public IHttpActionResult getOnlineProperty(int ackno)
+        public IHttpActionResult getOnlineProperty(string ackno)
         {
             var plotdetail = db.onlinePlot
                            .Where(p => p.ackno == ackno)
@@ -215,7 +215,7 @@ namespace eSiroi.Resource.Controllers
 
         // Get property ddl list
         [Route("{ackno}/propertyddl")]
-        public IHttpActionResult getOnlinePropertyddl(int ackno)
+        public IHttpActionResult getOnlinePropertyddl(string ackno)
         {
             var plotddl = db.onlinePlot
                            .Where(p => p.ackno == ackno)
@@ -283,7 +283,7 @@ namespace eSiroi.Resource.Controllers
         //GET EXECUTANT LIST
         [HttpGet]
         [Route("{ackno}/excutantlist")]
-        public IHttpActionResult excutantlist(int ackno)
+        public IHttpActionResult excutantlist(string ackno)
         {
             
             //return db.OnlineExecutant 
@@ -347,7 +347,7 @@ namespace eSiroi.Resource.Controllers
         //***   GET EXECUTANT DDL DATA *********//
         [HttpGet]
         [Route("{ackno}/execddllist")]
-        public System.Collections.IEnumerable execddlist(int ackno)
+        public System.Collections.IEnumerable execddlist(string ackno)
         {
 
             //return db.OnlineExecutant 
@@ -413,7 +413,7 @@ namespace eSiroi.Resource.Controllers
         // Get Online Claimant list 
         [HttpGet]
         [Route("{ackno}/claimantlist")]
-        public IHttpActionResult claimantlist(int ackno)
+        public IHttpActionResult claimantlist(string ackno)
         {
             
             //return db.OnlineExecutant 
@@ -515,7 +515,7 @@ namespace eSiroi.Resource.Controllers
         // GET ONLINE IDENTIFIER LIST
         [HttpGet]
         [Route("{ackno}/identifierlist")]
-        public IHttpActionResult identifierlist(int ackno)
+        public IHttpActionResult identifierlist(string ackno)
         {
 
 
@@ -548,7 +548,7 @@ namespace eSiroi.Resource.Controllers
         // GET ONLINE IDENTDDL LIST
         [HttpGet]
         [Route("{ackno}/identddllist")]
-        public System.Collections.IEnumerable identddllist(int ackno)
+        public System.Collections.IEnumerable identddllist(string ackno)
         {
 
             System.Collections.IEnumerable iddlist;
@@ -567,7 +567,7 @@ namespace eSiroi.Resource.Controllers
         [HttpGet]
         [Route("{ackno}/claimddlist")]
       
-        public System.Collections.IEnumerable claimddlist(int ackno)
+        public System.Collections.IEnumerable claimddlist(string ackno)
         {
 
             System.Collections.IEnumerable cddlist;

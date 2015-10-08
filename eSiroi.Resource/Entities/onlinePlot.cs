@@ -11,7 +11,8 @@ namespace eSiroi.Resource.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ackno { get; set; }
+        [StringLength(50)]
+        public string ackno { get; set; }
 
         [StringLength(25)]
         public string DagNo { get; set; }

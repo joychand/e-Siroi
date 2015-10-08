@@ -234,6 +234,10 @@
     <Compile Include="eSiroiResourceMigration\201509151109452_add_upload_filepath_column.Designer.cs">
       <DependentUpon>201509151109452_add_upload_filepath_column.cs</DependentUpon>
     </Compile>
+    <Compile Include="eSiroiResourceMigration\201510081144544_ackno_type_changed.cs" />
+    <Compile Include="eSiroiResourceMigration\201510081144544_ackno_type_changed.Designer.cs">
+      <DependentUpon>201510081144544_ackno_type_changed.cs</DependentUpon>
+    </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
     <Compile Include="Models\ApplicationStatus.cs" />
     <Compile Include="Models\ApplnID.cs" />
@@ -288,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="eSiroiResourceMigration\201509151109452_add_upload_filepath_column.resx">
       <DependentUpon>201509151109452_add_upload_filepath_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201510081144544_ackno_type_changed.resx">
+      <DependentUpon>201510081144544_ackno_type_changed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -152,7 +152,7 @@ angular.module('eSiroi.Web')
         dataFactory.postonlineapplication = function (onlineapplication) {
             return $http({
                 method: 'POST',
-                url: urlBase3 + 'postapplication',
+                url: urlBase3 + 'addOapplication',
                 data: onlineapplication
             });//.then(function (results) { return results.data; });
         }
