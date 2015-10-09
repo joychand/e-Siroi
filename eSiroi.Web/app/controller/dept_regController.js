@@ -394,7 +394,7 @@
             dept_sessionfactory.putRow(row);
             deptModalService.onlineAppln = {};
             angular.extend(deptModalService.onlineAppln, {
-                ackno: row.ackno,
+                ackno: row.ackno + row.roCode + row.year,
                 sro: row.roCode,
                 trans_code: row.trans_code
 
@@ -762,7 +762,8 @@
                 {
                     console.log(row);
                     console.log(row.ackno);
-                    getPropPartyList(row.ackno);
+                    console.log(row.roCode);
+                    getPropPartyList(row.ackno.toString() + row.roCode.toString() + row.year);
                     dept_sessionfactory.putAckno(row.ackno);
                     dept_sessionfactory.putTransCd(row.trans_code);
             }

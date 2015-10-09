@@ -55,7 +55,7 @@ namespace eSiroi.Resource.Controllers
         public IHttpActionResult getSchedules(OnlineApplnId appln)
         {
             var query = db.Application
-                       .Where(a => a.status == "DateFixed" && a.sro == appln.sro && a.TSYear.ToString() == appln.year && a.ackno == appln.ackno)
+                       .Where(a => a.status == "DateFixed" && a.sro == appln.sro && a.TSYear.ToString() == appln.year && a.ackno == appln.ackno.ToString())
                        .Join(db.Appointment,
                        a => new { a.TSNo, a.TSYear, a.sro },
                        appnt => new { appnt.TSNo, appnt.TSYear, appnt.sro },

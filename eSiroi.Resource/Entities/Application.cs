@@ -26,7 +26,7 @@ namespace eSiroi.Resource.Entities
 
               
         
-        public int ? ackno { get; set; }
+        public string ackno { get; set; }
 
         
        

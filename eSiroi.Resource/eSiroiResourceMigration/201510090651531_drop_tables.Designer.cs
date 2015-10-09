@@ -7,13 +7,13 @@ namespace eSiroi.Resource.eSiroiResourceMigration
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ackno_type_changed : IMigrationMetadata
+    public sealed partial class drop_tables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ackno_type_changed));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(drop_tables));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510081144544_ackno_type_changed"; }
+            get { return "201510090651531_drop_tables"; }
         }
         
         string IMigrationMetadata.Source

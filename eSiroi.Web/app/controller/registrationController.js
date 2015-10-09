@@ -457,21 +457,21 @@ angular
                
                 //POST PROPERTY DETAIL 
                 $scope.pformModel.submitted = true;
-                    ApplyRegModel.onlineapplication.ackno = 0;
+                    //ApplyRegModel.onlineapplication.ackno = 0;
                    
                    
 
                 dataFactory.postonlineapplication(ApplyRegModel.onlineapplication).then(function (response) {
                     var regApplication = response.data;
                     console.log(response.data);
-                    ApplyRegModel.onlineapplication.ackno = regApplication.ackno;
+                    //ApplyRegModel.onlineapplication.ackno = regApplication.ackno;
                     ApplyRegModel.onlineapplication.year = regApplication.year;
-                    console.log(ApplyRegModel.onlineapplication.ackno.toString() + ApplyRegModel.onlineapplication.sro + ApplyRegModel.onlineapplication.year)
-                    
+                    ApplyRegModel.onlineapplication.ackno = regApplication.ackno.toString() + ApplyRegModel.onlineapplication.sro + ApplyRegModel.onlineapplication.year;
+                    ApplyRegModel.onlineapplication.intackno = regApplication.ackno;
 
                    
                     //var currackno = response.data;
-                    sessionFactory.putCurrAckno(ApplyRegModel.onlineapplication.ackno);
+                    sessionFactory.putCurrAckno(regApplication.ackno);
                     $scope.trans.currAckno = ApplyRegModel.onlineapplication.ackno;
                     var usrModel = {};
                    angular.extend(usrModel, {
@@ -585,7 +585,7 @@ angular
             SubDivision: $scope.exec.subdiv.subDivName,
             Village:$scope.exec.village.villName,
             PostOffice:$scope.exec.postoffice.postOffice1,
-            Ackno:sessionFactory.getCurrAckno(),
+            Ackno: ApplyRegModel.onlineapplication.ackno,
             SlNo:$scope.execSlno,         
             pinCode:$scope.exec.postoffice.pinCode,
             
@@ -605,7 +605,7 @@ angular
             SubDivision :$scope.claim.subdiv.subDivName,
             Village : $scope.claim.village.villName,
             PostOffice : $scope.claim.postoffice.postOffice1,
-            Ackno : sessionFactory.getCurrAckno(),
+            Ackno: ApplyRegModel.onlineapplication.ackno,
             pinCode : $scope.claim.postoffice.pinCode,
             
             })
@@ -652,7 +652,7 @@ angular
                 SubDivision :$scope.ident.subdiv.subDivName,
                 Village : $scope.ident.village.villName,
                 PostOffice : $scope.ident.postoffice.postOffice1,
-                Ackno : sessionFactory.getCurrAckno(),
+                Ackno: ApplyRegModel.onlineapplication.ackno,
                 pinCode : $scope.ident.postoffice.pinCode,
                 identify: $scope.ident.identify
             })
@@ -702,14 +702,14 @@ angular
 
         }
         function updateApplnStatus() {
-            dataFactory.updateApplnStatus(sessionFactory.getCurrAckno()).then(function (response) {
+            dataFactory.updateApplnStatus(ApplyRegModel.onlineapplication.intackno).then(function (response) {
                 // DISPLAY COMPLETION SUCCESS MODAL
                 var modalOptions = {
                     closeButtonText: 'Cancel',
                     actionButtonText: 'Ok',
                     headerText: 'Application Successfully submitted',
                     bodyText: 'Your Acknowledgement No. is: ',
-                    customData: sessionFactory.getCurrAckno()
+                    customData: ApplyRegModel.onlineapplication.ackno
                 };
                 modalService.showModal({}, modalOptions).then(function (result) {
                     $state.go('registration.content.applyregsuccess');
@@ -732,11 +732,11 @@ angular
 //ApplySuccessController
 (function () {
     angular.module('eSiroi.Web')
-    .controller('ApplySuccessController', ['$scope', 'modalService', 'sessionFactory','$state', ApplySuccessController]);
+    .controller('ApplySuccessController', ['$scope', 'modalService', 'sessionFactory','$state','ApplyRegModel', ApplySuccessController]);
 
-    function ApplySuccessController($scope, modalService, sessionFactory,$state) {
+    function ApplySuccessController($scope, modalService, sessionFactory, $state, ApplyRegModel) {
 
-        $scope.currAckno = sessionFactory.getCurrAckno();
+        $scope.currAckno = ApplyRegModel.onlineapplication.ackno;
         $scope.getdraftdeed=function() {
            
             var modalOptions = {
@@ -824,7 +824,7 @@ angular
 .controller('publicPrintackCtrl', ['ApplyRegModel', '$state', '$scope', 'dataFactory', '$window', function (ApplyRegModel, $state, $scope, dataFactory, $window) {
     var applnObject = {};
     angular.extend(applnObject, {
-        ackno:ApplyRegModel.onlineapplication.ackno,
+        ackno: ApplyRegModel.onlineapplication.intackno,
         sro:ApplyRegModel.onlineapplication.sro,
         trans_code:ApplyRegModel.onlineapplication.trans_maj_code,
         year:ApplyRegModel.onlineapplication.year

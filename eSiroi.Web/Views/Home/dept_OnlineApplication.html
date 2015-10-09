@@ -26,7 +26,7 @@
     </thead>
         <tbody>
             <tr ng-repeat="row in displayCollection">
-                <td>{{row.ackno}}</td>
+                <td>{{row.ackno + row.roCode + row.year}}</td>
                 <td>{{row.sro}}</td>
                 <td>{{row.transaction}}</td>
                 <td>{{row.date}}</td>

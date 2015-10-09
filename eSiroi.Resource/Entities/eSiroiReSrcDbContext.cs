@@ -86,107 +86,107 @@ namespace eSiroi.Resource.Entities
                 .IsFixedLength()
                 .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.ExecSurName)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.ExecSurName)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.ExecMiddleName)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.ExecMiddleName)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.ExecLastName)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.ExecLastName)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.Alias)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.Alias)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.Sex)
-                .IsFixedLength()
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.Sex)
+            //    .IsFixedLength()
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.FatherSurName)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.FatherSurName)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.FatherMiddleName)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.FatherMiddleName)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.FatherLastName)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.FatherLastName)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.State)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.State)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.District)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.District)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.SubDivision)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.SubDivision)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.Circle)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.Circle)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.Village)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.Village)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.Street)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.Street)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.PostOffice)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.PostOffice)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.PoliceSt)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.PoliceSt)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<OnlineExecutant>()
-                .Property(e => e.EnterBy)
-                .IsUnicode(false);
+            //modelBuilder.Entity<OnlineExecutant>()
+            //    .Property(e => e.EnterBy)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<onlinePlot>()
-                .Property(e => e.DagNo)
-                .IsUnicode(false);
+            //modelBuilder.Entity<onlinePlot>()
+            //    .Property(e => e.DagNo)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<onlinePlot>()
-                .Property(e => e.PattaNo)
-                .IsUnicode(false);
+            //modelBuilder.Entity<onlinePlot>()
+            //    .Property(e => e.PattaNo)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<onlinePlot>()
-                .Property(e => e.Unit)
-                .IsFixedLength()
-                .IsUnicode(false);
+            //modelBuilder.Entity<onlinePlot>()
+            //    .Property(e => e.Unit)
+            //    .IsFixedLength()
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<onlinePlot>()
-                .Property(e => e.State)
-                .IsUnicode(false);
+            //modelBuilder.Entity<onlinePlot>()
+            //    .Property(e => e.State)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<onlinePlot>()
-                .Property(e => e.District)
-                .IsUnicode(false);
+            //modelBuilder.Entity<onlinePlot>()
+            //    .Property(e => e.District)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<onlinePlot>()
-                .Property(e => e.Subdivision)
-                .IsUnicode(false);
+            //modelBuilder.Entity<onlinePlot>()
+            //    .Property(e => e.Subdivision)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<onlinePlot>()
-                .Property(e => e.Circle)
-                .IsUnicode(false);
+            //modelBuilder.Entity<onlinePlot>()
+            //    .Property(e => e.Circle)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<onlinePlot>()
-                .Property(e => e.Village)
-                .IsUnicode(false);
+            //modelBuilder.Entity<onlinePlot>()
+            //    .Property(e => e.Village)
+            //    .IsUnicode(false);
 
             modelBuilder.Entity<PoliceStation>()
                 .Property(e => e.DistCode)

@@ -149,13 +149,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\OrdersController.cs" />
-    <Compile Include="Controllers\PublicController.cs" />
-    <Compile Include="Controllers\SRController.cs" />
+    <Compile Include="Controllers\PublicController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\SubDivisionsController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controllers\UpdateController.cs" />
-    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\ValuesController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -234,9 +233,29 @@
     <Compile Include="eSiroiResourceMigration\201509151109452_add_upload_filepath_column.Designer.cs">
       <DependentUpon>201509151109452_add_upload_filepath_column.cs</DependentUpon>
     </Compile>
-    <Compile Include="eSiroiResourceMigration\201510081144544_ackno_type_changed.cs" />
-    <Compile Include="eSiroiResourceMigration\201510081144544_ackno_type_changed.Designer.cs">
-      <DependentUpon>201510081144544_ackno_type_changed.cs</DependentUpon>
+    <Compile Include="eSiroiResourceMigration\201510090645045_initial_create2.cs" />
+    <Compile Include="eSiroiResourceMigration\201510090645045_initial_create2.Designer.cs">
+      <DependentUpon>201510090645045_initial_create2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eSiroiResourceMigration\201510090651531_drop_tables.cs" />
+    <Compile Include="eSiroiResourceMigration\201510090651531_drop_tables.Designer.cs">
+      <DependentUpon>201510090651531_drop_tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eSiroiResourceMigration\201510090653539_recreate_tables.cs" />
+    <Compile Include="eSiroiResourceMigration\201510090653539_recreate_tables.Designer.cs">
+      <DependentUpon>201510090653539_recreate_tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eSiroiResourceMigration\201510090655232_recreate_table2.cs" />
+    <Compile Include="eSiroiResourceMigration\201510090655232_recreate_table2.Designer.cs">
+      <DependentUpon>201510090655232_recreate_table2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eSiroiResourceMigration\201510090700135_drop_application_table.cs" />
+    <Compile Include="eSiroiResourceMigration\201510090700135_drop_application_table.Designer.cs">
+      <DependentUpon>201510090700135_drop_application_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eSiroiResourceMigration\201510090702110_recreate_application_table.cs" />
+    <Compile Include="eSiroiResourceMigration\201510090702110_recreate_application_table.Designer.cs">
+      <DependentUpon>201510090702110_recreate_application_table.cs</DependentUpon>
     </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
     <Compile Include="Models\ApplicationStatus.cs" />
@@ -293,8 +312,23 @@
     <EmbeddedResource Include="eSiroiResourceMigration\201509151109452_add_upload_filepath_column.resx">
       <DependentUpon>201509151109452_add_upload_filepath_column.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="eSiroiResourceMigration\201510081144544_ackno_type_changed.resx">
-      <DependentUpon>201510081144544_ackno_type_changed.cs</DependentUpon>
+    <EmbeddedResource Include="eSiroiResourceMigration\201510090645045_initial_create2.resx">
+      <DependentUpon>201510090645045_initial_create2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201510090651531_drop_tables.resx">
+      <DependentUpon>201510090651531_drop_tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201510090653539_recreate_tables.resx">
+      <DependentUpon>201510090653539_recreate_tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201510090655232_recreate_table2.resx">
+      <DependentUpon>201510090655232_recreate_table2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201510090700135_drop_application_table.resx">
+      <DependentUpon>201510090700135_drop_application_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201510090702110_recreate_application_table.resx">
+      <DependentUpon>201510090702110_recreate_application_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

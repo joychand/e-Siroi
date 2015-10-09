@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="row in displayCollection">
-                    <td>{{row.ackno}}</td>
+                    <td>{{row.ackno + row.sro + row.year}}</td>
                     <td>{{row.year}}</td>
                     <td>{{row.sroName}}</td>
                     <td>{{row.date|date:'dd/MM/yyyy'}}</td>

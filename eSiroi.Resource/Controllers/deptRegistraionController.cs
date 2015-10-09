@@ -27,32 +27,33 @@ namespace eSiroi.Resource.Controllers
         [Route("{status}/getAppln")]
         public IHttpActionResult getAppln(String status)
         {
-            
-            var query =from oAppln in db.onlineapplication
-                                join ro in db.RegistarOffice
-                                on oAppln.sro equals SqlFunctions.StringConvert((double) ro.RegOfficeCode ).Trim()
-                               
-                                join trans in db.MajorTrans_code
-                                on oAppln.trans_maj_code equals trans.tran_maj_code
-                                 where oAppln.status == status
-                                select new
-                                {
-                                    ackno = oAppln.ackno,
 
-                                    sro = ro.RegOfficeName,
-                                    roCode=ro.RegOfficeCode,
-                                    transaction = trans.tran_name,
-                                    trans_code=trans.tran_maj_code,
-                                    date = oAppln.date
-                                   
-                                    
+            var query = from oAppln in db.onlineapplication
+                        join ro in db.RegistarOffice
+                        on oAppln.sro equals SqlFunctions.StringConvert((double)ro.RegOfficeCode).Trim()
 
-                                };
-            if(query.Any())
+                        join trans in db.MajorTrans_code
+                        on oAppln.trans_maj_code equals trans.tran_maj_code
+                        where oAppln.status == status
+                        select new
+                        {
+                            ackno = oAppln.ackno,
+
+                            sro = ro.RegOfficeName,
+                            roCode = ro.RegOfficeCode,
+                            transaction = trans.tran_name,
+                            trans_code = trans.tran_maj_code,
+                            date = oAppln.date,
+                            year=oAppln.year
+
+
+
+                        };
+            if (query.Any())
             {
                 return Ok(query);
             }
-            return NotFound();       
+            return NotFound();
         }
 
         #endregion
@@ -103,99 +104,99 @@ namespace eSiroi.Resource.Controllers
         }
         #endregion
 
-        # region DeedForm API
+        //# region DeedForm API
 
-        //POST DEED DETAILS
-        [HttpPost]
-        [Route("postdeed")]
-        public async Task<IHttpActionResult> postdeed([FromBody] Deed deedDetails)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            //DateTime entrydate=DateTime.UtcNow;
-            deedDetails.EntryDt = DateTime.UtcNow;
-            db.Deed.Add(deedDetails);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
+        ////POST DEED DETAILS
+        //[HttpPost]
+        //[Route("postdeed")]
+        //public async Task<IHttpActionResult> postdeed([FromBody] Deed deedDetails)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    //DateTime entrydate=DateTime.UtcNow;
+        //    deedDetails.EntryDt = DateTime.UtcNow;
+        //    db.Deed.Add(deedDetails);
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
 
-                throw;
-
-
-            }
-            return Ok();
-        }
-
-        // GET DEEDS STATUS
-       //[Authorize]
-        
-        [Route("{status}/getApplication")]
-        public IHttpActionResult getApplication(String status)
-        {
-            var query = from apln in db.Application
-                        join ro in db.RegistarOffice
-                        on apln.sro equals ro.RegOfficeCode.ToString()
-                        join trans in db.MajorTrans_code
-                        on apln.trans_maj_code equals trans.tran_maj_code
-                        where apln.status == status
-                        select new
-                        {
-                            TS = apln.TSNo,
-                            TYear = apln.TSYear,
-                            sro = ro.RegOfficeName,
-                            ackno=apln.ackno,
-                            roCode=ro.RegOfficeCode,
-                            transaction = trans.tran_name,
-                            trans_code=trans.tran_maj_code,
-                            status = apln.status,
-                            //enterby = d.EnterBy,
-                            date = apln.Entrydate,
-                            remarks=apln.remarks,
+        //        throw;
 
 
+        //    }
+        //    return Ok();
+        //}
 
-                        };
-            if (query.Any())
-            {
-                return Ok(query);
-            }
-            return NotFound();
-        }
+        //// GET DEEDS STATUS
+        ////[Authorize]
 
-       // [Authorize]
-        [Route("{ts}/{tsyear}/deedinfo")]
-       public IHttpActionResult getdeedinfo(int ts, int tsyear)
-       {
-           var deedinfo = db.Deed
-                         .Where(d => d.TSNo == ts && d.TSYear == tsyear)
-                         .Select(list => new 
-                         { 
-                             list.RegNo,
-                             list.RegYear,
-                             list.RegDate,
-                             list.TransType,
-                             list.EntryDt,
-                             list.EnterBy,
-                             list.Date_Exec,
-                             list.Date_Time_Present
-                            
-                           
-                         });
-           if (deedinfo.Any())
-           {
-               return Ok(deedinfo);
-           }
-           return NotFound();
-           
-       }
-        # endregion DeedFrom API
+        //[Route("{status}/getApplication")]
+        //public IHttpActionResult getApplication(String status)
+        //{
+        //    var query = from apln in db.Application
+        //                join ro in db.RegistarOffice
+        //                on apln.sro equals ro.RegOfficeCode.ToString()
+        //                join trans in db.MajorTrans_code
+        //                on apln.trans_maj_code equals trans.tran_maj_code
+        //                where apln.status == status
+        //                select new
+        //                {
+        //                    TS = apln.TSNo,
+        //                    TYear = apln.TSYear,
+        //                    sro = ro.RegOfficeName,
+        //                    ackno = apln.ackno,
+        //                    roCode = ro.RegOfficeCode,
+        //                    transaction = trans.tran_name,
+        //                    trans_code = trans.tran_maj_code,
+        //                    status = apln.status,
+        //                    //enterby = d.EnterBy,
+        //                    date = apln.Entrydate,
+        //                    remarks = apln.remarks,
 
-      
+
+
+        //                };
+        //    if (query.Any())
+        //    {
+        //        return Ok(query);
+        //    }
+        //    return NotFound();
+        //}
+
+        //// [Authorize]
+        //[Route("{ts}/{tsyear}/deedinfo")]
+        //public IHttpActionResult getdeedinfo(int ts, int tsyear)
+        //{
+        //    var deedinfo = db.Deed
+        //                  .Where(d => d.TSNo == ts && d.TSYear == tsyear)
+        //                  .Select(list => new
+        //                  {
+        //                      list.RegNo,
+        //                      list.RegYear,
+        //                      list.RegDate,
+        //                      list.TransType,
+        //                      list.EntryDt,
+        //                      list.EnterBy,
+        //                      list.Date_Exec,
+        //                      list.Date_Time_Present
+
+
+        //                  });
+        //    if (deedinfo.Any())
+        //    {
+        //        return Ok(deedinfo);
+        //    }
+        //    return NotFound();
+
+        //}
+        //# endregion DeedFrom API
+
+
         # region PropertyFrom API
         //Get Property Details
         [HttpGet]
@@ -204,7 +205,7 @@ namespace eSiroi.Resource.Controllers
         {
             var plotdetail = db.onlinePlot
                            .Where(p => p.ackno == ackno)
-                           .Select(list => new { list.ackno,list.DagNo,list.PattaNo,list.TransactedArea,list.LandType,list.Class});
+                           .Select(list => new { list.ackno, list.DagNo, list.PattaNo, list.TransactedArea, list.LandType, list.Class });
             if (plotdetail.Any())
             {
                 return Ok(plotdetail);
@@ -230,9 +231,10 @@ namespace eSiroi.Resource.Controllers
 
         //INSERT PORPERTY DETAILS
         [Route("postPlotDetail")]
-        public async Task< IHttpActionResult> postProperty(Plot plot) {
+        public async Task<IHttpActionResult> postProperty(Plot plot)
+        {
 
-            
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -244,7 +246,7 @@ namespace eSiroi.Resource.Controllers
             {
                 await db.SaveChangesAsync();
             }
-            catch(DbUpdateException e)
+            catch (DbUpdateException e)
             {
                 return InternalServerError(e);
             }
@@ -252,32 +254,32 @@ namespace eSiroi.Resource.Controllers
 
         }
 
-        //GET PROPERTY DETIALS
-       // [Authorize]
-        [Route("{ts}/{tyear}/propertyinfo")]
-        public IHttpActionResult getPropertyinfo(int ts,int tyear )
-        {
-            var plotinfo = db.Plot
-                         .Where(p => p.TSNo == ts && p.TSYear == tyear)
-                         .Select(list => new
-                         {
-                             list.DagNo,
-                             list.PattaNo,
-                             list.TransactedArea,
-                             list.Unit,
-                             list.LandType,
-                             list.Village,
-                             list.Circle,
-                             list.District
+        ////GET PROPERTY DETIALS
+        //// [Authorize]
+        //[Route("{ts}/{tyear}/propertyinfo")]
+        //public IHttpActionResult getPropertyinfo(int ts, int tyear)
+        //{
+        //    var plotinfo = db.Plot
+        //                 .Where(p => p.TSNo == ts && p.TSYear == tyear)
+        //                 .Select(list => new
+        //                 {
+        //                     list.DagNo,
+        //                     list.PattaNo,
+        //                     list.TransactedArea,
+        //                     list.Unit,
+        //                     list.LandType,
+        //                     list.Village,
+        //                     list.Circle,
+        //                     list.District
 
-                         });
-            if (plotinfo.Any())
-            {
-                return Ok(plotinfo);
-            }
-            return NotFound();
-        }
-        #endregion 
+        //                 });
+        //    if (plotinfo.Any())
+        //    {
+        //        return Ok(plotinfo);
+        //    }
+        //    return NotFound();
+        //}
+        #endregion
 
         #region PartyDetails API
         //GET EXECUTANT LIST
@@ -285,9 +287,9 @@ namespace eSiroi.Resource.Controllers
         [Route("{ackno}/excutantlist")]
         public IHttpActionResult excutantlist(string ackno)
         {
-            
+
             //return db.OnlineExecutant 
-           // IEnumerable<OnlineExecutant> elist;
+            // IEnumerable<OnlineExecutant> elist;
             var elist = db.OnlineExecutant
                         .Where(b => b.Ackno == ackno)
                         .Select(list => new
@@ -315,7 +317,7 @@ namespace eSiroi.Resource.Controllers
                 return NotFound();
 
 
-             }
+        }
         // GET EXECUTANT INFO
         [HttpGet]
         [Route("{ts}/{tyear}/executantInfo")]
@@ -364,7 +366,7 @@ namespace eSiroi.Resource.Controllers
 
             elist = (from p in db.Set<OnlineExecutant>()
                      where p.Ackno == ackno
-                     select new { p.State, p.District, p.SubDivision, p.Village,p.Street, p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
+                     select new { p.State, p.District, p.SubDivision, p.Village, p.Street, p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
             //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
 
             return elist;
@@ -387,7 +389,7 @@ namespace eSiroi.Resource.Controllers
             foreach (Executant E in executantlist)
             {
 
-                
+
                 db.Executant.Add(E);
 
             }
@@ -409,13 +411,13 @@ namespace eSiroi.Resource.Controllers
             // return CreatedAtRoute("DefaultApi", new { controller = "postexecutant", id = executantlist[0].ackno }, executantlist);
             return Ok();
         }
-        
+
         // Get Online Claimant list 
         [HttpGet]
         [Route("{ackno}/claimantlist")]
         public IHttpActionResult claimantlist(string ackno)
         {
-            
+
             //return db.OnlineExecutant 
             //IEnumerable<OnlineClaimant> clist;
             var clist = db.OnlineClaimant
@@ -444,74 +446,74 @@ namespace eSiroi.Resource.Controllers
             else
                 return NotFound();
         }
-        //GET CLAIMANT INFO
-        [HttpGet]
-        [Route("{ts}/{tyear}/claimantInfo")]
-        public IHttpActionResult getclaimantInfo(int ts, int tyear)
-        {
-            var claiminfo = db.Claimant
-                         .Where(c => c.TSNo == ts && c.TSYear == tyear)
-                         .Select(list => new
-                         {
-                             list.ClaimSurName,
-                             list.ClaimMiddleName,
-                             list.ClaimLastName,
-                             list.FatherSurName,
-                             list.FatherMiddleName,
-                             list.FatherLastName,
-                             list.SlNo,
-                             list.Sex,
-                             list.Street,
-                             list.Village
-
-                         });
-            if (claiminfo.Any())
-            {
-                return Ok(claiminfo);
-            }
-            return NotFound();
-        }
-        // GET IDENTIFIER INFO
-        [HttpGet]
-        [Route("{ts}/{tyear}/identifierInfo")]
-        public IHttpActionResult getidentifierInfo(int ts, int tyear)
-        {
-            var claiminfo = db.Identifier
-                          .Where(c => c.TSNo == ts && c.TSYear == tyear)
-                          .Select(list => new
-                          {
-                              list.IdentSurName,
-                              list.IdentMiddleName,
-                              list.IdentLastName,
-                              list.FatherSurName,
-                              list.FatherMiddleName,
-                              list.FatherLastName,
-                              list.SlNo,
-                              list.Sex,
-                              list.Street,
-                              list.Village
-
-                          });
-            if (claiminfo.Any())
-            {
-                return Ok(claiminfo);
-            }
-            return NotFound();
-        }
-
-        // SR APPLICATION STATUS
-        //[HttpPost]
-        //[Route("srupdate")]
-        //public async Task<IHttpActionResult> SRupdate()
+        ////GET CLAIMANT INFO
+        //[HttpGet]
+        //[Route("{ts}/{tyear}/claimantInfo")]
+        //public IHttpActionResult getclaimantInfo(int ts, int tyear)
         //{
-        //    try
-        //    {
-        //        await();
-        //    }
-        //    catch (DbUpdateException e ) {
+        //    var claiminfo = db.Claimant
+        //                 .Where(c => c.TSNo == ts && c.TSYear == tyear)
+        //                 .Select(list => new
+        //                 {
+        //                     list.ClaimSurName,
+        //                     list.ClaimMiddleName,
+        //                     list.ClaimLastName,
+        //                     list.FatherSurName,
+        //                     list.FatherMiddleName,
+        //                     list.FatherLastName,
+        //                     list.SlNo,
+        //                     list.Sex,
+        //                     list.Street,
+        //                     list.Village
 
+        //                 });
+        //    if (claiminfo.Any())
+        //    {
+        //        return Ok(claiminfo);
+        //    }
+        //    return NotFound();
         //}
+        //// GET IDENTIFIER INFO
+        //[HttpGet]
+        //[Route("{ts}/{tyear}/identifierInfo")]
+        //public IHttpActionResult getidentifierInfo(int ts, int tyear)
+        //{
+        //    var claiminfo = db.Identifier
+        //                  .Where(c => c.TSNo == ts && c.TSYear == tyear)
+        //                  .Select(list => new
+        //                  {
+        //                      list.IdentSurName,
+        //                      list.IdentMiddleName,
+        //                      list.IdentLastName,
+        //                      list.FatherSurName,
+        //                      list.FatherMiddleName,
+        //                      list.FatherLastName,
+        //                      list.SlNo,
+        //                      list.Sex,
+        //                      list.Street,
+        //                      list.Village
+
+        //                  });
+        //    if (claiminfo.Any())
+        //    {
+        //        return Ok(claiminfo);
+        //    }
+        //    return NotFound();
         //}
+
+        //// SR APPLICATION STATUS
+        ////[HttpPost]
+        ////[Route("srupdate")]
+        ////public async Task<IHttpActionResult> SRupdate()
+        ////{
+        ////    try
+        ////    {
+        ////        await();
+        ////    }
+        ////    catch (DbUpdateException e ) {
+
+        ////}
+        ////}
         // GET ONLINE IDENTIFIER LIST
         [HttpGet]
         [Route("{ackno}/identifierlist")]
@@ -536,14 +538,14 @@ namespace eSiroi.Resource.Controllers
                              list.Occupation,
                              list.SlNo,
                              list.Sex
-                            
+
                          });
             if (ilist.Any())
             {
                 return Ok(ilist);
             }
             else return NotFound();
-            
+
         }
         // GET ONLINE IDENTDDL LIST
         [HttpGet]
@@ -552,21 +554,21 @@ namespace eSiroi.Resource.Controllers
         {
 
             System.Collections.IEnumerable iddlist;
-           
+
 
             iddlist = (from p in db.Set<OnlineIdentifier>()
-                     where p.Ackno == ackno
-                     select new { p.State, p.District, p.SubDivision, p.Village, p.Street,p.PostOffice, p.PinCode, p.PoliceSt,p.Identify }).AsEnumerable();
+                       where p.Ackno == ackno
+                       select new { p.State, p.District, p.SubDivision, p.Village, p.Street, p.PostOffice, p.PinCode, p.PoliceSt, p.Identify }).AsEnumerable();
             //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
 
             return iddlist;
 
 
-          }
+        }
         // GET CLAIMANT DDL LIST
         [HttpGet]
         [Route("{ackno}/claimddlist")]
-      
+
         public System.Collections.IEnumerable claimddlist(string ackno)
         {
 
@@ -575,7 +577,7 @@ namespace eSiroi.Resource.Controllers
 
             cddlist = (from p in db.Set<OnlineClaimant>()
                        where p.Ackno == ackno
-                       select new { p.State, p.District, p.SubDivision, p.Village, p.Street,p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
+                       select new { p.State, p.District, p.SubDivision, p.Village, p.Street, p.PostOffice, p.PinCode, p.PoliceSt }).AsEnumerable();
             //.Select(x => new OnlineExecutant { Ackno = x.Ackno });
 
             return cddlist;
@@ -585,7 +587,7 @@ namespace eSiroi.Resource.Controllers
 
         //POST CLAIMANT DETAILS
         [Route("postClaimant")]
-        public async Task<IHttpActionResult> postClaimant(IEnumerable <Claimant> claimantlist)
+        public async Task<IHttpActionResult> postClaimant(IEnumerable<Claimant> claimantlist)
         {
             if (!ModelState.IsValid)
             {
@@ -612,7 +614,7 @@ namespace eSiroi.Resource.Controllers
             return Ok();
         }
         //POST IDENTIFIER DETAILS
-        [Route ("postIdentifier")]
+        [Route("postIdentifier")]
         public async Task<IHttpActionResult> postIdentifier(IEnumerable<Identifier> identifierList)
         {
             if (!ModelState.IsValid)
@@ -639,10 +641,10 @@ namespace eSiroi.Resource.Controllers
 
             return Ok();
         }
-       
+
         # endregion
 
-        #region APPLICATION UPDATE
+        //#region APPLICATION UPDATE
         [HttpPost]
         [Route("applicationAdd")]
         public async Task<IHttpActionResult> addApplication(Application application)
@@ -656,10 +658,10 @@ namespace eSiroi.Resource.Controllers
             application.Entrydate = DateTime.UtcNow.ToString();
             db.Application.Add(application);
 
-            if (application.ackno != 0)
+            if (application.ackno!=null)
             {
                 onlineapplication onlineApplication = db.onlineapplication
-                                    .Where(o => o.ackno == application.ackno).FirstOrDefault();
+                                    .Where(o => SqlFunctions.StringConvert((double)o.ackno).Trim() + o.sro + o.year == application.ackno).FirstOrDefault();
                 onlineApplication.status = application.status;
             }
 
@@ -675,161 +677,161 @@ namespace eSiroi.Resource.Controllers
 
             return Ok();
         }
-        //SR approve application
-        [HttpPost]
-        [Route("updateApplication")]
-        public async Task<IHttpActionResult> approve(ApplicationStatus application)
-        {
-            
-            var appln = db.Application
-                   .Where(a => a.TSNo == application.tsno && a.TSYear == application.tsyear && a.sro==application.sro).FirstOrDefault();
-            appln.status = application.status;
-            var reason = "plot";
-            if (application.remarks.Length > 0)
-            //if(reason.Length>0)
-            {
-                appln.remarks = application.remarks;
-            }
+        ////SR approve application
+        //[HttpPost]
+        //[Route("updateApplication")]
+        //public async Task<IHttpActionResult> approve(ApplicationStatus application)
+        //{
 
-            if (application.Ackno != 0)
-            {
-                onlineapplication onlineApplication = db.onlineapplication
-                                    .Where(o => o.ackno == application.Ackno).FirstOrDefault();
-                onlineApplication.status = application.status;
-                if (application.remarks.Length > 0)
-                {
-                    onlineApplication.remarks = application.remarks;
-                }
-            }
+        //    var appln = db.Application
+        //           .Where(a => a.TSNo == application.tsno && a.TSYear == application.tsyear && a.sro == application.sro).FirstOrDefault();
+        //    appln.status = application.status;
+        //    var reason = "plot";
+        //    if (application.remarks.Length > 0)
+        //    //if(reason.Length>0)
+        //    {
+        //        appln.remarks = application.remarks;
+        //    }
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
+        //    if (application.Ackno != 0)
+        //    {
+        //        onlineapplication onlineApplication = db.onlineapplication
+        //                            .Where(o => o.ackno.toString()+o.sro+o.year == application.Ackno).FirstOrDefault();
+        //        onlineApplication.status = application.status;
+        //        if (application.remarks.Length > 0)
+        //        {
+        //            onlineApplication.remarks = application.remarks;
+        //        }
+        //    }
 
-            catch (DbUpdateException e)
-            {
-                return NotFound();
-            }
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
 
-            return Ok();
-        }
+        //    catch (DbUpdateException e)
+        //    {
+        //        return NotFound();
+        //    }
 
-        //Data entry applicaiton update
-        [Route("updateDeedStatus")]
-        public async Task<IHttpActionResult> updateDeedStatus(StatusObject statusObject)
-        {
-            Deed d = db.Deed
-                   .Where(c => c.TSNo == statusObject.tsno && c.TSYear == statusObject.tsyear).FirstOrDefault();
-            d.Status = statusObject.status;
+        //    return Ok();
+        //}
 
-            if (statusObject.Ackno != 0)
-            {
-                onlineapplication onlineApplication = db.onlineapplication
-                                    .Where(o => o.ackno == statusObject.Ackno).FirstOrDefault();
-                onlineApplication.status = statusObject.status;
-            }
+        ////Data entry applicaiton update
+        //[Route("updateDeedStatus")]
+        //public async Task<IHttpActionResult> updateDeedStatus(StatusObject statusObject)
+        //{
+        //    Deed d = db.Deed
+        //           .Where(c => c.TSNo == statusObject.tsno && c.TSYear == statusObject.tsyear).FirstOrDefault();
+        //    d.Status = statusObject.status;
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
+        //    if (statusObject.Ackno != 0)
+        //    {
+        //        onlineapplication onlineApplication = db.onlineapplication
+        //                            .Where(o => o.ackno == statusObject.Ackno).FirstOrDefault();
+        //        onlineApplication.status = statusObject.status;
+        //    }
 
-            catch (DbUpdateException e)
-            {
-                return NotFound();
-            }
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
 
-            return Ok();
-        }
+        //    catch (DbUpdateException e)
+        //    {
+        //        return NotFound();
+        //    }
 
-        [Route("getDate")]
-        public IHttpActionResult getDate()
-        {
-            var datenow = DateTime.UtcNow;
-            datenow = datenow.AddDays(10);
-            return Ok(datenow);
-        }
-        [Route("postDate")]
-        public async Task < IHttpActionResult>  postDate(Appointment appntObject)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    return Ok();
+        //}
 
-            db.Appointment.Add(appntObject);
+        //[Route("getDate")]
+        //public IHttpActionResult getDate()
+        //{
+        //    var datenow = DateTime.UtcNow;
+        //    datenow = datenow.AddDays(10);
+        //    return Ok(datenow);
+        //}
+        //[Route("postDate")]
+        //public async Task<IHttpActionResult> postDate(Appointment appntObject)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
+        //    db.Appointment.Add(appntObject);
 
-            catch (DbUpdateException e)
-            {
-                return InternalServerError(e);
-            }
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
 
-            var appDate = from  appln  in db.Application 
-                          where appln.ackno != null
-                          join oAppln in db.onlineapplication
-                          on new { ackno=appln.ackno.Value, appln.sro } equals new { oAppln.ackno, oAppln.sro }
-                          join appnt in db.Appointment
-                          on new { appln.TSNo, appln.TSYear, appln.sro } equals new { appnt.TSNo, appnt.TSYear, appnt.sro }
-                          select appnt;
-                         
+        //    catch (DbUpdateException e)
+        //    {
+        //        return InternalServerError(e);
+        //    }
 
-            return Ok(appDate);
-        }
-        #endregion
+        //    var appDate = from appln in db.Application
+        //                  where appln.ackno != null
+        //                  join oAppln in db.onlineapplication
+        //                  on new { ackno = appln.ackno.Value, appln.sro } equals new { oAppln.ackno, oAppln.sro }
+        //                  join appnt in db.Appointment
+        //                  on new { appln.TSNo, appln.TSYear, appln.sro } equals new { appnt.TSNo, appnt.TSYear, appnt.sro }
+        //                  select appnt;
+
+
+        //    return Ok(appDate);
+        //}
+        //#endregion
 
         #region GENERATE TSNO TSYEAR
         [HttpPost]
         [Route("generateTS")]
         public IHttpActionResult generateTS([FromBody]string sro)
         {
-            int tsyear = 2021;
-            
+            int tsyear = DateTime.Now.Year;
+
             int? curTsno = db.Application
                 .Where(a => a.sro == sro && a.TSYear == tsyear).Max(a => (int?)a.TSNo);
             int nextcurTsno = (curTsno ?? default(int)) + 1;
             IEnumerable<int> transidlist = new List<int> { tsyear, nextcurTsno };
 
-            return Ok (transidlist);
+            return Ok(transidlist);
         }
 
-#endregion
-
-        #region OnlineDeedEntry
-        [Route("getOnlineData")]
-        [HttpPost]
-        public IHttpActionResult getOnlineData([FromBody] int ackno)
-        {
-            var onlinedata = from appln in db.Application
-                             where (appln.ackno != null ? appln.ackno==ackno:true) && appln.status == "DateFixed" 
-                             join oAppln in db.onlineapplication
-                             
-                             on new { ackno = appln.ackno.Value, appln.sro } equals new { oAppln.ackno, oAppln.sro } into a
-                             from x in a.Take(1)
-                             select new
-                             {
-                                 ackno = appln.ackno,
-                                 sro = appln.sro,
-                                 ts = appln.TSNo,
-                                 tsyear = appln.TSYear,
-                                 trans_code = appln.trans_maj_code,
-                                 status = appln.status
-
-                             };
-
-            if (onlinedata.Any())
-            {
-                return Ok(onlinedata);
-
-
-            }
-            return NotFound();
-        }
         #endregion
+
+        //#region OnlineDeedEntry
+        //[Route("getOnlineData")]
+        //[HttpPost]
+        //public IHttpActionResult getOnlineData([FromBody] int ackno)
+        //{
+        //    var onlinedata = from appln in db.Application
+        //                     where (appln.ackno != null ? appln.ackno == ackno : true) && appln.status == "DateFixed"
+        //                     join oAppln in db.onlineapplication
+
+        //                     on new { ackno = appln.ackno.Value, appln.sro } equals new { oAppln.ackno, oAppln.sro } into a
+        //                     from x in a.Take(1)
+        //                     select new
+        //                     {
+        //                         ackno = appln.ackno,
+        //                         sro = appln.sro,
+        //                         ts = appln.TSNo,
+        //                         tsyear = appln.TSYear,
+        //                         trans_code = appln.trans_maj_code,
+        //                         status = appln.status
+
+        //                     };
+
+        //    if (onlinedata.Any())
+        //    {
+        //        return Ok(onlinedata);
+
+
+        //    }
+        //    return NotFound();
+        //}
+        //#endregion
     }
 }

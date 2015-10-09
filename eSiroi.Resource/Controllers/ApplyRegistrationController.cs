@@ -306,7 +306,8 @@ namespace eSiroi.Resource.Controllers
                 return Conflict();
 
             }
-            OnlineApplnId OApplnReturnModel= new OnlineApplnId();
+           //var returnAckno = maxackno.ToString() + oAppln.sro + oAppln.year + 
+            OnlineApplnId OApplnReturnModel = new OnlineApplnId();
             OApplnReturnModel.ackno = maxackno;
             OApplnReturnModel.sro = oAppln.sro;
             OApplnReturnModel.year = oAppln.year;
