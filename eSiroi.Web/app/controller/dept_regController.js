@@ -178,7 +178,17 @@
 
          }
          $scope.viewDeed = function (row) {
-             $http.get(eSiroiWebSettings.apiResrcServiceBaseUri + 'api/SRController/getPdf', { responseType: 'arraybuffer' })
+             var applnObject = {};
+             angular.extend(applnObject, {
+                 tsno:row.ts,
+                 tsyear:row.tYear,
+                 sro: row.roCode,
+                 
+                 ackno: row.ackno
+                
+
+             })
+             $http.post(eSiroiWebSettings.apiResrcServiceBaseUri + 'api/SRController/getPdf',applnObject, { responseType: 'arraybuffer' })
                 .success(function (data) {
                     var file = new Blob([data], { type: 'application/pdf' });
                     var fileURL = URL.createObjectURL(file);
@@ -764,7 +774,7 @@
                     console.log(row.ackno);
                     console.log(row.roCode);
                     getPropPartyList(row.ackno.toString() + row.roCode.toString() + row.year);
-                    dept_sessionfactory.putAckno(row.ackno);
+                    dept_sessionfactory.putAckno(row.ackno.toString() + row.roCode.toString() + row.year);
                     dept_sessionfactory.putTransCd(row.trans_code);
             }
             //    getPropPartyList(row.ackno);
@@ -1722,7 +1732,7 @@
 //certyController
 (function () {
     angular.module('eSiroi.Web')
-.controller('certyController', ['$scope', '$state', 'dept_dataFactory', 'deptModalService', '$filter', function ($scope, $state, dept_dataFactory, deptModalService, $filter) {
+.controller('certyController', ['$scope', '$state', 'dept_dataFactory', 'deptModalService', '$filter', '$window', function ($scope, $state, dept_dataFactory, deptModalService, $filter, $window) {
 
     $scope.deedinfo = {};
     $scope.propertyinfo = {};
@@ -1760,6 +1770,10 @@
    // $scope.on()
 
     })
+    $scope.certyprintout = function ($scope) {
+        $window.print();
+        
+    }
 }])
    
    

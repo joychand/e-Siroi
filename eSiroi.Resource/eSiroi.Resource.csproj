@@ -152,9 +152,12 @@
     <Compile Include="Controllers\PublicController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\SRController.cs" />
     <Compile Include="Controllers\SubDivisionsController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\UpdateController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\ValuesController.cs">
       <SubType>Code</SubType>
     </Compile>

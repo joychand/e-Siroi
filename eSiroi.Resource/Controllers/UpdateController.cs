@@ -105,10 +105,10 @@ namespace eSiroi.Resource.Controllers
                 appln.remarks = ApplnModel.remarks;
             }
 
-            if (ApplnModel.Ackno != 0)
+            if (ApplnModel.Ackno!=null)
             {
                 onlineapplication onlineApplication = dbase.onlineapplication
-                                    .Where(o => o.ackno == ApplnModel.Ackno).FirstOrDefault();
+                                    .Where(o => (SqlFunctions.StringConvert((double)o.ackno)+""+o.sro+""+o.year) == ApplnModel.Ackno).SingleOrDefault();
                 onlineApplication.status = ApplnModel.status;
                 if (ApplnModel.remarks.Length > 0)
                 {

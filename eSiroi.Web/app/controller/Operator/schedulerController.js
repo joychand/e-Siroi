@@ -51,10 +51,10 @@
         });
         //console.log(appntModel)
         dept_dataFactory.postAppointment(appntModel).then(function (result) {
-            var appointment = result.data;
-            console.log(appointment)
-            var date1 = $filter('date')(appointment[0].date1, 'dd-MMM-yyyy');
-            console.log(date1);
+            //var appointment = result.data;
+            //console.log(appointment)
+            //var date1 = $filter('date')(appointment[0].date1, 'dd-MMM-yyyy');
+            //console.log(date1);
             var statusObject={};
             angular.extend(statusObject,{
                 tsno:row.ts,

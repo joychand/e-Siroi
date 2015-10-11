@@ -9,7 +9,7 @@ namespace eSiroi.Resource.Models
     {
         public int tsno { get; set; }
         public int tsyear { get; set; }
-        public int Ackno { get; set; }
+        public string Ackno { get; set; }
         public string status { get; set; }
         public string sro { get; set; }
         public string remarks { get; set; }
