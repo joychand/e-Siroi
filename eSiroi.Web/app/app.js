@@ -50,7 +50,11 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
          .state('department', {
              url: "/department",
              templateUrl: baseUrl + 'Home/department',
-             controller: 'departmentController'
+             controller: 'departmentController',
+             data: {
+                 loginRequired: false,
+                 roles: []
+             }
             
          })
 
@@ -65,7 +69,11 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                        '@department':{
                             templateUrl: baseUrl + 'Home/departmentcontent'
                             }
-                        }
+                },
+                data: {
+                    loginRequired: false,
+                    roles: []
+                }
         })
 
         .state('department.content.login',
@@ -215,7 +223,12 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             
             url: '/dataEntryform',
             templateUrl: baseUrl + 'Home/dept_dataEntry_form',
-            controller: 'dataEntryformController'
+            controller: 'dataEntryformController',
+            data: {
+
+                loginRequired: true,
+                roles: ['Operator']
+            }
             //resolve: {
             //    transID: ['dept_dataFactory', 'dept_sessionfactory',function (dept_dataFactory, dept_sessionfactory) {
             //        return dept_dataFactory.generateTsID(dept_sessionfactory.user.sro).then(function (results) {
@@ -229,7 +242,12 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
            .state('department.content.form.deed', {
                url: '/dataEntryformDeed',
                templateUrl: baseUrl + 'Home/dept_dataEntry_form_deed',
-               controller: 'deptDeedController'
+               controller: 'deptDeedController',
+               data: {
+
+                   loginRequired: true,
+                   roles: ['Operator']
+               }
            })
         .state('department.content.form.property', {
             url: '/dataEntryformProperty',
@@ -240,6 +258,11 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                 return dataFactory.getDistricts();
 
             }]
+            },
+            data: {
+
+                loginRequired: true,
+                roles: ['Operator']
             }
         })
 
@@ -251,37 +274,63 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                 online: ['dept_sessionfactory',function (dept_sessionfactory) {
                     return dept_sessionfactory.getOnline();
                 }]
+            },
+            data: {
+
+                loginRequired: true,
+                roles: ['Operator']
             }
         })
 
          .state('department.content.form.claimant', {
              url: '/dataEntryformclaimant',
              templateUrl: baseUrl + 'Home/dept_dataEntry_form_claimant',
-             controller: 'deptClaimController'
+             controller: 'deptClaimController',
+             data: {
+
+                 loginRequired: true,
+                 roles: ['Operator']
+             }
          })
 
         .state('department.content.form.identifier', {
             url: '/dataEntryformidentifier',
             templateUrl: baseUrl + 'Home/dept_dataEntry_form_identifier',
-            controller: 'deptIdentController'
+            controller: 'deptIdentController',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
         })
 
         //#endregion FORM ENTRY
         .state('department.content.dataentered', {
             url: '/dataEntered',
             templateUrl: baseUrl + 'Department/deptDataEntered',
-            controller: 'dataEntCompController'
+            controller: 'dataEntCompController',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
         })
        
     
         .state('department.content.upload', {
             url: '/upload',
             templateUrl: baseUrl + 'Home/dept_scanDocuments',
-            controller: 'uploadController'
+            controller: 'uploadController',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
         })
         .state('department.content.uploadComplete', {
             url: '/uploadcomplete',
-            templateUrl: baseUrl + 'Home/upload_complete'
+            templateUrl: baseUrl + 'Home/upload_complete',
+            data: {
+                loginRequired: true,
+                roles: ['Operator']
+            }
         })
          .state('department.content.finalupload', {
              url: '/finalupload',
@@ -342,7 +391,9 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
              templateUrl: baseUrl + 'Home/registration',
              deepStateRedirect: true,
              data:{
-                 breadcrumbProxy:'registration.content.apply'
+                 breadcrumbProxy: 'registration.content.apply',
+                 loginRequired: false,
+                 roles: []
              }
             
          })
@@ -362,7 +413,9 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             },
             deepStateRedirect: true,
             data: {
-                breadcrumbProxy: 'registration.content.apply'
+                breadcrumbProxy: 'registration.content.apply',
+                loginRequired: false,
+                roles: []
             }
            
         })
