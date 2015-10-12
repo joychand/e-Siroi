@@ -237,6 +237,13 @@
                 data: Application
             });
             },
+            enteredApplication: function(Application){
+                return $http({
+                    method:'POST',
+                    url: urlBase2 + 'applicationEntered',
+                    data: Application
+                })
+            },
 
             fillAppln: function (){
                 return $http({

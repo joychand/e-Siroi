@@ -233,7 +233,7 @@ angular.module('eSiroi.Web')
         dataFactory.getOApplicationModel = function (ackno) {
             return $http({
                 method: 'POST',
-                url: urlBase7 + 'getOAppln',
+                url: urlBase7 + 'OApplnModel',
                 data: ackno
             })
         }

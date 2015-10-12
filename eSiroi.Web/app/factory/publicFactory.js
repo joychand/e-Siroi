@@ -8,7 +8,7 @@
         publicFactory.getSchedules = function (applnObject) {
             return $http({
                 method: 'POST',
-                url: urlBase + 'getSchedules',
+                url: urlBase + 'scheduledDate',
                 data:applnObject
             })
         }

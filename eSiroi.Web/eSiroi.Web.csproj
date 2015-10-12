@@ -152,7 +152,6 @@
     <Content Include="app\Module\ErrorHandler.js" />
     <Content Include="app\Module\MultiDatePicker.js" />
     <Content Include="app\service\ModalService.js" />
-    <Content Include="authComplete.html" />
     <Content Include="content\css\bootstrap-theme.css" />
     <Content Include="content\css\bootstrap.css" />
     <Content Include="content\css\ng-grid.css" />
@@ -186,6 +185,9 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\ct-ui-router-extras.js" />
     <Content Include="scripts\angular.min.js.map" />
+    <None Include="Properties\PublishProfiles\eSiroi.pubxml" />
+    <None Include="Properties\PublishProfiles\eSiroi2.pubxml" />
+    <None Include="Properties\PublishProfiles\eSiroi3.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -227,6 +229,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -283,7 +286,9 @@
     <Content Include="Views\Home\searchReg.html" />
     <Content Include="Views\Home\uiBreadcrumbs.tpl.html" />
     <Content Include="Views\Home\upload_complete.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs">

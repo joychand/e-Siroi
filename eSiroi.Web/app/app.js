@@ -194,7 +194,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
         //#region OFFLINE DATAENTRY
         .state('department.content.data', {
             url: '/dataEntry',
-            templateUrl: baseUrl + '/Home/dept_dataEntry',
+            templateUrl: baseUrl + 'Home/dept_dataEntry',
             controller: 'dept_regController',
             data:{
                
@@ -215,15 +215,15 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             
             url: '/dataEntryform',
             templateUrl: baseUrl + 'Home/dept_dataEntry_form',
-            controller: 'dataEntryformController',
-            resolve: {
-                transID: ['dept_dataFactory', 'dept_sessionfactory',function (dept_dataFactory, dept_sessionfactory) {
-                    return dept_dataFactory.generateTsID(dept_sessionfactory.user.sro).then(function (results) {
+            controller: 'dataEntryformController'
+            //resolve: {
+            //    transID: ['dept_dataFactory', 'dept_sessionfactory',function (dept_dataFactory, dept_sessionfactory) {
+            //        return dept_dataFactory.generateTsID(dept_sessionfactory.user.sro).then(function (results) {
 
-                        return results.data;
-                    });
-                }]
-            }
+            //            return results.data;
+            //        });
+            //    }]
+            //}
             
         })
            .state('department.content.form.deed', {

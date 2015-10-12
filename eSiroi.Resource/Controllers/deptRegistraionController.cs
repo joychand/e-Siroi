@@ -664,9 +664,39 @@ namespace eSiroi.Resource.Controllers
             application.TSYear = (short)tsyear;
             db.Application.Add(application);
 
-            if (application.ackno!=null)
+           
+            try
             {
-               // var stringackno=db.onlineapplication
+                await db.SaveChangesAsync();
+            }
+
+            catch (DbUpdateException e)
+            {
+                return NotFound();
+            }
+            IEnumerable<int> transidlist = new List<int> { tsyear, application.TSNo };
+
+            return Ok(transidlist);
+            
+        }
+
+        [HttpPost]
+        [Route("applicationEntered")]
+        public async Task<IHttpActionResult> addApplnComplete(Application application)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            //DateTime entrydate=DateTime.UtcNow;
+            var query = db.Application
+                .Where(a => a.sro == application.sro && a.TSYear == application.TSYear && a.TSNo == application.TSNo).SingleOrDefault();
+           query.status="DataEntered,Verify";
+           query.ackno = application.ackno;
+            if (application.ackno != null)
+            {
+                // var stringackno=db.onlineapplication
                 onlineapplication onlineApplication = db.onlineapplication
                                     .Where(o => SqlFunctions.StringConvert((double?)o.ackno).Trim() + o.sro + o.year == application.ackno).FirstOrDefault();
                 onlineApplication.status = application.status;

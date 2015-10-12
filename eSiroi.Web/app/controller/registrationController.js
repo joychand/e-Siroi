@@ -115,9 +115,10 @@ angular
             authService.login($scope.loginData).then(function (response) {
                 
                 if (userService.userInPublic) {
-                    var ackno = parseInt($scope.loginData.userName);
-                    dataFactory.getOApplicationModel(ackno).then(function (result) {
+                   // var ackno = parseInt($scope.loginData.userName);
+                    dataFactory.getOApplicationModel($scope.loginData.userName.toString()).then(function (result) {
                         ApplyRegModel.onlineapplication = result.data[0];
+                        ApplyRegModel.onlineapplication.intackno = result.data[0].ackno;
                         dataFactory.getSroName(ApplyRegModel.onlineapplication.sro).then(function (sroName) {
                             ApplyRegModel.sroName = sroName[0];
 
@@ -784,14 +785,9 @@ angular
    
     $scope.getSchedules = function (row) {
         console.log(row);
-        var applnObject = {};
-        angular.extend(applnObject,{
-            sro: row.roCode.toString(),
-            ackno: row.ackno,
-            year: '2021'
-           
-        })
-        publicFactory.getSchedules(applnObject).then(function (result) {
+        var stringackno = row.ackno + row.roCode.toString() + row.year;
+       
+        publicFactory.getSchedules(stringackno).then(function (result) {
             $scope.appointment = result.data[0];
             $scope.date1 = result.data[0].date1;
             var modalOptions = {
@@ -823,6 +819,7 @@ angular
     angular.module('eSiroi.Web')
 .controller('publicPrintackCtrl', ['ApplyRegModel', '$state', '$scope', 'dataFactory', '$window', function (ApplyRegModel, $state, $scope, dataFactory, $window) {
     var applnObject = {};
+    console.log(ApplyRegModel.onlineapplication);
     angular.extend(applnObject, {
         ackno: ApplyRegModel.onlineapplication.intackno,
         sro:ApplyRegModel.onlineapplication.sro,

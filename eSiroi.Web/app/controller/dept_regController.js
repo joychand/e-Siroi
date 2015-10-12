@@ -591,13 +591,16 @@
 
     angular
         .module('eSiroi.Web')
-        .controller('dataEntryformController', ['$scope', '$state', 'dept_sessionfactory', 'dataFactory', 'dept_dataFactory', 'deptModalService', 'modalService', '$rootScope', 'transID', dataEntryformController]);
-    function dataEntryformController ($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService, $rootScope, transID) {
+        .controller('dataEntryformController', ['$scope', '$state', 'dept_sessionfactory', 'dataFactory', 'dept_dataFactory', 'deptModalService', 'modalService', '$rootScope',  dataEntryformController]);
+    function dataEntryformController ($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService, $rootScope) {
         
-        $scope.tsyear = {};
-        $scope.tsyear.tyear = transID[0];
 
-        $scope.tsyear.ts = transID[1];
+        $scope.tsyear = {};
+        //$scope.tsyear.tyear = 2015;
+
+        //$scope.tsyear.ts = 0;
+       
+        
         $scope.visibility = true;
         $scope.click = false;
 
@@ -780,7 +783,26 @@
             //    getPropPartyList(row.ackno);
             //    dept_sessionfactory.putAckno(row.ackno);
             //    dept_sessionfactory.putTransCd(row.trans_code);
-         }
+        }
+        var statusObject = {};
+        angular.extend(statusObject, {
+            tsno: 0,
+            tsyear: 2015,
+            ackno: dept_sessionfactory.getAckno(),
+            status: 'Incomplete',
+            sro: dept_sessionfactory.user.sro,
+            trans_maj_code: dept_sessionfactory.getTransCd(),
+
+        })
+
+        dept_dataFactory.addApplication(statusObject).then(function (response) {
+            statusObject.tsyear = response.data[0];
+            statusObject.tsyear = response.data[1];
+            deptModalService.ApplnModel = statusObject;
+            $scope.tsyear.tyear = response.data[0];
+
+            $scope.tsyear.ts = response.data[1];
+        })
         //GET ONLINE DATA
         function getPropPartyList(ackno) {
             dept_dataFactory.getOnlineExecutantList(ackno).then(function (response) {
@@ -1571,7 +1593,7 @@
 
             })
             deptModalService.ApplnModel = statusObject;
-            dept_dataFactory.addApplication(statusObject).then(function (response) {
+            dept_dataFactory.enteredApplication(statusObject).then(function (response) {
                 dept_dataFactory.postdeptexecutantlist(dept_sessionfactory.getExecutantlist()).then(function (response) {
                     console.log('registration data successfully  submitted');
                     dept_dataFactory.postClaimantList(dept_sessionfactory.getClaimantlist()).then(function (response) {

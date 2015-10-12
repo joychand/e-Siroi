@@ -13,6 +13,7 @@ using System.Web.Http.Description;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 using eSiroi.Resource.Models;
+using System.Data.Entity.SqlServer;
 
 namespace eSiroi.Resource.Controllers
 {
@@ -22,10 +23,10 @@ namespace eSiroi.Resource.Controllers
         private eSiroiReSrcDbContext db = new eSiroiReSrcDbContext();
         [HttpGet]
         [Route("{appln}/applnStatus")]
-        public IHttpActionResult getAppln(int appln)
+        public IHttpActionResult getAppln(string appln)
         {
             var query = db.onlineapplication
-                        .Where(a => a.ackno == appln)
+                        .Where(a => SqlFunctions.StringConvert((double)a.ackno).Trim() + "" + a.sro + "" + a.year == appln)
                         .Join(db.RegistarOffice, a => a.sro, ro => ro.RegOfficeCode.ToString(), (a, ro) => new { a = a, ro = ro })
                         .Join(db.MajorTrans_code, apln => apln.a.trans_maj_code, trans => trans.tran_maj_code, (apln, trans) => new { apln, trans })
                         .Select(
@@ -51,11 +52,11 @@ namespace eSiroi.Resource.Controllers
         }
 
         [HttpPost]
-        [Route("getSchedules")]
-        public IHttpActionResult getSchedules(OnlineApplnId appln)
+        [Route("scheduledDate")]
+        public IHttpActionResult getSchedules([FromBody]string ackno)
         {
             var query = db.Application
-                       .Where(a => a.status == "DateFixed" && a.sro == appln.sro && a.TSYear.ToString() == appln.year && a.ackno == appln.ackno.ToString())
+                       .Where(a => a.status == "DateFixed" && a.ackno==ackno)
                        .Join(db.Appointment,
                        a => new { a.TSNo, a.TSYear, a.sro },
                        appnt => new { appnt.TSNo, appnt.TSYear, appnt.sro },
@@ -75,7 +76,8 @@ namespace eSiroi.Resource.Controllers
                       .Select(list=>new{
                           list.ackno,
                           list.date,
-                          list.year
+                          list.year,
+                          list.sro
                       });
             if (query.Any())
             {
@@ -85,11 +87,11 @@ namespace eSiroi.Resource.Controllers
         }
 
         [HttpPost]
-        [Route("getOAppln")]
-        public IHttpActionResult getOnlineApplication([FromBody]int ackno)
+        [Route("OApplnModel")]
+        public IHttpActionResult OnlineApplicationModel([FromBody]string ackno)
         {
             var query = db.onlineapplication
-                      .Where(a => a.ackno == ackno)
+                      .Where(a => SqlFunctions.StringConvert((double)a.ackno).Trim()+""+a.sro+""+a.year == ackno)
                       .Select(list => new
                       {
                           list.ackno,

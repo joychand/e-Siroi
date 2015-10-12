@@ -53,16 +53,16 @@
         
         slides.push(
             {
-                image: eSiroiWebSettings.baseUrl + '/images/loktak.jpg',
+                image: eSiroiWebSettings.baseUrl + 'images/loktak.jpg',
             text: 'loktak'
         },
         {
-            image: eSiroiWebSettings.baseUrl + '/images/manHouse2.png',
+            image: eSiroiWebSettings.baseUrl + 'images/manHouse2.png',
             text: 'House'
 
         },
         {
-            image: eSiroiWebSettings.baseUrl + '/images/manHouse.jpg',
+            image: eSiroiWebSettings.baseUrl + 'images/manHouse.jpg',
             text: 'House2'
         }
          );
