@@ -175,6 +175,9 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Home/upload_complete.html", "text/html");
         }
-     
+         public ActionResult Oldbrowser()
+         {
+             return File("~/Views/Home/Oldbrowser.html", "text/html");
+         }
     }
 }

@@ -204,6 +204,7 @@
     <Content Include="scripts\ui-utils.js" />
     <Content Include="spinning.gif" />
     <Content Include="Views\Department\Appoint_Calendar.html" />
+    <Content Include="Views\Home\Oldbrowser.html" />
     <Content Include="Views\Report\Certificate.html" />
     <Content Include="Views\Department\dept_dataEntered.html" />
     <Content Include="Views\Department\dept_home.html">
