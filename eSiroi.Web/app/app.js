@@ -37,6 +37,14 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                 roles: []
             }
         })
+        .state('pageundrconstrct', {
+            url: '/pageunder_Construct',
+            templateUrl: 'Home/pageUnderConstruction',
+            data: {
+                loginRequired: false,
+                roles:[]
+            }
+        })
         
          .state('login', {
              url: "/login",

@@ -179,5 +179,9 @@ namespace eSiroi.Web.Controllers
          {
              return File("~/Views/Home/Oldbrowser.html", "text/html");
          }
+         public ActionResult pageUnderConstruction()
+         {
+             return File("~/Views/Home/pageUnConst.html", "text/html");
+         }
     }
 }

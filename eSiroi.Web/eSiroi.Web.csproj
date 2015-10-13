@@ -176,6 +176,7 @@
     <Content Include="images\manipurmap.jpg" />
     <Content Include="images\loading-bar.gif" />
     <Content Include="packages.config" />
+    <Content Include="scripts\angular-idle.min.js" />
     <Content Include="scripts\angular-sanitize.js" />
     <Content Include="scripts\angular-ui-router.js" />
     <Content Include="scripts\angular-ui-router.min.js" />
@@ -205,6 +206,7 @@
     <Content Include="spinning.gif" />
     <Content Include="Views\Department\Appoint_Calendar.html" />
     <Content Include="Views\Home\Oldbrowser.html" />
+    <Content Include="Views\Home\pageUnConst.html" />
     <Content Include="Views\Report\Certificate.html" />
     <Content Include="Views\Department\dept_dataEntered.html" />
     <Content Include="Views\Department\dept_home.html">

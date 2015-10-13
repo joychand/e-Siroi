@@ -18,7 +18,7 @@
         var sessionclaimddlist = [];
         var sessionidentifierlist = [];
         var sessionidentddlist = [];
-        var sessionAckno = 0;
+        var sessionAckno = null;
         var sessionSro;
         var sessiontransCode = '';
 
