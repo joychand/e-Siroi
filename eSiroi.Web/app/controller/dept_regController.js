@@ -1003,13 +1003,34 @@
 
        
          $scope.deed=deptModalService.deed;
-         $scope.d=deptModalService.deedddl;
+         $scope.d = deptModalService.deedddl;
+        
         // $scope.d.dop = new Date();
 
         /// Fee exempt reason radion button action
         $scope.isExemptYes = function (yes) {
             
             return yes === $scope.deed.FeeExempt
+        }
+        $scope.calcSFee = function () {
+            var tempValue=0;
+            if ($scope.deed.ConValue) {
+                if (Math.abs($scope.deed.ConValue / 100) > Math.floor($scope.deed.ConValue / 100)) {
+                    tempValue = Math.floor($scope.deed.ConValue / 100) + 1;
+                }
+                else {
+                    tempValue = Math.floor($scope.deed.ConValue / 100);
+                }
+                alert(tempValue);
+                $scope.sFeePayable = 3 * tempValue;
+                $scope.deed.StampPaid = $scope.sFeePayable;
+            }
+            else
+            {
+                $scope.sFeePayable = '';
+                $scope.deed.StampPaid = '';
+            }
+            
         }
         $scope.ondeedSubmit = function () {
             

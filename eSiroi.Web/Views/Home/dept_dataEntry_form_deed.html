@@ -144,13 +144,13 @@
         <div class="form-group">
             <div class="col-sm-8">
                 <div class="col-md-5 hidden-xs text-right">
-                    <label class="control-label">Consolidation Value:</label>
+                    <label class="control-label">Consideration Value:</label>
                 </div>
                 <div class="col-md-7">
                     <div class="input-group">
                         <span class="input-group-addon"><del>&#2352;</del></span>
 
-                        <input type="text" value="" class="form-control" placeholder="Consolidation Value"  data-ng-model="deed.ConValue"/>
+                        <input type="text" ng-change="calcSFee()"class="form-control" placeholder="Consideration Value"  data-ng-model="deed.ConValue"/>
                     </div>
 
                 </div>
@@ -163,7 +163,7 @@
                 <div class="col-md-7">
                     <div class="input-group">
                         <span class="input-group-addon"><del>&#2352;</del></span>
-                        <input type="text" class="form-control" placeholder="Stamp Payable Value" />
+                        <input type="text" ng-model="sFeePayable"  class="form-control" placeholder="Stamp Payable Value" />
                         <span class="input-group-addon">
                             <input type="checkbox" name="SFeeExmp"
                                    value="Y"
