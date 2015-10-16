@@ -125,6 +125,26 @@
                 return yes === $scope.deed.FeeExempt
             }
             $scope.calcSFee = function () {
+                calculateStamFee();
+            }
+            $scope.clearsFee = function () {
+                $scope.sFeePayable = '';
+                $scope.deed.StampPaid = '';
+                $scope.deed.ConValue = '';
+            }
+            $scope.sFeeExem = function () {
+                
+                if ($scope.deed.SFeeExmp) {
+                    $scope.sFeePayable = '';
+                    $scope.deed.StampPaid = '';
+                }
+                else {
+                    calculateStamFee();
+                }
+
+
+            }
+            function calculateStamFee() {
                 var tempValue = 0;
                 if ($scope.deed.ConValue) {
                     if (Math.abs($scope.deed.ConValue / 100) > parseInt($scope.deed.ConValue / 100)) {
@@ -160,16 +180,6 @@
                     $scope.deed.StampPaid = '';
                 }
 
-            }
-            $scope.clearsFee = function () {
-                $scope.sFeePayable = '';
-                $scope.deed.StampPaid = '';
-                $scope.deed.ConValue = '';
-            }
-            $scope.sFeeExem = function () {
-                $scope.sFeePayable = '';
-                $scope.deed.StampPaid = '';
-                
             }
             $scope.ondeedSubmit = function () {
 

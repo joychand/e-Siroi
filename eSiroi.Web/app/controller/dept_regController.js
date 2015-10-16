@@ -1001,7 +1001,9 @@
 
     function deptDeedController($scope, $state, dept_sessionfactory, dataFactory, dept_dataFactory, deptModalService, modalService) {
 
-       
+        var sfExem = false;
+        var sFeePayableOld;
+        var sFeePaidOld;
          $scope.deed=deptModalService.deed;
          $scope.d = deptModalService.deedddl;
         
@@ -1013,7 +1015,28 @@
             return yes === $scope.deed.FeeExempt
         }
         $scope.calcSFee = function () {
-            var tempValue=0;
+            calculateStamFee();
+        }
+        $scope.clearsFee = function () {
+            $scope.sFeePayable = '';
+            $scope.deed.StampPaid = '';
+            $scope.deed.ConValue = '';
+        }
+        $scope.sFeeExem = function () {
+            console.log($scope.deed.SFeeExmp);
+            if ($scope.deed.SFeeExmp) {
+                $scope.sFeePayable = '';
+                $scope.deed.StampPaid = '';
+            }    
+            else
+            {
+                calculateStamFee();
+            }
+           
+
+        }
+        function calculateStamFee() {
+            var tempValue = 0;
             if ($scope.deed.ConValue) {
                 if (Math.abs($scope.deed.ConValue / 100) > parseInt($scope.deed.ConValue / 100)) {
                     tempValue = parseInt($scope.deed.ConValue / 100) + 1;
@@ -1066,15 +1089,7 @@
                 alert('deed details sumbit fails');
             })
         }
-        $scope.clearsFee = function () {
-            $scope.sFeePayable = '';
-            $scope.deed.StampPaid = '';
-            $scope.deed.ConValue = '';
-        }
-        $scope.sFeeExem = function () {
-            $scope.sFeePayable = '';
-            $scope.deed.StampPaid = '';
-        }
+       
     }
 
 })();
