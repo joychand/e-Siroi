@@ -773,9 +773,9 @@
         {
                 if ($rootScope.previousState === 'department.content.onlineapplication' )
                 {
-                    console.log(row);
-                    console.log(row.ackno);
-                    console.log(row.roCode);
+                    //console.log(row);
+                    //console.log(row.ackno);
+                    //console.log(row.roCode);
                     getPropPartyList(row.ackno.toString() + row.roCode.toString() + row.year);
                     dept_sessionfactory.putAckno(row.ackno.toString() + row.roCode.toString() + row.year);
                     dept_sessionfactory.putTransCd(row.trans_code);
@@ -788,7 +788,7 @@
         angular.extend(statusObject, {
             tsno: 0,
             tsyear: 2015,
-            ackno: dept_sessionfactory.getAckno(),
+            ackno: (dept_sessionfactory.getAckno() === 0) ? null : dept_sessionfactory.getAckno(),
             status: 'Incomplete',
             sro: dept_sessionfactory.user.sro,
             trans_maj_code: dept_sessionfactory.getTransCd(),
@@ -1636,7 +1636,7 @@
             angular.extend(statusObject, {
                 tsno: $scope.tsyear.ts,
                 tsyear: $scope.tsyear.tyear,
-                ackno: dept_sessionfactory.getAckno(),
+                ackno: (dept_sessionfactory.getAckno() === 0) ? null : dept_sessionfactory.getAckno(),
                 status: 'DataEntered,Verify',
                 sro: dept_sessionfactory.user.sro,
                 trans_maj_code: dept_sessionfactory.getTransCd(),
