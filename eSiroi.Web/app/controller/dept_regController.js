@@ -1015,14 +1015,34 @@
         $scope.calcSFee = function () {
             var tempValue=0;
             if ($scope.deed.ConValue) {
-                if (Math.abs($scope.deed.ConValue / 100) > Math.floor($scope.deed.ConValue / 100)) {
-                    tempValue = Math.floor($scope.deed.ConValue / 100) + 1;
+                if (Math.abs($scope.deed.ConValue / 100) > parseInt($scope.deed.ConValue / 100)) {
+                    tempValue = parseInt($scope.deed.ConValue / 100) + 1;
                 }
                 else {
-                    tempValue = Math.floor($scope.deed.ConValue / 100);
+                    tempValue = parseInt($scope.deed.ConValue / 100);
                 }
-                alert(tempValue);
-                $scope.sFeePayable = 3 * tempValue;
+                if ($scope.deed.municipal==='Y')
+                {
+                    switch(dept_sessionfactory.getTransCd()){
+                        case('01'||'02'):{
+                            $scope.sFeePayable = 3 * tempValue;
+                            break;
+                        }
+                        default:{
+                            $scope.sFeePayable=4*tempValue;
+                        }
+                    }   
+                }
+                  else  
+                {
+                    if (dept_sessionfactory.getTransCd()==='03') {
+                        $scope.sFeePayable = 3 * tempValue;
+                    }
+                    else {
+                        $scope.sFeePayable=50
+                    }
+                }
+                
                 $scope.deed.StampPaid = $scope.sFeePayable;
             }
             else
@@ -1045,6 +1065,15 @@
             }, function (result) {
                 alert('deed details sumbit fails');
             })
+        }
+        $scope.clearsFee = function () {
+            $scope.sFeePayable = '';
+            $scope.deed.StampPaid = '';
+            $scope.deed.ConValue = '';
+        }
+        $scope.sFeeExem = function () {
+            $scope.sFeePayable = '';
+            $scope.deed.StampPaid = '';
         }
     }
 

@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <ng-form class="form-horizontal " name="From.deedform">
         <div class="form-group  ">
-            <div class="col-sm-6">
+            <!--<div class="col-sm-6">
                 <div class="col-md-4 hidden-xs  text-right">
                     <label class="control-label ">RegnNo:</label>
                 </div>
@@ -24,8 +24,8 @@
                 <div class="col-sm-12 col-md-8 ">
                     <input type="text" value="" class="form-control" placeholder="RegYear"  data-ng-model="deed.RegYear"/>
                 </div>
-            </div>
-            <div class="col-sm-6">
+            </div>-->
+            <!--<div class="col-sm-6">
                 <div class="col-md-4  hidden-xs  text-right ">
                     <label class="control-label ">RegDate:</label>
                 </div>
@@ -36,7 +36,7 @@
                 </div>
                 </div>
 
-            </div>
+            </div>-->
             <div class="col-sm-6">
                 <div class="col-md-4 hidden-xs text-right">
                     <label class="control-label">DateofExecution:</label>
@@ -87,13 +87,13 @@
                 <div class="col-sm-12 col-md-3">
                     <input type="radio" name="Municipal"
                            data-ng-model="deed.municipal"
-                           value="Y" />Yes
+                           value="Y" ng-click="clearsFee()" />Yes
 
                 </div>
                 <div class="col-sm-12 col-md-3">
                     <input type="radio" name="Municipal"
                            data-ng-model="deed.municipal"
-                          value= "N" />No
+                          value= "N" ng-click="clearsFee()" />No
 
                 </div>
             </div>
@@ -167,7 +167,7 @@
                         <span class="input-group-addon">
                             <input type="checkbox" name="SFeeExmp"
                                    value="Y"
-                                   data-ng-model="deed.SFeeExmp" />SFeeExmp
+                                   data-ng-model="deed.SFeeExmp" ng-click="sFeeExem()"/>SFeeExmp
                         </span>
                     </div>
                 </div>

@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <ng-form class="form-horizontal " name="Form.updatedeed">
         <div class="form-group  ">
-            <div class="col-sm-6">
+            <!--<div class="col-sm-6">
                 <div class="col-md-4 hidden-xs  text-right">
                     <label class="control-label ">RegnNo:</label>
                 </div>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div>-->
             <div class="col-sm-6">
                 <div class="col-md-4 hidden-xs text-right">
                     <label class="control-label">DateofExecution:</label>
@@ -87,13 +87,13 @@
                 <div class="col-sm-12 col-md-3">
                     <input type="radio" name="Municipal"
                            data-ng-model="deed.municipal"
-                           value="Y" />Yes
+                           value="Y" ng-click="clearsFee()" />Yes
 
                 </div>
                 <div class="col-sm-12 col-md-3">
                     <input type="radio" name="Municipal"
                            data-ng-model="deed.municipal"
-                           value="N" />No
+                           value="N" ng-click="clearsFee()" />No
 
                 </div>
             </div>
@@ -150,7 +150,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><del>&#2352;</del></span>
 
-                        <input type="text" value="" class="form-control" placeholder="Consolidation Value" data-ng-model="deed.ConValue" />
+                        <input type="text" ng-change="calcSFee()" class="form-control" placeholder="Consolidation Value" data-ng-model="deed.ConValue" />
                     </div>
 
                 </div>
@@ -163,11 +163,11 @@
                 <div class="col-md-7">
                     <div class="input-group">
                         <span class="input-group-addon"><del>&#2352;</del></span>
-                        <input type="text" class="form-control" placeholder="Stamp Payable Value" />
+                        <input type="text" ng-model="sFeePayable" class="form-control" placeholder="Stamp Payable Value" />
                         <span class="input-group-addon">
                             <input type="checkbox" name="SFeeExmp"
                                    value="Y"
-                                   data-ng-model="deed.SFeeExmp" />SFeeExmp
+                                   data-ng-model="deed.SFeeExmp" ng-click="sFeeExem()"/>SFeeExmp
                         </span>
                     </div>
                 </div>
