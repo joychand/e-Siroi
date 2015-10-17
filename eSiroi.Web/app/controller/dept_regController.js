@@ -1724,19 +1724,47 @@
 // dept_FactsheetModal Controller
 (function () {
     angular.module('eSiroi.Web')
-    .controller('fsheetModalController', ['$scope', '$window', 'deptModalService', function fsheetModalController($scope, $window, deptModalService) {
+    .controller('fsheetModalController', ['$scope', '$window', 'deptModalService', 'dept_dataFactory', 'dataFactory', function fsheetModalController($scope, $window, deptModalService, dept_dataFactory, dataFactory) {
        
-        $scope.propData = {}
-        $scope.execData = {}
-        $scope.claimData = {}
-        $scope.deedData ={}
-        angular.extend($scope.propData, deptModalService.property, deptModalService.propertyddl);
-        angular.extend($scope.execData, deptModalService.executant, deptModalService.execddl);
-        angular.extend($scope.claimData, deptModalService.claimant, deptModalService.claim);
+        $scope.propData = {};
+        $scope.execData = {};
+        $scope.claimData = {};
+        $scope.deedData = {};
+        $scope.loading = true;
+        console.log(deptModalService.ApplnModel);
+        var tsno = deptModalService.ApplnModel.tsno;
+        var tsyear = deptModalService.ApplnModel.tsyear;
+        var trans_majCode = deptModalService.ApplnModel.trans_maj_code;
+       
+        dept_dataFactory.getPropertyInfo(tsno, tsyear).then(function (response) {
+            $scope.propData = response.data[0];
+            dept_dataFactory.getExecInfo(tsno, tsyear).then(function (response) {
+                $scope.execData = response.data[0];
+                dept_dataFactory.getClaimInfo(tsno, tsyear).then(function (response) {
+                    $scope.claimData = response.data[0];
+                                          
+                       
+                   
+                    dataFactory.getTransName(trans_majCode).then(function (response) {
+                        angular.extend($scope.deedData, deptModalService.ApplnModel);
+                        $scope.deedData.transName = response[0];
+                       
+                        $scope.loading = false;
+                    })
+                       
+                    
+
+                })
+
+            })
+        })
         
-        angular.extend($scope.deedData, deptModalService.deed, deptModalService.deedddl);
-        angular.extend($scope.deedData, deptModalService.ApplnModel);
+
+   
+       
+        console.log($scope.deedData);
         $scope.displayCollection1 = [].concat($scope.deedData);
+        console.log($scope.displayCollection1);
         $scope.displayCollection2 = [].concat($scope.propData);
         $scope.displayCollection3 = [].concat($scope.execData);
         $scope.displayCollection4 = [].concat($scope.claimData);

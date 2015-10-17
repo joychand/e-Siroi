@@ -407,8 +407,6 @@ angular
                 .finally(function () {
                     console.log('finally');
 
-
-
                     var modalOptions = {
                         closeButtonText: 'Cancel',
                         actionButtonText: 'Ok',
@@ -435,9 +433,8 @@ angular
 
                     };
 
-
                     modalService.showModal(modalDefault, modalOptions).then(function (result) {
-                       
+                        console.log('Modal working');
 
                     });
                 });

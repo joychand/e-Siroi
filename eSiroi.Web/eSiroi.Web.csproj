@@ -186,6 +186,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\ct-ui-router-extras.js" />
     <Content Include="scripts\angular.min.js.map" />
+    <None Include="Properties\PublishProfiles\deploy_1.pubxml" />
     <None Include="Properties\PublishProfiles\eSiroi.pubxml" />
     <None Include="Properties\PublishProfiles\eSiroi2.pubxml" />
     <None Include="Properties\PublishProfiles\eSiroi3.pubxml" />
