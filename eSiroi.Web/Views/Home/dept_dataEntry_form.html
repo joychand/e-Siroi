@@ -42,14 +42,22 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <ul class="nav nav-pills nav-justified" role="tablist">
+                <!--<ul class="nav nav-pills nav-justified" role="tablist">
                     <li ui-sref-active="active" ng-if="session.OnlineStatus!='online'"><a ui-sref="department.content.form.deed">DeedDetails</a></li>
                     <li ui-sref-active="active"><a ui-sref="department.content.form.property">PropertyDetails</a></li>
                     <li ui-sref-active="active"><a ui-sref="department.content.form.executant">Executant</a></li>
                     <li ui-sref-active="active"><a ui-sref="department.content.form.claimant">Claimant</a></li>
                     <li ui-sref-active="active"><a ui-sref="department.content.form.identifier">Identifier</a></li>
 
-                </ul>
+                </ul>-->
+
+                 <tabset justified="true">
+                     <tab ng-if="session.OnlineStatus!='online'" heading="DeedDetails" select="$state.go('department.content.form.deed')"  active="deedActive"></tab>
+                <tab heading="PropertyDetails" select="$state.go('department.content.form.property')"  active="propActive" disabled="deptForm.propTabdisabled"></tab>
+                <tab heading="Executant" select="$state.go('department.content.form.executant')" active="execActive" disabled="deptForm.execTabdisabled"></tab>
+                <tab heading="Claimant" select="$state.go('department.content.form.claimant')" active="claimActive" disabled="deptForm.claimTabdisabled"></tab>
+                <tab heading="Identifier" select="$state.go('department.content.form.identifier')" active="identActive" disabled="deptForm.identTabdisabled"></tab>
+        </tabset>
             </div>
         </div>
         <div class="text-center" http-loader>

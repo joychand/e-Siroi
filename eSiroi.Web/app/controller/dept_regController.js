@@ -644,9 +644,14 @@
         $scope.propslnolist = [];
 
         deptModalService.idFormOnline.ddlview = 'offline';
-
-     
-
+        $scope.deptForm = {
+            execTabdisabled: true,
+            claimTabdisabled: true,
+            identTabdisabled: true,
+            propTabdisabled:true,
+        };
+        $scope.propActive = false;
+        $scope.deedActive = true;
             // *** inject dropdownlist data **//
             getStates();
             getDistricts();
@@ -779,6 +784,15 @@
                     getPropPartyList(row.ackno.toString() + row.roCode.toString() + row.year);
                     dept_sessionfactory.putAckno(row.ackno.toString() + row.roCode.toString() + row.year);
                     dept_sessionfactory.putTransCd(row.trans_code);
+                   
+                    $scope.deptForm.execTabdisabled= false;
+                    $scope.deptForm.claimTabdisabled= false;
+                    $scope.deptForm.identTabdisabled = false;
+                    $scope.deptForm.propTabdisabled = false;
+                    $scope.propActive = true;
+                    //$scope.execActive = false;
+                    //$scope.claimActive = false;
+                    //$scope.identActive = false;
             }
             //    getPropPartyList(row.ackno);
             //    dept_sessionfactory.putAckno(row.ackno);
@@ -1084,6 +1098,9 @@
             $scope.deed.SR = dept_sessionfactory.user.sro;
             
             dept_dataFactory.postdeed($scope.deed).then(function (response) {
+                $scope.deptForm.propTabdisabled = false;
+                $scope.propActive = true;
+               
                 $state.go('department.content.form.property')
             }, function (result) {
                 alert('deed details sumbit fails');
@@ -1201,7 +1218,9 @@
                 }
                
                 console.log($scope.property);
-               dept_dataFactory.postPlotDetail($scope.property).then(function (result) {
+                dept_dataFactory.postPlotDetail($scope.property).then(function (result) {
+                    $scope.deptForm.execTabdisabled= false;
+                  
                     $state.go('department.content.form.executant');
                 });
             });
@@ -1221,8 +1240,6 @@
                 $scope.IsPlotFound = false;})
                 .finally(function () {
                     console.log('finally');
-
-
 
                     var modalOptions = {
                         closeButtonText: 'Cancel',
@@ -1274,7 +1291,9 @@
             };
 
             modalService.showModal({}, modalOptions).then(function (result) {
-
+                $scope.deptForm.execTabdisabled = false;
+                $scope.execActive = true;
+                $state.go('department.content.form.executant');
             });
         }
 
@@ -1454,6 +1473,9 @@
             }
            // var exe = dept_sessionfactory.getExecutantlist();
             //console.log(exe[0].state);
+            $scope.deptForm.claimTabdisabled= false;
+            $scope.claimActive = true;
+            
             $state.go('department.content.form.claimant');
         }
 
@@ -1553,6 +1575,8 @@
                 dept_sessionfactory.putOnlineClaimantlist($scope.claimantlist)
             }
             console.log(dept_sessionfactory.getClaimantlist());
+            $scope.deptForm.identTabdisabled = false;
+            $scope.identActive = true; 
           $state.go('department.content.form.identifier')
         }
        

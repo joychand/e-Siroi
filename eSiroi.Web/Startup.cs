@@ -20,7 +20,7 @@ namespace eSiroi.Web
             //HttpConfiguration config = new HttpConfiguration();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
 
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
         }

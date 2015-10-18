@@ -421,21 +421,23 @@ angular
                         backdrop: 'static',
                         windowClass: 'app-modal-window',
                         resolve: {
-                            IsPlotFound: ['$scope',function ($scope) {
+                            IsPlotFound: function () {
                                 return $scope.IsPlotFound;
-                            }],
+                            },
 
-                            plot: ['$scope',function ($scope) {
+                            plot: function () {
                                 return $scope.PlotDetails;
                                 //return (($scope.IsPlotFound)?$scope.PlotDetails:$scope.BlankPlot);
-                            }]
+                            }
                         }
 
                     };
 
                     modalService.showModal(modalDefault, modalOptions).then(function (result) {
-                        console.log('Modal working');
+                        
 
+                    },function(reason){
+                        alert('popup not working');
                     });
                 });
 

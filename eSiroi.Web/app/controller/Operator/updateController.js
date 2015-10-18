@@ -12,7 +12,11 @@
             
             angular.extend($scope.upForm, {
                 tsno: deptModalService.onlineAppln.tsno,
-                tsyear: deptModalService.onlineAppln.tsyear
+                tsyear: deptModalService.onlineAppln.tsyear,
+                propTabdisabled: false,
+                execTabdisabled:false,
+                claimTabdisabled:false,
+                identTabdisabled:false,
               });
             angular.extend($scope.upExecForm, {
                 firstVisit: true,
