@@ -109,7 +109,7 @@
          $scope.viewRow = function (row) {
              
             console.log(row);
-             var ackno = ((row.ackno === null) ? 0 : row.ackno);
+             var ackno = ((row.ackno === null) ? 0 : row.ackno + row.roCode + row.year);
              console.log(ackno);
              deptModalService.ApplnModel = {};
              angular.extend(deptModalService.ApplnModel, {
@@ -117,7 +117,7 @@
                  tsyear:row.tYear,
                  sro: row.roCode,
                  sroName: row.sro,
-                 ackno: ackno,
+                 ackno: row.ackno,
                  trans_code: row.trans_code,
                  transName: row.transaction,
                  date: new Date(row.date),
@@ -275,7 +275,7 @@
                         $scope.claimInfo = response.data;
                         dept_dataFactory.getIdentInfo($scope.tno, $scope.tyear).then(function (response) {
                             $scope.identInfo = response.data;
-                            if (deptModalService.ApplnModel.ackno === 0) {
+                            if (deptModalService.ApplnModel.ackno === null) {
                                 dept_dataFactory.getDeedInfo($scope.tno, $scope.tyear).then(function (response) {
                                     $scope.applnOffline = true;
                                     $scope.deedinfo = response.data;
@@ -404,7 +404,7 @@
             dept_sessionfactory.putRow(row);
             deptModalService.onlineAppln = {};
             angular.extend(deptModalService.onlineAppln, {
-                ackno: row.ackno + row.roCode + row.year,
+                ackno: row.ackno.toString() + row.roCode.toString() + row.year,
                 sro: row.roCode,
                 trans_code: row.trans_code
 
@@ -1675,7 +1675,7 @@
             angular.extend(statusObject, {
                 tsno: $scope.tsyear.ts,
                 tsyear: $scope.tsyear.tyear,
-                ackno: (dept_sessionfactory.getAckno() === 0) ? null : dept_sessionfactory.getAckno(),
+                ackno: dept_sessionfactory.getAckno() ,
                 status: 'DataEntered,Verify',
                 sro: dept_sessionfactory.user.sro,
                 trans_maj_code: dept_sessionfactory.getTransCd(),

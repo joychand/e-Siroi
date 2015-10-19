@@ -532,8 +532,8 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
   
 }]);
 
-var AuthServiceBase = 'http://localhost/eSiroi.Authentication/';
-var ResrcServiceBase = 'http://localhost/eSiroi.Resource/';
+var AuthServiceBase = '/eSiroi.Authentication/';
+var ResrcServiceBase = '/eSiroi.Resource/';
 
 app.constant('eSiroiWebSettings', {
     apiAuthServiceBaseUri: AuthServiceBase,
