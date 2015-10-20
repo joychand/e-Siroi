@@ -99,12 +99,20 @@
 
         // PROCESS ROW FUNCTION
        
-         $scope.processrow =function(row)
+         $scope.scan =function(row)
          {
              console.log(row);
+             angular.extend(deptModalService.onlineAppln, {
+                 tsno: row.ts,
+                 tsyear:row.tYear,
+                sro:row.roCode.toString(),
+             
+
+             })
             // dept_sessionfactory.updateFormStatus();
              //dept_sessionfactory.putRow(row);
              //$state.go('department.content.scan')
+             $state.go('department.content.upload')
          }
          $scope.viewRow = function (row) {
              
