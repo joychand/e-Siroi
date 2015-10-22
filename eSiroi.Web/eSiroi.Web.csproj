@@ -132,6 +132,7 @@
     <Content Include="app\controller\dept_regController.js" />
     <Content Include="app\controller\MainController.js" />
     <Content Include="app\controller\Operator\dept_OnlineDeedController.js" />
+    <Content Include="app\controller\Operator\feeController.js" />
     <Content Include="app\controller\Operator\operatorController.js" />
     <Content Include="app\controller\Operator\schedulerController.js" />
     <Content Include="app\controller\Operator\updateController.js" />
@@ -221,6 +222,7 @@
     <Content Include="scripts\ui-utils.js" />
     <Content Include="spinning.gif" />
     <Content Include="Views\Department\Appoint_Calendar.html" />
+    <Content Include="Views\Department\enterFee.html" />
     <Content Include="Views\Home\Oldbrowser.html" />
     <Content Include="Views\Home\pageUnConst.html" />
     <Content Include="Views\Report\Certificate.html" />
