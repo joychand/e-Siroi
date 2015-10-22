@@ -186,6 +186,21 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\ct-ui-router-extras.js" />
     <Content Include="scripts\angular.min.js.map" />
+    <Content Include="deed_template\adoptiondeed.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="deed_template\divorcedeed.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="deed_template\gift.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="deed_template\sale.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fileUpload\gift.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\deploy_1.pubxml" />
     <None Include="Properties\PublishProfiles\eSiroi.pubxml" />
     <None Include="Properties\PublishProfiles\eSiroi2.pubxml" />
@@ -276,7 +291,6 @@
     <Content Include="Views\Home\draftDeeed.html" />
     <Content Include="Views\Home\executant.html" />
     <Content Include="Views\Home\home_page.html" />
-    <Content Include="Views\Home\HtmlPage1.html" />
     <Content Include="Views\Home\identifier.html" />
     <Content Include="Views\Home\loginPage.html" />
     <Content Include="Views\Home\login_page.html" />
@@ -309,8 +323,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="docs\" />
-    <Folder Include="fileUpload\" />
     <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
