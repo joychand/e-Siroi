@@ -91,5 +91,9 @@ namespace eSiroi.Web.Controllers
         {
             return File("~/Views/Department/FinalUpload.html", "text/html");
         }
+        public ActionResult MnGuD()
+        {
+            return File("~/Views/Department/minGuidValModal.html", "text/html");
+        }
     }
 }

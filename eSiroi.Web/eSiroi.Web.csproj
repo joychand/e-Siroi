@@ -223,6 +223,7 @@
     <Content Include="spinning.gif" />
     <Content Include="Views\Department\Appoint_Calendar.html" />
     <Content Include="Views\Department\enterFee.html" />
+    <Content Include="Views\Department\minGuidValModal.html" />
     <Content Include="Views\Home\Oldbrowser.html" />
     <Content Include="Views\Home\pageUnConst.html" />
     <Content Include="Views\Report\Certificate.html" />

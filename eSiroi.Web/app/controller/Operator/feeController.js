@@ -8,3 +8,14 @@
     }
 })();
 //#endregion
+
+//#region minGuidValController
+(function () {
+    angular.module('eSiroi.Web')
+    .controller('minGuidValController', ['$scope', '$state', 'deptModalService', minGuidValController]);
+    function minGuidValController($scope, $state, deptModalService) {
+        var rr, Vregfee;
+
+    }
+})();
+//#endregion

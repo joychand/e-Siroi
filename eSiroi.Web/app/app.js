@@ -349,6 +349,15 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
                  roles: ['Operator']
              }
          })
+        .state('department.content.minGuid', {
+            url:'/minGuid',
+            templateUrl: baseUrl + 'Department/MnGuD',
+            controller: 'minGuidValController',
+            data: {
+                loginRequired: false,
+                roles:[]
+            }
+        })
         //#endregion 
         //#region REPORT ROUTING
         .state('report', {
@@ -389,6 +398,7 @@ app.config(['$stateProvider', "$locationProvider", '$urlRouterProvider','$provid
             
 
         })
+        
         //#endregion REPORTROUTING
         //#region PUBLICROUTING
        
