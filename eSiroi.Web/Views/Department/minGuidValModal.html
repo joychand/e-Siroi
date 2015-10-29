@@ -1,17 +1,17 @@
 ﻿<div class="container">
     <div class="modal-header">
-        <h3 class="modal-title">MinGuidanceValue Calculator</h3>
+        <h3 class="modal-title">LandValuation Calculator</h3>
     </div>
     <div class="modal-body">
         <div class="row">
-          <div class="col-sm-6"> 
+          <div class="col-sm-5" style="padding:0"> 
               <div class="form-horizontal">
 
                   <div class="form-group-sm" style="margin-bottom: 2px">
-                      <div class="col-sm-3 text-right" style="padding-right: 5px">
+                      <div class="col-sm-5 text-left" style="padding-right: 5px;padding-left:1px">
                           <label class="control-label">Schedule of Units:</label>
                       </div>
-                      <div class="col-sm-3 text-left" style="padding: 0">
+                      <div class="col-sm-6 text-left" style="padding: 0">
                           <select class="form-control"
                               data-ng-model="minGuid.units">
                               <option value="">-select units-</option>
@@ -21,9 +21,9 @@
 
                   <div class="form-group-sm">
 
-                          <label class="control-label col-sm-3 text-right" style="padding: 5px">Rate:</label>
+                          <label class="control-label col-sm-5 text-left" style="padding: 5px">Rate:</label>
 
-                          <div class="col-sm-2 text-left" style="padding: 0">
+                          <div class="col-sm-4 text-left" style="padding: 0">
                               <select class="form-control"
                                   data-ng-model="minGuid.rate">
                                   <option value="">-select rate-</option>
@@ -37,17 +37,17 @@
                   
               </div>
           </div>
-            <div class="col-sm-6">
+            <div class="col-sm-7">
                  <div class="form-horizontal">
            
                      <div class="form-group-sm" style="margin-bottom: 2px">
                         
-                             <label class="control-label">Units Details:</label>
+                             <label class="control-label">Schedule Units Details:</label>
                         
                       </div>
                      <div class="form-group-sm" style="margin-bottom: 2px">
                          
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" rows="6" cols="50"></textarea>
                         
 
 
@@ -56,7 +56,103 @@
                  </div>
             </div>
         </div>
-       
+        <div class="row">
+            
+                <h4>Transact Minimum Guidance Value</h4>
+            
+        </div>
+        <div class="row">
+            <div class="form-group-sm" style="margin-bottom: 2px">
+                <div class="col-sm-7 text-left" style="padding-right: 5px; padding-left: 1px">
+                    <label class="control-label">Area(Choose Any):</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5" style="padding:0"> 
+              <div class="form-horizontal">
+
+                  
+                   <div class="form-group-sm" style="margin-bottom: 2px">
+                      <div class="col-sm-9 text-left" style="padding: 0">
+                          <label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="H">
+                              Hectare
+                          </label>
+                          <label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="A">
+                              Acre
+                          </label>
+                          <label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="S">
+                              Sq.Feet
+                          </label>
+                      </div>
+                  </div>
+
+                  <div class="form-group-sm">
+
+                          <label class="control-label col-sm-5 text-left" style="padding: 5px">Hectare:</label>
+
+                          <div class="col-sm-4 text-left" style="padding: 0">
+                              <input type="text" class="form-control" value="" />
+                          </div>
+                          <label class="control-label col-sm-5 text-left" style="padding: 5px">Acre:</label>
+
+                          <div class="col-sm-4 text-left" style="padding: 0">
+                              <input type="text" class="form-control" value="" />
+                          </div>
+                      <label class="control-label col-sm-5 text-left" style="padding: 5px">Sq.Feet:</label>
+
+                          <div class="col-sm-4 text-left" style="padding: 0">
+                              <input type="text" class="form-control" value="" />
+                          </div>
+
+                      </div>
+                  
+              </div>
+          </div>
+            <div class="col-sm-7">
+                 <div class="form-horizontal">
+           
+                     <div class="form-group-sm" style="margin-bottom: 2px">
+                         <div class="col-sm-7 sidepadding0 text-right">
+                              <label class="control-label ">Computed Min Guidance Value:</label>
+                         </div>
+                        
+                         <div class="col-sm-4 ">
+                            <div class="input-group">
+                        <span class="input-group-addon"><del>&#2352;</del></span>
+
+                        <input type="text" ng-change="calcSFee()"class="form-control" placeholder="Consideration Value"  data-ng-model="deed.ConValue"/>
+                    </div>
+                         </div>
+                          <div class="col-sm-7 sidepadding0 text-right">
+                              <label class="control-label ">Actual Min Guidance Value:</label>
+                         </div>
+                        
+                         <div class="col-sm-4 ">
+                             <input type="text" class="form-control" value="" />
+                         </div>
+                         <div class="col-sm-7 sidepadding0 text-right">
+                              <label class="control-label ">Registration Fee:</label>
+                         </div>
+                        
+                         <div class="col-sm-4 ">
+                             <input type="text" class="form-control" value="" />
+                         </div>
+                          <div class="col-sm-7 sidepadding0 text-right">
+                              <label class="control-label ">Stamp Value:</label>
+                         </div>
+                        
+                         <div class="col-sm-4">
+                             <input type="text" class="form-control" value="" />
+                         </div>
+                      </div>
+                    
+                 </div>
+            </div>
+        </div>
     </div>
 
 

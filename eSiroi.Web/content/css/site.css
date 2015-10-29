@@ -290,3 +290,12 @@ border-radius: 15px !important;
     }
     
 }
+
+/* FORM CONTROL CSS RULES*/
+.sidepadding0{
+    padding-left:0;
+    padding-right:0;
+}
+.bottompadding{
+    padding-bottom:1px;
+}
