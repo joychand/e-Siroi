@@ -195,8 +195,10 @@
     <Compile Include="Entities\Exempt_Reason.cs" />
     <Compile Include="Entities\Identifier.cs" />
     <Compile Include="Entities\LandType.cs" />
+    <Compile Include="Entities\Last_Record.cs" />
     <Compile Include="Entities\LpDbContext.cs" />
     <Compile Include="Entities\MajorTrans_code.cs" />
+    <Compile Include="Entities\MasterLandValue.cs" />
     <Compile Include="Entities\Occupation.cs" />
     <Compile Include="Entities\onlineapplication.cs" />
     <Compile Include="Entities\OnlineClaimant.cs" />
