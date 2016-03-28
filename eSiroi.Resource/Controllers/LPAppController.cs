@@ -27,7 +27,25 @@ namespace eSiroi.Resource.Controllers
         {
             return db.UniDistrict;
         }
-
+        [HttpGet]
+        [Route("{dcode}/getCircle")]
+        public IEnumerable<UniCircle> getcircle(string dcode)
+        {
+            IEnumerable<UniCircle> clist;
+            clist = db.UniCircle
+                       .Where(c => c.distcode == dcode);
+            return clist;
+        }
+        //getVillage
+        [HttpPost]
+        [Route("{getVillage")]
+        public IEnumerable<UniLocation> getVillage(UniCircle ccode)
+        {
+            IEnumerable<UniLocation> vlist;
+            vlist = db.UniLocation
+                .Where(l => l.LocCd.Contains(ccode.distcode + ccode.subcode + ccode.circode));
+            return vlist;
+        }
 
 #endregion
 

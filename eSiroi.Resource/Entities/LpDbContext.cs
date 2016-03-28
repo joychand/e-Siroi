@@ -15,6 +15,8 @@ namespace eSiroi.Resource.Entities
         public virtual DbSet<eSiroi.Resource.Entities.Uniowner> Uniowners { get; set; }
         public virtual DbSet<Uniplot> Uniplots { get; set; }
         public virtual DbSet<UniDistrict> UniDistrict { get; set; }
+        public virtual DbSet<UniCircle> UniCircle { get; set; }
+        public virtual DbSet<UniLocation> UniLocation { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Uniowner>()
