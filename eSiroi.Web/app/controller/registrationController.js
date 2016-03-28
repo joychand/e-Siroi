@@ -479,7 +479,8 @@ angular
                      Password: ApplyRegModel.onlineapplication.password,
                      ConfirmPassword: ApplyRegModel.onlineapplication.password,
                      RoleName:'public'
-                    })
+                   })
+                   console.log(usrModel);
                    dataFactory.signUpUsr(usrModel).then(function (result) {
                                 $scope.property.state = 'Manipur';
                                 $scope.property.ackno = ApplyRegModel.onlineapplication.ackno;

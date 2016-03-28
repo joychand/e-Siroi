@@ -26,6 +26,7 @@ namespace eSiroi.Resource
             app.UseErrorPage();
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
             HttpConfiguration appconfig = new HttpConfiguration();
+            //GlobalConfiguration.Configure(appconfig.Register);
             ConfigureOAuthTokenConsumption(app);
             ConfigureWebApi(appconfig);
             //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);

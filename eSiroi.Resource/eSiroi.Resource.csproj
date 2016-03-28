@@ -148,14 +148,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\eSiroi.Resource.dll" />
+    <Content Include="bin\eSiroi.Resource.pdb" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ApplyRegistrationController.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Controllers\ComDataController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -165,6 +164,7 @@
     <Compile Include="Controllers\DistrictsController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\LPAppController.cs" />
     <Compile Include="Controllers\OnlineExecutantsController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -215,6 +215,7 @@
     <Compile Include="Entities\State.cs" />
     <Compile Include="Entities\SubDivision.cs" />
     <Compile Include="Entities\TransactionStatu.cs" />
+    <Compile Include="Entities\UniDistrict.cs" />
     <Compile Include="Entities\Uniowner.cs" />
     <Compile Include="Entities\Uniplot.cs" />
     <Compile Include="ErrorResponse\HttpActionResult.cs" />
@@ -281,6 +282,10 @@
     <Compile Include="eSiroiResourceMigration\201510090702110_recreate_application_table.cs" />
     <Compile Include="eSiroiResourceMigration\201510090702110_recreate_application_table.Designer.cs">
       <DependentUpon>201510090702110_recreate_application_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eSiroiResourceMigration\201602190944224_afterearthQuake.cs" />
+    <Compile Include="eSiroiResourceMigration\201602190944224_afterearthQuake.Designer.cs">
+      <DependentUpon>201602190944224_afterearthQuake.cs</DependentUpon>
     </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
     <Compile Include="Models\ApplicationStatus.cs" />
@@ -355,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="eSiroiResourceMigration\201510090702110_recreate_application_table.resx">
       <DependentUpon>201510090702110_recreate_application_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eSiroiResourceMigration\201602190944224_afterearthQuake.resx">
+      <DependentUpon>201602190944224_afterearthQuake.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

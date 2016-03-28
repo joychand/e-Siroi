@@ -283,18 +283,22 @@ namespace eSiroi.Resource.Controllers
        [Route("api/ApplyRegistrationController/addOapplication")]
         public async Task<IHttpActionResult> addapplication(onlineapplication oAppln)
         {
-            var maxackno = db.onlineapplication
+
+            int  maxackno =Convert.ToInt32( db.onlineapplication
                          .Where(o => o.sro == oAppln.sro && o.year == DateTime.Now.Year.ToString())
-                         .Max(o => o.ackno) + 1;
-          
-            while (onlineapplicationExists(maxackno))
-            {
-                maxackno = maxackno + 1;
-            }
-            oAppln.ackno = maxackno;
+                         .Max(o => (int?)o.ackno));
+            
             oAppln.date = DateTime.Now.ToShortDateString();
             oAppln.year = DateTime.Now.Year.ToString();
-            oAppln.status="incomplete";
+            oAppln.status = "incomplete";
+            
+           int newackno=maxackno + 1;
+            //while (onlineapplicationExists(newackno))
+            //{
+            //    newackno = newackno + 1;
+            //}
+
+            oAppln.ackno = newackno;
             db.onlineapplication.Add(oAppln);
             try
             {
@@ -308,7 +312,7 @@ namespace eSiroi.Resource.Controllers
             }
            //var returnAckno = maxackno.ToString() + oAppln.sro + oAppln.year + 
             OnlineApplnId OApplnReturnModel = new OnlineApplnId();
-            OApplnReturnModel.ackno = maxackno;
+            OApplnReturnModel.ackno = newackno;
             OApplnReturnModel.sro = oAppln.sro;
             OApplnReturnModel.year = oAppln.year;
             return Ok(OApplnReturnModel);
@@ -471,6 +475,21 @@ namespace eSiroi.Resource.Controllers
         //    }
 
         //}
+        #endregion
+
+        #region test
+        [HttpGet]
+         [Route("api/ApplyRegistrationController/test")]
+        public int test()
+        {
+           
+          int maxackno1 = Convert.ToInt32(db.onlineapplication
+                        .Where(o => o.sro == "1" && o.year == DateTime.Now.Year.ToString())
+                        .Max(o => (int?)o.ackno));
+            int newackno1 = maxackno1 + 1;
+            return (newackno1);
+           
+        }
         #endregion
     }
 }
