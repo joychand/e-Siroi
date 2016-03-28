@@ -148,13 +148,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\eSiroi.Resource.dll" />
-    <Content Include="bin\eSiroi.Resource.pdb" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApplyRegistrationController.cs" />
     <Compile Include="Controllers\ComDataController.cs">
       <SubType>Code</SubType>
     </Compile>

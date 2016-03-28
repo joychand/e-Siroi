@@ -15,14 +15,14 @@ using System.Web.Http.Results;
 using eSiroi.Resource.Models;
 namespace eSiroi.Resource.Controllers
 {
-    [RoutePrefix("api/LPApp")]
+    [RoutePrefix("api/LPAppController")]
     public class LPAppController : ApiController
     {
         private LpDbContext db = new LpDbContext();
         #region PattaQuery
         //get district
         [HttpGet]
-        [Route("/getDistrict")]
+        [Route("getDistrict")]
         public IEnumerable<UniDistrict> getdistrict()
         {
             return db.UniDistrict;

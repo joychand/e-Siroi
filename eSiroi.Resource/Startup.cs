@@ -23,6 +23,7 @@ namespace eSiroi.Resource
        
         public void Configuration(IAppBuilder app)
         {
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseErrorPage();
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
             HttpConfiguration appconfig = new HttpConfiguration();
