@@ -13,6 +13,7 @@ using System.Web.Http.Description;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 using eSiroi.Resource.Models;
+using System.Data;
 namespace eSiroi.Resource.Controllers
 {
     [RoutePrefix("api/LPAppController")]
@@ -29,22 +30,43 @@ namespace eSiroi.Resource.Controllers
         }
         [HttpGet]
         [Route("{dcode}/getCircle")]
-        public IEnumerable<UniCircle> getcircle(string dcode)
+        public IHttpActionResult getcircle(string dcode)
         {
-            IEnumerable<UniCircle> clist;
-            clist = db.UniCircle
-                       .Where(c => c.distcode == dcode);
-            return clist;
+            //IEnumerable<UniCircle> clist;
+            var query = from c in db.UniCircle
+                    where c.distcode == dcode
+                    select new 
+                    {
+                       distcode= c.distcode,
+                        circode=c.circode,
+                       subcode=c.subcode,
+                       cirDesc=c.cirDesc
+
+                    };
+            if (query.Any())
+            {
+                return Ok(query);
+
+            }
+            return NotFound();
         }
         //getVillage
         [HttpPost]
-        [Route("{getVillage")]
-        public IEnumerable<UniLocation> getVillage(UniCircle ccode)
+        [Route("postVillage")]
+        public IHttpActionResult postVillage(UniCircle circ)
         {
-            IEnumerable<UniLocation> vlist;
-            vlist = db.UniLocation
-                .Where(l => l.LocCd.Contains(ccode.distcode + ccode.subcode + ccode.circode));
-            return vlist;
+            //VAR DISTCODE="07";
+            //VAR SUBCODE="01";
+            //VAR CIRCODE = "002";
+            //002
+            //IEnumerable<UniLocation> vlist;
+           var vlist = db.UniLocation
+                .Where(l => l.LocCd.Substring(0, 7).Equals(circ.distcode + circ.subcode + circ.circode));
+           if (vlist.Any())
+           {
+               return Ok(vlist);
+           }
+           return NotFound();
         }
 
 #endregion
