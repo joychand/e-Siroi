@@ -292,6 +292,7 @@
     <Compile Include="Models\ApplicationStatus.cs" />
     <Compile Include="Models\ApplnID.cs" />
     <Compile Include="Models\OnlineApplnId.cs" />
+    <Compile Include="Models\PqModel.cs" />
     <Compile Include="Models\StatusObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

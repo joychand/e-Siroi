@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Web.Http.Results;
 using eSiroi.Resource.Models;
 using System.Data;
+
 namespace eSiroi.Resource.Controllers
 {
     [RoutePrefix("api/LPAppController")]
@@ -68,8 +69,29 @@ namespace eSiroi.Resource.Controllers
            }
            return NotFound();
         }
+        [HttpPost]
+        [Route("getOwnDetail")]
+        public IHttpActionResult getOwnDetail(PqModel pq)
+        {
+            var query = db.Uniowners
+                      .Where(o => (o.LocCd.Equals(pq.LocCd) && o.NewDagNo == pq.NewDagNo && o.NewPattaNo == pq.NewPattaNo))
+                      .Select(o => new
+                      {
+                          Name = o.Name,
+                          Father = o.Father,
+                          Address = o.Address
+
+                      });
+            if(query.Any()){
+                return Ok(query);
+            }
+            return NotFound();
+        }
+       
+
+    }
 
 #endregion
 
-    }
+   
 }
