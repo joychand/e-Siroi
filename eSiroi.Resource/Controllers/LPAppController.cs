@@ -87,8 +87,21 @@ namespace eSiroi.Resource.Controllers
             }
             return NotFound();
         }
-       
 
+        [HttpPost]
+        [Route("getplotDetail")]
+        public IHttpActionResult getplotDetail(PqModel pq)
+        {
+            var query = db.Uniplots
+                      .Where(o => (o.LocCd.Equals(pq.LocCd) && o.NewDagNo == pq.NewDagNo && o.NewPattaNo == pq.NewPattaNo))
+                      .Select(o => new { o.LocCd, o.NewDagNo, o.OldDagNo, o.NewPattaNo, o.Area, o.Area_acre, o.LandClass })
+                      .FirstOrDefault();
+            if (query!=null)
+            {
+                return Ok(query);
+            }
+            return NotFound();
+        }
     }
 
 #endregion
