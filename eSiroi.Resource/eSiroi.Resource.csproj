@@ -289,6 +289,19 @@
       <DependentUpon>201602190944224_afterearthQuake.cs</DependentUpon>
     </Compile>
     <Compile Include="eSiroiResourceMigration\Configuration.cs" />
+    <Compile Include="Migrations\201604300552526_initialLP.cs" />
+    <Compile Include="Migrations\201604300552526_initialLP.Designer.cs">
+      <DependentUpon>201604300552526_initialLP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604300558498_2ndinitial.cs" />
+    <Compile Include="Migrations\201604300558498_2ndinitial.Designer.cs">
+      <DependentUpon>201604300558498_2ndinitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604300600414_addownno2.cs" />
+    <Compile Include="Migrations\201604300600414_addownno2.Designer.cs">
+      <DependentUpon>201604300600414_addownno2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationStatus.cs" />
     <Compile Include="Models\ApplnID.cs" />
     <Compile Include="Models\OnlineApplnId.cs" />
@@ -365,6 +378,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="eSiroiResourceMigration\201602190944224_afterearthQuake.resx">
       <DependentUpon>201602190944224_afterearthQuake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604300552526_initialLP.resx">
+      <DependentUpon>201604300552526_initialLP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604300558498_2ndinitial.resx">
+      <DependentUpon>201604300558498_2ndinitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604300600414_addownno2.resx">
+      <DependentUpon>201604300600414_addownno2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

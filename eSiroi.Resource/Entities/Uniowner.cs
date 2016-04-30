@@ -19,6 +19,8 @@ namespace eSiroi.Resource.Entities
         [StringLength(30)]
         public string NewDagNo { get; set; }
 
+        public int ? ownno { get; set; }
+
         [StringLength(30)]
         public string NewPattaNo { get; set; }
 

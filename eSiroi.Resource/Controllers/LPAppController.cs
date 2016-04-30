@@ -77,11 +77,12 @@ namespace eSiroi.Resource.Controllers
                       .Where(o => (o.LocCd.Equals(pq.LocCd) && o.NewDagNo == pq.NewDagNo && o.NewPattaNo == pq.NewPattaNo))
                       .Select(o => new
                       {
+                          ownno=o.ownno,
                           Name = o.Name,
                           Father = o.Father,
                           Address = o.Address
 
-                      });
+                      }).OrderBy(o=>o.ownno);
             if(query.Any()){
                 return Ok(query);
             }
