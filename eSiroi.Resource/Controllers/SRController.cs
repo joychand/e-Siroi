@@ -72,5 +72,28 @@ namespace eSiroi.Resource.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        [Route("gettrialPdf")]
+        public HttpResponseMessage GetPdf()
+        {
+            HttpResponseMessage result = null;
+            var serverpath = HttpContext.Current.Server.MapPath("~/uploadFile");
+            // MemoryStream pdf = serverpath + "2802263e-bf1b-48a4-9b91-4ecedfa9391b.PDF"; //get the memorysteram of the pdf here
+            var filepath = db.Application
+                         .Where(a => a.TSNo ==2 && a.TSYear == 2015)
+                         .Select(a => a.filePath).SingleOrDefault();
+            var fullpath = serverpath + "" + "/" + filepath;
+            MemoryStream pdf = new MemoryStream(System.IO.File.ReadAllBytes(fullpath));
+            // HttpResponseMessage result = null;
+            result = Request.CreateResponse(HttpStatusCode.OK);
+            result.Content = new ByteArrayContent(pdf.ToArray());
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            result.Content.Headers.ContentDisposition.FileName = filepath.Trim();
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+            //return File(@"C:\MyFile.pdf", "application/pdf");
+            //return File(new FileStream(@file, FileMode.Open, FileAccess.Read), "application/pdf");
+            return result;
+        }
     }
 }
