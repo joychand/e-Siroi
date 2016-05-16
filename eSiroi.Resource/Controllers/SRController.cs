@@ -81,7 +81,7 @@ namespace eSiroi.Resource.Controllers
             var serverpath = HttpContext.Current.Server.MapPath("~/uploadFile");
             // MemoryStream pdf = serverpath + "2802263e-bf1b-48a4-9b91-4ecedfa9391b.PDF"; //get the memorysteram of the pdf here
             var filepath = db.Application
-                         .Where(a => a.TSNo ==2 && a.TSYear == 2015)
+                         .Where(a => a.TSNo ==2 && a.TSYear == 2016)
                          .Select(a => a.filePath).SingleOrDefault();
             var fullpath = serverpath + "" + "/" + filepath;
             MemoryStream pdf = new MemoryStream(System.IO.File.ReadAllBytes(fullpath));

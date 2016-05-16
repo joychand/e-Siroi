@@ -301,6 +301,10 @@
     <Compile Include="Migrations\201604300600414_addownno2.Designer.cs">
       <DependentUpon>201604300600414_addownno2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605160800070_LandValue-added.cs" />
+    <Compile Include="Migrations\201605160800070_LandValue-added.Designer.cs">
+      <DependentUpon>201605160800070_LandValue-added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationStatus.cs" />
     <Compile Include="Models\ApplnID.cs" />
@@ -387,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604300600414_addownno2.resx">
       <DependentUpon>201604300600414_addownno2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605160800070_LandValue-added.resx">
+      <DependentUpon>201605160800070_LandValue-added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

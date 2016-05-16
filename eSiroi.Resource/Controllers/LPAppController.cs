@@ -103,6 +103,35 @@ namespace eSiroi.Resource.Controllers
             }
             return NotFound();
         }
+        [HttpPost]
+        [Route("getmasterlandvalue")]
+        public IHttpActionResult getmasterlandvalue([FromBody]string unit )
+        {
+            var query = db.MasterLandValue
+                      .Where(l => l.Unit.Contains(unit.ToString()))
+                      .Select(l => new { l.Unit, l.Details, l.Rate1, l.Rate2, l.Rate3, l.Remark1, l.Remark2, l.Remark3 });
+                     
+            if (query.Any())
+            {
+                return Ok(query);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        [Route("getunitgroup")]
+        public IHttpActionResult getunitgroup()
+        {
+            var query = db.MasterLandValue
+
+                      .Select(l => new { l.Unit});
+
+            if (query != null)
+            {
+                return Ok(query);
+            }
+            return NotFound();
+        }
     }
 
 #endregion
