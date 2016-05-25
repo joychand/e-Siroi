@@ -14,6 +14,11 @@ using System.Threading.Tasks;
 using System.Web.Http.Results;
 using eSiroi.Resource.Models;
 using System.Data;
+using System.Web;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace eSiroi.Resource.Controllers
 {
@@ -131,6 +136,29 @@ namespace eSiroi.Resource.Controllers
                 return Ok(query);
             }
             return NotFound();
+        }
+
+        [HttpGet]
+        [Route("getJammabandi")]
+        public HttpResponseMessage getJammabandi()
+        {
+            MemoryStream pdfmemorystream = new MemoryStream();
+            HttpResponseMessage result = null;
+            string fontpath = HttpContext.Current.Server.MapPath("~/fonts/");
+            BaseFont customfont = BaseFont.CreateFont(fontpath + "vrinda.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            Document doc = new Document();
+            PdfWriter.GetInstance(doc, pdfmemorystream);
+            Font font = new Font(customfont, 12);
+            string s = "নম্বোল";
+            doc.Open();
+            doc.Add(new Paragraph(s, font));
+            doc.Close();
+            result = Request.CreateResponse(HttpStatusCode.OK);
+            result.Content = new ByteArrayContent(pdfmemorystream.ToArray());
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            result.Content.Headers.ContentDisposition.FileName = new DateTime().ToString() + ".pdf";
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+            return result;
         }
     }
 
